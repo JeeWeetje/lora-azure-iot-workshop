@@ -1,24 +1,38 @@
 # From device to acting on insights with the Azure IoT platform 
-## IoT Tech Day 2017 - IoT Hands-on Lab
+## Techdays 2017 - IoT Hands-on Lab
 
-![IoT Tech Day 2017](img/logos/iottechday2017.png)
+![Techdays 2017](img/logos/iottechday2017.png)
 
-The workshop will simulate a remote located machine malfunctioning and getting restarted based on the received telemetry and created insights based on the telemetry data. You will be creating all components to get the malfunctioning machine back up running again. All of that within 2 hours.
-In this hands-on lab, you will be creating the complete chain from configuring, connecting a device via packet radio technology to The Things Network cloud, to bridging the gap between the TTN cloud and the Microsoft Azure IoT platform, creating actionable insights on the Microsoft Azure IoT platform and sending commands all the way back to the device. This includes assembling hardware, configuring hardware and configuring software and coding the missing logic to a complete IoT solution.
+In this hands-on lab you will be creating the complete chain from configuring, to bridging the cap between the connectivity providers clouds and the Microsoft Azure IoT platform, creating actionable insights on the Microsoft Azure IoT platform and sending commands all the way back to the device. 
+This includes assembling hardware, configuring hardware and software and coding the missing logic to a complete IoT solution.
+The workshop will simulate a remote located machine malfunctioning and getting restarted based on the received telemetry and created insights based on the telemetry data. 
+You will be creating all components to get the malfunctioning machine back up running again. 
+All of that within 2-3 hours (2 hours is minimum). 
 
-Technologies used during the hands-on lab; `Arduino development boards`, `sensors`, `The Things Network` cloud (`LoRa` & `LoraWAN`) and Microsoft Azure IoT Platform including: `Azure Web Jobs`, `Azure IoT Hub`, `Azure Stream analytics`, `Azure Event hub`, `Azure Blob storage` and Azure Functions.
+Technologies used during the hands-on lab; 
+• Arduino development boards (ESP8266, The Things Uno (LoRa enabled Arduino Leonardo), Arduino Leonardo with Sodaq NB-IoT shield) 
+• Software emulated devices/sensors (in Java, NodeJS or C# (UWP)) 
+• Sensors (button and LED light bar)
+• LoRa & Lora WAN
+• NB-IoT 
+• The Things Network cloud
+• Microsoft Azure IoT Platform (including Azure Web Jobs, Azure IoT Hub, Azure Stream analytics, Azure Event hub, Azure blob storage and Azure Functions)
 
-This hands-on lab will be guided by Jan Willem Groenenberg & Sander van de Velde , so attendees have on site support for questions. We will also provide background information about the used components in the hands-on lab. The hands-on lab is created in conjunction with Atos who will provide most the hardware used in the hands-on lab, the rest of the hardware will be provided by Microsoft Nederland. 
+This hands-on lab will be guided by Hans Boksem & Jan Willem Groenenberg & Sander van de Velde, so attendees have on site support for questions. 
 
-**Hardware used will *remain property* of Atos and/or Microsoft.**
+We will also provide background information about the used components in the hands-on lab. 
+
+The hands-on lab is created in conjunction with Atos and Microsoft Nederland. 
+
+**Hardware used will *remain property* of Atos and Microsoft.**
 
 ## Team of experts
 
 During the workshop the following experts will be present to guide you through the workshop:
 
+- [Hans Boksem](http://iottechday.nl/speakers/jan-willem-groenenberg/); IoT Solution Architect [ ![Twitter](img/social/twitter.png) ](https://twitter.com/bokse001) [ ![LinkedIn](img/social/linkedin.png) ](https://www.linkedin.com/in/hansboksem/) [ ![LinkedIn](img/social/wordpress.png) ](https://hansboksem.wordpress.com/)
 - [Jan Willem Groenenberg](http://iottechday.nl/speakers/jan-willem-groenenberg/); IoT Solution Architect [ ![Twitter](img/social/twitter.png) ](https://twitter.com/jeeweetje) [ ![LinkedIn](img/social/linkedin.png) ](https://www.linkedin.com/in/jwgroenenberg/) [ ![LinkedIn](img/social/wordpress.png) ](https://jeeweetje.net)
-- [Sander van de Velde](http://iottechday.nl/speakers/sander-van-de-velde/); MVP, Microsoft Consultant 
-[ ![Twitter](img/social/twitter.png) ](https://twitter.com/svelde) [ ![LinkedIn](img/social/linkedin.png) ](https://www.linkedin.com/in/sandervandevelde/) [ ![LinkedIn](img/social/wordpress.png) ](https://sandervandevelde.wordpress.com)
+- [Sander van de Velde](http://iottechday.nl/speakers/sander-van-de-velde/); MVP, Microsoft Consultant [ ![Twitter](img/social/twitter.png) ](https://twitter.com/svelde) [ ![LinkedIn](img/social/linkedin.png) ](https://www.linkedin.com/in/sandervandevelde/) [ ![LinkedIn](img/social/wordpress.png) ](https://sandervandevelde.wordpress.com)
 
 ## Workshop schedule at IoT Tech Day 2017
 
