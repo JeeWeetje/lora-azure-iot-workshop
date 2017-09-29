@@ -429,10 +429,10 @@ We are now receiving raw telemetry. We can decode and transform this in the TTN 
 
 ![alt tag](img/msft/Picture06-decode-data-on-ttn.png)
 
-Now, the hexidecimal payload is an efficient format for LoRa communication but it is not really useful upstream. We want human readable JSON. To decode and convert the hexidecimal payload to JSON messages, we have payload functions.
+Now, the hexidecimal payload is an efficient format for LoRa communication but it is not really useful upstream. We want human readable JSON. To decode and convert the hexidecimal payload to JSON messages, we have payload formats.
 
-1. In the application overview, click **Payload Functions**
-2. Add the following **decoder** function to decode the two bytes back to the decimal number of cycles completed and the current state:
+1. In the application overview, click **Payload Formats**
+2. Add the following **decoder** payload format to decode the two bytes back to the decimal number of cycles completed and the current state:
 
     ```c
     function Decoder(bytes, port) {
@@ -450,7 +450,7 @@ Now, the hexidecimal payload is an efficient format for LoRa communication but i
 
     ![alt tag](img/TheThingsNetwork/ttn-portal-decoder.png)
 
-4. We want to rearrange the order of the JSON elements. To rearrange the order we use the following function as the **converter**:
+4. We want to rearrange the order of the JSON elements. To rearrange the order we use the following function as the **converter** payload format:
 
     ```c
     function Converter(decoded, port) {
@@ -461,7 +461,7 @@ Now, the hexidecimal payload is an efficient format for LoRa communication but i
     }
     ```
 
-5. Again, you have to test this converter function before you can save the function. Again, enter eg. '2A00' in the payload and click **Test**. The hexidecimal payload entered is shown in JSON format with rearranged elements as test result
+5. Again, you have to test this converter payload format before you can save the function. Again, enter eg. '2A00' in the payload and click **Test**. The hexidecimal payload entered is shown in JSON format with rearranged elements as test result
 6. Finally, scroll to the bottom of the page and click **Save**
 7. Go back to your data overview. Now you should see something like this:
 
@@ -557,7 +557,7 @@ Follow these steps to create the integration bridge between The Things Network a
 *Note: The bridge below is build using C# and will not run on non-windows devices. Use instead a bridge in the cloud as described in [Deploying The Things Network Bridge to Azure as a WebJob](Webjob.md)*
 
 1. **Create** a new folder eg. `c:\IoTWorkshop`
-2. **Copy** the zip file 'TTNAzureBridge.zip' from [this OneDrive location](https://aka.ms/workshopiot) to this folder and **unzip** it
+2. **Copy** the zip file 'TTNAzureBridge.zip' from [this OneDrive location](https://aka.ms/workshopiot) to this folder and **unzip** it _(Note: on some corporate networks, access to onedrive is limited. Ask the organization for a copy of the zip)_
 
     ![alt tag](img/TheThingsNetwork/bridge-download.png)
 

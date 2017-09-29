@@ -115,7 +115,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 
     ![alt tag](img/commands/azure-function-app-view-files-pane-add.png)
 
-13. Name the new file `project.json`
+13. Name the new file `package.json`
 
     ![alt tag](img/commands/azure-function-app-view-files-pane-add-file-nodejs.png)
 
@@ -144,7 +144,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 
     ![alt tag](img/commands/azure-function-app-settings.png)
 
-19. We want to run a NodeJs command. Select the `Go to Kudu` option
+19. We want to run a NodeJs command. Select the `Go to Kudu` option. The Kudu interface is also accessible by navigating to https://<azure_function_name>.scm.azurewebsites.net/.
 
     ![alt tag](img/commands/azure-function-app-kudu.png)
 

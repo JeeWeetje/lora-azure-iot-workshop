@@ -106,7 +106,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 
     ![alt tag](img/commands/azure-function-app-view-files-pane-add.png)
 
-13. Name the new file `project.json`
+13. Name the new file `package.json`
 
     ![alt tag](img/commands/azure-function-app-view-files-pane-add-file.png)
 
