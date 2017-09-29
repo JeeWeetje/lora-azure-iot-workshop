@@ -31,7 +31,7 @@ During the workshop the following experts will be present to guide you through t
 
 - [Hans Boksem](http://iottechday.nl/speakers/jan-willem-groenenberg/); IoT Solution Architect [ ![Twitter](img/social/twitter.png) ](https://twitter.com/bokse001) [ ![LinkedIn](img/social/linkedin.png) ](https://www.linkedin.com/in/hansboksem/) [ ![LinkedIn](img/social/wordpress.png) ](https://hansboksem.wordpress.com/)
 - [Jan Willem Groenenberg](http://iottechday.nl/speakers/jan-willem-groenenberg/); IoT Solution Architect [ ![Twitter](img/social/twitter.png) ](https://twitter.com/jeeweetje) [ ![LinkedIn](img/social/linkedin.png) ](https://www.linkedin.com/in/jwgroenenberg/) [ ![LinkedIn](img/social/wordpress.png) ](https://jeeweetje.net)
-- [Sander van de Velde](http://iottechday.nl/speakers/sander-van-de-velde/); MVP, Microsoft Consultant [ ![Twitter](img/social/twitter.png) ](https://twitter.com/svelde) [ ![LinkedIn](img/social/linkedin.png) ](https://www.linkedin.com/in/sandervandevelde/) [ ![LinkedIn](img/social/wordpress.png) ](https://sandervandevelde.wordpress.com)
+- [Sander van de Velde](http://iottechday.nl/speakers/sander-van-de-velde/); MVP, Microsoft Consultant [ ![Twitter](img/social/twitter.png) ](https://twitter.com/svelde) [ ![LinkedIn](img/social/linkedin.png) ](https://www.linkedin.com/in/sandervandevelde/) [ ![LinkedIn](img/social/wordpress.png) ](https://blog.vandevelde-online.com)
 
 ## Workshop schedule at IoT Tech Day 2017
 
@@ -131,3 +131,4 @@ The workshop consists of several chapters. The first two chapters will guide you
    2. [Add basic monitoring to the IoT platform](IoTPatformMonitoring.md)
 
 
+![alt tag](img/logos/microsoft.jpg) ![alt tag](img/logos/atos.png)
