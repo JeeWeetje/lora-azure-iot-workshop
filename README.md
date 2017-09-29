@@ -10,11 +10,10 @@ You will be creating all components to get the malfunctioning machine back up ru
 All of that within 2-3 hours (2 hours is minimum). 
 
 Technologies used during the hands-on lab; 
-• Arduino development boards (ESP8266, The Things Uno (LoRa enabled Arduino Leonardo), Arduino Leonardo with Sodaq NB-IoT shield) 
+• Arduino development boards The Things Uno (LoRa enabled Arduino Leonardo) 
 • Software emulated devices/sensors (in Java, NodeJS or C# (UWP)) 
 • Sensors (button and LED light bar)
-• LoRa & Lora WAN
-• NB-IoT 
+• LoRa & Lora WAN 
 • The Things Network cloud
 • Microsoft Azure IoT Platform (including Azure Web Jobs, Azure IoT Hub, Azure Stream analytics, Azure Event hub, Azure blob storage and Azure Functions)
 
@@ -38,7 +37,7 @@ During the workshop the following experts will be present to guide you through t
 
 | Location | Start Time |  Room  |
 | -------- | ---------- | ------ |
-| Utrecht, Jaarbeurs, April 19 2017 | 11.30h | Glow |
+| Amsterdam, RAI | OCTOBER 13 2017 08:00H-10:00H | G110 |
 
 ## Let's dive into the workshop
 
@@ -46,7 +45,7 @@ The workshop consists of several chapters. The first two chapters will guide you
 
 1. **Connecting a device to the Azure IoT Platform**
     
-    You have 4 options to choose from to start with. You can either go for physical hardware based on the The Things Uno (Lora/LoraWAN enabled Arduino Leonardo) programmed in C and connected via The Things Network, Or choose one of the device simulation applications like UWP (C#), NodeJS (JavaScript) or Java application.
+    You have four options to choose from to start with. You can either go for physical hardware based on the The Things Uno (Lora/LoraWAN enabled Arduino Leonardo) programmed in C and connected via The Things Network, Or choose one of the device simulation applications like UWP (C#), NodeJS (JavaScript) or Java application.
 
     <table>
         <thead>
