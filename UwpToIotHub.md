@@ -81,7 +81,7 @@ We will create a UWP app in Visual Studio. These apps are called Universal Windo
 
     ![alt tag](img/UwpToIotHub/vs-universal-anniversary.png)
 
-    *Note: If you do not have the Windows 10 Aniversary edition installed, please select the previous SDK*
+    *Note: here the Windows 10 Anniversary edition is shown in the picture, please try select to select the most recent SDK*
  
 5. Press `F6` or use the menu `BUILD|Build Solution` to recompile the app and check if the build completes without errors
 
@@ -154,34 +154,57 @@ The AzureIoTHub class can be integrated into the logic of our App. Let's do that
 
 ![alt tag](img/arch/Picture04-UWP-overview.png)
 
-We will use the connection later on. But first let's check out the 'AzureIoTHub.cs' file because it needs some rework.
+We will use the logic of the class later on when we integrate with our 'factory machine'. But first let's check out the 'AzureIoTHub.cs' file because it needs some rework.
 
 1. `Open` the file named 'AzureIoTHub.cs'
-2. The file contains a class named which has two methods: 'SendDeviceToCloudMessageAsync' and 'ReceiveCloudToDeviceMessageAsync'. *Note: receiving Cloud to Device messages will be discussed later on*
-3. The method to send data is not that intelligent. It only sends a text message. `Add the following code` just below it
+2. The file contains a class named 'AzureIoTHub' which has (al least) two methods: 'SendDeviceToCloudMessageAsync' and 'ReceiveCloudToDeviceMessageAsync'. *Note: receiving Cloud to Device messages will be discussed later on. More methods could be generated depending on the selection in the wizard*
+3. We alter the method called 'Createclient' which is private and provides a singleton access to the IoTHub Device client
+
+    ```csharp
+    private static void CreateClient()
+    {
+        if (deviceClient == null)
+        {
+            // create Azure IoT Hub client from embedded connection string
+            deviceClient = DeviceClient.CreateFromConnectionString(deviceConnectionString, TransportType.Amqp);
+        }
+    }
+    ```
+
+4. The only thing changed by this code is that we now access the IoT Hub in the cloud using the AMQP protocol instead of MQTT. MQTT is more popular than AMQP because it is lightweight but also a bit more error prone. To guarantee a more stable communication during the workshop, AMQP is preferred 
+5. The method to send data is not that intelligent, it only sends a fixed message. `Add the following code` just below it
 
     ```csharp
     public static async Task SendDeviceToCloudMessageAsync(Telemetry telemetry)
     {
-     var deviceClient = DeviceClient.CreateFromConnectionString(deviceConnectionString, TransportType.Amqp);
+        CreateClient();
 
         var message = new Message(Encoding.ASCII.GetBytes(Newtonsoft.Json.JsonConvert.SerializeObject(telemetry)));
 
-        await deviceClient.SendEventAsync(message);
+        try
+        {
+            await deviceClient.SendEventAsync(message);
+        }
+        catch (Exception)
+        {
+            deviceClient = null;
+
+            throw;
+        }
     }
 
     public class Telemetry
     {
         public int errorCode { get; set; }
-
         public int numberOfCycles { get; set; }
     }
     ```
 
-4. We have defined the Telemetry class which will hold the number of cycles. And the current error code of the device can be passed to the cloud. The telemetry is converted to JSON
-6. `Open` the 'XAML' file named 'MainPage.xaml'. The empty page will be shown both in a visual editor and a textual XAML editor
-7. The page contains one component, a grid. But that grid is merely a container for other visual components
-8. In the XAML editor, within the grid, `add`
+6. *Note*: The exception handling is very simplistic but effective. If an error occurs, the client is reset.
+7. We have defined the Telemetry class which will hold the number of cycles executed. And the current error code of the device can be passed to the cloud. The telemetry is converted to JSON and passed to the Singleton instance of our device _(Note: the credentials of the device is hardcoded)_
+8. `Open` the 'XAML' file named 'MainPage.xaml'. The empty page will be shown both in a visual editor and a textual XAML editor
+9. The page contains one component, a grid. But that grid is merely a container for other visual components
+10. In the XAML editor, within the grid, `add`
 
     ```xml
     <StackPanel>
@@ -192,9 +215,9 @@ We will use the connection later on. But first let's check out the 'AzureIoTHub.
     </StackPanel>
     ```
 
-9. Three buttons and two text blocks are put on the screen. Go to the code-behind source code which will be executed when the buttons are clicked. 
-10. Press `F7`, the file 'MainPage.xaml.cs' is shown. 
-11. Only the constructor of this page is shown. `Add` the following members and methods 
+11. Three buttons and two text blocks are put on the screen. Go to the code-behind source code which will be executed when the buttons are clicked. 
+12. Press `F7`, the file 'MainPage.xaml.cs' is shown. 
+13. Only the constructor of this page is shown. `Add` the following members and methods 
 
     ```csharp
     private int _cycleCounter;
@@ -256,32 +279,31 @@ We will use the connection later on. But first let's check out the 'AzureIoTHub.
     }
     ```
 
-12. The method 'btnSend_Click' now increases the number of duty cycles and sends it to the IoT Hub using the unique access token of the device 'MachineCyclesUwp'
-13. New libraries references are introduced in this code. `Add` two times a 'using' at the top of the editor
+14. The method 'btnSend_Click' now increases the number of duty cycles and sends it to the IoT Hub using the unique access token of the device 'MachineCyclesUwp'
+15. New libraries references are introduced in this code. `Add` two times a 'using' at the top of the editor
 
     ```csharp
-    using System;
     using System.Threading.Tasks;
     using Windows.UI;
     using Windows.UI.Core;
-    using Windows.UI.Xaml;
-    using Windows.UI.Xaml.Controls;
-    using Windows.UI.Xaml.Media;
     ```
 
-14. The app is now ready. `Run` the app and first send some cycle updates. It the message 'Telemetry sent' is shown, our telemetry is accepted by the IoT Hub
+16. Please `build` the app to check for errors
+17. The app is now ready. `Run` the app and first send some cycle updates. It the message 'Telemetry sent' is shown, our telemetry is accepted by the IoT Hub
 
     ![alt tag](img/UwpToIotHub/uwp-send-telemetry.png)
 
-Now we have sent telemetry to the Event Hub. Let's check if it's arrived.
+Now we have sent telemetry to the IoT Hub. Let's check if it's arrived.
 
 ## Monitoring the arrival of the telemetry in Azure
 
-We can monitor the arrival of telemetry only if we have enough rights to look into the IoT Hub. So first we collect secrets.
+![alt tag](img/arch/Picture05-UWP-overview.png)
+
+We can monitor the arrival of telemetry with extra tooling only if we have enough rights to look into the IoT Hub. So first we collect secrets so we have enough privileges.
 
 ### Collect Azure IoT Hub secrets
 
-The integration requires an Azure IoT Hub Shared access policy key name with `Registry read, write and Device connect` permissions. In this example, we use the **iothubowner** policy which has these permissions enabled by default.
+To check telemetry, we need to get an Azure IoT Hub Shared access policy key with `Registry read, write and Device connect` permissions. In this example, we use the standard available **iothubowner** policy which has these permissions enabled by default _(Note: in production, always only use specific unique policies for a simple purpose with just the right amount of rights)_
 
 1. Check the Azure portal. The resource group and the IoT Hub should be created by now (otherwise, we were unable to send duty cycles information to it)
 
@@ -305,17 +327,11 @@ The integration requires an Azure IoT Hub Shared access policy key name with `Re
 
     ![alt tag](img/UwpToIotHub/azure-iothubowner-policy.png)
 
-This is the secret needed from the Azure IoT Hub.
-
-## Select your favorite tool for monitoring
-
-![alt tag](img/arch/Picture05-UWP-overview.png)
-
-We can check the arrival of messages in the Azure IoT Hub. This can be done using a UI app named Device Explorer or using a Command-Line tool named IoT Hub Explorer. `Choose one below` 
+This is the secret connection string needed from the Azure IoT Hub monitoring.
 
 ### Monitoring using Device Explorer
 
-We can check the arrival of the messages in the Azure IoT Hub using the Device Explorer.
+We will check the arrival of the messages in the Azure IoT Hub using the Device Explorer.
 
 The Device Explorer tool is a Windows-only graphical tool for managing your devices in IoT Hub.
 
@@ -343,7 +359,7 @@ To run the Device Explorer tool, double-click the DeviceExplorer.exe file in Win
 
 ## Conclusion
 
-These messages shown during the monitoring step are now available in Azure, and kept in the IotHub until other resources are asking for telemetry...
+These messages shown during the monitoring step are now available in Azure, and kept in the IotHub until other resources start consuming the telemetry. There is a retention time (not consumed messages will be dropped) but relax, we will consume them right away.  
 
 Next Step: You are now ready to process your data in an Azure Function. Continue to [Receiving and handling telemetry in Azure](AzureUWP.md)
 
