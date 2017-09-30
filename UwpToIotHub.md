@@ -103,39 +103,52 @@ Let's add a connection to IoT hub and register the app like a real device.
 
     ![alt tag](img/UwpToIotHub/vs-solution-explorer-universal-start.png)
 
-3. In the solution, right-click `References` and select `Add Connected Service`
+3. In the solution, right-click `Connected Services` and select `Add Connected Service`
 
     ![alt tag](img/UwpToIotHub/vs-iot-hub-extension.png)
 
-4. A welcome screen for the extension will be shown. Select `Azure IoT Hub` and click `Configure` to add it as a Connected Service
+4. A welcome screen for the extension will be shown. Select `Azure IoT Hub` to add it as a Connected Service _(Note: if this option is not shown, please double-check if the extension is installed)_
 
     ![alt tag](img/UwpToIotHub/vs-iot-extension-start.png)
 
-5. Select `Hardcode shared access key` as Security Mode. Confirm with `OK`
-6. Now you will be asked to select the IoT Hub you want to connect. At this time, the Hub should be created. *If you have multiple Azure accounts, please double-check that the correct one is selected*
+5. You are required to connect to you Azure subscription. And the way device credentials are stored, must be chosen:
+
+    ![alt tag](img/UwpToIotHub/vs-iot-extension-credentials.png)
+
+6. Select `Hardcode shared access key` as Security Mode. Confirm with `OK`
+7. Now you will be asked to select the IoT Hub you want to connect. At this time, the Hub should be created. *If you have multiple Azure accounts, please double-check that the correct one is selected*
 
     ![alt tag](img/UwpToIotHub/vs-iot-extension-select.png)
 
-7. Select your IoT Hub and press `Add`
-8. The next page of the wizard is shown. A little screen pops up asking to select or add a device. Our app will represent a device and therefore access must be granted. Select `New Device`
+8. `Select` your IoT Hub and press `Add`
+9. The next page of the wizard is shown. You are asked to select or add the registration of a device. Our app will represent a device and therefore access must be granted, which has to be created. Select `New Device`
 
     ![alt tag](img/UwpToIotHub/vs-device-one.png)
 
-9. Enter a unique `device name` eg 'MachineCyclesUwp'
+10. Enter a unique `device name` eg 'MachineCyclesUwp' and press `Create`
 
-    ![alt tag](img/UwpToIotHub/vs-device-two.png)
-
-10. The device is registered, you are allowed to create more devices. Unique credentials are created for each device in the background
-11. But afterward, be sure to pick the 'MachineCyclesUwp'; this one will be used by our app. Select `OK` to start the generation of the connection
+11. The device is registered, it's not needed to create more devices. Unique credentials are created for each device in the IoTHub
+12. So afterward, in the 'select' tab, be sure to pick the 'MachineCyclesUwp'; this one will be used by our app. _(Note: in this workshop we will look at sending and receiving messages. This wizard can generate example code for device twins and direct methods also, but this is not part of the workshop)_
 
     ![alt tag](img/UwpToIotHub/vs-device-three.png)
 
-12. The necessary NuGet libraries are added and eventually you will be directed to a [Get Started page](https://github.com/Azure/azure-iot-hub-vs-cs/wiki/C%23-Usage) for more information
-13. In the Solution Explorer of Visual Studio, a new file named 'AzureIoTHub.cs' is added. This provides all logic for the connection to the IoT Hub
+13. Select `Next` to review the summary
+
+    ![alt tag](img/UwpToIotHub/vs-device-two.png)
+
+14. Press Finish to start the generation of code. The necessary NuGet libraries are added and eventually you will be directed to a [Get Started page](https://github.com/Azure/azure-iot-hub-vs-cs-2017/wiki/C%23-Usage) for more information
+
+    ![alt tag](img/UwpToIotHub/vs-device-four.png)
+
+15. The wizard now completed the creation of your example code
+
+    ![alt tag](img/UwpToIotHub/vs-device-five.png)
+
+16. In the Solution Explorer of Visual Studio, a new file named 'AzureIoTHub.cs' is added. This provides all logic for the connection to the IoT Hub
 
     ![alt tag](img/UwpToIotHub/vs-iot-hub-singleton.png)
 
-The AzureIoTHub can be integrated into the logic of our App. Let's do that.
+The AzureIoTHub class can be integrated into the logic of our App. Let's do that.
 
 ## Generate and send dummy telemetry
 
