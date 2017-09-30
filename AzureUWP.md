@@ -22,7 +22,19 @@ The Azure Function will execute custom code in the Cloud, based on certain telem
 3. The Azure IoT Hub (created in the previous chapter)
 4. A running Device Explorer connected to the IoT Hub, showing the telemetry coming in (created in the previous chapter)
 
-## Filter data in Stream Analytics and stream to event hub
+### Steps to perform in this part of the workshop
+
+At the end of this part of the workshop, the following steps are performed
+
+1. Filter data in Stream Analytics and stream to EventHub
+2. Create an Azure Event Hub
+3. Connecting the hubs to Azure Stream Analytics job input and output
+4. Write the Azure Stream Analytics job query
+5. Create an Azure Function App to handle events 
+6. Receiving telemetry in the Azure Function
+7. Conclusion
+
+## Filter data in Stream Analytics and stream to EventHub
 
 ![alt tag](img/msft/Picture10-stream-data-to-an-event-hub.png)
 
@@ -121,7 +133,7 @@ Follow these steps to create an Azure Event Hub which passes large amounts of ev
 
 The Event Hub is now created. But before we pass on, we need some Namespace secrets for later usage.
 
-## Azure Event Hub namespace secrets
+### Azure Event Hub namespace secrets
 
 A few steps below we will create an Azure Functions triggered by an Event Hub. At this moment, in the editor of the Azure portal, the Azure functions can not automatically recognize available Event Hubs. We need some secrets to do it by hand.
 
@@ -191,7 +203,7 @@ As shown above, the Azure Stream Analytics job will connect to the Event Hub. Fo
 
 The output is now defined. Let's add the Azure Stream Analytics job query to connect input and output.
 
-### Write the Azure Stream Analytics job query
+## Write the Azure Stream Analytics job query
 
 Follow these steps to write the query of Azure Stream Analytics job.
 
@@ -393,7 +405,7 @@ If you are using the UWP app as simulator for a node, you have to 'break' the ma
 
 The UWP app now simulates a machine which has stopped working. If this error is passed several times within two minutes, this is picked up by Stream Analytics. Let's check out the Azure Function
 
-## Receiving broken machines information in the Azure Function
+### Receiving broken machines information in the Azure Function
 
 Machine telemetry with an error state is arriving at the Azure IoTHub. The Azure Function should pick these up _(Note: be aware of the two minute cumulations)_
 

@@ -19,15 +19,16 @@ This is an example integration between a UWP app and Azure IoT Hub. This integra
 6. Application for checking out the Azure IoT Platform [Device Explorer](https://github.com/fsautomata/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md) _(for GUI based usage; see below for installation steps)_  
 7. Azure account [create here](https://azure.microsoft.com/en-us/free/) _([Azure passes](https://www.microsoftazurepass.com/howto) will be present for those who have no Azure account (please check your email for final confirmation))_
 
-### Objectives
+### Steps to perform in this part of the workshop
 
-In this workshop, you will learn:
+At the end of this part of the workshop, the following steps are performed
 
 1. Creating an IoT Hub in the Azure Portal
 2. Creating a new UWP App
 3. Connect to the IoT Hub and register the app like a device
 4. Generate and send dummy telemetry
-5. Check the arrival of the telemetry
+5. Monitoring the arrival of the telemetry in Azure
+6. Conclusion
 
 ## Creating an Azure IoT Hub in the Azure portal
 

@@ -11,31 +11,33 @@ This part of the workshop supports both the [UWP app](UwpToIotHub.md).
 
 ### Prerequisites
 
-1. Azure account [create here](https://azure.microsoft.com/en-us/free/) _(Azure passes will be present for those who have no Azure account (please check your email for final confirmation))_
-2. A running UWP app which simulates a machine running duty cycles
-3. A combination of Azure IoT Hub, Stream Analytics job, Event Hub and Azure Function which are waiting for analyzed telemetry coming from the devices
-4. A running Device Explorer, connected to the IoT Hub, showing the telemetry coming in
+1. A running UWP app which simulates a machine running duty cycles
+2. A combination of Azure IoT Hub, Stream Analytics job, Event Hub and Azure Function which are waiting for analyzed telemetry coming from the devices
+3. A running Device Explorer, connected to the IoT Hub, showing the telemetry coming in
+4. Azure account [create here](https://azure.microsoft.com/en-us/free/) _(Azure passes will be present for those who have no Azure account (please check your email for final confirmation))_
 
 ### Steps to perform in this part of the workshop
 
 At the end of this part of the workshop, the following steps are performed
 
-1. Creating commands to send back in the Azure Function
-2. Handle commands in the running UWP app
+1. Sending back commands for devices which are in a faulty state
+2. Updating the C# Azure Function with sending command logic
+3. Handle commands in the devices
+4. Conclusion
 
 ## Sending back commands for devices which are in a faulty state
 
 ![alt tag](img/msft/Picture12-connect-anything-using-flow.png)
 
-In the [previous workshop](AzureUWP.md), we passed the telemetry from the device to a Stream Analytics job. This job collected devices which are sending error states. Every two minutes, information about devices that are in a faulty state are passed to an Azure Function.
+In the [previous chapter](AzureUWP.md), we passed the telemetry from the device to a Stream Analytics job. This job collected just the devices which are sending error states. Every two minutes, information about devices that are in a faulty state are passed to an Azure Function.
 
-In this workshop, we will react on these devices by sending them a command to 'repair themselves'. 
+In this chapter, we will react on these devices by sending them a command to 'repair themselves'. 
 
-### Updating the C# Azure Function with sending command logic
+## Updating the C# Azure Function with sending command logic
 
 First, we update the Azure Function. For each device which is passed on, we send a command back.
 
-Sending commands back to devices is a specific feature of the IoT Hub. The IoT Hub registers devices and their security policies. And the IoT Hub has built-in logic to send commands back.
+Sending commands back to devices is a specific feature of the IoT Hub. The IoT Hub can register devices and their security policies so only these devices can communicate and send telemetry. And the IoT Hub has built-in logic to send commands back to these specific devices.
 
 1. On the left, select `Resource groups`. A list of resource groups is shown
 
@@ -106,12 +108,12 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 
     ![alt tag](img/commands/azure-function-app-view-files-pane-add.png)
 
-13. Name the new file `package.json`
+13. Name the new file `project.json`
 
     ![alt tag](img/commands/azure-function-app-view-files-pane-add-file.png)
 
 14. Press `Enter` to confirm the name of the file and an empty code editor will be shown for this file.
-15. The Project.json file describes which Nuget packages have to be referenced. Fill the editor with the following code 
+15. The 'project.json' file describes which Nuget packages have to be referenced. Fill the editor with the following code 
 
     ```json
     {
@@ -141,31 +143,40 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 18. There is just one thing left to do: we have to fill in the Azure IoT Hub security policy connection string. To send commands back, we have to proof we are authorized to do this
 19. In the Azure Function, replace '[IOT HUB connection string]' with your *remembered* IoT Hub `Connection String-primary key`
 20. Select `Save` and recompile again succesfully
+21. In order to test your function without stream analytics you can write your own test for Azure Functions. Let's write a test so we can check the code for sending a command.
+22. Select `Test` in the menu to the right 
+
+    ![alt tag](img/function/azureFunctionTestSelect.png)
+
+23. `Replace` 'TestMessage' with the following JSON array message:
+ 
+    ```json
+    [{"count":42,"deviceid":"MachineCyclesUwp"}]
+    ```
+
+24. Press `Run` so the Azure Function will be triggered by this test message.
+25. The log output should look like this:
+
+    ![alt tag](img/function/azure-Function-Test-Result.png)
+
 
 Now, the Azure Function is ready to receive data about devices which simulate 'faulty machines'. And it can send commands back to 'repair' the 'machines'.
 
 ## Handle commands in the devices
 
-![alt tag](img/msft/Picture05-submit-data-to-ttn.png)
-
-Let's bring your device in a faulty state and see how the Azure IoT Platforms sends back a command to repair it.
-
-### Handle commands in a UWP app
-
-![alt tag](img/arch/Picture04-UWP-overview.png)
+Before we bring your device in a faulty state, we first have to add logic to the UWP app so we know how to react when the Azure IoT Platforms sends back a command to repair the device.
 
 In [UWP app](UwpToIotHub.md) we wrote and executed a UWP which send some telemetry. Here we will add more logic to the node so we can receive commands.
 
 1. Go to the UWP project
 2. `Open` the file named 'AzureIoTHub.cs'
-3. The class in this file also contains a method 'ReceiveCloudToDeviceMessageAsync' which is not that smart. It can only receive text. We want to receive a number (bytes) from the Azure IoT Platform
-4. `Add` a Receive method with the following code
+3. The class in this file also contains a method 'ReceiveCloudToDeviceMessageAsync' which is not that smart. It can only receive text. Here, we want to receive a number (bytes) from the Azure IoT Platform _(Note: passing bytes seems old fashioned but it's still a clever way to send data in an efficient way. And a lot of devices only accept this format (Eg. the [Lora](https://en.wikipedia.org/wiki/LPWAN#LoRa) platform only passes byte arrays) )_
+4. `Add` a byte array Receive method with the following code
 
     ```csharp
-    public static async Task<byte[]> ReceiveCloudToDeviceBytes()
+    public static async Task<byte[]> ReceiveCloudToDeviceBytesAsync()
     {
-        var deviceClient = DeviceClient.
-              CreateFromConnectionString(deviceConnectionString, TransportType.Amqp);
+        CreateClient();
 
         while (true)
         {
@@ -173,11 +184,9 @@ In [UWP app](UwpToIotHub.md) we wrote and executed a UWP which send some telemet
 
             if (receivedMessage != null)
             {
-                var bytes = receivedMessage.GetBytes();
-
+                var messageData = receivedMessage.GetBytes();
                 await deviceClient.CompleteAsync(receivedMessage);
-
-                return bytes;
+                return messageData;
             }
 
             await Task.Delay(TimeSpan.FromSeconds(1));
@@ -203,7 +212,7 @@ In [UWP app](UwpToIotHub.md) we wrote and executed a UWP which send some telemet
         {
             try
             {
-                var bytes = await AzureIoTHub.ReceiveCloudToDeviceBytes();
+                var bytes = await AzureIoTHub.ReceiveCloudToDeviceBytesAsync();
 
                 if (bytes != null && bytes.Length > 0 && bytes[0] >= 42)
                 {
@@ -225,11 +234,11 @@ In [UWP app](UwpToIotHub.md) we wrote and executed a UWP which send some telemet
 
 9. We only have to push the button once. After that, when a command is received. We 'start' the machine again
 10. The changes in the code are done. `recompile` to check the code will build successfully
-11. Restart the UWP app, press `Send cycle updates` a couple of times
+11. `Restart` the UWP app, press `Send cycle updates` a couple of times
 
     ![alt tag](img/commands/UWP-app-sending-duty-cycles.png)
 
-12. The cycles are normal behavior. And these will not be picked up by the Stream Analytics job (which is listening for the error status)
+12. The cycles are normal behavior. And these will not be picked up by the Stream Analytics job (which is listening for device telemetry with the error status not equal to zero)
 13. To receive commands, we have to wait for them to be received from the IoT Hub. Press `Wait for commands` *note: the communication with the IoT Hub is based on a communication protocol named AMQP by default. This makes communication very efficient, we are not polling every few seconds and thus saving bandwidth*
 
     ![alt tag](img/commands/UWP-app-command-waiting.png)
@@ -261,6 +270,8 @@ In [UWP app](UwpToIotHub.md) we wrote and executed a UWP which send some telemet
  
 We have now successfully sent some telemetry which is picked up and handled. In the end, commands were received and acted on.
 
+If you don't want to be dependend on the stream analytics, you can run the test that we created for the Function.
+
 ## Conclusion
 
 Receiving commands from Azure completes the main part of the workshop.
@@ -273,5 +284,7 @@ But wait, there is still more. We added two bonus chapters to the workshop
 
 1. [Deploying the TTN C# bridge as Azure Web Job](Webjob.md)
 2. [Add basic monitoring to the platform](IoTPatformMonitoring.md)
+
+And for more creative ideas, we can recommand to look at [hackster.io](https://www.hackster.io/). Every day, new IoT projects are added!
 
 ![alt tag](img/logos/microsoft.jpg) ![alt tag](img/logos/atos.png)
