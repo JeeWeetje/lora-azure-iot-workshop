@@ -1,3 +1,4 @@
+# From device to acting on insights with the Azure IoT platform 
  ## Connecting to an IoT Hub using a NodeJs app device simulation
 
 ![alt tag](img/NodeJsToIotHub/Picture00-NodeJs-overview.png)

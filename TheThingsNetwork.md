@@ -1,4 +1,4 @@
-# The Things Network & Azure IoT: a perfect combination
+# From device to acting on insights with the Azure IoT platform 
 ## Getting started with the The Things Uno and The Things Network
 
 ![alt tag](img/msft/Picture01-overview.png)

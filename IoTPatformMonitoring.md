@@ -1,4 +1,4 @@
-# From device to acting on insights with the Azure IoT platform
+# From device to acting on insights with the Azure IoT platform 
 ## Operations monitoring for your IoT Platform
 
 ![alt tag](img/arch/Picture00-Monitoring-overview.png)

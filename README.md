@@ -31,9 +31,9 @@ During the workshop the following experts will be present to guide you through t
 
 - [Hans Boksem](https://www.techdays.nl/Sprekers/#7203e568-f3bc-434c-9907-56c7f524e81a); IoT Solution Architect [ ![Twitter](img/social/twitter.png) ](https://twitter.com/bokse001) [ ![LinkedIn](img/social/linkedin.png) ](https://www.linkedin.com/in/hansboksem/) [ ![LinkedIn](img/social/wordpress.png) ](https://hansboksem.wordpress.com/)
 - [Jan Willem Groenenberg](https://www.techdays.nl/Sprekers/#1d5fdd7f-b3b3-4902-b6ea-9e06166e5ffc); IoT Solution Architect [ ![Twitter](img/social/twitter.png) ](https://twitter.com/jeeweetje) [ ![LinkedIn](img/social/linkedin.png) ](https://www.linkedin.com/in/jwgroenenberg/) [ ![LinkedIn](img/social/wordpress.png) ](https://jeeweetje.net)
-- [Sander van de Velde](https://www.techdays.nl/Sprekers/#4ca5c504-f2d3-404e-b7b8-17ac8ff9d43b); MVP, Microsoft Consultant [ ![Twitter](img/social/twitter.png) ](https://twitter.com/svelde) [ ![LinkedIn](img/social/linkedin.png) ](https://www.linkedin.com/in/sandervandevelde/) [ ![LinkedIn](img/social/wordpress.png) ](https://blog.vandevelde-online.com)
+- [Sander van de Velde](https://www.techdays.nl/Sprekers/#4ca5c504-f2d3-404e-b7b8-17ac8ff9d43b); MVP, IoT Solution Architect [ ![Twitter](img/social/twitter.png) ](https://twitter.com/svelde) [ ![LinkedIn](img/social/linkedin.png) ](https://www.linkedin.com/in/sandervandevelde/) [ ![LinkedIn](img/social/wordpress.png) ](https://blog.vandevelde-online.com)
 
-## Workshop schedule at IoT Tech Day 2017
+## Workshop schedule at Techdays 2017
 
 | Location | Start Time |  Room  |
 | -------- | ---------- | ------ |

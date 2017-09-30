@@ -1,4 +1,4 @@
-# The Things Network & Azure IoT: a perfect combination
+# From device to acting on insights with the Azure IoT platform 
 ## Deploying The Things Network Bridge to Azure as a WebJob
 
 Remember creating the TTN bridge locally on your computer? Will your PC be always on? Most likely not, therefore it seems reasonable to deploy the TTNAzureBridge somewhere else. What place is better than the Azure cloud?
