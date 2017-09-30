@@ -188,4 +188,4 @@ But wait, there is still more. We added two bonus chapters to the workshop
 1. [Deploying the TTN C# bridge as Azure Web Job](Webjob.md)
 2. [Add basic monitoring to the platform](IoTPatformMonitoring.md)
 
-![IoT Tech Day 2017](img/logos/iottechday2017.png)
+![alt tag](img/logos/microsoft.jpg) ![alt tag](img/logos/atos.png)

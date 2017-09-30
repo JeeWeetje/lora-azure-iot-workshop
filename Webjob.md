@@ -137,4 +137,4 @@ Follow these steps to deploy a console app as Azure WebJob that runs the integra
 
 You have now deployed the whole upstream to the Azure cloud. You have successfully accomplished all available steps of this workshop.
 
-![IoT Tech Day 2017](img/logos/iottechday2017.png)
+![alt tag](img/logos/microsoft.jpg) ![alt tag](img/logos/atos.png)

@@ -308,4 +308,4 @@ This concludes this chapter of the workshop. You have both experienced how to mo
 
 Thank you for checking out IoT Hub operations monitoring.
 
-![alt tag](img/logos/microsoft.jpg) ![alt tag](img/logos/atos.png) 
+![alt tag](img/logos/microsoft.jpg) ![alt tag](img/logos/atos.png)

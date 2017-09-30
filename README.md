@@ -1,7 +1,7 @@
 # From device to acting on insights with the Azure IoT platform 
 ## Techdays 2017 - IoT Hands-on Lab
 
-![Techdays 2017](img/logos/iottechday2017.png)
+![Techdays 2017](img/logos/event.png)
 
 In this hands-on lab you will be creating the complete chain from configuring, to bridging the cap between the connectivity providers clouds and the Microsoft Azure IoT platform, creating actionable insights on the Microsoft Azure IoT platform and sending commands all the way back to the device. 
 This includes assembling hardware, configuring hardware and software and coding the missing logic to a complete IoT solution.
