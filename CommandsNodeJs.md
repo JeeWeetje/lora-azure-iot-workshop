@@ -11,17 +11,17 @@ This part of the workshop supports both to the [TTN Node](TheThingsNetwork.md) a
 
 ### Prerequisites
 
-1. Azure account [create here](https://azure.microsoft.com/en-us/free/) _(Azure passes will be present for those who have no Azure account (please check your email for final confirmation))_
-2. a running NodeJs or Java app which simulates a machine running duty cycles
-4. A combination of Azure IoT Hub, Stream Analytics job, Event Hub and Azure Function which are waiting for analyzed telemetry coming from the devices
-5. A running IoT Hub Explorer, connected to the IoT Hub, showing the telemetry coming in
+1. A running NodeJs or Java app which simulates a machine running duty cycles
+2. A combination of Azure IoT Hub, Stream Analytics job, Event Hub and Azure Function which are waiting for analyzed telemetry coming from the devices
+3. Azure account [create here](https://azure.microsoft.com/en-us/free/) _(Azure passes will be present for those who have no Azure account (please check your email for final confirmation))_
 
 ### Steps to perform in this part of the workshop
 
 At the end of this part of the workshop, the following steps are performed
 
-1. Creating commands to send back
-2. Handle commands in the running NodeJs app
+1. Sending back commands for devices which are in a faulty state
+2. Handle commands in the devices
+3. Conclusion
 
 ## Sending back commands for devices which are in a faulty state
 
@@ -47,7 +47,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 
     ![alt tag](img/function/azure-function-select.png)
 
-5. The Code panel is shown. The code of the function is shown. *Note: actually, this code is saved in a JavaScript file named index.js*
+5. The Code panel is shown. The code of the function is shown. *Note: actually, this code is saved in a JavaScript file named index.js in the Azure storage of the Function app*
 6. Change the current code into
 
     ```javascript
@@ -120,7 +120,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
     ![alt tag](img/commands/azure-function-app-view-files-pane-add-file-nodejs.png)
 
 14. Press `Enter` to confirm the name of the file and an empty code editor will be shown for this file.
-15. The Project.json file describes which Nuget packages have to be referenced. Fill the editor with the following code 
+15. The 'package.json' file describes which NodeJS packages have to be referenced. Fill the editor with the following code 
 
     ```json
     {
@@ -139,23 +139,14 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
     ```
 
 16. Select `Save`.
-17. We have added the extra dependencies. Unfortunately the libraries involved are not loaded yet. We have to tell NodeJs to load the new libraries. *Note: you can press 'save and run', this will actually try to run the function, but an empty test will be passed (check out the 'Test' option to the right for more info)*
-18. To the left, press the `Function app settings` button
+17. We have added the extra dependencies. Unfortunately the libraries involved are not loaded yet. To make sure all libraries are loaded, all we have to do is simply stop and start our Azure Function. *Note: you can press 'save and run', with a test message like "[{"count":16,"deviceid":"MachineCyclesNodeJs"}]" (check out the 'Test' option to the right for more info) but this will not be compiles correctly*
+18. To the left, press `Manage`
+19. `Disable` and `Enable` the Azure Function again
 
-    ![alt tag](img/commands/azure-function-app-settings.png)
+    ![alt tag](img/azure-function-manage-enable.png)
 
-19. We want to run a NodeJs command. Select the `Go to Kudu` option. The Kudu interface is also accessible by navigating to https://<azure_function_name>.scm.azurewebsites.net/.
-
-    ![alt tag](img/commands/azure-function-app-kudu.png)
-
-20. A new tab page is shown. In it the file structure of the NodeJs function is shown. And we get an convenient Dosprompt
-21. navigate to the map `D:\home\site\wwwroot\IoTWorkshopEventHubFunction` using the files shown in the upper half of the screen
-22. Run `npm install` in the console. *Note: This could take some time*
-
-    ![alt tag](img/commands/azure-function-app-kudu-npm-install.png)
-
-23. Once the cursor is available again, close the Kudu screen and return to the NodeJs function
-24. There is just one thing left to do: we have to fill in the Azure IoT Hub security policy connection string. To send commands back, we have to proof we are authorized to do this
+20. The combination of libraries and code is now ready
+24. There is just one thing left to do: we have to fill in the `Azure IoT Hub security policy connection string`. To send commands back, we have to proof we are authorized to do this
 25. In the Azure Function, replace '[IOT HUB connection string]' with your *remembered* IoT Hub `Connection String-primary key`
 26. Select `Save` again 
 
@@ -187,5 +178,7 @@ But wait, there is still more. We added two bonus chapters to the workshop
 
 1. [Deploying the TTN C# bridge as Azure Web Job](Webjob.md)
 2. [Add basic monitoring to the platform](IoTPatformMonitoring.md)
+
+And for more creative ideas, we can recommand to look at [hackster.io](https://www.hackster.io/). Every day, new IoT projects are added!
 
 ![alt tag](img/logos/microsoft.jpg) ![alt tag](img/logos/atos.png)

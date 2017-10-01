@@ -333,33 +333,35 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
     ![alt tag](img/azure-function-app-eventhubtrigger-javascript.png)
 
 9. At the bottom of the selected template page (use the scrollbar of the current page), you have to fill in the field 'Name your function'. Change `EventHubTriggerJS1` into `IoTWorkshopEventHubFunction`
-10. In the field 'Event Hub name' you will have to pass the *remembered* name of the Event Hub eg. `iotworkshop-eh` *Note: in lower case*
-11. The 'Event Hub connection' field can be filled by pressing the `new` link
-12. A blade with an empty list of connection strings will be shown. Press `Add a connection string`
+10. We do not have to remember EventHub credentials anymore. Next to the field 'Event Hub connection' select `new`
 
-    ![alt tag](img/azure-function-app-add-connectionstring.png)
+   ![alt tag](img/function/azure-function-connection-new.png)
 
-13. In a new blade, enter some name in the 'Connection name' field eg. `RootManageSharedAccessKey`. A green sign will be shown if the name is correct
-14. In the 'Connection string' field you will have to pass the *remembered* `Connection String-Primary Key` of the Event Hub namespace connection string. A green sign will be shown if the name is correct
+11. A new dialog is shown. The needed 'Event Hub connection' is filled in already or you can `select` it using the drop downs. Do you see the policy of then namespace?
 
-    ![alt tag](img/azure-function-app-connectionstring.png)
+    ![alt tag](img/function/azure-function-connection-dialog.png)
 
-15. Select `OK`
-16. The Connection string is now filled in into the corresponding field (Give the portal a moment to check the settings)
+12. Press `Select` to continue. You are back to the input fields
+13. `Fill in` 'iotworkshop-eh' in the Event Hub name field
+14. The Connection string is now filled in into the corresponding field
 
-    ![alt tag](img/azure-function-app-eventhubtrigger-new-javascript.png)
+    ![alt tag](img/azure-function-app-eventhubtrigger-new.png)
 
-17. Select `Create`
+15. Select `Create`
 
     ![alt tag](img/azure-portal-create.png)
 
-18. The function and trigger are saved. The develop page is shown. In the middle, you will see the function in the 'Code' panel
-19. In the Logs pane, press the `arrow` (looking as a chevron) button to open that pane which shows some basic logging
+16. The function and trigger are saved. The develop page is shown. In the middle, you will see the function in the 'Code' panel
+17. But, before we look at the code, first we `change` the cardinality of the message in the 'Integrate' tab. We get an array already so we can set the cardinality to `ONE` _(Note: otherwise we receive an array of arrays)_
+
+    ![alt tag](img/azure-function-app-cardinality.png)
+
+18. In the Logs pane, press the `arrow` (looking as a chevron) button to open that pane which shows some basic logging
 
     ![alt tag](img/azure-function-app-eventhubtrigger-logs.png)
 
-20. A 'Logs' panel is shown. This 'Logs' panel works like a trace log.
-21. Update the code a bit, change the string in the log.Info() trace call eg.
+19. A 'Logs' panel is shown. This 'Logs' panel works like a trace log
+20. Update all the code, `replace` it with eg.
 
     ```javascript
     module.exports = function (context, myEventHubTrigger) {
@@ -367,14 +369,14 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
     };
     ```
 
-22. Select `Save`. The changed JavaScript code will be saved immediately *Note: you can press 'save and run', this will actually run the function, but an empty test message will be passed (check out the 'Test' option to the right for more details)*
-23. Double check the code, Javascript is not compiled in advance. So no error message will appear here.
+21. Select `Save`. The changed JavaScript code will be saved immediately *Note: you can press 'save and run', this will actually run the function, but an empty test message will be passed (check out the 'Test' option to the right for more details)*
+22. Double check the code, Javascript is not compiled in advance. So no error message will appear here.
 
 Now we are confident, the Azure function and trigger are available. 
 
 Actually, it should be possible that there are already events produced by the EventHub...
 
-## Receiving telemetry in the Azure Function
+## Receiving broken machines information in the Azure Function
 
 By now, the full chain of Azure services is set up. Telemetry from The Things Network node is passed by the bridge (or the test UWP app) to the Azure IoT Hub (as seen in one of the two explorers). Azure Stream Analytics passes a cumulation of the fault states to the Azure Function using an Azure Event Hub.
 
@@ -382,7 +384,7 @@ So, if your TTN node is put into a faulty state (keep the button pressed untill 
 
 ### Sending TTN Node faults 
 
-The TTN node sends a message every 5 seconds. For now, it's passing work cycles.
+The TTN node sends a message every five seconds. For now, it's passing work cycles.
 
 1. `Push` and `hold` the button attach to the node until the red LED is unlit. The machine is now in an 'error' state
 2. `Check out` the bridge. The node is not updating the cycles anymore and error 99 is passed
@@ -391,19 +393,17 @@ The TTN node sends a message every 5 seconds. For now, it's passing work cycles.
 
 The TTN node now simulates a machine which has stopped working. If this error is passed several times within two minutes, this is picked up by Stream Analytics. Let's check out the Azure Function
 
-## Receiving broken machines information in the Azure Function
+### Receiving in the Azure Function
 
 Machine telemetry with an error state is arriving at the Azure IoTHub. The Azure Function should pick these up
 
 1. Telemetry will not arrive until Stream Analytics 'hops' to the next time frame. After that, you can see `telemetry arriving`
 
     ```
-    2017-01-08T00:31:05.546 Function started (Id=b155de3d-c162-4fa4-a341-404ce83f5e84)
-    2017-01-08T00:31:05.546 IoT Workshop function triggered by message: [{"count":18,"deviceid":"MachineCyclesUwp"}]
-    2017-01-08T00:31:05.546 Function completed (Success, Id=b155de3d-c162-4fa4-a341-404ce83f5e84)
-    2017-01-08T00:32:05.152 Function started (Id=96b403f9-2152-48b6-8bc8-78058f53fca5)
-    2017-01-08T00:32:05.152 IoT Workshop function triggered by message: [{"count":24,"deviceid":"MachineCyclesUwp"}]
-    2017-01-08T00:32:05.152 Function completed (Success, Id=96b403f9-2152-48b6-8bc8-78058f53fca5)
+    2017-10-01T16:45:31.989 Function started (Id=e346d2ec-1a50-46be-b82e-da77a917b7ce)
+    2017-10-01T16:45:32.005 JavaScript processed message: [ { count: 18, deviceid: 'predictive_maintenance_machine_42' } ]
+    2017-10-01T16:45:46.586 Function started (Id=2a3ef4b7-13ca-437e-bfcf-3e01f954b7c8)
+    2017-10-01T16:45:46.586 JavaScript processed message: [ { count: 16, deviceid: 'predictive_maintenance_machine_42' } ]
     ```
 
 Notice that we have full control over telemetry. We know which device has sent faults at what time frame. This is great for charts or commands.

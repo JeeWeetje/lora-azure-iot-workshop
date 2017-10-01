@@ -13,8 +13,7 @@ This part of the workshop supports both the [UWP app](UwpToIotHub.md).
 
 1. A running UWP app which simulates a machine running duty cycles
 2. A combination of Azure IoT Hub, Stream Analytics job, Event Hub and Azure Function which are waiting for analyzed telemetry coming from the devices
-3. A running Device Explorer, connected to the IoT Hub, showing the telemetry coming in
-4. Azure account [create here](https://azure.microsoft.com/en-us/free/) _(Azure passes will be present for those who have no Azure account (please check your email for final confirmation))_
+3. Azure account [create here](https://azure.microsoft.com/en-us/free/) _(Azure passes will be present for those who have no Azure account (please check your email for final confirmation))_
 
 ### Steps to perform in this part of the workshop
 
@@ -49,7 +48,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 
     ![alt tag](img/function/azure-function-select.png)
 
-5. The Code panel is shown. The code of the function is shown. *Note: actually, this code is saved in a file named run.scx*
+5. The Code panel is shown. The code of the function is shown. *Note: actually, this code is saved in a file named run.scx in the Azure storage of the Function app*
 6. Change the current code into
 
     ```csharp
