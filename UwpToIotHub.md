@@ -36,7 +36,7 @@ At the end of this part of the workshop, the following steps are performed
 
 Follow these steps to create an Azure IoT Hub.
 
-1. Log into the [Azure portal](https://portal.azure.com/). You will be asked to provide Azure credentials if needed
+1. `Log into` the [Azure portal](https://portal.azure.com/). You will be asked to provide Azure credentials if needed
 2. On the left, a number of common Azure services are shown. Select `More Services` to open a list with all available services
 
     ![alt tag](img/UwpToIotHub/azure-more-services.png)

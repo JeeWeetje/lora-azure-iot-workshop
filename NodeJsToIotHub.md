@@ -12,19 +12,20 @@ This is an example integration between a NodeJs app and Azure IoT Hub. This inte
 ### Prerequisites
 
 1. A Windows 7+ or Linux or Mac computer with internet access
-2. [Node.js](https://nodejs.org/en/). _(We prefer Version 6)_
-3. Azure account [create here](https://azure.microsoft.com/en-us/free/) _([Azure passes](https://www.microsoftazurepass.com/howto) will be present for those who have no Azure account (please check your email for final confirmation))_
-4. [IoT Hub Explorer](https://www.npmjs.com/package/iothub-explorer) _(for Command-Line interface based usage; see below for installation steps)_
+2. Some text editor like [Visual Code](https://code.visualstudio.com/)
+3. [Node.js](https://nodejs.org/en/) installed. _(We prefer Version 6)_
+4. Azure account [create here](https://azure.microsoft.com/en-us/free/) _([Azure passes](https://www.microsoftazurepass.com/howto) will be present for those who have no Azure account (please check your email for final confirmation))_
+5. [IoT Hub Explorer](https://www.npmjs.com/package/iothub-explorer) _(for Command-Line interface based usage; see below for installation steps)_
 
-### Objectives
+### Steps to perform in this part of the workshop
 
-In this workshop, you will learn:
+At the end of this part of the workshop, the following steps are performed
 
 1. Creating an IoT Hub in the Azure Portal
 2. Creating a new NodeJs app
-3. Connect to the IoT Hub by registering the app like a device
-4. Generate and send dummy telemetry
-5. Check the arrival of the telemetry
+3. Generate and send dummy telemetry
+4. Monitoring the arrival of the telemetry in Azure
+5. Conclusion
 
 ## Creating an Azure IoT Hub in the Azure portal
 
@@ -32,7 +33,7 @@ In this workshop, you will learn:
 
 Follow these steps to create an Azure IoT Hub.
 
-1. Log into the [Azure portal](https://portal.azure.com/). You will be asked to provide Azure credentials if needed
+1. `Log into` the [Azure portal](https://portal.azure.com/). You will be asked to provide Azure credentials if needed
 2. On the left, a number of common Azure services are shown. Select `More Services` to open a list with all available services
 
     ![alt tag](img/NodeJsToIotHub/azure-more-services.png)
@@ -57,18 +58,17 @@ Follow these steps to create an Azure IoT Hub.
 
 Creating an IoT Hub takes some time. Meanwhile, we will start with the app which will connect to the IoT Hub later on.
 
-
-## Connect to the IoT Hub and register the app like a device
+### Connect to the IoT Hub and register the app like a device
 
 ![alt tag](img/NodeJsToIotHub/Picture02-NodeJs-overview.png)
 
-Unlike event hubs, all devices that use an IoT hub must be individually registered, and use their own endpoint and shared access key to access the hub. In this exercise, you will register a client device.
+All devices that use an IoT hub must be individually registered, and use their own 'endpoint' and shared access key to access the hub. So we have full control over all connected devices and the telemetry coming in. In this exercise, you will register a client device.
 
 ### Get the Hostname and Connection String for the Hub
 
 To register a client device, you must run a script that uses a connection with sufficient permissions to access the hub registry. In this case, you will use the built-in iothubowner shared access policy to accomplish this.
 
-1. Check the Azure portal. The resource group and the IoT Hub should be created by now (otherwise, we were unable to send duty cycles information to it)
+1. `Check` the Azure portal. The resource group and the IoT Hub should be created by now (otherwise, we were unable to send duty cycles information to it)
 
     ![alt tag](img/UwpToIotHub/azure-notifications-iothub.png)
 
@@ -93,64 +93,64 @@ These is the secret from the IoT Hub, needed to connect our NodeJs client and mo
 
 *Note: For more information about access control for IoT hubs, see [Access control](https://azure.microsoft.com/en-us/documentation/articles/iot-hub-devguide-security/) in the "Azure IoT Hub developer guide."*
 
-
 ### Create a Device Identity
 
 Each device that sends data to the IoT hub must be registered with a unique identity.
 
-1. `Create` a new "createdeviceid" folder on your system.
-2. `Open` a Node.JS console or dosbox and navigate to the createdeviceid folder.
+1. `Create` a new "createdeviceid" folder on your system using a File explorer
+2. `Open` a Node.JS console or dosbox and navigate to the createdeviceid folder using the command prompt
 3. Enter the following `command`, and press RETURN to accept all the default options. This creates a package.json file for your application:
 
-```javascript
-npm init
-```
+    ```javascript
+    npm init
+    ```
 
 4. Enter the following `command` to install the Azure IoT Hub package:
 
-```javascript
-npm install azure-iothub
-```
+    ```javascript
+    npm install azure-iothub
+    ```
 
 5. Create a `createdeviceid.js` file in the createdeviceid folder.
 6. Use a text editor to `edit` the "createdeviceid.js" file.
 7. Modify the file with the following script and set the `connStr variable` to reflect the shared access policy connection string for your IoT Hub, as shown here:
 
-```javascript
-'use strict';
-var iothub = require('azure-iothub');
-var connStr = '<IOT-HUB-CONNECTION-STRING>';
-var registry = iothub.Registry.fromConnectionString(connStr);
-var device =  { deviceId: 'MachineCyclesNodeJs' };
+    ```javascript
+    'use strict';
+    var iothub = require('azure-iothub');
+    var connStr = '<IOT-HUB-CONNECTION-STRING>';
+    var registry = iothub.Registry.fromConnectionString(connStr);
+    var device =  { deviceId: 'MachineCyclesNodeJs' };
 
-registry.create(device, function(err, deviceInfo, res) {
-  if (err) {
-    registry.get(device.deviceId, printDeviceInfo);
-  }
-  if (deviceInfo) {
-    printDeviceInfo(err, deviceInfo, res)
-  }
-});
+    registry.create(device, function(err, deviceInfo, res) {
+      if (err) {
+        registry.get(device.deviceId, printDeviceInfo);
+      }
+      if (deviceInfo) {
+        printDeviceInfo(err, deviceInfo, res)
+      }
+    });
 
-function printDeviceInfo(err, deviceInfo, res) {
-  if (deviceInfo) {
-    console.log('Device id: ' + deviceInfo.deviceId);
-  }
-}
-```
+    function printDeviceInfo(err, deviceInfo, res) {
+      if (deviceInfo) {
+        console.log('Device id: ' + deviceInfo.deviceId);
+      }
+    }
+    ```
 
-8. `Save` the script and close the file.
+8. `Save` the script and close the file
 9. In the Node.JS console window, `enter` the following command to run the script:
 
-```javascript
-node createdeviceid.js
-```
+    ```javascript
+    node createdeviceid.js
+    ```
 
-10. `Verify` that the script registers a device with the ID MachineCyclesNodeJs.
-11. In the Azure portal, on the blade for your IoT Hub, `click` the Overview tab. 
-12. then at the top of the blade, `click` Devices and verify that MachineCyclesNodeJs is listed.
-13. `Click` MachineCyclesNodeJs and view the device-specific keys and connection strings that have been generated. 
-14. Then `copy` the connection string-primary key for MachineCyclesNodeJs to the clipboard. You will use this in the next exercise.
+10. Do not expect a lot output. Only the text "Device id: MachineCyclesNodeJs" will be shown
+10. Let's `Verify` that the script registers a device with the ID MachineCyclesNodeJs. Open the browser to your [Azure portal](http://portal.azure.com)
+11. In the Azure portal, on the blade for your IoT Hub, `click` the `Device Explorer` tab
+12. A list of all registered devices of this IoTHub is shown. `Verify` that "MachineCyclesNodeJs" is listed
+13. `Click` "MachineCyclesNodeJs" and view the device-specific keys and connection strings that have been generated
+14. **Remember** the `connection string-primary key` for "MachineCyclesNodeJs" (copy to the clipboard). You will use this in the next exercise
 
 We have created a registration for a device simulation. Now let's build the actual device simulation.
 
@@ -163,87 +163,87 @@ Now that you have registered a client device, you can create an application that
 ### Create a Client Device Application
 Now that you have registered a device, it can submit data to the IoT hub.
 
-1. `Create` a new "iotdevice" folder on your system.
-2. `Open` the Node.JS console or dosbox and navigate to the iotdevice folder.
-3. Enter the following command, and press RETURN to accept all the default options. This creates a package.json file for your application:
+1. `Create` a new "iotdevice" folder on your system, next to the folder in the previous excercise
+2. `Open` the Node.JS console or dosbox and navigate to the iotdevice folder
+3. `Enter` the following command, and press RETURN to accept all the default options. This creates a package.json file for your application:
 
-```javascript
-npm init
-```
+    ```javascript
+    npm init
+    ```
 
-4. Enter the following command to install the Azure IoT device and AMQP protocol packages:
+4. Enter the following `command` to install the Azure IoT device and AMQP protocol packages:
 
-```javascript
-npm install azure-iot-device azure-iot-device-amqp
-```
+    ```javascript
+    npm install azure-iot-device azure-iot-device-amqp
+    ```
 
-5. Create an `iotdevice.js` file in the iotdevice folder.
-6. Use a text editor to `edit` the "iotdevice.js" file.
-7. Modify the script with the following script and set the `connStr variable` to reflect the *device connection string* for the MachineCyclesNodeJs device (which you copied to the clipboard in the previous exercise), as shown here:
+5. Create an `iotdevice.js` file in the iotdevice folder
+6. Use a text editor to `edit` the "iotdevice.js" file
+7. `Modify` the JavaScript file with the following script and set the `connStr variable` to reflect the **device connection string** for the MachineCyclesNodeJs device (which you copied to the clipboard in the previous exercise), as shown here:
 
-```javascript
-'use strict';
+    ```javascript
+    'use strict';
 
-var clientFromConnectionString = require('azure-iot-device-amqp').clientFromConnectionString;
-var Message = require('azure-iot-device').Message;
-var connStr = '<DEVICE_CONNECTION_STRING>';
-var client = clientFromConnectionString(connStr);
+    var clientFromConnectionString = require('azure-iot-device-amqp').clientFromConnectionString;
+    var Message = require('azure-iot-device').Message;
+    var connStr = '<DEVICE_CONNECTION_STRING>';
+    var client = clientFromConnectionString(connStr);
 
-function printResultFor(op) {
-  return function printResult(err, res) {
-    if (err) console.log(op + ' error: ' + err.toString());
-    if (res) console.log(op + ' status: ' + res.constructor.name);
-  };
-}
+    function printResultFor(op) {
+      return function printResult(err, res) {
+        if (err) console.log(op + ' error: ' + err.toString());
+        if (res) console.log(op + ' status: ' + res.constructor.name);
+      };
+    }
 
-var i = 1;
-var e = 0;
-var repaired = false;
+    var i = 1;
+    var e = 0;
+    var repaired = false;
 
-var connectCallback = function (err) {
-  if (err) {
-    console.log('Could not connect to IoT Hub: ' + err);
-  } else {
-    console.log('Client connected to IoT Hub');
+    var connectCallback = function (err) {
+      if (err) {
+        console.log('Could not connect to IoT Hub: ' + err);
+      } else {
+        console.log('Client connected to IoT Hub');
 
                 
-    client.on('message', function (msg) {
-      client.complete(msg, printResultFor('completed'));
+        client.on('message', function (msg) {
+          client.complete(msg, printResultFor('completed'));
 
-      if ( msg.data[0] >= 42) {
-        console.log("\x1b[33m",'Repair command received. Machine started running again');
-        console.log("\x1b[0m", '------------------------------------------------------');      
-        e = 0;
-        repaired = true;
+          if ( msg.data[0] >= 42) {
+            console.log("\x1b[33m",'Repair command received. Machine started running again');
+            console.log("\x1b[0m", '------------------------------------------------------');      
+            e = 0;
+            repaired = true;
+          }
+        });
+
+        // Create a message and send it to the IoT Hub every second
+        setInterval(function(){
+          if (i % 5 == 0 && !repaired ) {
+            e = 99; 
+          }
+          repaired = false;
+
+          var data = JSON.stringify({ errorCode: e, numberOfCycles: i });
+          var message = new Message(data);
+          console.log("Telemetry sent: " + message.getData());
+          client.sendEvent(message, printResultFor('send'));
+
+          if (e == 0) {
+            i++;
+          } 
+        }, 10000);
       }
-    });
+    };
 
-    // Create a message and send it to the IoT Hub every second
-    setInterval(function(){
-      if (i % 5 == 0 && !repaired ) {
-        e = 99; 
-      }
-      repaired = false;
+    console.log("\x1b[31m",'MACHINE CYCLE DEMO');
+    console.log("\x1b[0m", '==================');
 
-      var data = JSON.stringify({ errorCode: e, numberOfCycles: i });
-      var message = new Message(data);
-      console.log("Telemetry sent: " + message.getData());
-      client.sendEvent(message, printResultFor('send'));
+    client.open(connectCallback);
+    ```
 
-      if (e == 0) {
-        i++;
-      } 
-    }, 10000);
-  }
-};
-
-console.log("\x1b[31m",'MACHINE CYCLE DEMO');
-console.log("\x1b[0m", '==================');
-
-client.open(connectCallback);
-```
-
-8. `Save` the script and close the file.
+8. `Save` the script and close the file
 
 The simulation of a machine is now written. You are ready to send telemetry.
 
@@ -255,9 +255,9 @@ Now you can run your client application to send data to the IoT hub.
 
 1. In the Node.JS console window, enter the following `command` to run the script:
 
-```javascript
-node iotdevice.js
-```
+    ```javascript
+    node iotdevice.js
+    ```
 
 2. `Observe` the script running as it starts to submit device readings.
 
