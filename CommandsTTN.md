@@ -11,10 +11,9 @@ This part of the workshop supports the [TTN Node](TheThingsNetwork.md).
 
 ### Prerequisites
 
-1. A running TTN node connected to the TTN network and a running TTN bridge on your PC and connected to an IoT Hub
+1. A running TTN node connected to the TTN network and a running TTN bridge on your PC which is connected to an IoT Hub and the TTN portal
 2. A combination of Azure IoT Hub, Stream Analytics job, Event Hub and Azure Function which are waiting for analyzed telemetry coming from the devices
-3. A running IoT Hub Explorer, connected to the IoT Hub, showing the telemetry coming in
-4. Azure account [create here](https://azure.microsoft.com/en-us/free/) _(Azure passes will be present for those who have no Azure account (please check your email for final confirmation))_
+3. Azure account [create here](https://azure.microsoft.com/en-us/free/) _(Azure passes will be present for those who have no Azure account (please check your email for final confirmation))_
 
 ### Steps to perform in this part of the workshop
 
@@ -48,7 +47,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 
     ![alt tag](img/function/azure-function-select.png)
 
-5. The Code panel is shown. The code of the function is shown. *Note: actually, this code is saved in a JavaScript file named index.js*
+5. The Code panel is shown. The code of the function is shown. *Note: actually, this code is saved in a JavaScript file named index.js in the Azure storage of the Function app*
 6. Change the current code into
 
     ```javascript
@@ -116,12 +115,12 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 
     ![alt tag](img/commands/azure-function-app-view-files-pane-add.png)
 
-13. Name the new file `project.json`
+13. Name the new file `package.json`
 
     ![alt tag](img/commands/azure-function-app-view-files-pane-add-file-nodejs.png)
 
 14. Press `Enter` to confirm the name of the file and an empty code editor will be shown for this file.
-15. The Project.json file describes which Nuget packages have to be referenced. Fill the editor with the following code 
+15. The 'package.json' file describes which NodeJS packages have to be referenced. Fill the editor with the following code 
 
     ```json
     {
@@ -140,23 +139,14 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
     ```
 
 16. Select `Save`.
-17. We have added the extra dependencies. Unfortunately the libraries involved are not loaded yet. We have to tell NodeJs to load the new libraries. *Note: you can press 'save and run', this will actually try to run the function, but an empty test will be passed (check out the 'Test' option to the right for more info)*
-18. To the left, press the `Function app settings` button
+17. We have added the extra dependencies. Unfortunately the libraries involved are not loaded yet. To make sure all libraries are loaded, all we have to do is simply stop and start our Azure Function. *Note: you can press 'save and run', with a test message like "[{"count":16,"deviceid":"MachineCyclesNodeJs"}]" (check out the 'Test' option to the right for more info) but this will not be compiles correctly*
+18. To the left, press `Manage`
+19. `Disable` and `Enable` the Azure Function again
 
-    ![alt tag](img/commands/azure-function-app-settings.png)
+    ![alt tag](img/azure-function-manage-enable.png)
 
-19. We want to run a NodeJs command. Select the `Go to Kudu` option
-
-    ![alt tag](img/commands/azure-function-app-kudu.png)
-
-20. A new tab page is shown. In it the file structure of the NodeJs function is shown. And we get an convenient Dosprompt
-21. navigate to the map `D:\home\site\wwwroot\IoTWorkshopEventHubFunction` using the files shown in the upper half of the screen
-22. Run `npm install` in the console. *Note: This could take some time*
-
-    ![alt tag](img/commands/azure-function-app-kudu-npm-install.png)
-
-23. Once the cursor is available again, close the Kudu screen and return to the NodeJs function
-24. There is just one thing left to do: we have to fill in the Azure IoT Hub security policy connection string. To send commands back, we have to proof we are authorized to do this
+20. The combination of libraries and code is now ready
+24. There is just one thing left to do: we have to fill in the `Azure IoT Hub security policy connection string`. To send commands back, we have to proof we are authorized to do this
 25. In the Azure Function, replace '[IOT HUB connection string]' with your *remembered* IoT Hub `Connection String-primary key`
 26. Select `Save` again 
 
@@ -172,8 +162,8 @@ Let's bring your device in a faulty state and see how the Azure IoT Platforms se
 
 In [TTN Node](TheThingsNetwork.md), we assembled a TTN node and we put a sketch (source code) on it. Here we will add more logic to the node.
 
-1. Go back to the Arduino IDE and select the sketch
-2. Alter the sketch, Add the 'ttn.onMessage(handleCommand);' in the setup function:
+1. `Go back` to the Arduino IDE and select the sketch
+2. `Alter` the sketch, Add the 'ttn.onMessage(handleCommand);' in the setup function:
 
     ```c
     // Initializing TTN communication...
@@ -198,13 +188,13 @@ In [TTN Node](TheThingsNetwork.md), we assembled a TTN node and we put a sketch 
     } 
     ```
 
-5. In the **Sketch** menu, click **Upload**. *Note: The sketch is uploaded and again telemetry will arrive at the TTN Portal, the TTN Azure bridge and the IoTHub*
-6. **Push** the button attached to the node and `hold` it until the LED is unlit. The 'machine' is now in an 'error' state
-7. **Check out** the bridge. The node is not updating the cycles anymore and error 99 is passed
+5. In the `Sketch` menu, click `Upload`. *Note: The sketch is uploaded and again telemetry will arrive at the TTN Portal, the TTN Azure bridge and the IoTHub*
+6. `Push` the button attached to the node and `hold` it until the LED is unlit. The 'machine' is now in an 'error' state
+7. `Check out` the bridge. The node is not updating the cycles anymore and error 99 is passed
 
     ![alt tag](img/commands/TTN-Errors-arrive.png)
 
-8. After a few errors within two minutes (the same time frame Stream Analytics is checking), **Check out** the Azure Function. It will handle the event message.
+8. After a few errors within two minutes (the same time frame Stream Analytics is checking), `Check out` the Azure Function. It will handle the event message.
 
     ```
     2017-01-13T14:09:17.188 Function started (Id=ed3a2175-33e6-4698-a76c-5831b2ea86a1)
@@ -214,15 +204,15 @@ In [TTN Node](TheThingsNetwork.md), we assembled a TTN node and we put a sketch 
     2017-01-13T14:09:17.833 Function completed (Success, Id=ed3a2175-33e6-4698-a76c-5831b2ea86a1)
     ```
 
-9. **Check out** the bridge again. It will now handle the command (Downlink message) and send it to the TTN portal
+9. `Check out` the bridge again. It will now handle the command (Downlink message) and send it to the TTN portal
 
     ![alt tag](img/commands/TTN-Errors-arrive-at-bridge.png)
 
-10. **Check out** the TTN portal, the data pane. It will now handle the command (Downlink message) and send it to the device, one the first moment a new uplink message arrives
+10. `Check out` the TTN portal, the data pane. It will now handle the command (Downlink message) and send it to the device, one the first moment a new uplink message arrives
 
     ![alt tag](img/commands/TTN-Errors-arrive-at-ttn.png)
 
-11. Finally, **check out** the logging of the node. The commands arrives and is handled by the function in the sketch
+11. Finally, `check out` the logging of the node. The commands arrives and is handled by the function in the sketch
 
     ![alt tag](img/commands/TTN-Errors-arrive-at-node.png)
 
