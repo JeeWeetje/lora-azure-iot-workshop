@@ -11,17 +11,18 @@ This part of the workshop supports the [TTN Node](TheThingsNetwork.md).
 
 ### Prerequisites
 
-1. Azure account [create here](https://azure.microsoft.com/en-us/free/) _(Azure passes will be present for those who have no Azure account (please check your email for final confirmation))_
-2. A running TTN node connected to the TTN network and a running TTN bridge on your PC and connected to an IoT Hub
-3. A combination of Azure IoT Hub, Stream Analytics job, Event Hub and Azure Function which are waiting for analyzed telemetry coming from the devices
-4. A running IoT Hub Explorer, connected to the IoT Hub, showing the telemetry coming in
+1. A running TTN node connected to the TTN network and a running TTN bridge on your PC and connected to an IoT Hub
+2. A combination of Azure IoT Hub, Stream Analytics job, Event Hub and Azure Function which are waiting for analyzed telemetry coming from the devices
+3. A running IoT Hub Explorer, connected to the IoT Hub, showing the telemetry coming in
+4. Azure account [create here](https://azure.microsoft.com/en-us/free/) _(Azure passes will be present for those who have no Azure account (please check your email for final confirmation))_
 
 ### Steps to perform in this part of the workshop
 
 At the end of this part of the workshop, the following steps are performed
 
-1. Creating commands to send back in the Azure Function
-2. Handle commands in the TTN Node
+1. Sending back commands for devices which are in a faulty state
+2. Handle commands in the devices
+3. Conclusion
 
 ## Sending back commands for devices which are in a faulty state
 
@@ -241,5 +242,7 @@ But wait, there is still more. We added two bonus chapters to the workshop
 
 1. [Deploying the TTN C# bridge as Azure Web Job](Webjob.md)
 2. [Add basic monitoring to the platform](IoTPatformMonitoring.md)
+
+And for more creative ideas, we can recommand to look at [hackster.io](https://www.hackster.io/). Every day, new IoT projects are added!
 
 ![alt tag](img/logos/microsoft.jpg) ![alt tag](img/logos/atos.png)

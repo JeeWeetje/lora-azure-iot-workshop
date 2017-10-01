@@ -1,7 +1,7 @@
 # From device to acting on insights with the Azure IoT platform 
 ## Receiving and handling telemetry in Azure
 
-This is an chapter on how uplink messages from UWP app can be handled in Azure. Here, we will pass telemetry from your device to Azure Functions. *Note: passing back commands to your device will come after this chapter* 
+This is an chapter on how uplink messages from a UWP app can be handled in Azure. Here, we will pass telemetry from your device to Azure Functions. *Note: passing back commands to your device will come after this chapter* 
 
 ![alt tag](img/arch/azure-telemetry-pipeline-uwp.png)
 
@@ -278,7 +278,7 @@ Follow these steps to create an Azure Function App. An Azure function is actuall
 
     ![alt tag](img/azure-filter-function-app.png)
 
-5. An introduction will be shown. 
+5. An introduction will be shown
 
     ![alt tag](img/azureuwp/azure-uwp-azurefunction-advertisement.png)
 
@@ -295,24 +295,16 @@ Follow these steps to create an Azure Function App. An Azure function is actuall
 10. The hosting plan is set to 'Consumption plan' by default. This means that you will only be charged for the number of times a function is executed and the resources needed for that execution. *Note: Every month, the first one million requests and 400.000 GBs are [free of charge](https://azure.microsoft.com/en-us/pricing/details/functions/)*
 11. Select `West Europe` for the location
 12. We also want to give the `Storage Account` a more meaningful name. In this storage account, the function source code (files) etc. will be stored
-13. Open de Storage Account blade and select `Create New`
-
-    ![alt tag](img/azure-storage-account-create.png)
-
-14. Enter a unique App name eg. `iotworkshopstorage`. A green sign will be shown if the name is unique *Note: Storage account names must be all lower case!.*
-
-    ![alt tag](img/azure-storage-account-new.png)
-
-15. Select `Ok`
-16. Our new Storage Account is now added to the Azure Function App
+13. Enter a unique Storage name eg. `iotworkshopstorage`. A green sign will be shown if the name is unique *Note: Storage account names must be all lower case!.*
+14. Our new Storage Account is now added to the Azure Function App
 
     ![alt tag](img/azure-function-app-create.png)
 
-17. Select `Create` 
+15. Select `Create` 
 
 The portal will start creating the Function app. Once it is created, a notification is shown.
 
-## Create a C# Azure Function triggered by Event Hub
+### Create a C# Azure Function triggered by Event Hub
 
 Follow these steps to create an Azure Function, triggered by the Event Hub, inside the Azure Function App. 
 
