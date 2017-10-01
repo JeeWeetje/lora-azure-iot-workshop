@@ -43,9 +43,11 @@ During the workshop the following experts will be present to guide you through t
 
 The workshop consists of several chapters. The first two chapters will guide you through the essentials we want you to get your hands on. The other chapters are optional/extra if you have time left.
 
+You have four options to choose from to start with. You can either go for physical hardware based on the The Things Uno (Lora/LoraWAN enabled Arduino Leonardo) programmed in C and connected via The Things Network, Or choose one of the device simulation applications like UWP (C#), NodeJS (JavaScript) or Java application (Java is only used for the simulation client). 
+ 
+_(Note: Click on one of the logos to get started with the device or simulated device and follow that path for the rest of the workshop (at the end of each chapter, a link to the following chapter is provided)_
+
 1. **Connecting a device to the Azure IoT Platform**
-    
-    You have four options to choose from to start with. You can either go for physical hardware based on the The Things Uno (Lora/LoraWAN enabled Arduino Leonardo) programmed in C and connected via The Things Network, Or choose one of the device simulation applications like UWP (C#), NodeJS (JavaScript) or Java application.
 
     <table>
         <thead>
@@ -70,9 +72,6 @@ The workshop consists of several chapters. The first two chapters will guide you
         </tr>
         </tbody>
     </table>
-
-    Click on one of the logos to get started with the device or simulated device.
-
     
 2. **Receiving and handling telemetry in Azure**
 
@@ -126,7 +125,7 @@ The workshop consists of several chapters. The first two chapters will guide you
         </tbody>
     </table>
 
-4. **Bonus**
+4. **Bonus chapters**
    1. [Deploying The Things Network Bridge to Azure as a WebJob](Webjob.md)
    2. [Add basic monitoring to the IoT platform](IoTPatformMonitoring.md)
 
