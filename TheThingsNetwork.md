@@ -233,21 +233,16 @@ Follow the steps to create an application and register your device.
 
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices-name-only.png)
 
-7. Notice that the Register button is still disabled. A device needs a unique identifier
-8.  Click the **Generate** icon for 'Device EUI' so a unique EUI can be generated on register
+7. Click **Register**
 
-    ![alt tag](img/TheThingsNetwork/ttn-applications-devices-before-register.png)
-
-9. The text in the EUI textbox is changed
-10. The register button is now enabled. Click **Register** 
-11. The device is now created
+8. The device is now created
 
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices-registered-otaa.png)
 
-12. Now we have to fine tune the settings
-13. Click **Settings** in the upper right corner
-14. Select activation method **ABP** instead of OTAA
-15. And uncheck **Frame counter checks** *Note: As stated, Disabling frame counter checks drastically reduces security and should only be used for development purposes. In this workshop, this makes you more flexible*
+9. Now we have to fine tune the settings
+10. Click **Settings** in the upper right corner
+11. Select activation method **ABP** instead of OTAA
+12. And uncheck **Frame counter checks** *Note: As stated, Disabling frame counter checks drastically reduces security and should only be used for development purposes. In this workshop, this makes you more flexible*
 
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices-settings.png)
 
@@ -419,7 +414,7 @@ The sensor data is read, now it is time to send the sensor data to the The Thing
 
     ![alt tag](img/TheThingsNetwork/ttn-arduino-debug.png)
 
-10. In The Things Network dashboard, go to **Data**. You see uplink packets arriving:
+10. In The Things Network dashboard, go to **Data** in your application. You see uplink packets arriving:
 
     ![alt tag](img/TheThingsNetwork/ttn-portal-raw-messages.png)
 
