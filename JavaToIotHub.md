@@ -323,7 +323,7 @@ Now that you have registered a device, let's create the device which can submit 
 						numberOfCycles++;
 					}
 					if(numberOfCycles != 0 && numberOfCycles % 3 == 0) {
-						errorCode = 1;
+						errorCode = 99;
 					}
 
 					Thread.sleep(2000);
