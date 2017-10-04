@@ -52,6 +52,10 @@ Your device and sensors should be connected as follows:
 * LED pin layout 
 
    ![alt tag](img/TheThingsNetwork/node-led.jpg)
+   
+* Details LED pin layout node
+
+   ![alt tag](img/TheThingsNetwork/node-detail.jpg)
 
 ## Read sensors
 
@@ -187,9 +191,10 @@ We start with running a simple sketch on the Arduino. This is a program which si
     ```
 
 10. In the **Sketch** menu, click **Verify/Compile**
-11. In the **Sketch** menu, click **Upload**
-12. Once the sketch has been uploaded, go to the **Tools** menu and open the **Serial Monitor**
-13. You should see output like this, just wait a few seconds before pushing the button:
+11. Go to the **Tools** menu and open the **Serial Monitor**, 
+11. Go back to the **Sketch** menu and click **Upload**
+13. Once the sketch has been uploaded, You should see output like this. 
+14. Just wait a few seconds before pushing the button:
 
     ```
     Initializing
@@ -233,16 +238,21 @@ Follow the steps to create an application and register your device.
 
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices-name-only.png)
 
-7. Click **Register**
+7. Notice that the Register button is still disabled. A device needs a unique identifier
+8.  Click the **Generate** icon for 'Device EUI' so a unique EUI can be generated on register
 
-8. The device is now created
+    ![alt tag](img/TheThingsNetwork/ttn-applications-devices-before-register.png)
+
+9. The text in the EUI textbox is changed
+10. The register button is now enabled. Click **Register** 
+11. The device is now created
 
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices-registered-otaa.png)
 
-9. Now we have to fine tune the settings
-10. Click **Settings** in the upper right corner
-11. Select activation method **ABP** instead of OTAA
-12. And uncheck **Frame counter checks** *Note: As stated, Disabling frame counter checks drastically reduces security and should only be used for development purposes. In this workshop, this makes you more flexible*
+12. Now we have to fine tune the settings
+13. Click **Settings** in the upper right corner
+14. Select activation method **ABP** instead of OTAA
+15. And uncheck **Frame counter checks** *Note: As stated, Disabling frame counter checks drastically reduces security and should only be used for development purposes. In this workshop, this makes you more flexible*
 
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices-settings.png)
 
@@ -414,7 +424,7 @@ The sensor data is read, now it is time to send the sensor data to the The Thing
 
     ![alt tag](img/TheThingsNetwork/ttn-arduino-debug.png)
 
-10. In The Things Network dashboard, go to **Data** in your application. You see uplink packets arriving:
+10. In The Things Network dashboard, go to **Data**. You see uplink packets arriving:
 
     ![alt tag](img/TheThingsNetwork/ttn-portal-raw-messages.png)
 
@@ -560,8 +570,8 @@ Follow these steps to create the integration bridge between The Things Network a
 2. **Open** this config file in notepad or another text file editor
 3. **Replace** [TTN App Id] with the `TTN Application ID`
 6. **Replace** [TTN App Access Key] with the `TTN Access Key`
-7. **Replace twice** [iothub name] with the `name` of the IoT Hub, both in the app settings as in the connection string 'IoTHub'
-8. In the connectionstring of 'IoTHub', **replace** [shared access key] with the remembered `Connection String-Primary Key` 
+7. **Replace** [iothub name] with the `name` of the IoT Hub in the app settings
+8. In the connectionstring of 'IoTHub', **replace** [Connection String-Primary] with the remembered `Connection String-Primary Key` 
    
    ![alt tag](img/TheThingsNetwork/bridge-config.png)
    
