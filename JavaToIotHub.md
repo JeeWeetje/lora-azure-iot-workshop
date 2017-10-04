@@ -411,7 +411,7 @@ We can check the arrival of the messages in the Azure IoT Hub using the IoT Hub 
     ```
 
 6. To monitor the device-to-cloud messages from a device, use the following command `iothub-explorer monitor-events --login [your connection string]` and `fill in` your *remembered* IoT Hub 'Connection String-primary key'
-7. All devices are monitored now. This will result in the following messages
+7. All devices are monitored now. This will result in the following messages (if your console / terminal is still sending messages)
 
     ```
     Monitoring events from all devices...
