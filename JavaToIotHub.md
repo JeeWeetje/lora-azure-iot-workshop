@@ -113,7 +113,7 @@ Each device that sends data to the IoT hub must be registered with a unique iden
 5. Using a text editor, open the pom.xml file in the _create-device-identity_ folder and `add` the following dependency to the dependencies node. This dependency enables you to use the iot-service-client package in your app:
 
 	```xml
-	</dependency>
+	<dependency>
 	   <groupId>com.microsoft.azure.sdk.iot</groupId>
 	   <artifactId>iot-service-client</artifactId>
 	   <version>1.2.17</version>
