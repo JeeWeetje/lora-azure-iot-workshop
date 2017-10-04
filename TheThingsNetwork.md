@@ -55,7 +55,7 @@ Your device and sensors should be connected as follows:
    
 * Details LED pin layout node
 
-   ![alt tag](img/TheThingsNetwork/node-detail.jpg)
+   ![alt tag](img/TheThingsNetwork/led_layout.png.jpg)
 
 ## Read sensors
 
