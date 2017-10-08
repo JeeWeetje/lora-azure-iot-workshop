@@ -19,7 +19,7 @@ So, before you create your first UWP app, please take some time to activate the 
 
   ![alt tag](img/devmode/devmode-settings-update-fordev.png)
 
-4. Start using developer features, by selecting `Developer mode`
+4. Start using developer features, by selecting `Developer mode`. _(Note: this can cause a reboot of your computer)_
 
   ![alt tag](img/devmode/devmode-settings-update-fordev-devmode.png)
 
