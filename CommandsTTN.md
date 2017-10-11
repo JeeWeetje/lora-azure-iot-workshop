@@ -152,7 +152,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 21. Go to the overview of your app (not only the function), then go to platform
 22. Open the console in development tools
 23. Navigate in the console to the folder with your function (```cd IoTWorkshopEventHubFunction```)
-24. run ```npm install azure-javascript-function``` and restart your app and function
+24. run ```npm install``` and restart your app and function
 
 
 25. There is just one thing left to do: we have to fill in the `Azure IoT Hub security policy connection string`. To send commands back, we have to proof we are authorized to do this
