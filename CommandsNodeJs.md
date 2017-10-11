@@ -59,7 +59,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 
         var connectionString = "[IOT HUB connection string]";
         var serviceClient = Client.fromConnectionString(connectionString);
-    
+
         function printResultFor(op) {
             return function printResult(err, res) {
                 if (err) context.log(op + ' error: ' + err.toString());
@@ -84,7 +84,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
                 var message = new Message('*'); // * = ascii 42
 
                 context.log('Sending message: ' + message.getData());
-    
+
                 for(i = 0; i < myEventHubTrigger.length; i ++) {
                     var targetDevice = myEventHubTrigger[i].deviceid;
                     context.log('Sending message to: ' + targetDevice);
@@ -105,7 +105,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 9. Because we are writing JavaScript, there will be no warning the code above has some flaws. We need to add a connection string and extra libraries. Let's start with the extra libraries.
 10. Press the `View Files` button to 'unfold' the pane which shows a directory tree of all files.
 
-    ![alt tag](img/commands/azure-function-app-view-files.png)
+   ![alt tag](img/commands/azure-function-app-view-files.png)
 
 11. In the pane you can see that the file currently selected is: index.js
 
@@ -142,13 +142,13 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 17. `Open` the azure console
 
 
-image1  
- 
+![alt tag](img/NodeJsToIotHub/console2.png)  
+
 18. Enter the following command `cd iotworkshop-eh` at the console window to navigate to the iot workshop direction. 
 19. Enter `npm install azure-javascript-function` at the console window to install package.json
 
 
-image2
+![alt tag](img/NodeJsToIotHub/console.png)
 
 20. We have added the extra dependencies. Unfortunately the libraries involved are not loaded yet. To make sure all libraries are loaded, all we have to do is simply stop and start our Azure Function. *Note: you can press 'save and run', with a test message like "[{"count":16,"deviceid":"MachineCyclesNodeJs"}]" (check out the 'Test' option to the right for more info) but this will not be compiles correctly*
 21. To the left, press `Manage`
