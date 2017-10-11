@@ -133,19 +133,30 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
       "dependencies": {
         "azure-iot-device": "^1.1.7",
         "azure-iot-device-amqp": "^1.1.7",
-        "azure-iothub": "^1.1.7",
+        "azure-iothub": "^1.1.7"
       }
     }
     ```
 
 16. Select `Save`.
-17. We have added the extra dependencies. Unfortunately the libraries involved are not loaded yet. To make sure all libraries are loaded, all we have to do is simply stop and start our Azure Function. *Note: you can press 'save and run', with a test message like "[{"count":16,"deviceid":"MachineCyclesNodeJs"}]" (check out the 'Test' option to the right for more info) but this will not be compiles correctly*
-18. To the left, press `Manage`
-19. `Disable` and `Enable` the Azure Function again
+17. `Open` the azure console
+
+
+image1  
+ 
+18. Enter the following command `cd iotworkshop-eh` at the console window to navigate to the iot workshop direction. 
+19. Enter `npm install azure-javascript-function` at the console window to install package.json
+
+
+image2
+
+20. We have added the extra dependencies. Unfortunately the libraries involved are not loaded yet. To make sure all libraries are loaded, all we have to do is simply stop and start our Azure Function. *Note: you can press 'save and run', with a test message like "[{"count":16,"deviceid":"MachineCyclesNodeJs"}]" (check out the 'Test' option to the right for more info) but this will not be compiles correctly*
+21. To the left, press `Manage`
+22. `Disable` and `Enable` the Azure Function again
 
     ![alt tag](img/azure-function-manage-enable.png)
 
-20. The combination of libraries and code is now ready
+23. The combination of libraries and code is now ready
 24. There is just one thing left to do: we have to fill in the `Azure IoT Hub security policy connection string`. To send commands back, we have to proof we are authorized to do this
 25. In the Azure Function, replace '[IOT HUB connection string]' with your *remembered* IoT Hub `Connection String-primary key`
 26. Select `Save` again 
