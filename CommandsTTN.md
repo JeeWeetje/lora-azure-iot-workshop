@@ -146,7 +146,9 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
     ![alt tag](img/azure-function-manage-enable.png)
 
 20. The combination of libraries and code is now ready
- If there is a module missing, then follow the following steps
+
+**If there is a module missing, then follow the following steps**
+
 21. Go to the overview of your app (not only the function), then go to platform
 22. Open the console in development tools
 23. Navigate in the console to the folder with your function (```cd IoTWorkshopEventHubFunction```)
