@@ -146,15 +146,16 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
     ![alt tag](img/azure-function-manage-enable.png)
 
 20. The combination of libraries and code is now ready
-## If there is a module missing, then follow the following steps
+ If there is a module missing, then follow the following steps
 21. Go to the overview of your app (not only the function), then go to platform
 22. Open the console in development tools
-23. run ```npm install azure-javascript-function``` and restart your app and function
+23. Navigate in the console to the folder with your function (```cd IoTWorkshopEventHubFunction```)
+24. run ```npm install azure-javascript-function``` and restart your app and function
 
 
-24. There is just one thing left to do: we have to fill in the `Azure IoT Hub security policy connection string`. To send commands back, we have to proof we are authorized to do this
-25. In the Azure Function, replace '[IOT HUB connection string]' with your *remembered* IoT Hub `Connection String-primary key`
-26. Select `Save` again 
+25. There is just one thing left to do: we have to fill in the `Azure IoT Hub security policy connection string`. To send commands back, we have to proof we are authorized to do this
+26. In the Azure Function, replace '[IOT HUB connection string]' with your *remembered* IoT Hub `Connection String-primary key`
+27. Select `Save` again 
 
 Now, the Azure Function is ready to receive data about devices which simulate 'faulty machines'. And it can send commands back to 'repair' the 'machines'.
 
