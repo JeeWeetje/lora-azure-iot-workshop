@@ -140,11 +140,15 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 
 16. Select `Save`.
 17. `Open` the azure console
-image... 
+
+
+image1  
  
 18 Enter the following command `cd iotworkshop-eh` at the console window to navigate to the iot workshop direction. 
 20 Enter `npm install` at the console window to install package.json
-image..
+
+
+image2
 
 21. We have added the extra dependencies. Unfortunately the libraries involved are not loaded yet. To make sure all libraries are loaded, all we have to do is simply stop and start our Azure Function. *Note: you can press 'save and run', with a test message like "[{"count":16,"deviceid":"MachineCyclesNodeJs"}]" (check out the 'Test' option to the right for more info) but this will not be compiles correctly*
 22. To the left, press `Manage`
