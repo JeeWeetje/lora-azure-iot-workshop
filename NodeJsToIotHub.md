@@ -259,7 +259,7 @@ Now you can run your client application to send data to the IoT hub.
     node iotdevice.js
     ```
 
-2. `Observe` the script running as it starts to submit device readings.
+2. `Observe` the script running as it starts to submit device readings. (don't close the running script)
 
     ![alt tag](img/NodeJsToIotHub/nodejs-send-telemetry.png)
 
@@ -283,7 +283,7 @@ We can check the arrival of the messages in the Azure IoT Hub using the IoT Hub 
 
 1. Create a new folder eg. `c:\iothubexplorer`
 2. In a dos-box (press Windows button-R, type CMD and enter), navigate to the new folder `c:\iothubexplorer`
-3. In this folder, run the following command `npm install -g iothub-explorer@latest` in your command-line environment, to install the latest (pre-release) version of the iothub-explorer tool
+3. In this folder, run the following command `npm install -g iothub-explorer@latest` in your command-line environment, to install the latest (pre-release) version of the iothub-explorer tool. (If you use Mac OSX, you can skip this step)
 4. Login to the IoT Hub Explorer by supplying your *remembered* IoT Hub `Connection String-primary key` using the command `iothub-explorer login "[your connection string]"`
 5. A session with the IoT Hub will start and it will last for approx. one hour:
 
@@ -309,6 +309,7 @@ We can check the arrival of the messages in the Azure IoT Hub using the IoT Hub 
     }
     -------------------
     ```
+If you tried these steps and saw error, follow step 1 & 2 and don't terminate the monitor window.
 
 The cycle information is arriving.
 
