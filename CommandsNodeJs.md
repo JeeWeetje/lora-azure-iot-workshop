@@ -105,7 +105,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 9. Because we are writing JavaScript, there will be no warning the code above has some flaws. We need to add a connection string and extra libraries. Let's start with the extra libraries.
 10. Press the `View Files` button to 'unfold' the pane which shows a directory tree of all files.
 
-   ![alt tag](img/commands/azure-function-app-view-files.png)
+  ![alt tag](img/commands/azure-function-app-view-files.png)
 
 11. In the pane you can see that the file currently selected is: index.js
 
@@ -139,7 +139,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
     ```
 
 16. Select `Save`.
-17. `Open` the azure console
+17. `Open` the azure console:
 
 
 ![alt tag](img/NodeJsToIotHub/console2.png)  
