@@ -1,7 +1,7 @@
 # From device to acting on insights with the Azure IoT platform 
-## Techdays 2017 - IoT Hands-on Lab
+## Codecamp 2017 - IoT Hands-on Lab
 
-![Techdays 2017](img/logos/event.png)
+![Codecamp 2017](img/logos/event.png)
 
 In this hands-on lab you will be creating the complete chain from configuring, to bridging the cap between the connectivity providers clouds and the Microsoft Azure IoT platform, creating actionable insights on the Microsoft Azure IoT platform and sending commands all the way back to the device. 
 This includes assembling hardware, configuring hardware and software and coding the missing logic to a complete IoT solution.
@@ -10,14 +10,14 @@ You will be creating all components to get the malfunctioning machine back up ru
 All of that within 2-3 hours (2 hours is minimum). 
 
 Technologies used during the hands-on lab; 
-• Arduino development boards The Things Uno (LoRa enabled Arduino Leonardo) 
-• Software emulated devices/sensors (in Java, NodeJS or C# (UWP)) 
-• Sensors (button and LED light bar)
-• LoRa & Lora WAN 
-• The Things Network cloud
-• Microsoft Azure IoT Platform (including Azure Web Jobs, Azure IoT Hub, Azure Stream analytics, Azure Event hub, Azure blob storage and Azure Functions)
+ï¿½ Arduino development boards The Things Uno (LoRa enabled Arduino Leonardo) 
+ï¿½ Software emulated devices/sensors (in Java, NodeJS or C# (UWP)) 
+ï¿½ Sensors (button and LED light bar)
+ï¿½ LoRa & Lora WAN 
+ï¿½ The Things Network cloud
+ï¿½ Microsoft Azure IoT Platform (including Azure Web Jobs, Azure IoT Hub, Azure Stream analytics, Azure Event hub, Azure blob storage and Azure Functions)
 
-This hands-on lab will be guided by Hans Boksem & Jan Willem Groenenberg & Sander van de Velde, so attendees have on site support for questions. 
+This hands-on lab will be guided by Valery Jacobs & Jan Willem Groenenberg & Sander van de Velde, so attendees have on site support for questions. 
 
 We will also provide background information about the used components in the hands-on lab. 
 
@@ -29,15 +29,15 @@ The hands-on lab is created in conjunction with Atos and Microsoft Nederland.
 
 During the workshop the following experts will be present to guide you through the workshop:
 
-- [Hans Boksem](https://www.techdays.nl/Sprekers/#7203e568-f3bc-434c-9907-56c7f524e81a); IoT Solution Architect [ ![Twitter](img/social/twitter.png) ](https://twitter.com/bokse001) [ ![LinkedIn](img/social/linkedin.png) ](https://www.linkedin.com/in/hansboksem/) [ ![LinkedIn](img/social/wordpress.png) ](https://hansboksem.wordpress.com/)
-- [Jan Willem Groenenberg](https://www.techdays.nl/Sprekers/#1d5fdd7f-b3b3-4902-b6ea-9e06166e5ffc); IoT Solution Architect [ ![Twitter](img/social/twitter.png) ](https://twitter.com/jeeweetje) [ ![LinkedIn](img/social/linkedin.png) ](https://www.linkedin.com/in/jwgroenenberg/) [ ![LinkedIn](img/social/wordpress.png) ](https://jeeweetje.net)
-- [Sander van de Velde](https://www.techdays.nl/Sprekers/#4ca5c504-f2d3-404e-b7b8-17ac8ff9d43b); MVP, IoT Solution Architect [ ![Twitter](img/social/twitter.png) ](https://twitter.com/svelde) [ ![LinkedIn](img/social/linkedin.png) ](https://www.linkedin.com/in/sandervandevelde/) [ ![LinkedIn](img/social/wordpress.png) ](https://blog.vandevelde-online.com)
+- [Valery Jacobs](http://iasi.codecamp.ro/#speakers); Technical Evangelist [ ![Twitter](img/social/twitter.png) ](https://twitter.com/bokse001) [ ![LinkedIn](img/social/linkedin.png) ](https://www.linkedin.com/in/valeryjacobs/) 
+- [Jan Willem Groenenberg](http://iasi.codecamp.ro/#speakers); IoT Solution Architect [ ![Twitter](img/social/twitter.png) ](https://twitter.com/jeeweetje) [ ![LinkedIn](img/social/linkedin.png) ](https://www.linkedin.com/in/jwgroenenberg/) [ ![LinkedIn](img/social/wordpress.png) ](https://jeeweetje.net)
+- [Sander van de Velde](http://iasi.codecamp.ro/#speakers); MVP, IoT Solution Architect [ ![Twitter](img/social/twitter.png) ](https://twitter.com/svelde) [ ![LinkedIn](img/social/linkedin.png) ](https://www.linkedin.com/in/sandervandevelde/) [ ![LinkedIn](img/social/wordpress.png) ](https://blog.vandevelde-online.com)
 
-## Workshop schedule at Techdays 2017
+## Workshop schedule at Codecamp 2017
 
 | Location | Start Time |  Room  |
 | -------- | ---------- | ------ |
-| Amsterdam, RAI | OCTOBER 13 2017 08:00H-10:00H | G110 |
+| Iasi, HOTEL INTERNATIONAL | OCTOBER 27 2017 09:00H-13:00H | TBA |
 
 ## Let's dive into the workshop
 
