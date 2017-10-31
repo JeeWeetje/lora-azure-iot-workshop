@@ -561,6 +561,8 @@ Follow these steps to create the integration bridge between The Things Network a
 
 *Note: The bridge below is build using C# and will not run on non-windows devices. Use instead a bridge in the cloud as described in [Deploying The Things Network Bridge to Azure as a WebJob](Webjob.md)*
 
+*Note: The bridge is actually an open source project on [github](https://github.com/sandervandevelde/TtnAzureBridge). We accept pull requests :-)*
+
 1. **Create** a new folder eg. `c:\IoTWorkshop`
 2. **Copy** the zip file 'TTNAzureBridge.zip' from [this OneDrive location](https://aka.ms/workshopiot) to this folder and **unzip** it _(Note: on some corporate networks, access to onedrive is limited. Ask the organization for a copy of the zip)_
 
