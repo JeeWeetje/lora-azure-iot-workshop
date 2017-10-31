@@ -11,6 +11,8 @@ Remember creating the TTN bridge locally on your computer? Will your PC be alway
 
 1. The TTN Azure bridge deployed/running on your computer _(like the one created earlier in the workshop)_
 
+*Note: The bridge is actually an open source project on [github](https://github.com/sandervandevelde/TtnAzureBridge). We accept pull requests :-)*
+
 ### Collect the parts we need
 
 Follow these steps to collect all parts before we can deploy to Azure.
