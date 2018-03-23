@@ -1,21 +1,19 @@
-# From device to acting on insights with the Azure IoT platform 
-## Codecamp 2017 - IoT Hands-on Lab
-
-![Codecamp 2017](img/logos/event.png)
+# From device to actionable insights with LoRa and Azure IoT platform 
+## LoRa - Azure IoT Hands-on Lab / Workshop
 
 In this hands-on lab you will be creating the complete chain from configuring, to bridging the cap between the connectivity providers clouds and the Microsoft Azure IoT platform, creating actionable insights on the Microsoft Azure IoT platform and sending commands all the way back to the device. 
 This includes assembling hardware, configuring hardware and software and coding the missing logic to a complete IoT solution.
 The workshop will simulate a remote located machine malfunctioning and getting restarted based on the received telemetry and created insights based on the telemetry data. 
 You will be creating all components to get the malfunctioning machine back up running again. 
-All of that within 2-3 hours (2 hours is minimum). 
+All of that within 2-4 hours (2 hours is minimum). 
 
 Technologies used during the hands-on lab; 
-� Arduino development boards The Things Uno (LoRa enabled Arduino Leonardo) 
-� Software emulated devices/sensors (in Java, NodeJS or C# (UWP)) 
-� Sensors (button and LED light bar)
-� LoRa & Lora WAN 
-� The Things Network cloud
-� Microsoft Azure IoT Platform (including Azure Web Jobs, Azure IoT Hub, Azure Stream analytics, Azure Event hub, Azure blob storage and Azure Functions)
+* Arduino development boards The Things Uno (LoRa enabled Arduino Leonardo) 
+* Software emulated devices/sensors (in Java, NodeJS or C# (UWP)) 
+* Sensors (button and LED light bar)
+* LoRa & Lora WAN 
+* The Things Network cloud
+* Microsoft Azure IoT Platform (including Azure Web Jobs, Azure IoT Hub, Azure Stream analytics, Azure Event hub, Azure blob storage and Azure Functions)
 
 This hands-on lab will be guided by Valery Jacobs & Jan Willem Groenenberg & Sander van de Velde, so attendees have on site support for questions. 
 
@@ -29,15 +27,30 @@ The hands-on lab is created in conjunction with Atos and Microsoft Nederland.
 
 During the workshop the following experts will be present to guide you through the workshop:
 
-- [Valery Jacobs](http://iasi.codecamp.ro/#speakers); Technical Evangelist [ ![Twitter](img/social/twitter.png) ](https://twitter.com/bokse001) [ ![LinkedIn](img/social/linkedin.png) ](https://www.linkedin.com/in/valeryjacobs/) 
-- [Jan Willem Groenenberg](http://iasi.codecamp.ro/#speakers); IoT Solution Architect [ ![Twitter](img/social/twitter.png) ](https://twitter.com/jeeweetje) [ ![LinkedIn](img/social/linkedin.png) ](https://www.linkedin.com/in/jwgroenenberg/) [ ![LinkedIn](img/social/wordpress.png) ](https://jeeweetje.net)
-- [Sander van de Velde](http://iasi.codecamp.ro/#speakers); MVP, IoT Solution Architect [ ![Twitter](img/social/twitter.png) ](https://twitter.com/svelde) [ ![LinkedIn](img/social/linkedin.png) ](https://www.linkedin.com/in/sandervandevelde/) [ ![LinkedIn](img/social/wordpress.png) ](https://blog.vandevelde-online.com)
+- Jan Willem Groenenberg; Atos Senior Expert, IoT Integration Architect [ ![Twitter](img/social/twitter.png) ](https://twitter.com/jeeweetje) [ ![LinkedIn](img/social/linkedin.png) ](https://www.linkedin.com/in/jwgroenenberg/) [ ![LinkedIn](img/social/wordpress.png) ](https://jeeweetje.net)
+- Sander van de Velde; MVP, IoT Solution Architect [ ![Twitter](img/social/twitter.png) ](https://twitter.com/svelde) [ ![LinkedIn](img/social/linkedin.png) ](https://www.linkedin.com/in/sandervandevelde/) [ ![LinkedIn](img/social/wordpress.png) ](https://blog.vandevelde-online.com)
 
-## Workshop schedule at Codecamp 2017
+## Workshop/Hands-on locations and dates
 
-| Location | Start Time |  Room  |
-| -------- | ---------- | ------ |
-| Iasi, HOTEL INTERNATIONAL | OCTOBER 27 2017 09:00H-13:00H | TBA |
+| Event | Location | Date |  # of attendees  |
+| --- | --- | --- | --- |
+| Microsoft Tech Days 2016 | Amsterdam, The Netherlands | tba | 19 |
+| Microsoft Tech Days 2016 | Amsterdam, The Netherlands | tba | 16 |
+| Microsoft Tech Days 2016 | Amsterdam, The Netherlands | tba | 12 |
+| Microsoft Tech Days 2016 | Amsterdam, The Netherlands | tba | 15 |
+| dotNed Saturday 2017 | Veenendaal, The Netherlands | tba | 15 |
+| Atos Innovatos 2017 | Amstelveen, The Netherlands | tba | 8 |
+| Atos Innovatos 2017 | Groningen, The Netherlands | tba | 9 |
+| Atos Innovatos 2017 | Eindhoven, The Netherlands | tba | 13 |
+| Global Azure Bootcamp 2017 | Amstelveen, The Netherlands | tba | 12 |
+| IoT Tech Day 2017 | Utrecht, The Netherlands | tba | 22 |
+| Microsoft Tech Days 2017 | Amsterdam, The Netherlands | tba | 14 |
+| Codecamp 2017 | Iasi, Romania | October 27, 2017 | 20 |
+| LoRa IoT network | Apeldoorn, The Netherlands | April 7, 2018 | tba |
+| Global Azure Bootcamp 2018 | Amstelveen, The Netherlands | April 21, 2018 | tba |
+| TeqNation | Utrecht, The Netherlands | April 26, 2018 | tba |
+
+
 
 ## Let's dive into the workshop
 
