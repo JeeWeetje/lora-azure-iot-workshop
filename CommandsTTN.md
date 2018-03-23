@@ -1,4 +1,4 @@
-# From device to acting on insights with the Azure IoT platform 
+# From device to actionable insights with LoRa and the Azure IoT platform 
 ## Passing commands back to a device
 
 This is an example of how downlink commands are sent back to a device. In this workshop, we will send commands back to faulty devices, using an Azure Function, to start them up again. 
