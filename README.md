@@ -1,4 +1,4 @@
-# From device to actionable insights with LoRa and Azure IoT platform 
+# From device to actionable insights with LoRa and the Azure IoT platform 
 ## LoRa - Azure IoT Hands-on Lab / Workshop
 
 In this hands-on lab you will be creating the complete chain from configuring, to bridging the cap between the connectivity providers clouds and the Microsoft Azure IoT platform, creating actionable insights on the Microsoft Azure IoT platform and sending commands all the way back to the device. 
