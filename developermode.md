@@ -1,4 +1,4 @@
-# From device to acting on insights with the Azure IoT platform 
+# From device to actionable insights with LoRa and the Azure IoT platform 
 ## Developer mode for UWP apps
 
 If you want to be a Windows UWP app developer, you need to have access to the Windows OS you are developping on.
