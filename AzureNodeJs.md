@@ -1,4 +1,4 @@
-# From device to acting on insights with the Azure IoT platform 
+# From device to actionable insights with LoRa and the Azure IoT platform 
 ## Receiving and handling telemetry in Azure
 
 This is an example of how uplink messages from your simulation can be handled in Azure. In this workshop, we will pass telemetry from your device to Azure Functions. *Note: passing back commands to your device will be added after this chapter* 
