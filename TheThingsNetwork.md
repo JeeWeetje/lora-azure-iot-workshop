@@ -1,4 +1,5 @@
-# From device to actionable insights with LoRa and the Azure IoT platform 
+# From device to actionable insights with LoRa and the Azure IoT platform
+
 ## Getting started with the The Things Uno and The Things Network
 
 ![alt tag](img/msft/Picture01-overview.png)
@@ -10,19 +11,28 @@ In this chapter you will configure the The Things Uno with two sensors, connect 
 ### Prerequisites
 
 1. A computer with internet access
+
 2. A The Things Uno, a Grove - Water Sensor, a Grove - PIR Motion Sensor, wiring & a micro USB cable
+
 3. [Arduino IDE](https://www.arduino.cc/en/Main/Software)
+
 4. [Node.js](https://nodejs.org/en/). _(We prefer Version 6)_
+
 5. Azure account [create here](https://azure.microsoft.com/en-us/free/) _([Azure passes](https://www.microsoftazurepass.com/howto) will be present for those who have no Azure account (please check your email for final confirmation))_
+
 6. [TTN account](https://account.thethingsnetwork.org/)
+
 7. Bridge software between TTN and Azure [TtnAzureBridge](https://github.com/sandervandevelde/TtnAzureBridge) (or [as zip](https://aka.ms/workshopiot))
+
 8. [IoT Hub Explorer](https://www.npmjs.com/package/iothub-explorer) _(for Command-Line interface based usage; see below for installation steps)_ or [Device Explorer](https://github.com/Azure/azure-iot-sdks/releases). _(Scroll down to the Downloads section to locate the download link for the SetupDeviceExplorer.msi installer)_
+
 9. Seeed Grove Led Bar [software library](https://github.com/Seeed-Studio/Grove_LED_Bar) (or [as zip](https://aka.ms/workshopiot))
+
 10. Modern browsers like Edge, Chrome and Firefox are preferred
 
 ## Connect your device
 
-![alt tag](img/msft/Picture02-build-the-hardware.png) 
+![alt tag](img/msft/Picture02-build-the-hardware.png)
 
 Follow the workshop facilitator connecting the two sensors. A few important things:
 
@@ -37,23 +47,23 @@ Follow the workshop facilitator connecting the two sensors. A few important thin
 
 Your device and sensors should be connected as follows:
 
-* Overview
+- Overview
 
    ![alt tag](img/TheThingsNetwork/node-overview.jpg)
 
-* Details pin layout node
+- Details pin layout node
 
    ![alt tag](img/TheThingsNetwork/node-detail.jpg)
 
-* Button pin layout 
+- Button pin layout
 
    ![alt tag](img/TheThingsNetwork/node-button.jpg)
 
-* LED pin layout 
+- LED pin layout
 
    ![alt tag](img/TheThingsNetwork/node-led.jpg)
-   
-* Details LED pin layout node
+
+- Details LED pin layout node
 
    ![alt tag](img/TheThingsNetwork/led_layout.png)
 
@@ -64,13 +74,21 @@ Your device and sensors should be connected as follows:
 We start with running a simple sketch on the Arduino. This is a program which simulates a machine and when you press a button it 'breaks down'.
 
 1. **Copy** the zip file 'Grove_LED_Bar-master.zip' from [this OneDrive location](https://aka.ms/workshopiot) to a folder (you do _not_ have to **unzip** it)
+
 2. Open the Arduino IDE
+
 3. **Select** menu _Sketch, Include library, Add .ZIP Library_. A dialog to add a library is shown
+
 4. Select the 'Grove_LED_Bar-master.zip' and select **Open**
+
 5. **Check** if the library is imported correctly. A collection (of sketches) named 'Grove_LED_Bar-master' should appear in menu _File, Examples, Examples from Custom Libraries_
+
 6. Connect The Things Uno via the micro USB cable to your computer
+
 7. In the **Tools** menu, click **Board** and select **Arduino Leonardo**
+
 8. In the **Tools** menu, click **Port** and select the serial port of your **COMx (Arduino Leonardo)**
+
 9. Paste the following code in a new sketch:
 
     ```c
@@ -104,7 +122,7 @@ We start with running a simple sketch on the Arduino. This is a program which si
       bar.setLed(2, 1);
       delay(250);
       bar.setLed(2,0);
-  
+
       for (int i = 3; i < 11; i++) {
         bar.setLed(i, 1);
         delay(250);
@@ -116,7 +134,7 @@ We start with running a simple sketch on the Arduino. This is a program which si
       };
 
       bar.setLed(2,1);
-  
+
       debugSerial.println("Led bar initialized");
     }
 
@@ -127,7 +145,7 @@ We start with running a simple sketch on the Arduino. This is a program which si
         bar.setLed(2, 1 - i);
         delay(150);
       };
-  
+
       for (float i = 0; i < 1.1; i += .100f) {
         bar.setLed(2, i);
         delay(150);
@@ -137,13 +155,13 @@ We start with running a simple sketch on the Arduino. This is a program which si
       if (errorCode == 0) {
         clearProgress(cycleCompleted);
         showProgress(cycleCompleted);
-        cycleCompleted++;  
+        cycleCompleted++;
         debugSerial.print("Cycle completed: ");
         debugSerial.println(cycleCompleted );
       }
 
       // In the button is pushed, the machine enters an error state
-      if (digitalRead(commButton) == HIGH) {  
+      if (digitalRead(commButton) == HIGH) {
         errorCode = 99;
         bar.setLed(1,1);
         debugSerial.print("Error occured: ");
@@ -191,12 +209,16 @@ We start with running a simple sketch on the Arduino. This is a program which si
     ```
 
 10. In the **Sketch** menu, click **Verify/Compile**
-11. Go to the **Tools** menu and open the **Serial Monitor**, 
-11. Go back to the **Sketch** menu and click **Upload**
-13. Once the sketch has been uploaded, You should see output like this. 
+
+11. Go to the **Tools** menu and open the **Serial Monitor**
+
+12. Go back to the **Sketch** menu and click **Upload**
+
+13. Once the sketch has been uploaded, You should see output like this.
+
 14. Just wait a few seconds before pushing the button:
 
-    ```
+    ```cmd/sh
     Initializing
     Led bar initialized
     Cycle completed: 1
@@ -220,48 +242,54 @@ Follow the steps to create an application and register your device.
 
     ![alt tag](img/TheThingsNetwork/TTN-app-gtwy.png)
 
-2. A The Things Network application is a logical container of several devices, providing the same telemetry. There are no TTN applications yet
+3. A The Things Network application is a logical container of several devices, providing the same telemetry. There are no TTN applications yet
 
     ![alt tag](img/TheThingsNetwork/ttn-applications.png)
 
-3. Add a new application. Pick a unique Application ID (for example `predictive_maintenance` in lower case) and fill in a description
+4. Add a new application. Pick a unique Application ID (for example `predictive_maintenance` in lower case) and fill in a description
 
     ![alt tag](img/TheThingsNetwork/ttn-applications-add.png)
 
-4. Press **Add application**. The application is added
-5. Go to **Devices**
+5. Press **Add application**. The application is added
+6. Go to **Devices**
 
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices.png)
 
-5. Click **Register device**
-6. Enter a **Device ID** (for example `predictive_maintenance_machine_42` in lower case) 
+7. Click **Register device**
+8. Enter a **Device ID** (for example `predictive_maintenance_machine_42` in lower case)
 
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices-name-only.png)
 
-7. Notice that the Register button is still disabled. A device needs a unique identifier
-8.  Click the **Generate** icon for 'Device EUI' so a unique EUI can be generated on register
+9. Notice that the Register button is still disabled. A device needs a unique identifier
+10. Click the **Generate** icon for 'Device EUI' so a unique EUI can be generated on register
 
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices-before-register.png)
 
-9. The text in the EUI textbox is changed
-10. The register button is now enabled. Click **Register** 
-11. The device is now created
+11. The text in the EUI textbox is changed
+
+12. The register button is now enabled. Click **Register**
+
+13. The device is now created
 
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices-registered-otaa.png)
 
-12. Now we have to fine tune the settings
-13. Click **Settings** in the upper right corner
-14. Select activation method **ABP** instead of OTAA
-15. And uncheck **Frame counter checks** *Note: As stated, Disabling frame counter checks drastically reduces security and should only be used for development purposes. In this workshop, this makes you more flexible*
+14. Now we have to fine tune the settings
+
+15. Click **Settings** in the upper right corner
+
+16. Select activation method **ABP** instead of OTAA
+
+17. And uncheck **Frame counter checks** *Note: As stated, Disabling frame counter checks drastically reduces security and should only be used for development purposes. In this workshop, this makes you more flexible*
 
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices-settings.png)
 
-16. Click **Save**
-17. The following device settings are shown
+18. Click **Save**
+
+19. The following device settings are shown
 
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices-ready.png)
 
-18. Keep this page open, you need the device address, network session key and application session key in a minute
+20. Keep this page open, you need the device address, network session key and application session key in a minute
 
 The TTN application is created. Your device has been registered and provisioned.
 
@@ -269,19 +297,24 @@ The TTN application is created. Your device has been registered and provisioned.
 
 ![alt tag](img/msft/Picture05-submit-data-to-ttn.png)
 
-The sensor data is read, now it is time to send the sensor data to the The Things Network platform. 
+The sensor data is read, now it is time to send the sensor data to the The Things Network platform.
 
 1. First we have to reference the The Thinks Network library for Arduino. **Open** the Arduino IDE
+
 2. **Select** menu _Sketch, Include library, Manage Libraries_. A form named 'Library Manager' is shown
+
 3. **Search** for The Things Network library using the keyword 'TheThingsNetwork'
+
 4. A single library is shown. **Select** the library and **Install** the library
+
 5. Close the Library manager
+
 6. In the Arduino IDE, from the **File** menu, choose **New** to create a new sketch and paste the following code:
 
     ```c
     #include <Grove_LED_Bar.h>
     #include <TheThingsNetwork.h>
-                       
+
     const char *devAddr = "00000000";
     const char *nwkSKey = "00000000000000000000000000000000";
     const char *appSKey = "00000000000000000000000000000000";
@@ -326,7 +359,7 @@ The sensor data is read, now it is time to send the sensor data to the The Thing
       bar.setLed(2, 1);
       delay(250);
       bar.setLed(2,0);
-  
+
       for (int i = 3; i < 11; i++) {
         bar.setLed(i, 1);
         delay(250);
@@ -338,7 +371,7 @@ The sensor data is read, now it is time to send the sensor data to the The Thing
       };
 
       bar.setLed(2,1);
-  
+
       debugSerial.println("Led bar initialized");
     }
 
@@ -349,7 +382,7 @@ The sensor data is read, now it is time to send the sensor data to the The Thing
         bar.setLed(2, 1 - i);
         delay(150);
       };
-  
+
       for (float i = 0; i < 1.1; i += .100f) {
         bar.setLed(2, i);
         delay(150);
@@ -361,11 +394,11 @@ The sensor data is read, now it is time to send the sensor data to the The Thing
         showProgress(cycleCompleted);
         cycleCompleted++;
         debugSerial.print("Cycle completed: ");
-        debugSerial.println(cycleCompleted );  
+        debugSerial.println(cycleCompleted );
       }
 
       // In the button is pushed, the machine enters an error state
-      if (digitalRead(commButton) == HIGH) {  
+      if (digitalRead(commButton) == HIGH) {
         errorCode = 99;
         bar.setLed(1,1);
         debugSerial.print("Error occured: ");
@@ -443,7 +476,7 @@ Now, the hexidecimal payload is an efficient format for LoRa communication but i
     function Decoder(bytes, port) {
       var cyclesCompleted = bytes[0];
       var errorCode = bytes[1];
-  
+
       return {
         cyclesCompleted: cyclesCompleted,
         errorCode: errorCode
@@ -451,7 +484,7 @@ Now, the hexidecimal payload is an efficient format for LoRa communication but i
     }
     ```
 
-3. You have to test this decoder function before you can save the function. Enter eg. '2A00' in the payload and click **Test**. The hexidecimal payload entered is shown in JSON format as test result  
+3. You have to test this decoder function before you can save the function. Enter eg. '2A00' in the payload and click **Test**. The hexidecimal payload entered is shown in JSON format as test result
 
     ![alt tag](img/TheThingsNetwork/ttn-portal-decoder.png)
 
@@ -459,15 +492,17 @@ Now, the hexidecimal payload is an efficient format for LoRa communication but i
 
     ```c
     function Converter(decoded, port) {
-      return { 
+      return {
         errorCode: decoded.errorCode,
-        numberOfCycles: decoded.cyclesCompleted 
+        numberOfCycles: decoded.cyclesCompleted
       };
     }
     ```
 
 5. Again, you have to test this converter payload format before you can save the function. Again, enter eg. '2A00' in the payload and click **Test**. The hexidecimal payload entered is shown in JSON format with rearranged elements as test result
+
 6. Finally, scroll to the bottom of the page and click **Save**
+
 7. Go back to your data overview. Now you should see something like this:
 
     ![alt tag](img/TheThingsNetwork/ttn-device-payload-fields.png)
@@ -512,7 +547,9 @@ Follow these steps to create an Azure IoT Hub.
     ![alt tag](img/UwpToIotHub/azure-portal-add.png)
 
 5. Enter a unique IoT Hub name eg. `IoTWorkshop-ih`. A green sign will be shown if the name is unique
+
 6. Enter a unique Resource Group eg. `IoTWorkshop-rg`. A green sign will be shown if the name is unique
+
 7. Select `West Europe` for the location, if needed
 
     ![alt tag](img/UwpToIotHub/azure-new-iot-hub-scaled.png)
@@ -536,6 +573,7 @@ The integration requires an Azure IoT Hub Shared access policy key name with `Re
     ![alt tag](img/UwpToIotHub/azure-resource-groups.png)
 
 3. Select the resource group `IoTWorkshop-rg`. It will open a new blade with all resources in this group
+
 4. Select the IoT Hub `IoTWorkshop-ih`. It will open a new blade with the IoT Hub
 
     ![alt tag](img/UwpToIotHub/azure-iot-hub-initial.png)
@@ -545,6 +583,7 @@ The integration requires an Azure IoT Hub Shared access policy key name with `Re
     ![alt tag](img/UwpToIotHub/azure-iot-hub-share-access-policy.png)
 
 6. **Write down** the `name` of the IoT Hub eg. `IoTWorkshop-ih`
+
 7. Navigate to the 'iothubowner' policy and **write down** this `Connection String-Primary Key`
 
     ![alt tag](img/UwpToIotHub/azure-iothubowner-policy.png)
@@ -557,27 +596,32 @@ This is the secret needed from the Azure IoT Hub.
 
 Telemetry is arriving at the TTN portal. But we want to pass it on to the Azure IoT Platform. We need to build a 'bridge'.
 
-Follow these steps to create the integration bridge between The Things Network and Azure IoT Hub. 
+Follow these steps to create the integration bridge between The Things Network and Azure IoT Hub.
 
 *Note: The bridge below is build using C# and will not run on non-windows devices. Use instead a bridge in the cloud as described in [Deploying The Things Network Bridge to Azure as a WebJob](Webjob.md)*
 
 *Note: The bridge is actually an open source project on [github](https://github.com/sandervandevelde/TtnAzureBridge). We accept pull requests :-)*
 
 1. **Create** a new folder eg. `c:\IoTWorkshop`
+
 2. **Copy** the zip file 'TTNAzureBridge.zip' from [this OneDrive location](https://aka.ms/workshopiot) to this folder and **unzip** it _(Note: on some corporate networks, access to onedrive is limited. Ask the organization for a copy of the zip)_
 
     ![alt tag](img/TheThingsNetwork/bridge-download.png)
 
 3. **Navigate** to the folder with the executable and identify the config file name 'TtnAzureBridge.exe.config'
-2. **Open** this config file in notepad or another text file editor
-3. **Replace** [TTN App Id] with the `TTN Application ID`
+4. **Open** this config file in notepad or another text file editor
+
+5. **Replace** [TTN App Id] with the `TTN Application ID`
+
 6. **Replace** [TTN App Access Key] with the `TTN Access Key`
+
 7. **Replace** [iothub name] with the `name` of the IoT Hub in the app settings
-8. In the connectionstring of 'IoTHub', **replace** [Connection String-Primary] with the remembered `Connection String-Primary Key` 
-   
+
+8. In the connectionstring of 'IoTHub', **replace** [Connection String-Primary] with the remembered `Connection String-Primary Key`
+
    ![alt tag](img/TheThingsNetwork/bridge-config.png)
-   
-4. **Save** the config file and close the editor
+
+9. **Save** the config file and close the editor
 
 The bridge is now ready for execution.
 
@@ -586,13 +630,14 @@ The bridge is now ready for execution.
 You are about to retrieve the telemetry from the The Things Network platform.
 
 1. At the command prompt (press Windows button-R, type CMD and enter), navigate to the new folder `c:\iotworkshop`
+
 2. In the same folder, **run** `TtnAzureBridge.exe` to verify the bridge is working
-   
+
    ![alt tag](img/TheThingsNetwork/bridge-running.png)
 
 3. This is example output:
 
-    ```
+    ```cmd/sh
     time 1/11/2017 8:16:29 PM -> IoT Hub IoTWorkshop-ih connected
     MQTT KeepAlivePeriod is 60000
     MQTT subscribed to predictive_maintenance on eu.thethings.network
@@ -613,7 +658,7 @@ You are about to retrieve the telemetry from the The Things Network platform.
 
 ![alt tag](img/arch/Picture05-UWP-overview.png)
 
-We can check the arrival of messages in the Azure IoT Hub. This can be done using a UI app named Device Explorer or using a Command-Line tool named IoT Hub Explorer. `Choose one below` 
+We can check the arrival of messages in the Azure IoT Hub. This can be done using a UI app named Device Explorer or using a Command-Line tool named IoT Hub Explorer. `Choose one below`
 
 ### Monitoring using UI
 
@@ -626,16 +671,20 @@ The easiest way to install the Device Explorer tool in your environment is to do
 To run the Device Explorer tool, double-click the DeviceExplorer.exe file in Windows Explorer. The default installation folder for this application is C:\Program Files (x86)\Microsoft\DeviceExplorer.
 
 1. Start the `Device Explorer` from the desktop or using the start menu
+
 2. On the Configuration Tab, insert the IoT Hub `Connection String-primary key` and the `name` of the IoT Hub (as Protocol Gateway Hostname)
+
 3. Press `Update`
+
 4. On the Management tab, your device should already be available. It was registered by the bridge the very first time, telemetry arrived
 
     ![alt tag](img/TheThingsNetwork/ihe-devices.png)
 
 5. On the Data tab, Select your `Device ID` (like 'predictive_maintenance_machine_42') and press `Monitor`
+
 6. Now we check the leds on the device for `Sending cycle updates` a couple of times. This will result in the following messages while Duty Cycle telemetry is sent by the device
 
-    ```
+    ```cmd/sh
     Receiving events...predictive_maintenance_machine_42
     1/5/2017 9:46:18 PM> Device: [predictive_maintenance_machine_42], Data:[{"errorCode":0,"numberOfCycles":1}]
     1/5/2017 9:46:19 PM> Device: [predictive_maintenance_machine_42], Data:[{"errorCode":0,"numberOfCycles":2}]
@@ -644,24 +693,29 @@ To run the Device Explorer tool, double-click the DeviceExplorer.exe file in Win
 
 ### Monitoring using Command-line
 
-We can check the arrival of the messages in the Azure IoT Hub using the IoT Hub Explorer. This tool is Command-Line based, please check the installation requirements. 
+We can check the arrival of the messages in the Azure IoT Hub using the IoT Hub Explorer. This tool is Command-Line based, please check the installation requirements.
 
 *Note: See the [full example](https://www.npmjs.com/package/iothub-explorer) for more options of this tool.*
 
 1. Create a new folder eg. `c:\iothubexplorer`
+
 2. At the command prompt (press Windows button-R, type CMD and enter), navigate to the new folder `c:\iothubexplorer`
+
 3. In this folder, run the following command `npm install -g iothub-explorer@latest` in your command-line environment, to install the latest (pre-release) version of the iothub-explorer tool
+
 4. Login to the IoT Hub Explorer by supplying your *remembered* IoT Hub `Connection String-primary key` using the command `iothub-explorer login "[your connection string]"`
+
 5. A session with the IoT Hub will start and it will last for approx. one hour:
 
-    ```
+    ```cmd/sh
     Session started, expires on Thu Jan 05 2017 22:53:55 GMT+0100 (W. Europe Standard Time)
     ```
 
 6. To monitor the device-to-cloud messages from a device, use the following command `iothub-explorer monitor-events --login [your connection string]` and `fill in` your *remembered* IoT Hub 'Connection String-primary key'
+
 7. All devices are monitored now. This will result in the following messages
 
-    ```
+    ```cmd/sh
     Monitoring events from all devices...
     From: predictive_maintenance_machine_42
     {
@@ -676,7 +730,6 @@ We can check the arrival of the messages in the Azure IoT Hub using the IoT Hub 
     }
     -------------------
     ```
-
 
 ## Conclusion
 

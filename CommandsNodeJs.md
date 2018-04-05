@@ -1,11 +1,12 @@
-# From device to actionable insights with LoRa and the Azure IoT platform 
+# From device to actionable insights with LoRa and the Azure IoT platform
+
 ## Passing commands back to a device
 
-This is an example of how downlink commands are sent back to a device. In this workshop, we will send commands back to faulty devices, using an Azure Function, to start them up again. 
+This is an example of how downlink commands are sent back to a device. In this workshop, we will send commands back to faulty devices, using an Azure Function, to start them up again.
 
 ![alt tag](img/arch/azure-telemetry-pipeline-commands.png)
 
-This part of the workshop supports both to the [TTN Node](TheThingsNetwork.md) and to the [NodeJs app](NodeJsToIotHub.md) and to the [Java app](JavaToIotHub.md). 
+This part of the workshop supports both to the [TTN Node](TheThingsNetwork.md) and to the [NodeJs app](NodeJsToIotHub.md) and to the [Java app](JavaToIotHub.md).
 
 *Note: In this workshop, we will create uniquely named Azure resources. The suggested names could be reserved already.*
 
@@ -29,7 +30,7 @@ At the end of this part of the workshop, the following steps are performed
 
 In the [previous NodeJs chapter](AzureNodeJs.md), we passed the telemetry from the device to a Stream Analytics job. This job collected devices which are sending error states. Every two minutes, information about devices that are in a faulty state are passed to an Azure Function.
 
-In this workshop, we will react on these devices by sending them a command to 'repair themselves'. 
+In this workshop, we will react on these devices by sending them a command to 'repair themselves'.
 
 ### Updating the NodeJs Azure Function with sending command logic
 
@@ -105,7 +106,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 9. Because we are writing JavaScript, there will be no warning the code above has some flaws. We need to add a connection string and extra libraries. Let's start with the extra libraries.
 10. Press the `View Files` button to 'unfold' the pane which shows a directory tree of all files.
 
-  ![alt tag](img/commands/azure-function-app-view-files.png)
+    ![alt tag](img/commands/azure-function-app-view-files.png)
 
 11. In the pane you can see that the file currently selected is: index.js
 
@@ -120,7 +121,8 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
     ![alt tag](img/commands/azure-function-app-view-files-pane-add-file-nodejs.png)
 
 14. Press `Enter` to confirm the name of the file and an empty code editor will be shown for this file.
-15. The 'package.json' file describes which NodeJS packages have to be referenced. Fill the editor with the following code 
+
+15. The 'package.json' file describes which NodeJS packages have to be referenced. Fill the editor with the following code
 
     ```json
     {
@@ -139,27 +141,32 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
     ```
 
 16. Select `Save`.
+
 17. `Open` the azure console:
 
+    ![alt tag](img/NodeJsToIotHub/console2.png)
 
-![alt tag](img/NodeJsToIotHub/console2.png)  
+18. Enter the following command `cd iotworkshop-eh` at the console window to navigate to the iot workshop direction.
 
-18. Enter the following command `cd iotworkshop-eh` at the console window to navigate to the iot workshop direction. 
 19. Enter `npm install azure-javascript-function` at the console window to install package.json
 
-
-![alt tag](img/NodeJsToIotHub/console.png)
+    ![alt tag](img/NodeJsToIotHub/console.png)
 
 20. We have added the extra dependencies. Unfortunately the libraries involved are not loaded yet. To make sure all libraries are loaded, all we have to do is simply stop and start our Azure Function. *Note: you can press 'save and run', with a test message like "[{"count":16,"deviceid":"MachineCyclesNodeJs"}]" (check out the 'Test' option to the right for more info) but this will not be compiles correctly*
+
 21. To the left, press `Manage`
+
 22. `Disable` and `Enable` the Azure Function again
 
     ![alt tag](img/azure-function-manage-enable.png)
 
 23. The combination of libraries and code is now ready
+
 24. There is just one thing left to do: we have to fill in the `Azure IoT Hub security policy connection string`. To send commands back, we have to proof we are authorized to do this
+
 25. In the Azure Function, replace '[IOT HUB connection string]' with your *remembered* IoT Hub `Connection String-primary key`
-26. Select `Save` again 
+
+26. Select `Save` again
 
 Now, the Azure Function is ready to receive data about devices which simulate 'faulty machines'. And it can send commands back to 'repair' the 'machines'.
 
@@ -185,10 +192,9 @@ We hope you did enjoy working with the Azure IoT Platform, as much as we did. Th
 
 ![alt tag](img/msft/Picture13-make-the-world-a-better-place.png)
 
-But wait, there is still more. We added two bonus chapters to the workshop
+But wait, there is still more. We added a bonus chapter to the workshop
 
-1. [Deploying the TTN C# bridge as Azure Web Job](Webjob.md)
-2. [Add basic monitoring to the platform](IoTPatformMonitoring.md)
+* [Deploying the TTN C# bridge as Azure Web Job](Webjob.md)
 
 And for more creative ideas, we can recommand to look at [hackster.io](https://www.hackster.io/). Every day, new IoT projects are added!
 
