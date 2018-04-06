@@ -29,9 +29,9 @@ The hands-on lab is created in conjunction with Atos and Microsoft Nederland.
 
 During the workshop the following experts will be present to guide you through the workshop:
 
-* Jan Willem Groenenberg; Atos Senior Expert, IoT Integration Architect [![Twitter](img/social/twitter.png)](https://twitter.com/jeeweetje) [![LinkedIn](img/social/linkedin.png)](https://www.linkedin.com/in/jwgroenenberg/) [![LinkedIn](img/social/wordpress.png)](https://jeeweetje.net)
+* Jan Willem Groenenberg; Atos Senior Expert, IoT Platform Architect, Azure Advisory Board member [![Twitter](img/social/twitter.png)](https://twitter.com/jeeweetje) [![LinkedIn](img/social/linkedin.png)](https://www.linkedin.com/in/jwgroenenberg/) [![LinkedIn](img/social/wordpress.png)](https://jeeweetje.net)
 
-* Sander van de Velde; MVP, IoT Solution Architect [![Twitter](img/social/twitter.png)](https://twitter.com/svelde) [![LinkedIn](img/social/linkedin.png)](https://www.linkedin.com/in/sandervandevelde/) [![LinkedIn](img/social/wordpress.png)](https://blog.vandevelde-online.com)
+* Sander van de Velde; MVP, IoT Platform Architect, Azure Advisory Board member [![Twitter](img/social/twitter.png)](https://twitter.com/svelde) [![LinkedIn](img/social/linkedin.png)](https://www.linkedin.com/in/sandervandevelde/) [![LinkedIn](img/social/wordpress.png)](https://blog.vandevelde-online.com)
 
 ## Workshop/Hands-on locations and dates
 
@@ -51,7 +51,7 @@ During the workshop the following experts will be present to guide you through t
 | Codecamp 2017 | Iasi, Romania | October 27, 2017 | 20 |
 | LoRa IoT network | Apeldoorn, The Netherlands | April 7, 2018 | tba |
 | Global Azure Bootcamp 2018 | Amstelveen, The Netherlands | April 21, 2018 | tba |
-| TeqNation | Utrecht, The Netherlands | April 26, 2018 | tba |
+| TEQnation 2018 | Utrecht, The Netherlands | April 26, 2018 | tba |
 
 ## Let's dive into the workshop
 
@@ -59,14 +59,14 @@ The workshop consists of several chapters. The first two chapters will guide you
 
 You have four options to choose from to start with. You can either go for physical hardware based on the The Things Uno (Lora/LoraWAN enabled Arduino Leonardo) programmed in C and connected via The Things Network, Or choose one of the device simulation applications like UWP (C#), NodeJS (JavaScript) or Java application (Java is only used for the simulation client).
 
-    _(Note: Click on one of the logos to get started with the device or simulated device and follow that path for the rest of the workshop (at the end of each chapter, a link to the following chapter is provided)_
+    Click on one of the logos to get started with the device or simulated device and follow that path for the rest of the workshop (at the end of each chapter, a link to the following chapter is provided
 
 1. **Connecting a device to the Azure IoT Platform**
 
     <table>
         <thead>
         <tr>
-            <th colspan="4">Choose the device to connect</th>
+            <th colspan="4">Choose the device or simulator to connect</th>
         </tr>
         <thead>
         <tbody>
@@ -92,7 +92,7 @@ You have four options to choose from to start with. You can either go for physic
     <table>
         <thead>
         <tr>
-            <th colspan="4">Choose the device to receive telemetry from</th>
+            <th colspan="4">Choose the device or simulator to receive telemetry from</th>
         </tr>
         <thead>
         <tbody>
@@ -118,7 +118,7 @@ You have four options to choose from to start with. You can either go for physic
     <table>
         <thead>
         <tr>
-            <th colspan="4">Choose the device to pass commands back to</th>
+            <th colspan="4">Choose the device or simulator to pass commands back to</th>
         </tr>
         <thead>
         <tbody>
@@ -140,6 +140,6 @@ You have four options to choose from to start with. You can either go for physic
     </table>
 
 4. **Bonus chapter**
-   1. [Deploying The Things Network Bridge to Azure as a WebJob](Webjob.md)
+   * [Deploying The Things Network Bridge to Azure as a WebJob](Webjob.md)
 
 ![alt tag](img/logos/microsoft.jpg) ![alt tag](img/logos/atos.png)
