@@ -4,7 +4,7 @@
 
 This is an example of how uplink messages from your simulation can be handled in Azure. In this workshop, we will pass telemetry from your device to Azure Functions. *Note: passing back commands to your device will be added after this chapter*
 
-![alt tag](img/arch/azure-telemetry-pipeline-nodejs.png)
+![](img/arch/azure-telemetry-pipeline-nodejs.png)
 
 Before connecting to Azure Functions, you will first add an Azure Stream Analytics job and Azure Event Hub.
 
@@ -54,21 +54,21 @@ Follow these steps to create an Azure Stream Analytics job which takes messages 
 
 2. On the left, select `Resource groups`. A list of resource groups is shown
 
-    ![alt tag](img/azure-resource-groups.png)
+    ![](img/azure-resource-groups.png)
 
 3. Select the ResourceGroup `IoTWorkshop-rg`. It will open a new blade with all resources in this group
 
 4. Select `Add`. A list of available services appears
 
-    ![alt tag](img/azure-portal-add.png)
+    ![](img/azure-portal-add.png)
 
 5. Filter it with `Stream Analytics` and select `Stream Analytics job`
 
-    ![alt tag](img/azure-filter-stream-analytics.png)
+    ![](img/azure-filter-stream-analytics.png)
 
 6. An introduction will be shown
 
-    ![alt tag](img/azure-stream-analytics-intro.png)
+    ![](img/azure-stream-analytics-intro.png)
 
 7. Select `Create`
 
@@ -78,7 +78,7 @@ Follow these steps to create an Azure Stream Analytics job which takes messages 
 
 10. Select `West Europe` for the location
 
-    ![alt tag](img/azure-create-stream-analytics.png)
+    ![](img/azure-create-stream-analytics.png)
 
 11. Select `Create` and the portal will start creating the service. Once it is created, a notification is shown
 
@@ -94,21 +94,21 @@ Follow these steps to create an Azure Event Hub which passes large amounts of ev
 
 1. On the left, select `Resource groups`. A list of resource groups is shown
 
-    ![alt tag](img/azure-resource-groups.png)
+    ![](img/azure-resource-groups.png)
 
 2. Select the ResourceGroup `IoTWorkshop-rg`. It will open a new blade with all resources in this group
 
 3. Select `Add`. A list of available services appears
 
-    ![alt tag](img/azure-portal-add.png)
+    ![](img/azure-portal-add.png)
 
 4. Filter it with `Event Hubs` and select `Event Hubs`
 
-    ![alt tag](img/azure-filter-event-hub.png)
+    ![](img/azure-filter-event-hub.png)
 
 5. An introduction will be shown. Select `Create`
 
-    ![alt tag](img/azureuwp/azure-uwp-enventhub-advertisement.png)
+    ![](img/azureuwp/azure-uwp-enventhub-advertisement.png)
 
 6. Event Hubs live within namespaces which can be seen as an administrative container for EventHubs. So first, a new namespace must be created
 
@@ -118,13 +118,13 @@ Follow these steps to create an Azure Event Hub which passes large amounts of ev
 
 9. Select a pricing tier. Select the `pricing tier` selection. A 'Choose your pricing tier' section will be shown. Select the `Basic tier` or `Standard tier` and press `select`
 
-    ![alt tag](img/azure-namespace-pricingtier.png)
+    ![](img/azure-namespace-pricingtier.png)
 
 10. The Resource Group eg. `IoTWorkshop-rg` is already filled in
 
 11. Select `West Europe` for the location
 
-    ![alt tag](img/azure-create-eventhub-namespace.png)
+    ![](img/azure-create-eventhub-namespace.png)
 
 12. Select `Create` and the portal will start creating the namespace. Once it is created, a notification is shown
 
@@ -134,23 +134,23 @@ Follow these steps to create an Azure Event Hub which passes large amounts of ev
 
 15. If the namespace has become listed, select it, eg. `IoTWorkshop-ns`. Otherwise, 'refresh' the list of resources in the resource group a few times by pressing `Refresh` (as seen at the bottom of the screen)
 
-    ![alt tag](img/azure-portal-refresh.png)
+    ![](img/azure-portal-refresh.png)
 
 16. You are now in the namespace blade. It should be shown like this, with all information available (otherwise, refresh a few times so Azure can show the completely generated namespace). There are no event hubs yet in this namespace:
 
-    ![alt tag](img/azure-namespace.png)
+    ![](img/azure-namespace.png)
 
 17. At the top, select `Add Event Hub`
 
-    ![alt tag](img/azure-namespace-add.png)
+    ![](img/azure-namespace-add.png)
 
 18. A dialog for a new Event Hub is shown. Enter a unique name eg. `IoTWorkshop-eh`. A green sign will be shown if the name is unique *Note: the name will be reverted to lower case when the Event Hub is created!*
 
-    ![alt tag](img/azure-eventhub-create.png)
+    ![](img/azure-eventhub-create.png)
 
 19. Select `Create` and the portal will start creating the Event Hub. Once it is created, a notification is shown
 
-    ![alt tag](img/azure-eventhub-created.png)
+    ![](img/azure-eventhub-created.png)
 
 The Event Hub is now created. But before we pass on, we need some Namespace secrets for later usage.
 
@@ -166,7 +166,7 @@ Just to be known with the security features on an EventHub, let's look at the Sh
 
 2. select the already available `RootManageSharedAccessKey` policy
 
-    ![alt tag](img/azure-eventhub-policy.png)
+    ![](img/azure-eventhub-policy.png)
 
 3. Look at the Connection string `Connection String-Primary Key`
 
@@ -186,25 +186,25 @@ As shown above, the Azure Stream Analytics job will connect to the IoT Hub. Foll
 
 1. On the left, select `Resource groups`. A list of resource groups is shown
 
-    ![alt tag](img/azure-resource-groups.png)
+    ![](img/azure-resource-groups.png)
 
 2. Select the ResourceGroup `IoTWorkshop-rg`. It will open a new blade with all resources in this group
 
 3. Select the Azure Stream Analytics job `IoTWorkshop-sa`. At this moment there are no Inputs or Outputs.
 
-    ![alt tag](img/azure-stream-analytics-empty.png)
+    ![](img/azure-stream-analytics-empty.png)
 
 4. Select `Inputs`
 
 5. Select `Add`. A dialog to add a new input is shown
 
-    ![alt tag](img/azure-portal-add.png)
+    ![](img/azure-portal-add.png)
 
 6. Enter `hubinput` as Input alias
 
 7. Select `IoT Hub` as Source. Because we have only one IoT Hub in our account, all other fields are automatically filled in with the right IoT Hub, `IoTWorkshop-rg`
 
-    ![alt tag](img/azure-stream-analytics-add-input.png)
+    ![](img/azure-stream-analytics-add-input.png)
 
 8. Select `Create`
 
@@ -218,13 +218,13 @@ As shown above, the Azure Stream Analytics job will connect to the Event Hub. Fo
 
 2. Select `Add`. A dialog to add a new output is shown
 
-    ![alt tag](img/azure-portal-add.png)
+    ![](img/azure-portal-add.png)
 
 3. Enter `huboutputsink` as Output alias
 
 4. The `Event Hub` is already selected as Sink (if multiple EventHubs are available, check if the right one is selected) and all other fields are automatically filled in with the right Event Hub, `iotworkshop-eh` *Note: in lower case* _(**Warning** What if the EventHub does not show up? Add it by hand)_
 
-    ![alt tag](img/azure-stream-analytics-add-output.png)
+    ![](img/azure-stream-analytics-add-output.png)
 
 5. Do not forget to `change` the Format into `Array`. *Note: Our output will generate JSON. And multiple lines of JSON are NOW formatted as Array, NOT as separated lines. Please double check this again*
 
@@ -242,7 +242,7 @@ Follow these steps to write the query of Azure Stream Analytics job.
 
 2. A new blade is shown. Here you can write your SQL-like Azure Stream Analytics job query
 
-    ![alt tag](img/azure-stream-analytics-query-initial.png)
+    ![](img/azure-stream-analytics-query-initial.png)
 
 3. Write the following, very simple, query
 
@@ -266,23 +266,23 @@ Follow these steps to write the query of Azure Stream Analytics job.
 
 5. Press `Save`. Confirm if needed
 
-    ![alt tag](img/azure-portal-save.png)
+    ![](img/azure-portal-save.png)
 
 6. Close the Query blade with the `close icon` or select `IoTWorkshop-sa` in the bread-crumbs in the top of the page
 
-    ![alt tag](img/azure-portal-close.png)
+    ![](img/azure-portal-close.png)
 
 7. Now the Azure Stream Analytics job has both an input and an output. And we just created the query
 
-    ![alt tag](img/azure-stream-analytics-job-topology.png)
+    ![](img/azure-stream-analytics-job-topology.png)
 
 8. Select `Start` to get the Stream Analytics job running
 
-    ![alt tag](img/azure-portal-start.png)
+    ![](img/azure-portal-start.png)
 
 9. You have to provide the moment in time, the job must start retrieving data. Select `Now`. *Note: An Azure Stream Analytics job can start with telemetry from the past (if you want to rerun historical telemetry still stored in the input) or you can start at the last point the query stopped (only when applicable) or you it can start fresh only with new telemetry*
 
-    ![alt tag](img/azure-stream-analytics-start.png)
+    ![](img/azure-stream-analytics-start.png)
 
 10. Select `Start`, this will actually start the job
 
@@ -292,7 +292,7 @@ Starting an Azure Stream Analytics job will take some time. After starting, all 
 
 ## Create an Azure Function App to handle events
 
-![alt tag](img/msft/Picture11handle-event-using-azure-functions.png)
+![](img/msft/Picture11handle-event-using-azure-functions.png)
 
 Filtered and transformed messages now arrive at the Event Hub. Each time a message arrives, the Event Hub broadcast it as an event to it's 'listeners'. Let's listen to these events and act on the messages. For this, we need an Azure Function.
 
@@ -300,29 +300,29 @@ Follow these steps to create an Azure Function App. An Azure function is actuall
 
 1. On the left, select `Resource groups`. A list of resource groups is shown
 
-    ![alt tag](img/azure-resource-groups.png)
+    ![](img/azure-resource-groups.png)
 
 2. Select the ResourceGroup `IoTWorkshop-rg`. It will open a new blade with all resources in this group
 
 3. Select `Add`. A list of available services appears
 
-    ![alt tag](img/azure-portal-add.png)
+    ![](img/azure-portal-add.png)
 
 4. Filter it with `Function App` and select `Function App`
 
-    ![alt tag](img/azure-filter-function-app.png)
+    ![](img/azure-filter-function-app.png)
 
 5. An introduction will be shown
 
-    ![alt tag](img/azureuwp/azure-uwp-azurefunction-advertisement.png)
+    ![](img/azureuwp/azure-uwp-azurefunction-advertisement.png)
 
 6. Select `Create`
 
-    ![alt tag](img/azure-portal-create.png)
+    ![](img/azure-portal-create.png)
 
 7. You will be asked to enter the information needed to create an Azure Function
 
-    ![alt tag](img/azure-function-app-initial.png)
+    ![](img/azure-function-app-initial.png)
 
 8. Enter a unique App name eg. `IoTWorkshop-fa`. A green sign will be shown if the name is unique
 
@@ -338,7 +338,7 @@ Follow these steps to create an Azure Function App. An Azure function is actuall
 
 14. Our new Storage Account is now added to the Azure Function App
 
-    ![alt tag](img/azure-function-app-create.png)
+    ![](img/azure-function-app-create.png)
 
 15. Select `Create`
 
@@ -350,7 +350,7 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
 
 1. On the left, select `Resource groups`. A list of resource groups is shown
 
-    ![alt tag](img/azure-resource-groups.png)
+    ![](img/azure-resource-groups.png)
 
 2. Select the ResourceGroup `IoTWorkshop-rg`. It will open a new blade with all resources in this group
 
@@ -358,31 +358,31 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
 
 4. If the Function App is not shown yet, `refresh` the list. The Function app resource will be shown in a new blade *Note: Function Apps are quite new in the Azure portal and the interface is still frequently updated*
 
-    ![alt tag](img/azure-portal-refresh.png)
+    ![](img/azure-portal-refresh.png)
 
 5. The latest interface of Azure Functions is shown. On the left side, Select the `plus` to add a new function
 
-    ![alt tag](img/function/azure-function-add.png)
+    ![](img/function/azure-function-add.png)
 
 6. The 'Quickstart' page is shown Here you are invited to get started quickly with a premade function. Ignore this, we will create our own custom function by hand
 
-    ![alt tag](img/function/azure-function-quickstart.png)
+    ![](img/function/azure-function-quickstart.png)
 
 7. Select `Custom function` at the bottom
 
 8. We have to choose a 'trigger' template. Azure Functions are triggered by events in Azure. A list of possible triggers will be shown. At this moment there are 65+ Bash, Batch, C#, F#, JavaScript, PHP, Powershell Python and TypeScript triggers. Select the `EventHubTrigger - JavaScript` template
 
-    ![alt tag](img/azure-function-app-eventhubtrigger-javascript.png)
+    ![](img/azure-function-app-eventhubtrigger-javascript.png)
 
 9. At the bottom of the selected template page (use the scrollbar of the current page), you have to fill in the field 'Name your function'. Change `EventHubTriggerJS1` into `IoTWorkshopEventHubFunction`
 
 10. We do not have to remember EventHub credentials anymore. Next to the field 'Event Hub connection' select `new`
 
-    ![alt tag](img/function/azure-function-connection-new.png)
+    ![](img/function/azure-function-connection-new.png)
 
 11. A new dialog is shown. The needed 'Event Hub connection' is filled in already or you can `select` it using the drop downs. Do you see the policy of then namespace?
 
-    ![alt tag](img/function/azure-function-connection-dialog.png)
+    ![](img/function/azure-function-connection-dialog.png)
 
 12. Press `Select` to continue. You are back to the input fields
 
@@ -390,21 +390,21 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
 
 14. The Connection string is now filled in into the corresponding field
 
-    ![alt tag](img/azure-function-app-eventhubtrigger-new.png)
+    ![](img/azure-function-app-eventhubtrigger-new.png)
 
 15. Select `Create`
 
-    ![alt tag](img/azure-portal-create.png)
+    ![](img/azure-portal-create.png)
 
 16. The function and trigger are saved. The develop page is shown. In the middle, you will see the function in the 'Code' panel
 
 17. But, before we look at the code, first we `change` the cardinality of the message in the 'Integrate' tab. We get an array already so we can set the cardinality to `ONE` _(Note: otherwise we receive an array of arrays)_
 
-    ![alt tag](img/azure-function-app-cardinality.png)
+    ![](img/azure-function-app-cardinality.png)
 
 18. In the Logs pane, press the `arrow` (looking as a chevron) button to open that pane which shows some basic logging
 
-    ![alt tag](img/azure-function-app-eventhubtrigger-logs.png)
+    ![](img/azure-function-app-eventhubtrigger-logs.png)
 
 19. A 'Logs' panel is shown. This 'Logs' panel works like a trace log.
 
@@ -452,4 +452,4 @@ Receiving basic telemetry in Azure completes this part of the workshop. You are 
 
 Let's start [passing commands back to actual devices or simulated devices](CommandsNodeJs.md)
 
-![alt tag](img/logos/microsoft.jpg) ![alt tag](img/logos/atos.png)
+![](img/logos/microsoft.jpg) ![](img/logos/atos.png)

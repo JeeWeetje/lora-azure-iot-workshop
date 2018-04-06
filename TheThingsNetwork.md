@@ -2,7 +2,7 @@
 
 ## Getting started with the The Things Uno and The Things Network
 
-![alt tag](img/msft/Picture01-overview.png)
+![](img/msft/Picture01-overview.png)
 
 In this chapter you will configure the The Things Uno with two sensors, connect it to The Things Network platform. On the The Things platform you will provision the The Things Uno, receive its messages and decode the telemetry. As final step in this chapter you will deploy a bridge between the The Things Network platform and Microsoft Azure IoT platform.
 
@@ -32,7 +32,7 @@ In this chapter you will configure the The Things Uno with two sensors, connect 
 
 ## Connect your device
 
-![alt tag](img/msft/Picture02-build-the-hardware.png)
+![](img/msft/Picture02-build-the-hardware.png)
 
 Follow the workshop facilitator connecting the two sensors. A few important things:
 
@@ -49,23 +49,23 @@ Your device and sensors should be connected as follows:
 
 - Overview
 
-   ![alt tag](img/TheThingsNetwork/node-overview.jpg)
+   ![](img/TheThingsNetwork/node-overview.jpg)
 
 - Details pin layout node
 
-   ![alt tag](img/TheThingsNetwork/node-detail.jpg)
+   ![](img/TheThingsNetwork/node-detail.jpg)
 
 - Button pin layout
 
-   ![alt tag](img/TheThingsNetwork/node-button.jpg)
+   ![](img/TheThingsNetwork/node-button.jpg)
 
 - LED pin layout
 
-   ![alt tag](img/TheThingsNetwork/node-led.jpg)
+   ![](img/TheThingsNetwork/node-led.jpg)
 
 ## Read sensors
 
-![alt tag](img/msft/Picture03-read-sensor-data.png)
+![](img/msft/Picture03-read-sensor-data.png)
 
 We start with running a simple sketch on the Arduino. This is a program which simulates a machine and when you press a button it 'breaks down'.
 
@@ -229,37 +229,37 @@ Now we have a running Arduino with some basic logic. Let's send some messages us
 
 ## Create The Things Network application in the The Things Network portal
 
-![alt tag](img/msft/Picture04-create-a-ttn-device.png)
+![](img/msft/Picture04-create-a-ttn-device.png)
 
 Follow the steps to create an application and register your device.
 
 1. Log into the [The Things Network dashboard](https://console.thethingsnetwork.org) using a modern browser like Chrome. You will be asked to provide TTN credentials if needed
 2. A selection between Applications maintenance and Gateways maintenance must be made. Choose **Applications**
 
-    ![alt tag](img/TheThingsNetwork/TTN-app-gtwy.png)
+    ![](img/TheThingsNetwork/TTN-app-gtwy.png)
 
 3. A The Things Network application is a logical container of several devices, providing the same telemetry. There are no TTN applications yet
 
-    ![alt tag](img/TheThingsNetwork/ttn-applications.png)
+    ![](img/TheThingsNetwork/ttn-applications.png)
 
 4. Add a new application. Pick a unique Application ID (for example `predictive_maintenance` in lower case) and fill in a description
 
-    ![alt tag](img/TheThingsNetwork/ttn-applications-add.png)
+    ![](img/TheThingsNetwork/ttn-applications-add.png)
 
 5. Press **Add application**. The application is added
 6. Go to **Devices**
 
-    ![alt tag](img/TheThingsNetwork/ttn-applications-devices.png)
+    ![](img/TheThingsNetwork/ttn-applications-devices.png)
 
 7. Click **Register device**
 8. Enter a **Device ID** (for example `predictive_maintenance_machine_42` in lower case)
 
-    ![alt tag](img/TheThingsNetwork/ttn-applications-devices-name-only.png)
+    ![](img/TheThingsNetwork/ttn-applications-devices-name-only.png)
 
 9. Notice that the Register button is still disabled. A device needs a unique identifier
 10. Click the **Generate** icon for 'Device EUI' so a unique EUI can be generated on register
 
-    ![alt tag](img/TheThingsNetwork/ttn-applications-devices-before-register.png)
+    ![](img/TheThingsNetwork/ttn-applications-devices-before-register.png)
 
 11. The text in the EUI textbox is changed
 
@@ -267,7 +267,7 @@ Follow the steps to create an application and register your device.
 
 13. The device is now created
 
-    ![alt tag](img/TheThingsNetwork/ttn-applications-devices-registered-otaa.png)
+    ![](img/TheThingsNetwork/ttn-applications-devices-registered-otaa.png)
 
 14. Now we have to fine tune the settings
 
@@ -277,13 +277,13 @@ Follow the steps to create an application and register your device.
 
 17. And uncheck **Frame counter checks** *Note: As stated, Disabling frame counter checks drastically reduces security and should only be used for development purposes. In this workshop, this makes you more flexible*
 
-    ![alt tag](img/TheThingsNetwork/ttn-applications-devices-settings.png)
+    ![](img/TheThingsNetwork/ttn-applications-devices-settings.png)
 
 18. Click **Save**
 
 19. The following device settings are shown
 
-    ![alt tag](img/TheThingsNetwork/ttn-applications-devices-ready.png)
+    ![](img/TheThingsNetwork/ttn-applications-devices-ready.png)
 
 20. Keep this page open, you need the device address, network session key and application session key in a minute
 
@@ -291,7 +291,7 @@ The TTN application is created. Your device has been registered and provisioned.
 
 ## Send telemetry from your device to the The Things Network platform
 
-![alt tag](img/msft/Picture05-submit-data-to-ttn.png)
+![](img/msft/Picture05-submit-data-to-ttn.png)
 
 The sensor data is read, now it is time to send the sensor data to the The Things Network platform.
 
@@ -446,22 +446,22 @@ The sensor data is read, now it is time to send the sensor data to the The Thing
 
 7. Insert your device address in `devAddr`, network session key in `nwkSkey` and application session key in `appSKey`. You can use the handy `clipboard` button in the dashboard to copy it quickly as a HEX value
 
-    ![alt tag](img/TheThingsNetwork/ttn-applications-devices-credentials.png)
+    ![](img/TheThingsNetwork/ttn-applications-devices-credentials.png)
 
 8. In the **Sketch** menu, click **Upload**
 9. Open the **Serial Monitor** again from the **Tools** menu once upload has completed. Your device should now be sending telemetry to The Things Network
 
-    ![alt tag](img/TheThingsNetwork/ttn-arduino-debug.png)
+    ![](img/TheThingsNetwork/ttn-arduino-debug.png)
 
 10. In The Things Network dashboard, go to **Data**. You see uplink packets arriving:
 
-    ![alt tag](img/TheThingsNetwork/ttn-portal-raw-messages.png)
+    ![](img/TheThingsNetwork/ttn-portal-raw-messages.png)
 
 We are now receiving raw telemetry. We can decode and transform this in the TTN portal towards JSON messages.
 
 ## Decode data on TTN
 
-![alt tag](img/msft/Picture06-decode-data-on-ttn.png)
+![](img/msft/Picture06-decode-data-on-ttn.png)
 
 Now, the hexidecimal payload is an efficient format for LoRa communication but it is not really useful upstream. We want human readable JSON. To decode and convert the hexidecimal payload to JSON messages, we have payload formats.
 
@@ -482,7 +482,7 @@ Now, the hexidecimal payload is an efficient format for LoRa communication but i
 
 3. You have to test this decoder function before you can save the function. Enter eg. '2A00' in the payload and click **Test**. The hexidecimal payload entered is shown in JSON format as test result
 
-    ![alt tag](img/TheThingsNetwork/ttn-portal-decoder.png)
+    ![](img/TheThingsNetwork/ttn-portal-decoder.png)
 
 4. We want to rearrange the order of the JSON elements. To rearrange the order we use the following function as the **converter** payload format:
 
@@ -501,7 +501,7 @@ Now, the hexidecimal payload is an efficient format for LoRa communication but i
 
 7. Go back to your data overview. Now you should see something like this:
 
-    ![alt tag](img/TheThingsNetwork/ttn-device-payload-fields.png)
+    ![](img/TheThingsNetwork/ttn-device-payload-fields.png)
 
 Now we have clean JSON data ready to be processed in Azure IoT Hub and upstream.
 
@@ -519,28 +519,28 @@ We have to collect unique keys of the The Things Network application.
 2. **Write down** the 'Application ID'
 3. Scroll down to **Access Keys**. **Write down** the 'Access Key'
 
-    ![alt tag](img/TheThingsNetwork/ttn-access-key.png)
+    ![](img/TheThingsNetwork/ttn-access-key.png)
 
 The `Application ID` and `Access Key` are required to get data from The Things Network.
 
 ### Create an Azure IoT Hub
 
-![alt tag](img/msft/Picture07-prepare-azure-integration.png)
+![](img/msft/Picture07-prepare-azure-integration.png)
 
 Follow these steps to create an Azure IoT Hub.
 
 1. Log into the [Azure portal](https://portal.azure.com/). You will be asked to provide Azure credentials if needed
 2. On the left, a number of common Azure services are shown. Select `More Services` to open a list with all available services
 
-    ![alt tag](img/UwpToIotHub/azure-more-services.png)
+    ![](img/UwpToIotHub/azure-more-services.png)
 
 3. Filter it with `IoT Hub`
 
-    ![alt tag](img/UwpToIotHub/azure-search-iot-hub.png)
+    ![](img/UwpToIotHub/azure-search-iot-hub.png)
 
 4. Select `IoT Hub` and a new blade will be shown. Select `Add` and you will be asked to enter the information needed to create an IoT Hub
 
-    ![alt tag](img/UwpToIotHub/azure-portal-add.png)
+    ![](img/UwpToIotHub/azure-portal-add.png)
 
 5. Enter a unique IoT Hub name eg. `IoTWorkshop-ih`. A green sign will be shown if the name is unique
 
@@ -548,11 +548,11 @@ Follow these steps to create an Azure IoT Hub.
 
 7. Select `West Europe` for the location, if needed
 
-    ![alt tag](img/UwpToIotHub/azure-new-iot-hub-scaled.png)
+    ![](img/UwpToIotHub/azure-new-iot-hub-scaled.png)
 
 8. Press `Create` and the portal will start creating the service. Once it is created, a notification is shown. In the right upper corner, a bell represents the list of all notifications shown
 
-    ![alt tag](img/UwpToIotHub/azure-notifications-iothub.png)
+    ![](img/UwpToIotHub/azure-notifications-iothub.png)
 
 Creating an IoT Hub takes some time. Meanwhile, we will connect the device and create the bridge.
 
@@ -562,33 +562,33 @@ The integration requires an Azure IoT Hub Shared access policy key name with `Re
 
 1. Check the Azure portal. The resource group and the IoT Hub should be created by now (otherwise, we were unable to send duty cycles information to it)
 
-    ![alt tag](img/UwpToIotHub/azure-notifications-iothub.png)
+    ![](img/UwpToIotHub/azure-notifications-iothub.png)
 
 2. On the left, select `Resource groups`. A list of resource groups is shown
 
-    ![alt tag](img/UwpToIotHub/azure-resource-groups.png)
+    ![](img/UwpToIotHub/azure-resource-groups.png)
 
 3. Select the resource group `IoTWorkshop-rg`. It will open a new blade with all resources in this group
 
 4. Select the IoT Hub `IoTWorkshop-ih`. It will open a new blade with the IoT Hub
 
-    ![alt tag](img/UwpToIotHub/azure-iot-hub-initial.png)
+    ![](img/UwpToIotHub/azure-iot-hub-initial.png)
 
 5. The IoTHub has not received any messages yet. Check the general settings for `Shared access policies`
 
-    ![alt tag](img/UwpToIotHub/azure-iot-hub-share-access-policy.png)
+    ![](img/UwpToIotHub/azure-iot-hub-share-access-policy.png)
 
 6. **Write down** the `name` of the IoT Hub eg. `IoTWorkshop-ih`
 
 7. Navigate to the 'iothubowner' policy and **write down** this `Connection String-Primary Key`
 
-    ![alt tag](img/UwpToIotHub/azure-iothubowner-policy.png)
+    ![](img/UwpToIotHub/azure-iothubowner-policy.png)
 
 This is the secret needed from the Azure IoT Hub.
 
 ## Create a bridge
 
-![alt tag](img/msft/Picture08-build-a-bridge-frm-ttn-to-azure.png)
+![](img/msft/Picture08-build-a-bridge-frm-ttn-to-azure.png)
 
 Telemetry is arriving at the TTN portal. But we want to pass it on to the Azure IoT Platform. We need to build a 'bridge'.
 
@@ -602,7 +602,7 @@ Follow these steps to create the integration bridge between The Things Network a
 
 2. **Copy** the zip file 'TTNAzureBridge.zip' from [this OneDrive location](https://aka.ms/workshopiot) to this folder and **unzip** it _(Note: on some corporate networks, access to onedrive is limited. Ask the organization for a copy of the zip)_
 
-    ![alt tag](img/TheThingsNetwork/bridge-download.png)
+    ![](img/TheThingsNetwork/bridge-download.png)
 
 3. **Navigate** to the folder with the executable and identify the config file name 'TtnAzureBridge.exe.config'
 4. **Open** this config file in notepad or another text file editor
@@ -615,7 +615,7 @@ Follow these steps to create the integration bridge between The Things Network a
 
 8. In the connectionstring of 'IoTHub', **replace** [Connection String-Primary] with the remembered `Connection String-Primary Key`
 
-   ![alt tag](img/TheThingsNetwork/bridge-config.png)
+   ![](img/TheThingsNetwork/bridge-config.png)
 
 9. **Save** the config file and close the editor
 
@@ -629,7 +629,7 @@ You are about to retrieve the telemetry from the The Things Network platform.
 
 2. In the same folder, **run** `TtnAzureBridge.exe` to verify the bridge is working
 
-   ![alt tag](img/TheThingsNetwork/bridge-running.png)
+   ![](img/TheThingsNetwork/bridge-running.png)
 
 3. This is example output:
 
@@ -652,7 +652,7 @@ You are about to retrieve the telemetry from the The Things Network platform.
 
 ## Select your favorite tool for monitoring
 
-![alt tag](img/arch/Picture05-UWP-overview.png)
+![](img/arch/Picture05-UWP-overview.png)
 
 We can check the arrival of messages in the Azure IoT Hub. This can be done using a UI app named Device Explorer or using a Command-Line tool named IoT Hub Explorer. `Choose one below`
 
@@ -674,7 +674,7 @@ To run the Device Explorer tool, double-click the DeviceExplorer.exe file in Win
 
 4. On the Management tab, your device should already be available. It was registered by the bridge the very first time, telemetry arrived
 
-    ![alt tag](img/TheThingsNetwork/ihe-devices.png)
+    ![](img/TheThingsNetwork/ihe-devices.png)
 
 5. On the Data tab, Select your `Device ID` (like 'predictive_maintenance_machine_42') and press `Monitor`
 
@@ -733,4 +733,4 @@ The messages are shown here too. These messages are now available in Azure.
 
 Next Step: You are now ready to process your data in an Azure Function. Continue to [Receiving and handling The Things Network telemetry in Azure](AzureTTN.md)
 
-![alt tag](img/logos/microsoft.jpg) ![alt tag](img/logos/atos.png)
+![](img/logos/microsoft.jpg) ![](img/logos/atos.png)

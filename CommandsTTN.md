@@ -4,7 +4,7 @@
 
 This is an example of how downlink commands are sent back to a device. In this workshop, we will send commands back to faulty devices, using an Azure Function, to start them up again.
 
-![alt tag](img/arch/azure-telemetry-pipeline-commands-ttn.png)
+![](img/arch/azure-telemetry-pipeline-commands-ttn.png)
 
 This part of the workshop supports the [TTN Node](TheThingsNetwork.md).
 
@@ -30,7 +30,7 @@ At the end of this part of the workshop, the following steps are performed
 
 ## Sending back commands for devices which are in a faulty state
 
-![alt tag](img/msft/Picture12-connect-anything-using-flow.png)
+![](img/msft/Picture12-connect-anything-using-flow.png)
 
 In the [previous chapter](AzureTTN.md), we passed the telemetry from the device to a Stream Analytics job. This job collected devices which are sending error states. Every two minutes, information about devices that are in a faulty state are passed to an Azure Function.
 
@@ -44,7 +44,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 
 1. On the left, select `Resource groups`. A list of resource groups is shown
 
-    ![alt tag](img/azure-resource-groups.png)
+    ![](img/azure-resource-groups.png)
 
 2. Select the ResourceGroup `IoTWorkshop-rg`. It will open a new blade with all resources in this group
 
@@ -52,7 +52,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 
 4. To the left, the current functions are shown. Select `IoTWorkshopEventHubFunction`
 
-    ![alt tag](img/function/azure-function-select.png)
+    ![](img/function/azure-function-select.png)
 
 5. The Code panel is shown. The code of the function is shown. *Note: actually, this code is saved in a JavaScript file named index.js in the Azure storage of the Function app*
 
@@ -107,7 +107,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 
 7. Press the `Logs` button at the bottom to open the pane which shows some basic logging
 
-    ![alt tag](img/azure-function-app-eventhubtrigger-logs.png)
+    ![](img/azure-function-app-eventhubtrigger-logs.png)
 
 8. A 'Logs' panel is shown. This 'Logs' panel works like a trace log.
 
@@ -115,19 +115,19 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 
 10. Press the `View Files` button to 'unfold' the pane which shows a directory tree of all files.
 
-    ![alt tag](img/commands/azure-function-app-view-files.png)
+    ![](img/commands/azure-function-app-view-files.png)
 
 11. In the pane you can see that the file currently selected is: index.js
 
-    ![alt tag](img/commands/azure-function-app-view-files-pane-nodejs.png)
+    ![](img/commands/azure-function-app-view-files-pane-nodejs.png)
 
 12. Add a new file by pressing `Add`
 
-    ![alt tag](img/commands/azure-function-app-view-files-pane-add.png)
+    ![](img/commands/azure-function-app-view-files-pane-add.png)
 
 13. Name the new file `package.json`
 
-    ![alt tag](img/commands/azure-function-app-view-files-pane-add-file-nodejs.png)
+    ![](img/commands/azure-function-app-view-files-pane-add-file-nodejs.png)
 
 14. Press `Enter` to confirm the name of the file and an empty code editor will be shown for this file.
 
@@ -157,7 +157,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 
 19. `Disable` and `Enable` the Azure Function again
 
-    ![alt tag](img/azure-function-manage-enable.png)
+    ![](img/azure-function-manage-enable.png)
 
 20. The combination of libraries and code is now ready
 
@@ -181,7 +181,7 @@ Now, the Azure Function is ready to receive data about devices which simulate 'f
 
 ## Handle commands in the devices
 
-![alt tag](img/msft/Picture05-submit-data-to-ttn.png)
+![](img/msft/Picture05-submit-data-to-ttn.png)
 
 Let's bring your device in a faulty state and see how the Azure IoT Platforms sends back a command to repair it.
 
@@ -223,7 +223,7 @@ In [TTN Node](TheThingsNetwork.md), we assembled a TTN node and we put a sketch 
 
 7. `Check out` the bridge. The node is not updating the cycles anymore and error 99 is passed
 
-    ![alt tag](img/commands/TTN-Errors-arrive.png)
+    ![](img/commands/TTN-Errors-arrive.png)
 
 8. After a few errors within two minutes (the same time frame Stream Analytics is checking), `Check out` the Azure Function. It will handle the event message.
 
@@ -237,15 +237,15 @@ In [TTN Node](TheThingsNetwork.md), we assembled a TTN node and we put a sketch 
 
 9. `Check out` the bridge again. It will now handle the command (Downlink message) and send it to the TTN portal
 
-    ![alt tag](img/commands/TTN-Errors-arrive-at-bridge.png)
+    ![](img/commands/TTN-Errors-arrive-at-bridge.png)
 
 10. `Check out` the TTN portal, the data pane. It will now handle the command (Downlink message) and send it to the device, one the first moment a new uplink message arrives
 
-    ![alt tag](img/commands/TTN-Errors-arrive-at-ttn.png)
+    ![](img/commands/TTN-Errors-arrive-at-ttn.png)
 
 11. Finally, `check out` the logging of the node. The commands arrives and is handled by the function in the sketch
 
-    ![alt tag](img/commands/TTN-Errors-arrive-at-node.png)
+    ![](img/commands/TTN-Errors-arrive-at-node.png)
 
 12. And in the end, the device will dim the red LED and lit the light of the working LED again. The 'machine' is now running again
 
@@ -257,7 +257,7 @@ Receiving commands from Azure completes the main part of the workshop.
 
 We hope you did enjoy working with the Azure IoT Platform, as much as we did. Thanks for getting this far!
 
-![alt tag](img/msft/Picture13-make-the-world-a-better-place.png)
+![](img/msft/Picture13-make-the-world-a-better-place.png)
 
 But wait, there is still more. We added a bonus chapter to the workshop
 
@@ -265,4 +265,4 @@ But wait, there is still more. We added a bonus chapter to the workshop
 
 And for more creative ideas, we can recommand to look at [hackster.io](https://www.hackster.io/). Every day, new IoT projects are added!
 
-![alt tag](img/logos/microsoft.jpg) ![alt tag](img/logos/atos.png)
+![](img/logos/microsoft.jpg) ![](img/logos/atos.png)

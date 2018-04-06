@@ -1,201 +1,107 @@
-<h1>From device to actionable insights with LoRa and the Azure IoT platform</h1>
-<h2>Deploying The Things Network Bridge to Azure as a WebJob</h2>
+<!DOCTYPE html><html><head><meta charset=utf-8 /></head><body> 
+<h1 id="from-device-to-actionable-insights-with-lora-and-the-azure-iot-platform">From device to actionable insights with LoRa and the Azure IoT platform</h1>
+<h2 id="deploying-the-things-network-bridge-to-azure-as-a-webjob">Deploying The Things Network Bridge to Azure as a WebJob</h2>
 <p>Remember creating the TTN bridge locally on your computer? Will your PC be always on? Most likely not, therefore it seems reasonable to deploy the TTNAzureBridge somewhere else. What place is better than the Azure cloud?</p>
-<p><img alt="Build a bridge from TTN to Azure" src="img/msft/Picture08-build-a-bridge-frm-ttn-to-azure.png" /></p>
+<figure>
+<img src="img/msft/Picture08-build-a-bridge-frm-ttn-to-azure.png" alt="Build a bridge from TTN to Azure" /><figcaption>Build a bridge from TTN to Azure</figcaption>
+</figure>
 <p><em>Note: In this workshop, we will create uniquely named Azure resources. The suggested names could be reserved already. Just try another unique name.</em></p>
-<h3>Prerequisites</h3>
-<ol>
+<h3 id="prerequisites">Prerequisites</h3>
+<ol type="1">
 <li>The TTN Azure bridge deployed/running on your computer <em>(like the one created earlier in the workshop)</em></li>
 </ol>
 <p><em>Note: The bridge is actually an open source project on <a href="https://github.com/sandervandevelde/TtnAzureBridge">github</a>. We accept pull requests :-)</em></p>
-<h3>Collect the parts we need</h3>
+<h3 id="collect-the-parts-we-need">Collect the parts we need</h3>
 <p>Follow these steps to collect all parts before we can deploy to Azure.</p>
-<ol>
-<li>
-<p>If the bridge is still running, stop the running bridge with <code>ctrl c</code>.</p>
-<p><img alt="Canceling the running bridge" src="img/webjob/bridge-cancelation.png" /></p>
-</li>
-<li>
-<p><code>Open</code> a File Explorer and browse to the directory <code>c:\iotworkshop</code>.</p>
-</li>
-<li>
-<p><code>Check</code> if the 'TTNAzureBridge.zip' is still available. This should be the same file you downloaded from <a href="https://1drv.ms/f/s!At-2dMPHYH4-kP0ENT3ieMCvJPxeKA">this OneDrive location</a> to this folder</p>
-</li>
-<li>
-<p><code>Navigate</code> to the folder with the executable and identify the config file name 'TtnAzureBridge.exe.config'</p>
-</li>
-<li>
-<p>The config file should still contain the complete app settings 'ApplicationEui', 'ApplicationAccessKey', 'IotHubName' and the connection string 'IoTHub'</p>
-</li>
+<ol type="1">
+<li><p>If the bridge is still running, stop the running bridge with <code>ctrl c</code>.</p>
+<figure>
+<img src="img/webjob/bridge-cancelation.png" alt="Canceling the running bridge" /><figcaption>Canceling the running bridge</figcaption>
+</figure></li>
+<li><p><code>Open</code> a File Explorer and browse to the directory <code>c:\iotworkshop</code>.</p></li>
+<li><p><code>Check</code> if the ‘TTNAzureBridge.zip’ is still available. This should be the same file you downloaded from <a href="https://1drv.ms/f/s!At-2dMPHYH4-kP0ENT3ieMCvJPxeKA">this OneDrive location</a> to this folder</p></li>
+<li><p><code>Navigate</code> to the folder with the executable and identify the config file name ‘TtnAzureBridge.exe.config’</p></li>
+<li><p>The config file should still contain the complete app settings ‘ApplicationEui’, ‘ApplicationAccessKey’, ‘IotHubName’ and the connection string ‘IoTHub’</p></li>
 </ol>
 <p>We need both the zip file and the secrets. <em>Note: the config file inside the zip file does <strong>not</strong> contain the secrets</em></p>
-<h3>Deploy Azure WebJob</h3>
+<h3 id="deploy-azure-webjob">Deploy Azure WebJob</h3>
 <p>Follow these steps to deploy a console app as Azure WebJob that runs the integration between The Things Network and Azure IoT Hub.</p>
-<ol>
-<li>
-<p><code>Log into</code> the <a href="https://portal.azure.com/">Azure portal</a>. You will be asked to provide Azure credentials if needed</p>
-</li>
-<li>
-<p>On the left, select <code>Resource groups</code>. A list of resource groups is shown</p>
-<p><img alt="alt tag" src="img/azure-resource-groups.png" /></p>
-</li>
-<li>
-<p>Select the ResourceGroup <code>IoTWorkshop-rg</code>. It will open a new blade with all resources in this group</p>
-</li>
-<li>
-<p>Select <code>Add</code>. A list of available services appears</p>
-<p><img alt="alt tag" src="img/azure-portal-add.png" /></p>
-</li>
-<li>
-<p>Filter it with <code>web app</code> and select <code>Web App</code></p>
-<p><img alt="alt tag" src="img/azure-filter-web-app.png" /></p>
-</li>
-<li>
-<p>An introduction will be shown. Select <code>Create</code></p>
-</li>
-<li>
-<p>A dialog for the new Web App is shown</p>
-</li>
-<li>
-<p>Enter a unique Web App name eg. <code>IoTWorkshop-wa</code>. A green sign will be shown if the name is unique</p>
-</li>
-<li>
-<p>The Resource Group eg. 'IoTWorkshop-rg' is already filled in</p>
-</li>
-<li>
-<p>The App Service plan eg. is filled with a non-specific one</p>
-<p><img alt="alt tag" src="img/webjob/webapp-creation.png" /></p>
-</li>
-<li>
-<p>Open the App Service plan blade and select Create New</p>
-<p><img alt="alt tag" src="img/azure-asp-create.png" /></p>
-</li>
-<li>
-<p>Enter a unique App name eg. <code>IoTWorkshop-asp</code>. A green sign will be shown if the name is unique</p>
-</li>
-<li>
-<p>Select <code>West Europe</code> for the location</p>
-</li>
-<li>
-<p>The Pricing tier will be left unaltered</p>
-</li>
-<li>
-<p>Select <code>Ok</code></p>
-</li>
-<li>
-<p>Our new App Service plan is now added to the Azure Function App</p>
-<p><img alt="alt tag" src="img/webjob/webapp-created.png" /></p>
-</li>
-<li>
-<p>Select <code>Create</code></p>
-</li>
-<li>
-<p>Creating a Web App will take some time, but we want to complete this step</p>
-</li>
-<li>
-<p>So navigate back to the resource group (repeat step 1, 2 and 3) and meanwhile check the Web app creation in the resource group</p>
-</li>
-<li>
-<p>If the Web App becomes listed, select <code>IoTWorkshop-wa</code>. Otherwise, 'refresh' the list a few times</p>
-<p><img alt="alt tag" src="img/azure-portal-refresh.png" /></p>
-</li>
-<li>
-<p>You are now in the Web App blade. It should be shown like this, with all information available (otherwise, refresh a few times):</p>
-<p><img alt="alt tag" src="img/webjob/webapp-pane.png" /></p>
-</li>
-<li>
-<p>A Web App has dozens of settings. Filter the settings for <code>webjobs</code></p>
-<p><img alt="alt tag" src="img/webjob/webapp-pane-filter.png" /></p>
-</li>
-<li>
-<p>Select <code>WebJobs</code>. An empty list is presented</p>
-</li>
-<li>
-<p>Select <code>Add</code></p>
-<p><img alt="alt tag" src="img/azure-portal-add.png" /></p>
-</li>
-<li>
-<p>Enter a unique Web App name eg. <code>TTNAzureBridge</code>. A green sign will be shown if the name is unique</p>
-</li>
-<li>
-<p>Select your bridge ZIP file (eg. 'TTNAzureBridge.zip') as file to upload</p>
-</li>
-<li>
-<p>Ensure that the type is set to <code>Continuous</code></p>
-</li>
-<li>
-<p>Set the scale to <code>Single Instance</code></p>
-<p><img alt="alt tag" src="img/webjob/azure-web-job-add.png" /></p>
-</li>
-<li>
-<p>Select <code>Ok</code></p>
-</li>
-<li>
-<p>The Web Job will be created. And it is listed on the page of the Web App</p>
-<p><img alt="alt tag" src="img/webjob/azure-web-job-starting.png" /></p>
-</li>
-<li>
-<p>But actually, this job is not ready to run yet. We need to add settings</p>
-</li>
-<li>
-<p><code>Clear</code> the settings filter</p>
-</li>
-<li>
-<p>Select <code>Application settings</code></p>
-</li>
-<li>
-<p>The Application settings pane is shown. <code>Scroll down</code> until both the App Settings and Connection Strings are shown</p>
-<p><img alt="alt tag" src="img/webjob/azure-web-job-app-settings.png" /></p>
-</li>
-<li>
-<p>We will enter the actual settings here. These will override the settings in the config file of the bridge <em>Note: this is a great feature for administrators</em></p>
-</li>
-<li>
-<p>Add for each app setting the name and value</p>
-<ol>
+<ol type="1">
+<li><p><code>Log into</code> the <a href="https://portal.azure.com/">Azure portal</a>. You will be asked to provide Azure credentials if needed</p></li>
+<li><p>On the left, select <code>Resource groups</code>. A list of resource groups is shown</p>
+<p><img src="img/azure-resource-groups.png" /></p></li>
+<li><p>Select the ResourceGroup <code>IoTWorkshop-rg</code>. It will open a new blade with all resources in this group</p></li>
+<li><p>Select <code>Add</code>. A list of available services appears</p>
+<p><img src="img/azure-portal-add.png" /></p></li>
+<li><p>Filter it with <code>web app</code> and select <code>Web App</code></p>
+<p><img src="img/azure-filter-web-app.png" /></p></li>
+<li><p>An introduction will be shown. Select <code>Create</code></p></li>
+<li><p>A dialog for the new Web App is shown</p></li>
+<li><p>Enter a unique Web App name eg. <code>IoTWorkshop-wa</code>. A green sign will be shown if the name is unique</p></li>
+<li><p>The Resource Group eg. ‘IoTWorkshop-rg’ is already filled in</p></li>
+<li><p>The App Service plan eg. is filled with a non-specific one</p>
+<p><img src="img/webjob/webapp-creation.png" /></p></li>
+<li><p>Open the App Service plan blade and select Create New</p>
+<p><img src="img/azure-asp-create.png" /></p></li>
+<li><p>Enter a unique App name eg. <code>IoTWorkshop-asp</code>. A green sign will be shown if the name is unique</p></li>
+<li><p>Select <code>West Europe</code> for the location</p></li>
+<li><p>The Pricing tier will be left unaltered</p></li>
+<li><p>Select <code>Ok</code></p></li>
+<li><p>Our new App Service plan is now added to the Azure Function App</p>
+<p><img src="img/webjob/webapp-created.png" /></p></li>
+<li><p>Select <code>Create</code></p></li>
+<li><p>Creating a Web App will take some time, but we want to complete this step</p></li>
+<li><p>So navigate back to the resource group (repeat step 1, 2 and 3) and meanwhile check the Web app creation in the resource group</p></li>
+<li><p>If the Web App becomes listed, select <code>IoTWorkshop-wa</code>. Otherwise, ‘refresh’ the list a few times</p>
+<p><img src="img/azure-portal-refresh.png" /></p></li>
+<li><p>You are now in the Web App blade. It should be shown like this, with all information available (otherwise, refresh a few times):</p>
+<p><img src="img/webjob/webapp-pane.png" /></p></li>
+<li><p>A Web App has dozens of settings. Filter the settings for <code>webjobs</code></p>
+<p><img src="img/webjob/webapp-pane-filter.png" /></p></li>
+<li><p>Select <code>WebJobs</code>. An empty list is presented</p></li>
+<li><p>Select <code>Add</code></p>
+<p><img src="img/azure-portal-add.png" /></p></li>
+<li><p>Enter a unique Web App name eg. <code>TTNAzureBridge</code>. A green sign will be shown if the name is unique</p></li>
+<li><p>Select your bridge ZIP file (eg. ‘TTNAzureBridge.zip’) as file to upload</p></li>
+<li><p>Ensure that the type is set to <code>Continuous</code></p></li>
+<li><p>Set the scale to <code>Single Instance</code></p>
+<p><img src="img/webjob/azure-web-job-add.png" /></p></li>
+<li><p>Select <code>Ok</code></p></li>
+<li><p>The Web Job will be created. And it is listed on the page of the Web App</p>
+<p><img src="img/webjob/azure-web-job-starting.png" /></p></li>
+<li><p>But actually, this job is not ready to run yet. We need to add settings</p></li>
+<li><p><code>Clear</code> the settings filter</p></li>
+<li><p>Select <code>Application settings</code></p></li>
+<li><p>The Application settings pane is shown. <code>Scroll down</code> until both the App Settings and Connection Strings are shown</p>
+<p><img src="img/webjob/azure-web-job-app-settings.png" /></p></li>
+<li><p>We will enter the actual settings here. These will override the settings in the config file of the bridge <em>Note: this is a great feature for administrators</em></p></li>
+<li><p>Add for each app setting the name and value</p>
+<ol type="1">
 <li>ApplicationId</li>
 <li>ApplicationAccessKey</li>
 <li>IotHubName</li>
-</ol>
-</li>
-<li>
-<p>If in an unforeseen event that the connection to the TTN is lost, we let the Web App restart the web job. Add this extra setting and give it the value <code>True</code></p>
-<ol>
-<li>ExitOnConnectionClosed (value 'True')</li>
-</ol>
-</li>
-<li>
-<p>We also have to add the connection string. Fill in both the name, connection string. Finally, set the kind to <code>Custom</code></p>
-<ol>
-<li>IoTHub (value kind 'Custom')</li>
-</ol>
-</li>
-<li>
-<p>The settings are now ready and should look like this</p>
-<p><img alt="alt tag" src="img/webjob/azure-web-job-app-settings-ready.png" /></p>
-</li>
-<li>
-<p>Press <code>Save</code>. A notification will be shown that the web app settings are updated successfully</p>
-<p><img alt="alt tag" src="img/azure-portal-save.png" /></p>
-</li>
-<li>
-<p>Let's check the state of the Web Job.</p>
-</li>
-<li>
-<p>Filter the settings for <code>webjobs</code>. the bridge should have the state 'Running' by now.</p>
-</li>
-<li>
-<p>Select the bridge and <code>Logs</code> of your Webjob</p>
-<p><img alt="alt tag" src="img/bridge-list-web-job-logs.png" /></p>
-</li>
-<li>
-<p>A new page is shown, here the status of the Web Job is shown. The status is 'Running'</p>
-<p><img alt="alt tag" src="img/webjob/webapp-job-running.png" /></p>
-</li>
-<li>
-<p>Go to the Detail logging, by selecting <code>the link</code> of the Web Job details. The TTN messages are handled</p>
-<p><img alt="alt tag" src="img/webjob/webapp-job-logging.png" /></p>
-</li>
+</ol></li>
+<li><p>If in an unforeseen event that the connection to the TTN is lost, we let the Web App restart the web job. Add this extra setting and give it the value <code>True</code></p>
+<ol type="1">
+<li>ExitOnConnectionClosed (value ‘True’)</li>
+</ol></li>
+<li><p>We also have to add the connection string. Fill in both the name, connection string. Finally, set the kind to <code>Custom</code></p>
+<ol type="1">
+<li>IoTHub (value kind ‘Custom’)</li>
+</ol></li>
+<li><p>The settings are now ready and should look like this</p>
+<p><img src="img/webjob/azure-web-job-app-settings-ready.png" /></p></li>
+<li><p>Press <code>Save</code>. A notification will be shown that the web app settings are updated successfully</p>
+<p><img src="img/azure-portal-save.png" /></p></li>
+<li><p>Let’s check the state of the Web Job.</p></li>
+<li><p>Filter the settings for <code>webjobs</code>. the bridge should have the state ‘Running’ by now.</p></li>
+<li><p>Select the bridge and <code>Logs</code> of your Webjob</p>
+<p><img src="img/bridge-list-web-job-logs.png" /></p></li>
+<li><p>A new page is shown, here the status of the Web Job is shown. The status is ‘Running’</p>
+<p><img src="img/webjob/webapp-job-running.png" /></p></li>
+<li><p>Go to the Detail logging, by selecting <code>the link</code> of the Web Job details. The TTN messages are handled</p>
+<p><img src="img/webjob/webapp-job-logging.png" /></p></li>
 </ol>
 <p>You have now deployed the whole upstream to the Azure cloud. You have successfully accomplished all available steps of this workshop.</p>
-<p><img alt="alt tag" src="img/logos/microsoft.jpg" /> <img alt="alt tag" src="img/logos/atos.png" /></p>
+<p><img src="img/logos/microsoft.jpg" /> <img src="img/logos/atos.png" /></p>
+</body></html>

@@ -2,7 +2,7 @@
 
 ## Connecting to an IoT Hub using a UWP app device simulation
 
-![alt tag](img/arch/Picture00-UWP-overview.png)
+![](img/arch/Picture00-UWP-overview.png)
 
 This is an example integration between a UWP app and Azure IoT Hub. This integration shows features like creating devices in the Azure IoT Hub device registry as well as sending telemetry to the IoT Hub.
 
@@ -44,7 +44,7 @@ At the end of this part of the workshop, the following steps are performed
 
 ## Creating an Azure IoT Hub in the Azure portal
 
-![alt tag](img/arch/Picture01-UWP-overview.png)
+![](img/arch/Picture01-UWP-overview.png)
 
 Follow these steps to create an Azure IoT Hub.
 
@@ -52,15 +52,15 @@ Follow these steps to create an Azure IoT Hub.
 
 2. On the left, a number of common Azure services are shown. Select `More Services` to open a list with all available services
 
-    ![alt tag](img/UwpToIotHub/azure-more-services.png)
+    ![](img/UwpToIotHub/azure-more-services.png)
 
 3. Filter it with `IoT Hub`
 
-    ![alt tag](img/UwpToIotHub/azure-search-iot-hub.png)
+    ![](img/UwpToIotHub/azure-search-iot-hub.png)
 
 4. Select `IoT Hub` and a new blade will be shown. Select `Add` and you will be asked to enter the information needed to create an IoT Hub
 
-    ![alt tag](img/UwpToIotHub/azure-portal-add.png)
+    ![](img/UwpToIotHub/azure-portal-add.png)
 
 5. Enter a unique IoT Hub name eg. `IoTWorkshop-ih`. A green sign will be shown if the name is unique
 
@@ -68,17 +68,17 @@ Follow these steps to create an Azure IoT Hub.
 
 7. Select `West Europe` for the location, if needed
 
-    ![alt tag](img/UwpToIotHub/azure-new-iot-hub-scaled.png)
+    ![](img/UwpToIotHub/azure-new-iot-hub-scaled.png)
 
 8. Press `Create` and the portal will start creating the service. Once it is created, a notification is shown. In the right upper corner, a bell represents the list of all notifications shown
 
-    ![alt tag](img/UwpToIotHub/azure-notifications-iothub.png)
+    ![](img/UwpToIotHub/azure-notifications-iothub.png)
 
 Creating an IoT Hub takes some time. Meanwhile, we will start with the app which will connect to the IoT Hub later on.
 
 ## Creating a new UWP App
 
-![alt tag](img/arch/Picture02-UWP-overview.png)
+![](img/arch/Picture02-UWP-overview.png)
 
 We will create a UWP app in Visual Studio. These apps are called Universal Windows Apps because they are supported by all sorts of devices running Windows 10. This includes laptops, PC's, Mobile devices like phones and tablets, the Xbox One, The Surface Hub, The Hololens and even the Raspberry Pi.
 
@@ -87,21 +87,21 @@ We will create a UWP app in Visual Studio. These apps are called Universal Windo
 1. Start Visual Studio
 2. On the Start Page or using the Menu, select New Project...
 
-    ![alt tag](img/UwpToIotHub/vs-new-project.png)
+    ![](img/UwpToIotHub/vs-new-project.png)
 
 3. In the dialog, select the `Blank App (Universal Windows)` template
 
-    ![alt tag](img/UwpToIotHub/vs-universal-app-template.png)
+    ![](img/UwpToIotHub/vs-universal-app-template.png)
 
 4. Select `Ok`. If you are asked which minimal platform version must be loaded, just press `Ok` again
 
-    ![alt tag](img/UwpToIotHub/vs-universal-anniversary.png)
+    ![](img/UwpToIotHub/vs-universal-anniversary.png)
 
     *Note: here the Windows 10 Anniversary edition is shown in the picture, please try select to select the most recent SDK*
 
 5. Press `F6` or use the menu `BUILD|Build Solution` to recompile the app and check if the build completes without errors
 
-    ![alt tag](img/UwpToIotHub/vs-build-succeeded.png)
+    ![](img/UwpToIotHub/vs-build-succeeded.png)
 
 6. Start the app by pressing `F5` or use the menu `DEBUG|Start Debugging`
 7. The app starts and an empty form is shown
@@ -110,38 +110,38 @@ The app is created. You are now ready to add a connection to the IoT Hub.
 
 ## Connect to the IoT Hub and register the app like a device
 
-![alt tag](img/arch/Picture03-UWP-overview.png)
+![](img/arch/Picture03-UWP-overview.png)
 
 Let's add a connection to IoT hub and register the app like a real device.
 
 1. Stop the running app using, if the app is on top, `ALT-F4` or the menu `DEBUG|Stop debugging`
 2. Go to the solution Explorer to the right. You can see the application has one page called MainPage.xaml
 
-    ![alt tag](img/UwpToIotHub/vs-solution-explorer-universal-start.png)
+    ![](img/UwpToIotHub/vs-solution-explorer-universal-start.png)
 
 3. In the solution, right-click `Connected Services` and select `Add Connected Service`
 
-    ![alt tag](img/UwpToIotHub/vs-iot-hub-extension.png)
+    ![](img/UwpToIotHub/vs-iot-hub-extension.png)
 
 4. A welcome screen for the extension will be shown. Select `Azure IoT Hub` to add it as a Connected Service _(Note: if this option is not shown, please double-check if the extension is installed)_
 
-    ![alt tag](img/UwpToIotHub/vs-iot-extension-start.png)
+    ![](img/UwpToIotHub/vs-iot-extension-start.png)
 
 5. You are required to connect to you Azure subscription. And the way device credentials are stored, must be chosen:
 
-    ![alt tag](img/UwpToIotHub/vs-iot-extension-credentials.png)
+    ![](img/UwpToIotHub/vs-iot-extension-credentials.png)
 
 6. Select `Hardcode shared access key` as Security Mode. Confirm with `OK`
 
 7. Now you will be asked to select the IoT Hub you want to connect. At this time, the Hub should be created. *If you have multiple Azure accounts, please double-check that the correct one is selected*
 
-    ![alt tag](img/UwpToIotHub/vs-iot-extension-select.png)
+    ![](img/UwpToIotHub/vs-iot-extension-select.png)
 
 8. `Select` your IoT Hub and press `Add`
 
 9. The next page of the wizard is shown. You are asked to select or add the registration of a device. Our app will represent a device and therefore access must be granted, which has to be created. Select `New Device`
 
-    ![alt tag](img/UwpToIotHub/vs-device-one.png)
+    ![](img/UwpToIotHub/vs-device-one.png)
 
 10. Enter a unique `device name` eg 'MachineCyclesUwp' and press `Create`
 
@@ -149,29 +149,29 @@ Let's add a connection to IoT hub and register the app like a real device.
 
 12. So afterward, in the 'select' tab, be sure to pick the 'MachineCyclesUwp'; this one will be used by our app. _(Note: in this workshop we will look at sending and receiving messages. This wizard can generate example code for device twins and direct methods also, but this is not part of the workshop)_
 
-    ![alt tag](img/UwpToIotHub/vs-device-three.png)
+    ![](img/UwpToIotHub/vs-device-three.png)
 
 13. Select `Next` to review the summary
 
-    ![alt tag](img/UwpToIotHub/vs-device-two.png)
+    ![](img/UwpToIotHub/vs-device-two.png)
 
 14. Press Finish to start the generation of code. The necessary NuGet libraries are added and eventually you will be directed to a [Get Started page](https://github.com/Azure/azure-iot-hub-vs-cs-2017/wiki/C%23-Usage) for more information
 
-    ![alt tag](img/UwpToIotHub/vs-device-four.png)
+    ![](img/UwpToIotHub/vs-device-four.png)
 
 15. The wizard now completed the creation of your example code
 
-    ![alt tag](img/UwpToIotHub/vs-device-five.png)
+    ![](img/UwpToIotHub/vs-device-five.png)
 
 16. In the Solution Explorer of Visual Studio, a new file named 'AzureIoTHub.cs' is added. This provides all logic for the connection to the IoT Hub
 
-    ![alt tag](img/UwpToIotHub/vs-iot-hub-singleton.png)
+    ![](img/UwpToIotHub/vs-iot-hub-singleton.png)
 
 The AzureIoTHub class can be integrated into the logic of our App. Let's do that.
 
 ## Generate and send dummy telemetry
 
-![alt tag](img/arch/Picture04-UWP-overview.png)
+![](img/arch/Picture04-UWP-overview.png)
 
 We will use the logic of the class later on when we integrate with our 'factory machine'. But first let's check out the 'AzureIoTHub.cs' file because it needs some rework.
 
@@ -321,13 +321,13 @@ We will use the logic of the class later on when we integrate with our 'factory 
 
 17. The app is now ready. `Run` the app and first send some cycle updates. It the message 'Telemetry sent' is shown, our telemetry is accepted by the IoT Hub
 
-    ![alt tag](img/UwpToIotHub/uwp-send-telemetry.png)
+    ![](img/UwpToIotHub/uwp-send-telemetry.png)
 
 Now we have sent telemetry to the IoT Hub. Let's check if it's arrived.
 
 ## Monitoring the arrival of the telemetry in Azure
 
-![alt tag](img/arch/Picture05-UWP-overview.png)
+![](img/arch/Picture05-UWP-overview.png)
 
 We can monitor the arrival of telemetry with extra tooling only if we have enough rights to look into the IoT Hub. So first we collect secrets so we have enough privileges.
 
@@ -337,27 +337,27 @@ To check telemetry, we need to get an Azure IoT Hub Shared access policy key wit
 
 1. Check the Azure portal. The resource group and the IoT Hub should be created by now (otherwise, we were unable to send duty cycles information to it)
 
-    ![alt tag](img/UwpToIotHub/azure-notifications-iothub.png)
+    ![](img/UwpToIotHub/azure-notifications-iothub.png)
 
 2. On the left, select `Resource groups`. A list of resource groups is shown
 
-    ![alt tag](img/UwpToIotHub/azure-resource-groups.png)
+    ![](img/UwpToIotHub/azure-resource-groups.png)
 
 3. Select the resource group `IoTWorkshop-rg`. It will open a new blade with all resources in this group
 
 4. Select the IoT Hub `IoTWorkshop-ih`. It will open a new blade with the IoT Hub
 
-    ![alt tag](img/UwpToIotHub/azure-iot-hub-initial.png)
+    ![](img/UwpToIotHub/azure-iot-hub-initial.png)
 
 5. The IoTHub has not received any messages yet. Check the general settings for `Shared access policies`
 
-    ![alt tag](img/UwpToIotHub/azure-iot-hub-share-access-policy.png)
+    ![](img/UwpToIotHub/azure-iot-hub-share-access-policy.png)
 
 6. **Write down** the `name` of the IoT Hub eg. `IoTWorkshop-ih`
 
 7. Navigate to the 'iothubowner' policy and **write down** this `Connection String-Primary Key`
 
-    ![alt tag](img/UwpToIotHub/azure-iothubowner-policy.png)
+    ![](img/UwpToIotHub/azure-iothubowner-policy.png)
 
 This is the secret connection string needed from the Azure IoT Hub monitoring.
 
@@ -379,7 +379,7 @@ To run the Device Explorer tool, double-click the DeviceExplorer.exe file in Win
 
 4. On the Management tab, your device should already be available. It was registered by the bridge the very first time, telemetry arrived
 
-    ![alt tag](img/UwpToIotHub/ihe-devices.png)
+    ![](img/UwpToIotHub/ihe-devices.png)
 
 5. On the Data tab, Select your `Device ID` (like 'MachineCyclesUwp') and press `Monitor`
 
@@ -400,4 +400,4 @@ These messages shown during the monitoring step are now available in Azure, and 
 
 Next Step: You are now ready to process your data in an Azure Function. Continue to [Receiving and handling telemetry in Azure](AzureUWP.md)
 
-![alt tag](img/logos/microsoft.jpg) ![alt tag](img/logos/atos.png)
+![](img/logos/microsoft.jpg) ![](img/logos/atos.png)

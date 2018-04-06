@@ -40,17 +40,17 @@ Follow these steps to deploy a console app as Azure WebJob that runs the integra
 
 2. On the left, select `Resource groups`. A list of resource groups is shown
 
-    ![alt tag](img/azure-resource-groups.png)
+    ![](img/azure-resource-groups.png)
 
 3. Select the ResourceGroup `IoTWorkshop-rg`. It will open a new blade with all resources in this group
 
 4. Select `Add`. A list of available services appears
 
-    ![alt tag](img/azure-portal-add.png)
+    ![](img/azure-portal-add.png)
 
 5. Filter it with `web app` and select `Web App`
 
-    ![alt tag](img/azure-filter-web-app.png)
+    ![](img/azure-filter-web-app.png)
 
 6. An introduction will be shown. Select `Create`
 
@@ -62,11 +62,11 @@ Follow these steps to deploy a console app as Azure WebJob that runs the integra
 
 10. The App Service plan eg. is filled with a non-specific one
 
-    ![alt tag](img/webjob/webapp-creation.png)
+    ![](img/webjob/webapp-creation.png)
 
 11. Open the App Service plan blade and select Create New
 
-    ![alt tag](img/azure-asp-create.png)
+    ![](img/azure-asp-create.png)
 
 12. Enter a unique App name eg. `IoTWorkshop-asp`. A green sign will be shown if the name is unique
 
@@ -78,7 +78,7 @@ Follow these steps to deploy a console app as Azure WebJob that runs the integra
 
 16. Our new App Service plan is now added to the Azure Function App
 
-    ![alt tag](img/webjob/webapp-created.png)
+    ![](img/webjob/webapp-created.png)
 
 17. Select `Create`
 
@@ -88,21 +88,21 @@ Follow these steps to deploy a console app as Azure WebJob that runs the integra
 
 20. If the Web App becomes listed, select `IoTWorkshop-wa`. Otherwise, 'refresh' the list a few times
 
-    ![alt tag](img/azure-portal-refresh.png)
+    ![](img/azure-portal-refresh.png)
 
 21. You are now in the Web App blade. It should be shown like this, with all information available (otherwise, refresh a few times):
 
-    ![alt tag](img/webjob/webapp-pane.png)
+    ![](img/webjob/webapp-pane.png)
 
 22. A Web App has dozens of settings. Filter the settings for `webjobs`
 
-    ![alt tag](img/webjob/webapp-pane-filter.png)
+    ![](img/webjob/webapp-pane-filter.png)
 
 23. Select `WebJobs`. An empty list is presented
 
 24. Select `Add`
 
-    ![alt tag](img/azure-portal-add.png)
+    ![](img/azure-portal-add.png)
 
 25. Enter a unique Web App name eg. `TTNAzureBridge`. A green sign will be shown if the name is unique
 
@@ -112,13 +112,13 @@ Follow these steps to deploy a console app as Azure WebJob that runs the integra
 
 28. Set the scale to `Single Instance`
 
-    ![alt tag](img/webjob/azure-web-job-add.png)
+    ![](img/webjob/azure-web-job-add.png)
 
 29. Select `Ok`
 
 30. The Web Job will be created. And it is listed on the page of the Web App
 
-    ![alt tag](img/webjob/azure-web-job-starting.png)
+    ![](img/webjob/azure-web-job-starting.png)
 
 31. But actually, this job is not ready to run yet. We need to add settings
 
@@ -128,7 +128,7 @@ Follow these steps to deploy a console app as Azure WebJob that runs the integra
 
 34. The Application settings pane is shown. `Scroll down` until both the App Settings and Connection Strings are shown
 
-    ![alt tag](img/webjob/azure-web-job-app-settings.png)
+    ![](img/webjob/azure-web-job-app-settings.png)
 
 35. We will enter the actual settings here. These will override the settings in the config file of the bridge *Note: this is a great feature for administrators*
 
@@ -148,11 +148,11 @@ Follow these steps to deploy a console app as Azure WebJob that runs the integra
 
 39. The settings are now ready and should look like this
 
-    ![alt tag](img/webjob/azure-web-job-app-settings-ready.png)
+    ![](img/webjob/azure-web-job-app-settings-ready.png)
 
 40. Press `Save`. A notification will be shown that the web app settings are updated successfully
 
-    ![alt tag](img/azure-portal-save.png)
+    ![](img/azure-portal-save.png)
 
 41. Let's check the state of the Web Job.
 
@@ -160,16 +160,16 @@ Follow these steps to deploy a console app as Azure WebJob that runs the integra
 
 43. Select the bridge and `Logs` of your Webjob
 
-    ![alt tag](img/bridge-list-web-job-logs.png)
+    ![](img/bridge-list-web-job-logs.png)
 
 44. A new page is shown, here the status of the Web Job is shown. The status is 'Running'
 
-    ![alt tag](img/webjob/webapp-job-running.png)
+    ![](img/webjob/webapp-job-running.png)
 
 45. Go to the Detail logging, by selecting `the link` of the Web Job details. The TTN messages are handled
 
-    ![alt tag](img/webjob/webapp-job-logging.png)
+    ![](img/webjob/webapp-job-logging.png)
 
 You have now deployed the whole upstream to the Azure cloud. You have successfully accomplished all available steps of this workshop.
 
-![alt tag](img/logos/microsoft.jpg) ![alt tag](img/logos/atos.png)
+![](img/logos/microsoft.jpg) ![](img/logos/atos.png)

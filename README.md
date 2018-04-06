@@ -142,4 +142,4 @@ You have four options to choose from to start with. You can either go for physic
 4. **Bonus chapter**
    * [Deploying The Things Network Bridge to Azure as a WebJob](Webjob.md)
 
-![alt tag](img/logos/microsoft.jpg) ![alt tag](img/logos/atos.png)
+![](img/logos/microsoft.jpg) ![](img/logos/atos.png)

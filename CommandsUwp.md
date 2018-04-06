@@ -4,7 +4,7 @@
 
 This is an example of how downlink commands are sent back to a device. In this workshop, we will send commands back to faulty devices, using an Azure Function, to start them up again.
 
-![alt tag](img/arch/azure-telemetry-pipeline-commands.png)
+![](img/arch/azure-telemetry-pipeline-commands.png)
 
 This part of the workshop supports both the [UWP app](UwpToIotHub.md).
 
@@ -29,7 +29,7 @@ At the end of this part of the workshop, the following steps are performed
 
 ## Sending back commands for devices which are in a faulty state
 
-![alt tag](img/msft/Picture12-connect-anything-using-flow.png)
+![](img/msft/Picture12-connect-anything-using-flow.png)
 
 In the [previous chapter](AzureUWP.md), we passed the telemetry from the device to a Stream Analytics job. This job collected just the devices which are sending error states. Every two minutes, information about devices that are in a faulty state are passed to an Azure Function.
 
@@ -43,7 +43,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 
 1. On the left, select `Resource groups`. A list of resource groups is shown
 
-    ![alt tag](img/azure-resource-groups.png)
+    ![](img/azure-resource-groups.png)
 
 2. Select the ResourceGroup `IoTWorkshop-rg`. It will open a new blade with all resources in this group
 
@@ -51,7 +51,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 
 4. To the left, the current functions are shown. Select `IoTWorkshopEventHubFunction`
 
-    ![alt tag](img/function/azure-function-select.png)
+    ![](img/function/azure-function-select.png)
 
 5. The Code panel is shown. The code of the function is shown. *Note: actually, this code is saved in a file named run.scx in the Azure storage of the Function app*
 
@@ -97,7 +97,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 
 7. Press the `Logs` button at the bottom to open the pane which shows some basic logging
 
-    ![alt tag](img/azure-function-app-eventhubtrigger-logs.png)
+    ![](img/azure-function-app-eventhubtrigger-logs.png)
 
 8. A 'Logs' panel is shown. This 'Logs' panel works like a trace log.
 
@@ -105,19 +105,19 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 
 10. Press the `View Files` button to open the pane which shows a directory tree of all files.
 
-    ![alt tag](img/commands/azure-function-app-view-files.png)
+    ![](img/commands/azure-function-app-view-files.png)
 
 11. In the pane you can see that the file currently selected is: run.csx
 
-    ![alt tag](img/commands/azure-function-app-view-files-pane.png)
+    ![](img/commands/azure-function-app-view-files-pane.png)
 
 12. Add a new file by pressing `Add`
 
-    ![alt tag](img/commands/azure-function-app-view-files-pane-add.png)
+    ![](img/commands/azure-function-app-view-files-pane-add.png)
 
 13. Name the new file `project.json`
 
-    ![alt tag](img/commands/azure-function-app-view-files-pane-add-file.png)
+    ![](img/commands/azure-function-app-view-files-pane-add-file.png)
 
 14. Press `Enter` to confirm the name of the file and an empty code editor will be shown for this file.
 
@@ -159,7 +159,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 
 22. Select `Test` in the menu to the right
 
-    ![alt tag](img/function/azureFunctionTestSelect.png)
+    ![](img/function/azureFunctionTestSelect.png)
 
 23. `Replace` 'TestMessage' with the following JSON array message:
 
@@ -171,7 +171,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 
 25. The log output should look like this:
 
-    ![alt tag](img/function/azure-Function-Test-Result.png)
+    ![](img/function/azure-Function-Test-Result.png)
 
 Now, the Azure Function is ready to receive data about devices which simulate 'faulty machines'. And it can send commands back to 'repair' the 'machines'.
 
@@ -256,23 +256,23 @@ In [UWP app](UwpToIotHub.md) we wrote and executed a UWP which send some telemet
 
 11. `Restart` the UWP app, press `Send cycle updates` a couple of times
 
-    ![alt tag](img/commands/UWP-app-sending-duty-cycles.png)
+    ![](img/commands/UWP-app-sending-duty-cycles.png)
 
 12. The cycles are normal behavior. And these will not be picked up by the Stream Analytics job (which is listening for device telemetry with the error status not equal to zero)
 
 13. To receive commands, we have to wait for them to be received from the IoT Hub. Press `Wait for commands` *note: the communication with the IoT Hub is based on a communication protocol named AMQP by default. This makes communication very efficient, we are not polling every few seconds and thus saving bandwidth*
 
-    ![alt tag](img/commands/UWP-app-command-waiting.png)
+    ![](img/commands/UWP-app-command-waiting.png)
 
 14. Now we 'break' the machine by pressing `Break down`. *Note: the title will be shown in a red color*
 
-    ![alt tag](img/commands/UWP-app-break-down.png)
+    ![](img/commands/UWP-app-break-down.png)
 
 15. finally, we send telemetry, a few times to notify the Azure IoT platform (using the IoT Hub) that the machine in in a faulty state
 
 16. In the UWP app, again press `Send cycle updates` a couple of times. Error code 99 is shown
 
-    ![alt tag](img/commands/UWP-app-send-faulty-state.png)
+    ![](img/commands/UWP-app-send-faulty-state.png)
 
 17. The telemetry is sent to the IoTHub which passes the data to the StreamAnalytics job. If the error codes arrive multiple times within the same time frame (the hopping window is two minutes), an event is constructed and passed to the Azure Function.
 
@@ -290,7 +290,7 @@ In [UWP app](UwpToIotHub.md) we wrote and executed a UWP which send some telemet
 
 20. Now look at the UWP app, the machine is restart, just a second or so after the command was sent by the Azure Function *Note: the title is no longer red*
 
-    ![alt tag](img/commands/UWP-app-restart.png)
+    ![](img/commands/UWP-app-restart.png)
 
 We have now successfully sent some telemetry which is picked up and handled. In the end, commands were received and acted on.
 
@@ -302,7 +302,7 @@ Receiving commands from Azure completes the main part of the workshop.
 
 We hope you did enjoy working with the Azure IoT Platform, as much as we did. Thanks for getting this far!
 
-![alt tag](img/msft/Picture13-make-the-world-a-better-place.png)
+![](img/msft/Picture13-make-the-world-a-better-place.png)
 
 But wait, there is still more. We added a bonus chapter to the workshop
 
@@ -310,4 +310,4 @@ But wait, there is still more. We added a bonus chapter to the workshop
 
 And for more creative ideas, we can recommand to look at [hackster.io](https://www.hackster.io/). Every day, new IoT projects are added!
 
-![alt tag](img/logos/microsoft.jpg) ![alt tag](img/logos/atos.png)
+![](img/logos/microsoft.jpg) ![](img/logos/atos.png)

@@ -10,22 +10,22 @@ So, before you create your first UWP app, please take some time to activate the 
 
 1. Navigate to Windows `Settings` on your laptop
 
-    ![alt tag](img/devmode/devmode-settings.png)
+    ![](img/devmode/devmode-settings.png)
 
 2. Navigate to `Update and Security` page
 
-    ![alt tag](img/devmode/devmode-settings-update.png)
+    ![](img/devmode/devmode-settings-update.png)
 
 3. Navigate to the `For developers` tab
 
-    ![alt tag](img/devmode/devmode-settings-update-fordev.png)
+    ![](img/devmode/devmode-settings-update-fordev.png)
 
 4. Start using developer features, by selecting `Developer mode`. _(Note: this can cause a reboot of your computer)_
 
-    ![alt tag](img/devmode/devmode-settings-update-fordev-devmode.png)
+    ![](img/devmode/devmode-settings-update-fordev-devmode.png)
 
 Your are now a developer with UWP tools!
 
 More information about about developer features can be found [here](https://docs.microsoft.com/en-us/windows/uwp/get-started/enable-your-device-for-development?ocid=WinClient_Ver1703_Settings_DevMode)
 
-![alt tag](img/logos/microsoft.jpg) ![alt tag](img/logos/atos.png)
+![](img/logos/microsoft.jpg) ![](img/logos/atos.png)

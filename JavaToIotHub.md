@@ -2,7 +2,7 @@
 
 ## Connecting to an IoT Hub using a java app device simulation
 
-![alt tag](img/JavaToIotHub/Picture00-Java-overview.png)
+![](img/JavaToIotHub/Picture00-Java-overview.png)
 
 This is an example integration between a Java app and Azure IoT Hub. This integration shows features like creating devices in the Azure IoT Hub device registry as well as sending telemetry to the IoT Hub.
 
@@ -40,7 +40,7 @@ In this workshop, you will learn:
 
 ## Creating an Azure IoT Hub in the Azure portal
 
-![alt tag](img/JavaToIotHub/Picture01-Java-overview.png)
+![](img/JavaToIotHub/Picture01-Java-overview.png)
 
 Follow these steps to create an Azure IoT Hub.
 
@@ -48,15 +48,15 @@ Follow these steps to create an Azure IoT Hub.
 
 2. On the left, a number of common Azure services are shown. Select `More Services` to open a list with all available services
 
-    ![alt tag](img/JavaToIotHub/azure-more-services.png)
+    ![](img/JavaToIotHub/azure-more-services.png)
 
 3. Filter it with `IoT Hub`
 
-    ![alt tag](img/JavaToIotHub/azure-search-iot-hub.png)
+    ![](img/JavaToIotHub/azure-search-iot-hub.png)
 
 4. Select `IoT Hub` and a new blade will be shown. Select `Add` and you will be asked to enter the information needed to create an IoT Hub
 
-    ![alt tag](img/JavaToIotHub/azure-portal-add.png)
+    ![](img/JavaToIotHub/azure-portal-add.png)
 
 5. Enter a unique IoT Hub name eg. `IoTWorkshop-ih`. A green sign will be shown if the name is unique
 
@@ -64,17 +64,17 @@ Follow these steps to create an Azure IoT Hub.
 
 7. Select `West Europe` for the location, if needed
 
-    ![alt tag](img/JavaToIotHub/azure-new-iot-hub-scaled.png)
+    ![](img/JavaToIotHub/azure-new-iot-hub-scaled.png)
 
 8. Press `Create` and the portal will start creating the service. Once it is created, a notification is shown. In the right upper corner, a bell represents the list of all notifications shown
 
-    ![alt tag](img/JavaToIotHub/azure-notifications-iothub.png)
+    ![](img/JavaToIotHub/azure-notifications-iothub.png)
 
 Creating an IoT Hub takes some time. Meanwhile, we will start with the app which will connect to the IoT Hub later on.
 
 ## Connect to the IoT Hub and register the app like a device
 
-![alt tag](img/JavaToIotHub/Picture02-Java-overview.png)
+![](img/JavaToIotHub/Picture02-Java-overview.png)
 
 Unlike event hubs, all devices that use an IoT hub must be individually registered, and use their own endpoint and shared access key to access the hub. In this exercise, you will register a client device.
 
@@ -84,25 +84,25 @@ To register a client device, you must run a script that uses a connection with s
 
 1. Check the Azure portal. The resource group and the IoT Hub should be created by now (otherwise, we were unable to send duty cycles information to it)
 
-    ![alt tag](img/UwpToIotHub/azure-notifications-iothub.png)
+    ![](img/UwpToIotHub/azure-notifications-iothub.png)
 
 2. On the left, select `Resource groups`. A list of resource groups is shown
 
-    ![alt tag](img/UwpToIotHub/azure-resource-groups.png)
+    ![](img/UwpToIotHub/azure-resource-groups.png)
 
 3. Select the resource group `IoTWorkshop-rg`. It will open a new blade with all resources in this group
 
 4. Select the IoT Hub `IoTWorkshop-ih`. It will open a new blade with the IoT Hub
 
-    ![alt tag](img/UwpToIotHub/azure-iot-hub-initial.png)
+    ![](img/UwpToIotHub/azure-iot-hub-initial.png)
 
 5. The IoTHub has not received any messages yet. Check the general settings for `Shared access policies`
 
-    ![alt tag](img/UwpToIotHub/azure-iot-hub-share-access-policy.png)
+    ![](img/UwpToIotHub/azure-iot-hub-share-access-policy.png)
 
 6. Navigate to the 'iothubowner' policy and **write down** this `Connection String-Primary Key`
 
-    ![alt tag](img/UwpToIotHub/azure-iothubowner-policy.png)
+    ![](img/UwpToIotHub/azure-iothubowner-policy.png)
 
 This is the secret from the IoT Hub, needed to connect our Java client and monitor it later on
 
@@ -202,7 +202,7 @@ We have created a registration for a device simulation. Now let's build the actu
 
 ## Creating a new Java App
 
-![alt tag](img/JavaToIotHub/Picture03-Java-overview.png)
+![](img/JavaToIotHub/Picture03-Java-overview.png)
 
 Now that you have registered a client device, you can create an application that the device can use to submit data to the IoT Hub.
 
@@ -391,7 +391,7 @@ The simulation of a machine is now written. You are ready to send telemetry.
 
 ## Generate and send dummy telemetry
 
-![alt tag](img/JavaToIotHub/Picture04-Java-overview.png)
+![](img/JavaToIotHub/Picture04-Java-overview.png)
 
 Now you can run the java application to send data to the IoT hub.
 
@@ -403,13 +403,13 @@ Now you can run the java application to send data to the IoT hub.
 
 2. `Observe` the script running as it starts to submit device readings.
 
-    ![alt tag](img/JavaToIotHub/data-to-iothub.png)
+    ![](img/JavaToIotHub/data-to-iothub.png)
 
 Now we have sent telemetry to the IoT Hub. Let's check if it's arrived.
 
 ## Monitoring the arrival of the telemetry in Azure
 
-![alt tag](img/JavaToIotHub/Picture05-Java-overview.png)
+![](img/JavaToIotHub/Picture05-Java-overview.png)
 
 We can monitor the arrival of telemetry only if we have enough rights to look into the IoT Hub. We collected the IoT Hub Policy secrets already.
 
@@ -465,4 +465,4 @@ These messages shown during the monitoring step are now available in Azure, and 
 
 Next Step: You are now ready to process your data in an Azure Function. Continue to [Receiving and handling telemetry in Azure](AzureNodeJs.md)
 
-![alt tag](img/logos/microsoft.jpg) ![alt tag](img/logos/atos.png)
+![](img/logos/microsoft.jpg) ![](img/logos/atos.png)

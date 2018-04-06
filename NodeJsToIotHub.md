@@ -2,7 +2,7 @@
 
 ## Connecting to an IoT Hub using a NodeJs app device simulation
 
-![alt tag](img/NodeJsToIotHub/Picture00-NodeJs-overview.png)
+![](img/NodeJsToIotHub/Picture00-NodeJs-overview.png)
 
 This is an example integration between a NodeJs app and Azure IoT Hub. This integration shows features like creating devices in the Azure IoT Hub device registry as well as sending telemetry to the IoT Hub.
 
@@ -38,7 +38,7 @@ At the end of this part of the workshop, the following steps are performed
 
 ## Creating an Azure IoT Hub in the Azure portal
 
-![alt tag](img/NodeJsToIotHub/Picture01-NodeJs-overview.png)
+![](img/NodeJsToIotHub/Picture01-NodeJs-overview.png)
 
 Follow these steps to create an Azure IoT Hub.
 
@@ -46,15 +46,15 @@ Follow these steps to create an Azure IoT Hub.
 
 2. On the left, a number of common Azure services are shown. Select `More Services` to open a list with all available services
 
-    ![alt tag](img/NodeJsToIotHub/azure-more-services.png)
+    ![](img/NodeJsToIotHub/azure-more-services.png)
 
 3. Filter it with `IoT Hub`
 
-    ![alt tag](img/NodeJsToIotHub/azure-search-iot-hub.png)
+    ![](img/NodeJsToIotHub/azure-search-iot-hub.png)
 
 4. Select `IoT Hub` and a new blade will be shown. Select `Add` and you will be asked to enter the information needed to create an IoT Hub
 
-    ![alt tag](img/NodeJsToIotHub/azure-portal-add.png)
+    ![](img/NodeJsToIotHub/azure-portal-add.png)
 
 5. Enter a unique IoT Hub name eg. `IoTWorkshop-ih`. A green sign will be shown if the name is unique
 
@@ -62,17 +62,17 @@ Follow these steps to create an Azure IoT Hub.
 
 7. Select `West Europe` for the location, if needed
 
-    ![alt tag](img/NodeJsToIotHub/azure-new-iot-hub-scaled.png)
+    ![](img/NodeJsToIotHub/azure-new-iot-hub-scaled.png)
 
 8. Press `Create` and the portal will start creating the service. Once it is created, a notification is shown. In the right upper corner, a bell represents the list of all notifications shown
 
-    ![alt tag](img/NodeJsToIotHub/azure-notifications-iothub.png)
+    ![](img/NodeJsToIotHub/azure-notifications-iothub.png)
 
 Creating an IoT Hub takes some time. Meanwhile, we will start with the app which will connect to the IoT Hub later on.
 
 ### Connect to the IoT Hub and register the app like a device
 
-![alt tag](img/NodeJsToIotHub/Picture02-NodeJs-overview.png)
+![](img/NodeJsToIotHub/Picture02-NodeJs-overview.png)
 
 All devices that use an IoT hub must be individually registered, and use their own 'endpoint' and shared access key to access the hub. So we have full control over all connected devices and the telemetry coming in. In this exercise, you will register a client device.
 
@@ -82,25 +82,25 @@ To register a client device, you must run a script that uses a connection with s
 
 1. `Check` the Azure portal. The resource group and the IoT Hub should be created by now (otherwise, we were unable to send duty cycles information to it)
 
-    ![alt tag](img/UwpToIotHub/azure-notifications-iothub.png)
+    ![](img/UwpToIotHub/azure-notifications-iothub.png)
 
 2. On the left, select `Resource groups`. A list of resource groups is shown
 
-    ![alt tag](img/UwpToIotHub/azure-resource-groups.png)
+    ![](img/UwpToIotHub/azure-resource-groups.png)
 
 3. Select the resource group `IoTWorkshop-rg`. It will open a new blade with all resources in this group
 
 4. Select the IoT Hub `IoTWorkshop-ih`. It will open a new blade with the IoT Hub
 
-    ![alt tag](img/UwpToIotHub/azure-iot-hub-initial.png)
+    ![](img/UwpToIotHub/azure-iot-hub-initial.png)
 
 5. The IoTHub has not received any messages yet. Check the general settings for `Shared access policies`
 
-    ![alt tag](img/UwpToIotHub/azure-iot-hub-share-access-policy.png)
+    ![](img/UwpToIotHub/azure-iot-hub-share-access-policy.png)
 
 6. Navigate to the 'iothubowner' policy and **write down** this `Connection String-Primary Key`
 
-    ![alt tag](img/UwpToIotHub/azure-iothubowner-policy.png)
+    ![](img/UwpToIotHub/azure-iothubowner-policy.png)
 
 These is the secret from the IoT Hub, needed to connect our NodeJs client and monitor it later on
 
@@ -179,7 +179,7 @@ We have created a registration for a device simulation. Now let's build the actu
 
 ## Creating a new NodeJs App
 
-![alt tag](img/NodeJsToIotHub/Picture03-NodeJs-overview.png)
+![](img/NodeJsToIotHub/Picture03-NodeJs-overview.png)
 
 Now that you have registered a client device, you can create an application that the device can use to submit data to the IoT Hub.
 
@@ -277,7 +277,7 @@ The simulation of a machine is now written. You are ready to send telemetry.
 
 ## Generate and send dummy telemetry
 
-![alt tag](img/NodeJsToIotHub/Picture04-NodeJs-overview.png)
+![](img/NodeJsToIotHub/Picture04-NodeJs-overview.png)
 
 Now you can run your client application to send data to the IoT hub.
 
@@ -289,13 +289,13 @@ Now you can run your client application to send data to the IoT hub.
 
 2. `Observe` the script running as it starts to submit device readings. (don't close the running script)
 
-    ![alt tag](img/NodeJsToIotHub/nodejs-send-telemetry.png)
+    ![](img/NodeJsToIotHub/nodejs-send-telemetry.png)
 
 Now we have sent telemetry to the IoT Hub. Let's check if it's arrived.
 
 ## Monitoring the arrival of the telemetry in Azure
 
-![alt tag](img/NodeJsToIotHub/Picture05-NodeJs-overview.png)
+![](img/NodeJsToIotHub/Picture05-NodeJs-overview.png)
 
 We can monitor the arrival of telemetry only if we have enough rights to look into the IoT Hub. We collected the IoT Hub Policy secrets already.
 
@@ -353,4 +353,4 @@ These messages shown during the monitoring step are now available in Azure, and 
 
 Next Step: You are now ready to process your data in an Azure Function. Continue to [Receiving and handling telemetry in Azure](AzureNodeJs.md)
 
-![alt tag](img/logos/microsoft.jpg) ![alt tag](img/logos/atos.png)
+![](img/logos/microsoft.jpg) ![](img/logos/atos.png)

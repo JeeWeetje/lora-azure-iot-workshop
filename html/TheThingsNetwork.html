@@ -1,711 +1,542 @@
-<h1>From device to actionable insights with LoRa and the Azure IoT platform</h1>
-<h2>Getting started with the The Things Uno and The Things Network</h2>
-<p><img alt="alt tag" src="img/msft/Picture01-overview.png" /></p>
+<!DOCTYPE html><html><head><meta charset=utf-8 /></head><body> 
+<h1 id="from-device-to-actionable-insights-with-lora-and-the-azure-iot-platform">From device to actionable insights with LoRa and the Azure IoT platform</h1>
+<h2 id="getting-started-with-the-the-things-uno-and-the-things-network">Getting started with the The Things Uno and The Things Network</h2>
+<p><img src="img/msft/Picture01-overview.png" /></p>
 <p>In this chapter you will configure the The Things Uno with two sensors, connect it to The Things Network platform. On the The Things platform you will provision the The Things Uno, receive its messages and decode the telemetry. As final step in this chapter you will deploy a bridge between the The Things Network platform and Microsoft Azure IoT platform.</p>
 <p><em>Note: In this workshop, we will create uniquely named Azure resources. The suggested names could be reserved already. Just try another unique name.</em></p>
-<h3>Prerequisites</h3>
-<ol>
-<li>
-<p>A computer with internet access</p>
-</li>
-<li>
-<p>A The Things Uno, a Grove - Water Sensor, a Grove - PIR Motion Sensor, wiring &amp; a micro USB cable</p>
-</li>
-<li>
-<p><a href="https://www.arduino.cc/en/Main/Software">Arduino IDE</a></p>
-</li>
-<li>
-<p><a href="https://nodejs.org/en/">Node.js</a>. <em>(We prefer Version 6)</em></p>
-</li>
-<li>
-<p>Azure account <a href="https://azure.microsoft.com/en-us/free/">create here</a> <em>(<a href="https://www.microsoftazurepass.com/howto">Azure passes</a> will be present for those who have no Azure account (please check your email for final confirmation))</em></p>
-</li>
-<li>
-<p><a href="https://account.thethingsnetwork.org/">TTN account</a></p>
-</li>
-<li>
-<p>Bridge software between TTN and Azure <a href="https://github.com/sandervandevelde/TtnAzureBridge">TtnAzureBridge</a> (or <a href="https://aka.ms/workshopiot">as zip</a>)</p>
-</li>
-<li>
-<p><a href="https://www.npmjs.com/package/iothub-explorer">IoT Hub Explorer</a> <em>(for Command-Line interface based usage; see below for installation steps)</em> or <a href="https://github.com/Azure/azure-iot-sdks/releases">Device Explorer</a>. <em>(Scroll down to the Downloads section to locate the download link for the SetupDeviceExplorer.msi installer)</em></p>
-</li>
-<li>
-<p>Seeed Grove Led Bar <a href="https://github.com/Seeed-Studio/Grove_LED_Bar">software library</a> (or <a href="https://aka.ms/workshopiot">as zip</a>)</p>
-</li>
-<li>
-<p>Modern browsers like Edge, Chrome and Firefox are preferred</p>
-</li>
+<h3 id="prerequisites">Prerequisites</h3>
+<ol type="1">
+<li><p>A computer with internet access</p></li>
+<li><p>A The Things Uno, a Grove - Water Sensor, a Grove - PIR Motion Sensor, wiring &amp; a micro USB cable</p></li>
+<li><p><a href="https://www.arduino.cc/en/Main/Software">Arduino IDE</a></p></li>
+<li><p><a href="https://nodejs.org/en/">Node.js</a>. <em>(We prefer Version 6)</em></p></li>
+<li><p>Azure account <a href="https://azure.microsoft.com/en-us/free/">create here</a> <em>(<a href="https://www.microsoftazurepass.com/howto">Azure passes</a> will be present for those who have no Azure account (please check your email for final confirmation))</em></p></li>
+<li><p><a href="https://account.thethingsnetwork.org/">TTN account</a></p></li>
+<li><p>Bridge software between TTN and Azure <a href="https://github.com/sandervandevelde/TtnAzureBridge">TtnAzureBridge</a> (or <a href="https://aka.ms/workshopiot">as zip</a>)</p></li>
+<li><p><a href="https://www.npmjs.com/package/iothub-explorer">IoT Hub Explorer</a> <em>(for Command-Line interface based usage; see below for installation steps)</em> or <a href="https://github.com/Azure/azure-iot-sdks/releases">Device Explorer</a>. <em>(Scroll down to the Downloads section to locate the download link for the SetupDeviceExplorer.msi installer)</em></p></li>
+<li><p>Seeed Grove Led Bar <a href="https://github.com/Seeed-Studio/Grove_LED_Bar">software library</a> (or <a href="https://aka.ms/workshopiot">as zip</a>)</p></li>
+<li><p>Modern browsers like Edge, Chrome and Firefox are preferred</p></li>
 </ol>
-<h2>Connect your device</h2>
-<p><img alt="alt tag" src="img/msft/Picture02-build-the-hardware.png" /></p>
+<h2 id="connect-your-device">Connect your device</h2>
+<p><img src="img/msft/Picture02-build-the-hardware.png" /></p>
 <p>Follow the workshop facilitator connecting the two sensors. A few important things:</p>
 <ul>
-<li>The Button red cable is connected to the <code>3.3v</code> pin on the 'The Things Uno'</li>
-<li>The Button yellow cable is connected to the digital pin <code>4</code> (fifth pin in the pin header) on the 'The Things Uno'</li>
-<li>The Button black cable is connected to one of the <code>GND</code> pins on the 'The Things Uno'</li>
+<li>The Button red cable is connected to the <code>3.3v</code> pin on the ‘The Things Uno’</li>
+<li>The Button yellow cable is connected to the digital pin <code>4</code> (fifth pin in the pin header) on the ‘The Things Uno’</li>
+<li>The Button black cable is connected to one of the <code>GND</code> pins on the ‘The Things Uno’</li>
 <li>Note: The white cable of the button is not used</li>
-<li>The LED BAR red cable is connected to the <code>5v</code> pin on the 'The Things Uno'</li>
-<li>The LED BAR black cable is connected to one of the <code>GND</code> pins on the 'The Things Uno'</li>
-<li>The LED BAR yellow cable is connected to the digital pin <code>8</code> on the 'The Things Uno'</li>
-<li>The LED BAR white cable is connected to the digital pin <code>9</code> on the 'The Things Uno'</li>
+<li>The LED BAR red cable is connected to the <code>5v</code> pin on the ‘The Things Uno’</li>
+<li>The LED BAR black cable is connected to one of the <code>GND</code> pins on the ‘The Things Uno’</li>
+<li>The LED BAR yellow cable is connected to the digital pin <code>8</code> on the ‘The Things Uno’</li>
+<li>The LED BAR white cable is connected to the digital pin <code>9</code> on the ‘The Things Uno’</li>
 </ul>
 <p>Your device and sensors should be connected as follows:</p>
 <ul>
-<li>Overview</li>
+<li><p>Overview</p>
+<p><img src="img/TheThingsNetwork/node-overview.jpg" /></p></li>
+<li><p>Details pin layout node</p>
+<p><img src="img/TheThingsNetwork/node-detail.jpg" /></p></li>
+<li><p>Button pin layout</p>
+<p><img src="img/TheThingsNetwork/node-button.jpg" /></p></li>
+<li><p>LED pin layout</p>
+<p><img src="img/TheThingsNetwork/node-led.jpg" /></p></li>
 </ul>
-<p><img alt="alt tag" src="img/TheThingsNetwork/node-overview.jpg" /></p>
-<ul>
-<li>Details pin layout node</li>
-</ul>
-<p><img alt="alt tag" src="img/TheThingsNetwork/node-detail.jpg" /></p>
-<ul>
-<li>Button pin layout</li>
-</ul>
-<p><img alt="alt tag" src="img/TheThingsNetwork/node-button.jpg" /></p>
-<ul>
-<li>LED pin layout</li>
-</ul>
-<p><img alt="alt tag" src="img/TheThingsNetwork/node-led.jpg" /></p>
-<h2>Read sensors</h2>
-<p><img alt="alt tag" src="img/msft/Picture03-read-sensor-data.png" /></p>
-<p>We start with running a simple sketch on the Arduino. This is a program which simulates a machine and when you press a button it 'breaks down'.</p>
-<ol>
-<li>
-<p><strong>Copy</strong> the zip file 'Grove_LED_Bar-master.zip' from <a href="https://aka.ms/workshopiot">this OneDrive location</a> to a folder (you do <em>not</em> have to <strong>unzip</strong> it)</p>
-</li>
-<li>
-<p>Open the Arduino IDE</p>
-</li>
-<li>
-<p><strong>Select</strong> menu <em>Sketch, Include library, Add .ZIP Library</em>. A dialog to add a library is shown</p>
-</li>
-<li>
-<p>Select the 'Grove_LED_Bar-master.zip' and select <strong>Open</strong></p>
-</li>
-<li>
-<p><strong>Check</strong> if the library is imported correctly. A collection (of sketches) named 'Grove_LED_Bar-master' should appear in menu <em>File, Examples, Examples from Custom Libraries</em></p>
-</li>
-<li>
-<p>Connect The Things Uno via the micro USB cable to your computer</p>
-</li>
-<li>
-<p>In the <strong>Tools</strong> menu, click <strong>Board</strong> and select <strong>Arduino Leonardo</strong></p>
-</li>
-<li>
-<p>In the <strong>Tools</strong> menu, click <strong>Port</strong> and select the serial port of your <strong>COMx (Arduino Leonardo)</strong></p>
-</li>
-<li>
-<p>Paste the following code in a new sketch:</p>
-<p>```c</p>
-<h1>include <Grove_LED_Bar.h></h1>
-<h1>define debugSerial Serial</h1>
-<p>int commButton = 4;
-int cycleCompleted = 0;
-int errorCode = 0;</p>
-<h1>define debugSerial Serial</h1>
-<p>Grove_LED_Bar bar(9, 8, 0);  // Clock pin, Data pin, Orientation</p>
-<p>void setup()
-{
-  debugSerial.begin(9600);</p>
-<p>pinMode(commButton, INPUT);</p>
-<p>delay(1000);</p>
-<p>debugSerial.println("Initializing");</p>
-<p>bar.begin();</p>
-<p>bar.setLed(1,1);
-  delay(250);
-  bar.setLed(1,0);
-  bar.setLed(2, 1);
-  delay(250);
-  bar.setLed(2,0);</p>
-<p>for (int i = 3; i &lt; 11; i++) {
-    bar.setLed(i, 1);
-    delay(250);
-  };</p>
-<p>for (int i = 11; i &gt; 2; i--) {
-    bar.setLed(i, 0);
-    delay(250);
-  };</p>
-<p>bar.setLed(2,1);</p>
-<p>debugSerial.println("Led bar initialized");
-}</p>
-<p>void loop()
-{
-  // Simulate police LED lights using setLed method
-  for (float i = 0; i &lt; 1.1; i += .100f) {
-    bar.setLed(2, 1 - i);
-    delay(150);
-  };</p>
-<p>for (float i = 0; i &lt; 1.1; i += .100f) {
-    bar.setLed(2, i);
-    delay(150);
-  };</p>
-<p>// If not in error state, update the number of cycles
-  if (errorCode == 0) {
-    clearProgress(cycleCompleted);
-    showProgress(cycleCompleted);
-    cycleCompleted++;
-    debugSerial.print("Cycle completed: ");
-    debugSerial.println(cycleCompleted );
-  }</p>
-<p>// In the button is pushed, the machine enters an error state
-  if (digitalRead(commButton) == HIGH) {
-    errorCode = 99;
-    bar.setLed(1,1);
-    debugSerial.print("Error occured: ");
-    debugSerial.println( errorCode);
-    debugSerial.println("Repair of machine needed...");
-  }</p>
-<p>// Communicate with TTN about number of cycles and current state (error code)
-  byte buffer[2];
-  buffer[0] = (byte) cycleCompleted;
-  buffer[1] = (byte) errorCode;</p>
-<p>delay(12000);
-}</p>
-<p>void showProgress(int i){
-  switch(i % 5){
-    case 0:
-      bar.setLed(3,1);
-      break;
-    case 1:
-      bar.setLed(4,1);
-      break;
-    case 2:
-      bar.setLed(5,1);
-      break;
-    case 3:
-      bar.setLed(6,1);
-      break;
-    case 4:
-      bar.setLed(7,1);
-      break;
-  }
-}</p>
-<p>void clearProgress(int i){
-  if ((i % 5) == 0) {
-      bar.setLed(3,0);
-      bar.setLed(4,0);
-      bar.setLed(5,0);
-      bar.setLed(6,0);
-      bar.setLed(7,0);
-  }
-}
-```</p>
-</li>
-<li>
-<p>In the <strong>Sketch</strong> menu, click <strong>Verify/Compile</strong></p>
-</li>
-<li>
-<p>Go to the <strong>Tools</strong> menu and open the <strong>Serial Monitor</strong></p>
-</li>
-<li>
-<p>Go back to the <strong>Sketch</strong> menu and click <strong>Upload</strong></p>
-</li>
-<li>
-<p>Once the sketch has been uploaded, You should see output like this.</p>
-</li>
-<li>
-<p>Just wait a few seconds before pushing the button:</p>
-<p><code>.html/sh
-Initializing
+<h2 id="read-sensors">Read sensors</h2>
+<p><img src="img/msft/Picture03-read-sensor-data.png" /></p>
+<p>We start with running a simple sketch on the Arduino. This is a program which simulates a machine and when you press a button it ‘breaks down’.</p>
+<ol type="1">
+<li><p><strong>Copy</strong> the zip file ‘Grove_LED_Bar-master.zip’ from <a href="https://aka.ms/workshopiot">this OneDrive location</a> to a folder (you do <em>not</em> have to <strong>unzip</strong> it)</p></li>
+<li><p>Open the Arduino IDE</p></li>
+<li><p><strong>Select</strong> menu <em>Sketch, Include library, Add .ZIP Library</em>. A dialog to add a library is shown</p></li>
+<li><p>Select the ‘Grove_LED_Bar-master.zip’ and select <strong>Open</strong></p></li>
+<li><p><strong>Check</strong> if the library is imported correctly. A collection (of sketches) named ‘Grove_LED_Bar-master’ should appear in menu <em>File, Examples, Examples from Custom Libraries</em></p></li>
+<li><p>Connect The Things Uno via the micro USB cable to your computer</p></li>
+<li><p>In the <strong>Tools</strong> menu, click <strong>Board</strong> and select <strong>Arduino Leonardo</strong></p></li>
+<li><p>In the <strong>Tools</strong> menu, click <strong>Port</strong> and select the serial port of your <strong>COMx (Arduino Leonardo)</strong></p></li>
+<li><p>Paste the following code in a new sketch:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="pp">#include </span><span class="im">&lt;Grove_LED_Bar.h&gt;</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="pp">#define debugSerial Serial</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="dt">int</span> commButton = <span class="dv">4</span>;</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="dt">int</span> cycleCompleted = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="dt">int</span> errorCode = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="pp">#define debugSerial Serial</span></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">Grove_LED_Bar bar(<span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">0</span>);  <span class="co">// Clock pin, Data pin, Orientation</span></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="dt">void</span> setup()</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14">{</a>
+<a class="sourceLine" id="cb1-15" data-line-number="15">  debugSerial.begin(<span class="dv">9600</span>);</a>
+<a class="sourceLine" id="cb1-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb1-17" data-line-number="17">  pinMode(commButton, INPUT);</a>
+<a class="sourceLine" id="cb1-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb1-19" data-line-number="19">  delay(<span class="dv">1000</span>);</a>
+<a class="sourceLine" id="cb1-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb1-21" data-line-number="21">  debugSerial.println(<span class="st">&quot;Initializing&quot;</span>);</a>
+<a class="sourceLine" id="cb1-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb1-23" data-line-number="23">  bar.begin();</a>
+<a class="sourceLine" id="cb1-24" data-line-number="24"></a>
+<a class="sourceLine" id="cb1-25" data-line-number="25">  bar.setLed(<span class="dv">1</span>,<span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb1-26" data-line-number="26">  delay(<span class="dv">250</span>);</a>
+<a class="sourceLine" id="cb1-27" data-line-number="27">  bar.setLed(<span class="dv">1</span>,<span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb1-28" data-line-number="28">  bar.setLed(<span class="dv">2</span>, <span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb1-29" data-line-number="29">  delay(<span class="dv">250</span>);</a>
+<a class="sourceLine" id="cb1-30" data-line-number="30">  bar.setLed(<span class="dv">2</span>,<span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb1-31" data-line-number="31"></a>
+<a class="sourceLine" id="cb1-32" data-line-number="32">  <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">3</span>; i &lt; <span class="dv">11</span>; i++) {</a>
+<a class="sourceLine" id="cb1-33" data-line-number="33">    bar.setLed(i, <span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb1-34" data-line-number="34">    delay(<span class="dv">250</span>);</a>
+<a class="sourceLine" id="cb1-35" data-line-number="35">  };</a>
+<a class="sourceLine" id="cb1-36" data-line-number="36"></a>
+<a class="sourceLine" id="cb1-37" data-line-number="37">  <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">11</span>; i &gt; <span class="dv">2</span>; i--) {</a>
+<a class="sourceLine" id="cb1-38" data-line-number="38">    bar.setLed(i, <span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb1-39" data-line-number="39">    delay(<span class="dv">250</span>);</a>
+<a class="sourceLine" id="cb1-40" data-line-number="40">  };</a>
+<a class="sourceLine" id="cb1-41" data-line-number="41"></a>
+<a class="sourceLine" id="cb1-42" data-line-number="42">  bar.setLed(<span class="dv">2</span>,<span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb1-43" data-line-number="43"></a>
+<a class="sourceLine" id="cb1-44" data-line-number="44">  debugSerial.println(<span class="st">&quot;Led bar initialized&quot;</span>);</a>
+<a class="sourceLine" id="cb1-45" data-line-number="45">}</a>
+<a class="sourceLine" id="cb1-46" data-line-number="46"></a>
+<a class="sourceLine" id="cb1-47" data-line-number="47"><span class="dt">void</span> loop()</a>
+<a class="sourceLine" id="cb1-48" data-line-number="48">{</a>
+<a class="sourceLine" id="cb1-49" data-line-number="49">  <span class="co">// Simulate police LED lights using setLed method</span></a>
+<a class="sourceLine" id="cb1-50" data-line-number="50">  <span class="cf">for</span> (<span class="dt">float</span> i = <span class="dv">0</span>; i &lt; <span class="fl">1.1</span>; i += <span class="fl">.100f</span>) {</a>
+<a class="sourceLine" id="cb1-51" data-line-number="51">    bar.setLed(<span class="dv">2</span>, <span class="dv">1</span> - i);</a>
+<a class="sourceLine" id="cb1-52" data-line-number="52">    delay(<span class="dv">150</span>);</a>
+<a class="sourceLine" id="cb1-53" data-line-number="53">  };</a>
+<a class="sourceLine" id="cb1-54" data-line-number="54"></a>
+<a class="sourceLine" id="cb1-55" data-line-number="55">  <span class="cf">for</span> (<span class="dt">float</span> i = <span class="dv">0</span>; i &lt; <span class="fl">1.1</span>; i += <span class="fl">.100f</span>) {</a>
+<a class="sourceLine" id="cb1-56" data-line-number="56">    bar.setLed(<span class="dv">2</span>, i);</a>
+<a class="sourceLine" id="cb1-57" data-line-number="57">    delay(<span class="dv">150</span>);</a>
+<a class="sourceLine" id="cb1-58" data-line-number="58">  };</a>
+<a class="sourceLine" id="cb1-59" data-line-number="59"></a>
+<a class="sourceLine" id="cb1-60" data-line-number="60">  <span class="co">// If not in error state, update the number of cycles</span></a>
+<a class="sourceLine" id="cb1-61" data-line-number="61">  <span class="cf">if</span> (errorCode == <span class="dv">0</span>) {</a>
+<a class="sourceLine" id="cb1-62" data-line-number="62">    clearProgress(cycleCompleted);</a>
+<a class="sourceLine" id="cb1-63" data-line-number="63">    showProgress(cycleCompleted);</a>
+<a class="sourceLine" id="cb1-64" data-line-number="64">    cycleCompleted++;</a>
+<a class="sourceLine" id="cb1-65" data-line-number="65">    debugSerial.print(<span class="st">&quot;Cycle completed: &quot;</span>);</a>
+<a class="sourceLine" id="cb1-66" data-line-number="66">    debugSerial.println(cycleCompleted );</a>
+<a class="sourceLine" id="cb1-67" data-line-number="67">  }</a>
+<a class="sourceLine" id="cb1-68" data-line-number="68"></a>
+<a class="sourceLine" id="cb1-69" data-line-number="69">  <span class="co">// In the button is pushed, the machine enters an error state</span></a>
+<a class="sourceLine" id="cb1-70" data-line-number="70">  <span class="cf">if</span> (digitalRead(commButton) == HIGH) {</a>
+<a class="sourceLine" id="cb1-71" data-line-number="71">    errorCode = <span class="dv">99</span>;</a>
+<a class="sourceLine" id="cb1-72" data-line-number="72">    bar.setLed(<span class="dv">1</span>,<span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb1-73" data-line-number="73">    debugSerial.print(<span class="st">&quot;Error occured: &quot;</span>);</a>
+<a class="sourceLine" id="cb1-74" data-line-number="74">    debugSerial.println( errorCode);</a>
+<a class="sourceLine" id="cb1-75" data-line-number="75">    debugSerial.println(<span class="st">&quot;Repair of machine needed...&quot;</span>);</a>
+<a class="sourceLine" id="cb1-76" data-line-number="76">  }</a>
+<a class="sourceLine" id="cb1-77" data-line-number="77"></a>
+<a class="sourceLine" id="cb1-78" data-line-number="78">  <span class="co">// Communicate with TTN about number of cycles and current state (error code)</span></a>
+<a class="sourceLine" id="cb1-79" data-line-number="79">  byte buffer[<span class="dv">2</span>];</a>
+<a class="sourceLine" id="cb1-80" data-line-number="80">  buffer[<span class="dv">0</span>] = (byte) cycleCompleted;</a>
+<a class="sourceLine" id="cb1-81" data-line-number="81">  buffer[<span class="dv">1</span>] = (byte) errorCode;</a>
+<a class="sourceLine" id="cb1-82" data-line-number="82"></a>
+<a class="sourceLine" id="cb1-83" data-line-number="83">  delay(<span class="dv">12000</span>);</a>
+<a class="sourceLine" id="cb1-84" data-line-number="84">}</a>
+<a class="sourceLine" id="cb1-85" data-line-number="85"></a>
+<a class="sourceLine" id="cb1-86" data-line-number="86"><span class="dt">void</span> showProgress(<span class="dt">int</span> i){</a>
+<a class="sourceLine" id="cb1-87" data-line-number="87">  <span class="cf">switch</span>(i % <span class="dv">5</span>){</a>
+<a class="sourceLine" id="cb1-88" data-line-number="88">    <span class="cf">case</span> <span class="dv">0</span>:</a>
+<a class="sourceLine" id="cb1-89" data-line-number="89">      bar.setLed(<span class="dv">3</span>,<span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb1-90" data-line-number="90">      <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb1-91" data-line-number="91">    <span class="cf">case</span> <span class="dv">1</span>:</a>
+<a class="sourceLine" id="cb1-92" data-line-number="92">      bar.setLed(<span class="dv">4</span>,<span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb1-93" data-line-number="93">      <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb1-94" data-line-number="94">    <span class="cf">case</span> <span class="dv">2</span>:</a>
+<a class="sourceLine" id="cb1-95" data-line-number="95">      bar.setLed(<span class="dv">5</span>,<span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb1-96" data-line-number="96">      <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb1-97" data-line-number="97">    <span class="cf">case</span> <span class="dv">3</span>:</a>
+<a class="sourceLine" id="cb1-98" data-line-number="98">      bar.setLed(<span class="dv">6</span>,<span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb1-99" data-line-number="99">      <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb1-100" data-line-number="100">    <span class="cf">case</span> <span class="dv">4</span>:</a>
+<a class="sourceLine" id="cb1-101" data-line-number="101">      bar.setLed(<span class="dv">7</span>,<span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb1-102" data-line-number="102">      <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb1-103" data-line-number="103">  }</a>
+<a class="sourceLine" id="cb1-104" data-line-number="104">}</a>
+<a class="sourceLine" id="cb1-105" data-line-number="105"></a>
+<a class="sourceLine" id="cb1-106" data-line-number="106"><span class="dt">void</span> clearProgress(<span class="dt">int</span> i){</a>
+<a class="sourceLine" id="cb1-107" data-line-number="107">  <span class="cf">if</span> ((i % <span class="dv">5</span>) == <span class="dv">0</span>) {</a>
+<a class="sourceLine" id="cb1-108" data-line-number="108">      bar.setLed(<span class="dv">3</span>,<span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb1-109" data-line-number="109">      bar.setLed(<span class="dv">4</span>,<span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb1-110" data-line-number="110">      bar.setLed(<span class="dv">5</span>,<span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb1-111" data-line-number="111">      bar.setLed(<span class="dv">6</span>,<span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb1-112" data-line-number="112">      bar.setLed(<span class="dv">7</span>,<span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb1-113" data-line-number="113">  }</a>
+<a class="sourceLine" id="cb1-114" data-line-number="114">}</a></code></pre></div></li>
+<li><p>In the <strong>Sketch</strong> menu, click <strong>Verify/Compile</strong></p></li>
+<li><p>Go to the <strong>Tools</strong> menu and open the <strong>Serial Monitor</strong></p></li>
+<li><p>Go back to the <strong>Sketch</strong> menu and click <strong>Upload</strong></p></li>
+<li><p>Once the sketch has been uploaded, You should see output like this.</p></li>
+<li><p>Just wait a few seconds before pushing the button:</p>
+<pre class=".html/sh"><code>Initializing
 Led bar initialized
 Cycle completed: 1
 Cycle completed: 2
 Cycle completed: 3
 ...
 Error occured: 99
-Repair of machine needed...</code></p>
-</li>
+Repair of machine needed...</code></pre></li>
 </ol>
-<p>Now we have a running Arduino with some basic logic. Let's send some messages using The Things Network.</p>
-<h2>Create The Things Network application in the The Things Network portal</h2>
-<p><img alt="alt tag" src="img/msft/Picture04-create-a-ttn-device.png" /></p>
+<p>Now we have a running Arduino with some basic logic. Let’s send some messages using The Things Network.</p>
+<h2 id="create-the-things-network-application-in-the-the-things-network-portal">Create The Things Network application in the The Things Network portal</h2>
+<p><img src="img/msft/Picture04-create-a-ttn-device.png" /></p>
 <p>Follow the steps to create an application and register your device.</p>
-<ol>
+<ol type="1">
 <li>Log into the <a href="https://console.thethingsnetwork.org">The Things Network dashboard</a> using a modern browser like Chrome. You will be asked to provide TTN credentials if needed</li>
-<li>
-<p>A selection between Applications maintenance and Gateways maintenance must be made. Choose <strong>Applications</strong></p>
-<p><img alt="alt tag" src="img/TheThingsNetwork/TTN-app-gtwy.png" /></p>
-</li>
-<li>
-<p>A The Things Network application is a logical container of several devices, providing the same telemetry. There are no TTN applications yet</p>
-<p><img alt="alt tag" src="img/TheThingsNetwork/ttn-applications.png" /></p>
-</li>
-<li>
-<p>Add a new application. Pick a unique Application ID (for example <code>predictive_maintenance</code> in lower case) and fill in a description</p>
-<p><img alt="alt tag" src="img/TheThingsNetwork/ttn-applications-add.png" /></p>
-</li>
-<li>
-<p>Press <strong>Add application</strong>. The application is added</p>
-</li>
-<li>
-<p>Go to <strong>Devices</strong></p>
-<p><img alt="alt tag" src="img/TheThingsNetwork/ttn-applications-devices.png" /></p>
-</li>
-<li>
-<p>Click <strong>Register device</strong></p>
-</li>
-<li>
-<p>Enter a <strong>Device ID</strong> (for example <code>predictive_maintenance_machine_42</code> in lower case)</p>
-<p><img alt="alt tag" src="img/TheThingsNetwork/ttn-applications-devices-name-only.png" /></p>
-</li>
-<li>
-<p>Notice that the Register button is still disabled. A device needs a unique identifier</p>
-</li>
-<li>
-<p>Click the <strong>Generate</strong> icon for 'Device EUI' so a unique EUI can be generated on register</p>
-<p><img alt="alt tag" src="img/TheThingsNetwork/ttn-applications-devices-before-register.png" /></p>
-</li>
-<li>
-<p>The text in the EUI textbox is changed</p>
-</li>
-<li>
-<p>The register button is now enabled. Click <strong>Register</strong></p>
-</li>
-<li>
-<p>The device is now created</p>
-<p><img alt="alt tag" src="img/TheThingsNetwork/ttn-applications-devices-registered-otaa.png" /></p>
-</li>
-<li>
-<p>Now we have to fine tune the settings</p>
-</li>
-<li>
-<p>Click <strong>Settings</strong> in the upper right corner</p>
-</li>
-<li>
-<p>Select activation method <strong>ABP</strong> instead of OTAA</p>
-</li>
-<li>
-<p>And uncheck <strong>Frame counter checks</strong> <em>Note: As stated, Disabling frame counter checks drastically reduces security and should only be used for development purposes. In this workshop, this makes you more flexible</em></p>
-<p><img alt="alt tag" src="img/TheThingsNetwork/ttn-applications-devices-settings.png" /></p>
-</li>
-<li>
-<p>Click <strong>Save</strong></p>
-</li>
-<li>
-<p>The following device settings are shown</p>
-<p><img alt="alt tag" src="img/TheThingsNetwork/ttn-applications-devices-ready.png" /></p>
-</li>
-<li>
-<p>Keep this page open, you need the device address, network session key and application session key in a minute</p>
-</li>
+<li><p>A selection between Applications maintenance and Gateways maintenance must be made. Choose <strong>Applications</strong></p>
+<p><img src="img/TheThingsNetwork/TTN-app-gtwy.png" /></p></li>
+<li><p>A The Things Network application is a logical container of several devices, providing the same telemetry. There are no TTN applications yet</p>
+<p><img src="img/TheThingsNetwork/ttn-applications.png" /></p></li>
+<li><p>Add a new application. Pick a unique Application ID (for example <code>predictive_maintenance</code> in lower case) and fill in a description</p>
+<p><img src="img/TheThingsNetwork/ttn-applications-add.png" /></p></li>
+<li>Press <strong>Add application</strong>. The application is added</li>
+<li><p>Go to <strong>Devices</strong></p>
+<p><img src="img/TheThingsNetwork/ttn-applications-devices.png" /></p></li>
+<li>Click <strong>Register device</strong></li>
+<li><p>Enter a <strong>Device ID</strong> (for example <code>predictive_maintenance_machine_42</code> in lower case)</p>
+<p><img src="img/TheThingsNetwork/ttn-applications-devices-name-only.png" /></p></li>
+<li>Notice that the Register button is still disabled. A device needs a unique identifier</li>
+<li><p>Click the <strong>Generate</strong> icon for ‘Device EUI’ so a unique EUI can be generated on register</p>
+<p><img src="img/TheThingsNetwork/ttn-applications-devices-before-register.png" /></p></li>
+<li><p>The text in the EUI textbox is changed</p></li>
+<li><p>The register button is now enabled. Click <strong>Register</strong></p></li>
+<li><p>The device is now created</p>
+<p><img src="img/TheThingsNetwork/ttn-applications-devices-registered-otaa.png" /></p></li>
+<li><p>Now we have to fine tune the settings</p></li>
+<li><p>Click <strong>Settings</strong> in the upper right corner</p></li>
+<li><p>Select activation method <strong>ABP</strong> instead of OTAA</p></li>
+<li><p>And uncheck <strong>Frame counter checks</strong> <em>Note: As stated, Disabling frame counter checks drastically reduces security and should only be used for development purposes. In this workshop, this makes you more flexible</em></p>
+<p><img src="img/TheThingsNetwork/ttn-applications-devices-settings.png" /></p></li>
+<li><p>Click <strong>Save</strong></p></li>
+<li><p>The following device settings are shown</p>
+<p><img src="img/TheThingsNetwork/ttn-applications-devices-ready.png" /></p></li>
+<li><p>Keep this page open, you need the device address, network session key and application session key in a minute</p></li>
 </ol>
 <p>The TTN application is created. Your device has been registered and provisioned.</p>
-<h2>Send telemetry from your device to the The Things Network platform</h2>
-<p><img alt="alt tag" src="img/msft/Picture05-submit-data-to-ttn.png" /></p>
+<h2 id="send-telemetry-from-your-device-to-the-the-things-network-platform">Send telemetry from your device to the The Things Network platform</h2>
+<p><img src="img/msft/Picture05-submit-data-to-ttn.png" /></p>
 <p>The sensor data is read, now it is time to send the sensor data to the The Things Network platform.</p>
-<ol>
-<li>
-<p>First we have to reference the The Thinks Network library for Arduino. <strong>Open</strong> the Arduino IDE</p>
-</li>
-<li>
-<p><strong>Select</strong> menu <em>Sketch, Include library, Manage Libraries</em>. A form named 'Library Manager' is shown</p>
-</li>
-<li>
-<p><strong>Search</strong> for The Things Network library using the keyword 'TheThingsNetwork'</p>
-</li>
-<li>
-<p>A single library is shown. <strong>Select</strong> the library and <strong>Install</strong> the library</p>
-</li>
-<li>
-<p>Close the Library manager</p>
-</li>
-<li>
-<p>In the Arduino IDE, from the <strong>File</strong> menu, choose <strong>New</strong> to create a new sketch and paste the following code:</p>
-<p>```c</p>
-<h1>include <Grove_LED_Bar.h></h1>
-<h1>include <TheThingsNetwork.h></h1>
-<p>const char <em>devAddr = "00000000";
-const char </em>nwkSKey = "00000000000000000000000000000000";
-const char *appSKey = "00000000000000000000000000000000";</p>
-<h1>define loraSerial Serial1</h1>
-<h1>define debugSerial Serial</h1>
-<h1>define freqPlan TTN_FP_EU868</h1>
-<p>TheThingsNetwork ttn(loraSerial, debugSerial, freqPlan);</p>
-<p>int commButton = 4;
-int cycleCompleted = 0;
-int errorCode = 0;</p>
-<h1>define debugSerial Serial</h1>
-<h1>define loraSerial Serial1</h1>
-<p>Grove_LED_Bar bar(9, 8, 0);  // Clock pin, Data pin, Orientation</p>
-<p>void setup()
-{
-  loraSerial.begin(57600);
-  debugSerial.begin(9600);</p>
-<p>pinMode(commButton, INPUT);</p>
-<p>delay(1000);</p>
-<p>debugSerial.println("Initializing");</p>
-<p>// Initializing TTN communication...
-  ttn.personalize(devAddr, nwkSKey, appSKey);</p>
-<p>debugSerial.println("The Things Network connected");
-  // nothing to initialize
-  bar.begin();</p>
-<p>bar.setLed(1,1);
-  delay(250);
-  bar.setLed(1,0);
-  bar.setLed(2, 1);
-  delay(250);
-  bar.setLed(2,0);</p>
-<p>for (int i = 3; i &lt; 11; i++) {
-    bar.setLed(i, 1);
-    delay(250);
-  };</p>
-<p>for (int i = 11; i &gt; 2; i--) {
-    bar.setLed(i, 0);
-    delay(250);
-  };</p>
-<p>bar.setLed(2,1);</p>
-<p>debugSerial.println("Led bar initialized");
-}</p>
-<p>void loop()
-{
-  // Simulate police LED lights using setLed method
-  for (float i = 0; i &lt; 1.1; i += .100f) {
-    bar.setLed(2, 1 - i);
-    delay(150);
-  };</p>
-<p>for (float i = 0; i &lt; 1.1; i += .100f) {
-    bar.setLed(2, i);
-    delay(150);
-  };</p>
-<p>// If not in error state, update the number of cycles
-  if (errorCode == 0) {
-    clearProgress(cycleCompleted);
-    showProgress(cycleCompleted);
-    cycleCompleted++;
-    debugSerial.print("Cycle completed: ");
-    debugSerial.println(cycleCompleted );
-  }</p>
-<p>// In the button is pushed, the machine enters an error state
-  if (digitalRead(commButton) == HIGH) {
-    errorCode = 99;
-    bar.setLed(1,1);
-    debugSerial.print("Error occured: ");
-    debugSerial.println( errorCode);
-    debugSerial.println("Repair of machine needed...");
-  }</p>
-<p>// Communicate with TTN about number of cycles and current state (error code)
-  byte buffer[2];
-  buffer[0] = (byte) cycleCompleted;
-  buffer[1] = (byte) errorCode;</p>
-<p>// send message to TTN
-  ttn.sendBytes(buffer, sizeof(buffer));</p>
-<p>delay(12000);
-}</p>
-<p>void showProgress(int i){
-  switch(i % 5){
-    case 0:
-      bar.setLed(3,1);
-      break;
-    case 1:
-      bar.setLed(4,1);
-      break;
-    case 2:
-      bar.setLed(5,1);
-      break;
-    case 3:
-      bar.setLed(6,1);
-      break;
-    case 4:
-      bar.setLed(7,1);
-      break;
-  }
-}</p>
-<p>void clearProgress(int i){
-  if ((i % 5) == 0) {
-      bar.setLed(3,0);
-      bar.setLed(4,0);
-      bar.setLed(5,0);
-      bar.setLed(6,0);
-      bar.setLed(7,0);
-  }
-}
-```</p>
-</li>
-<li>
-<p>Insert your device address in <code>devAddr</code>, network session key in <code>nwkSkey</code> and application session key in <code>appSKey</code>. You can use the handy <code>clipboard</code> button in the dashboard to copy it quickly as a HEX value</p>
-<p><img alt="alt tag" src="img/TheThingsNetwork/ttn-applications-devices-credentials.png" /></p>
-</li>
-<li>
-<p>In the <strong>Sketch</strong> menu, click <strong>Upload</strong></p>
-</li>
-<li>
-<p>Open the <strong>Serial Monitor</strong> again from the <strong>Tools</strong> menu once upload has completed. Your device should now be sending telemetry to The Things Network</p>
-<p><img alt="alt tag" src="img/TheThingsNetwork/ttn-arduino-debug.png" /></p>
-</li>
-<li>
-<p>In The Things Network dashboard, go to <strong>Data</strong>. You see uplink packets arriving:</p>
-<p><img alt="alt tag" src="img/TheThingsNetwork/ttn-portal-raw-messages.png" /></p>
-</li>
+<ol type="1">
+<li><p>First we have to reference the The Thinks Network library for Arduino. <strong>Open</strong> the Arduino IDE</p></li>
+<li><p><strong>Select</strong> menu <em>Sketch, Include library, Manage Libraries</em>. A form named ‘Library Manager’ is shown</p></li>
+<li><p><strong>Search</strong> for The Things Network library using the keyword ‘TheThingsNetwork’</p></li>
+<li><p>A single library is shown. <strong>Select</strong> the library and <strong>Install</strong> the library</p></li>
+<li><p>Close the Library manager</p></li>
+<li><p>In the Arduino IDE, from the <strong>File</strong> menu, choose <strong>New</strong> to create a new sketch and paste the following code:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="pp">#include </span><span class="im">&lt;Grove_LED_Bar.h&gt;</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="pp">#include </span><span class="im">&lt;TheThingsNetwork.h&gt;</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="dt">const</span> <span class="dt">char</span> *devAddr = <span class="st">&quot;00000000&quot;</span>;</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="dt">const</span> <span class="dt">char</span> *nwkSKey = <span class="st">&quot;00000000000000000000000000000000&quot;</span>;</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="dt">const</span> <span class="dt">char</span> *appSKey = <span class="st">&quot;00000000000000000000000000000000&quot;</span>;</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="pp">#define loraSerial Serial1</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="pp">#define debugSerial Serial</span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="pp">#define freqPlan TTN_FP_EU868</span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">TheThingsNetwork ttn(loraSerial, debugSerial, freqPlan);</a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="dt">int</span> commButton = <span class="dv">4</span>;</a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="dt">int</span> cycleCompleted = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="dt">int</span> errorCode = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb3-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="pp">#define debugSerial Serial</span></a>
+<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="pp">#define loraSerial Serial1</span></a>
+<a class="sourceLine" id="cb3-21" data-line-number="21"></a>
+<a class="sourceLine" id="cb3-22" data-line-number="22">Grove_LED_Bar bar(<span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">0</span>);  <span class="co">// Clock pin, Data pin, Orientation</span></a>
+<a class="sourceLine" id="cb3-23" data-line-number="23"></a>
+<a class="sourceLine" id="cb3-24" data-line-number="24"><span class="dt">void</span> setup()</a>
+<a class="sourceLine" id="cb3-25" data-line-number="25">{</a>
+<a class="sourceLine" id="cb3-26" data-line-number="26">  loraSerial.begin(<span class="dv">57600</span>);</a>
+<a class="sourceLine" id="cb3-27" data-line-number="27">  debugSerial.begin(<span class="dv">9600</span>);</a>
+<a class="sourceLine" id="cb3-28" data-line-number="28"></a>
+<a class="sourceLine" id="cb3-29" data-line-number="29">  pinMode(commButton, INPUT);</a>
+<a class="sourceLine" id="cb3-30" data-line-number="30"></a>
+<a class="sourceLine" id="cb3-31" data-line-number="31">  delay(<span class="dv">1000</span>);</a>
+<a class="sourceLine" id="cb3-32" data-line-number="32"></a>
+<a class="sourceLine" id="cb3-33" data-line-number="33">  debugSerial.println(<span class="st">&quot;Initializing&quot;</span>);</a>
+<a class="sourceLine" id="cb3-34" data-line-number="34"></a>
+<a class="sourceLine" id="cb3-35" data-line-number="35">  <span class="co">// Initializing TTN communication...</span></a>
+<a class="sourceLine" id="cb3-36" data-line-number="36">  ttn.personalize(devAddr, nwkSKey, appSKey);</a>
+<a class="sourceLine" id="cb3-37" data-line-number="37"></a>
+<a class="sourceLine" id="cb3-38" data-line-number="38">  debugSerial.println(<span class="st">&quot;The Things Network connected&quot;</span>);</a>
+<a class="sourceLine" id="cb3-39" data-line-number="39">  <span class="co">// nothing to initialize</span></a>
+<a class="sourceLine" id="cb3-40" data-line-number="40">  bar.begin();</a>
+<a class="sourceLine" id="cb3-41" data-line-number="41"></a>
+<a class="sourceLine" id="cb3-42" data-line-number="42">  bar.setLed(<span class="dv">1</span>,<span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb3-43" data-line-number="43">  delay(<span class="dv">250</span>);</a>
+<a class="sourceLine" id="cb3-44" data-line-number="44">  bar.setLed(<span class="dv">1</span>,<span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb3-45" data-line-number="45">  bar.setLed(<span class="dv">2</span>, <span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb3-46" data-line-number="46">  delay(<span class="dv">250</span>);</a>
+<a class="sourceLine" id="cb3-47" data-line-number="47">  bar.setLed(<span class="dv">2</span>,<span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb3-48" data-line-number="48"></a>
+<a class="sourceLine" id="cb3-49" data-line-number="49">  <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">3</span>; i &lt; <span class="dv">11</span>; i++) {</a>
+<a class="sourceLine" id="cb3-50" data-line-number="50">    bar.setLed(i, <span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb3-51" data-line-number="51">    delay(<span class="dv">250</span>);</a>
+<a class="sourceLine" id="cb3-52" data-line-number="52">  };</a>
+<a class="sourceLine" id="cb3-53" data-line-number="53"></a>
+<a class="sourceLine" id="cb3-54" data-line-number="54">  <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">11</span>; i &gt; <span class="dv">2</span>; i--) {</a>
+<a class="sourceLine" id="cb3-55" data-line-number="55">    bar.setLed(i, <span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb3-56" data-line-number="56">    delay(<span class="dv">250</span>);</a>
+<a class="sourceLine" id="cb3-57" data-line-number="57">  };</a>
+<a class="sourceLine" id="cb3-58" data-line-number="58"></a>
+<a class="sourceLine" id="cb3-59" data-line-number="59">  bar.setLed(<span class="dv">2</span>,<span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb3-60" data-line-number="60"></a>
+<a class="sourceLine" id="cb3-61" data-line-number="61">  debugSerial.println(<span class="st">&quot;Led bar initialized&quot;</span>);</a>
+<a class="sourceLine" id="cb3-62" data-line-number="62">}</a>
+<a class="sourceLine" id="cb3-63" data-line-number="63"></a>
+<a class="sourceLine" id="cb3-64" data-line-number="64"><span class="dt">void</span> loop()</a>
+<a class="sourceLine" id="cb3-65" data-line-number="65">{</a>
+<a class="sourceLine" id="cb3-66" data-line-number="66">  <span class="co">// Simulate police LED lights using setLed method</span></a>
+<a class="sourceLine" id="cb3-67" data-line-number="67">  <span class="cf">for</span> (<span class="dt">float</span> i = <span class="dv">0</span>; i &lt; <span class="fl">1.1</span>; i += <span class="fl">.100f</span>) {</a>
+<a class="sourceLine" id="cb3-68" data-line-number="68">    bar.setLed(<span class="dv">2</span>, <span class="dv">1</span> - i);</a>
+<a class="sourceLine" id="cb3-69" data-line-number="69">    delay(<span class="dv">150</span>);</a>
+<a class="sourceLine" id="cb3-70" data-line-number="70">  };</a>
+<a class="sourceLine" id="cb3-71" data-line-number="71"></a>
+<a class="sourceLine" id="cb3-72" data-line-number="72">  <span class="cf">for</span> (<span class="dt">float</span> i = <span class="dv">0</span>; i &lt; <span class="fl">1.1</span>; i += <span class="fl">.100f</span>) {</a>
+<a class="sourceLine" id="cb3-73" data-line-number="73">    bar.setLed(<span class="dv">2</span>, i);</a>
+<a class="sourceLine" id="cb3-74" data-line-number="74">    delay(<span class="dv">150</span>);</a>
+<a class="sourceLine" id="cb3-75" data-line-number="75">  };</a>
+<a class="sourceLine" id="cb3-76" data-line-number="76"></a>
+<a class="sourceLine" id="cb3-77" data-line-number="77">  <span class="co">// If not in error state, update the number of cycles</span></a>
+<a class="sourceLine" id="cb3-78" data-line-number="78">  <span class="cf">if</span> (errorCode == <span class="dv">0</span>) {</a>
+<a class="sourceLine" id="cb3-79" data-line-number="79">    clearProgress(cycleCompleted);</a>
+<a class="sourceLine" id="cb3-80" data-line-number="80">    showProgress(cycleCompleted);</a>
+<a class="sourceLine" id="cb3-81" data-line-number="81">    cycleCompleted++;</a>
+<a class="sourceLine" id="cb3-82" data-line-number="82">    debugSerial.print(<span class="st">&quot;Cycle completed: &quot;</span>);</a>
+<a class="sourceLine" id="cb3-83" data-line-number="83">    debugSerial.println(cycleCompleted );</a>
+<a class="sourceLine" id="cb3-84" data-line-number="84">  }</a>
+<a class="sourceLine" id="cb3-85" data-line-number="85"></a>
+<a class="sourceLine" id="cb3-86" data-line-number="86">  <span class="co">// In the button is pushed, the machine enters an error state</span></a>
+<a class="sourceLine" id="cb3-87" data-line-number="87">  <span class="cf">if</span> (digitalRead(commButton) == HIGH) {</a>
+<a class="sourceLine" id="cb3-88" data-line-number="88">    errorCode = <span class="dv">99</span>;</a>
+<a class="sourceLine" id="cb3-89" data-line-number="89">    bar.setLed(<span class="dv">1</span>,<span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb3-90" data-line-number="90">    debugSerial.print(<span class="st">&quot;Error occured: &quot;</span>);</a>
+<a class="sourceLine" id="cb3-91" data-line-number="91">    debugSerial.println( errorCode);</a>
+<a class="sourceLine" id="cb3-92" data-line-number="92">    debugSerial.println(<span class="st">&quot;Repair of machine needed...&quot;</span>);</a>
+<a class="sourceLine" id="cb3-93" data-line-number="93">  }</a>
+<a class="sourceLine" id="cb3-94" data-line-number="94"></a>
+<a class="sourceLine" id="cb3-95" data-line-number="95">  <span class="co">// Communicate with TTN about number of cycles and current state (error code)</span></a>
+<a class="sourceLine" id="cb3-96" data-line-number="96">  byte buffer[<span class="dv">2</span>];</a>
+<a class="sourceLine" id="cb3-97" data-line-number="97">  buffer[<span class="dv">0</span>] = (byte) cycleCompleted;</a>
+<a class="sourceLine" id="cb3-98" data-line-number="98">  buffer[<span class="dv">1</span>] = (byte) errorCode;</a>
+<a class="sourceLine" id="cb3-99" data-line-number="99"></a>
+<a class="sourceLine" id="cb3-100" data-line-number="100">  <span class="co">// send message to TTN</span></a>
+<a class="sourceLine" id="cb3-101" data-line-number="101">  ttn.sendBytes(buffer, <span class="kw">sizeof</span>(buffer));</a>
+<a class="sourceLine" id="cb3-102" data-line-number="102"></a>
+<a class="sourceLine" id="cb3-103" data-line-number="103">  delay(<span class="dv">12000</span>);</a>
+<a class="sourceLine" id="cb3-104" data-line-number="104">}</a>
+<a class="sourceLine" id="cb3-105" data-line-number="105"></a>
+<a class="sourceLine" id="cb3-106" data-line-number="106"><span class="dt">void</span> showProgress(<span class="dt">int</span> i){</a>
+<a class="sourceLine" id="cb3-107" data-line-number="107">  <span class="cf">switch</span>(i % <span class="dv">5</span>){</a>
+<a class="sourceLine" id="cb3-108" data-line-number="108">    <span class="cf">case</span> <span class="dv">0</span>:</a>
+<a class="sourceLine" id="cb3-109" data-line-number="109">      bar.setLed(<span class="dv">3</span>,<span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb3-110" data-line-number="110">      <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb3-111" data-line-number="111">    <span class="cf">case</span> <span class="dv">1</span>:</a>
+<a class="sourceLine" id="cb3-112" data-line-number="112">      bar.setLed(<span class="dv">4</span>,<span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb3-113" data-line-number="113">      <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb3-114" data-line-number="114">    <span class="cf">case</span> <span class="dv">2</span>:</a>
+<a class="sourceLine" id="cb3-115" data-line-number="115">      bar.setLed(<span class="dv">5</span>,<span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb3-116" data-line-number="116">      <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb3-117" data-line-number="117">    <span class="cf">case</span> <span class="dv">3</span>:</a>
+<a class="sourceLine" id="cb3-118" data-line-number="118">      bar.setLed(<span class="dv">6</span>,<span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb3-119" data-line-number="119">      <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb3-120" data-line-number="120">    <span class="cf">case</span> <span class="dv">4</span>:</a>
+<a class="sourceLine" id="cb3-121" data-line-number="121">      bar.setLed(<span class="dv">7</span>,<span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb3-122" data-line-number="122">      <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb3-123" data-line-number="123">  }</a>
+<a class="sourceLine" id="cb3-124" data-line-number="124">}</a>
+<a class="sourceLine" id="cb3-125" data-line-number="125"></a>
+<a class="sourceLine" id="cb3-126" data-line-number="126"><span class="dt">void</span> clearProgress(<span class="dt">int</span> i){</a>
+<a class="sourceLine" id="cb3-127" data-line-number="127">  <span class="cf">if</span> ((i % <span class="dv">5</span>) == <span class="dv">0</span>) {</a>
+<a class="sourceLine" id="cb3-128" data-line-number="128">      bar.setLed(<span class="dv">3</span>,<span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb3-129" data-line-number="129">      bar.setLed(<span class="dv">4</span>,<span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb3-130" data-line-number="130">      bar.setLed(<span class="dv">5</span>,<span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb3-131" data-line-number="131">      bar.setLed(<span class="dv">6</span>,<span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb3-132" data-line-number="132">      bar.setLed(<span class="dv">7</span>,<span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb3-133" data-line-number="133">  }</a>
+<a class="sourceLine" id="cb3-134" data-line-number="134">}</a></code></pre></div></li>
+<li><p>Insert your device address in <code>devAddr</code>, network session key in <code>nwkSkey</code> and application session key in <code>appSKey</code>. You can use the handy <code>clipboard</code> button in the dashboard to copy it quickly as a HEX value</p>
+<p><img src="img/TheThingsNetwork/ttn-applications-devices-credentials.png" /></p></li>
+<li>In the <strong>Sketch</strong> menu, click <strong>Upload</strong></li>
+<li><p>Open the <strong>Serial Monitor</strong> again from the <strong>Tools</strong> menu once upload has completed. Your device should now be sending telemetry to The Things Network</p>
+<p><img src="img/TheThingsNetwork/ttn-arduino-debug.png" /></p></li>
+<li><p>In The Things Network dashboard, go to <strong>Data</strong>. You see uplink packets arriving:</p>
+<p><img src="img/TheThingsNetwork/ttn-portal-raw-messages.png" /></p></li>
 </ol>
 <p>We are now receiving raw telemetry. We can decode and transform this in the TTN portal towards JSON messages.</p>
-<h2>Decode data on TTN</h2>
-<p><img alt="alt tag" src="img/msft/Picture06-decode-data-on-ttn.png" /></p>
+<h2 id="decode-data-on-ttn">Decode data on TTN</h2>
+<p><img src="img/msft/Picture06-decode-data-on-ttn.png" /></p>
 <p>Now, the hexidecimal payload is an efficient format for LoRa communication but it is not really useful upstream. We want human readable JSON. To decode and convert the hexidecimal payload to JSON messages, we have payload formats.</p>
-<ol>
+<ol type="1">
 <li>In the application overview, click <strong>Payload Formats</strong></li>
-<li>
-<p>Add the following <strong>decoder</strong> payload format to decode the two bytes back to the decimal number of cycles completed and the current state:</p>
-<p>```c
-function Decoder(bytes, port) {
-  var cyclesCompleted = bytes[0];
-  var errorCode = bytes[1];</p>
-<p>return {
-    cyclesCompleted: cyclesCompleted,
-    errorCode: errorCode
-  };
-}
-```</p>
-</li>
-<li>
-<p>You have to test this decoder function before you can save the function. Enter eg. '2A00' in the payload and click <strong>Test</strong>. The hexidecimal payload entered is shown in JSON format as test result</p>
-<p><img alt="alt tag" src="img/TheThingsNetwork/ttn-portal-decoder.png" /></p>
-</li>
-<li>
-<p>We want to rearrange the order of the JSON elements. To rearrange the order we use the following function as the <strong>converter</strong> payload format:</p>
-<p><code>c
-function Converter(decoded, port) {
-  return {
-    errorCode: decoded.errorCode,
-    numberOfCycles: decoded.cyclesCompleted
-  };
-}</code></p>
-</li>
-<li>
-<p>Again, you have to test this converter payload format before you can save the function. Again, enter eg. '2A00' in the payload and click <strong>Test</strong>. The hexidecimal payload entered is shown in JSON format with rearranged elements as test result</p>
-</li>
-<li>
-<p>Finally, scroll to the bottom of the page and click <strong>Save</strong></p>
-</li>
-<li>
-<p>Go back to your data overview. Now you should see something like this:</p>
-<p><img alt="alt tag" src="img/TheThingsNetwork/ttn-device-payload-fields.png" /></p>
-</li>
+<li><p>Add the following <strong>decoder</strong> payload format to decode the two bytes back to the decimal number of cycles completed and the current state:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb4-1" data-line-number="1">function Decoder(bytes, port) {</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">  var cyclesCompleted = bytes[<span class="dv">0</span>];</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">  var errorCode = bytes[<span class="dv">1</span>];</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">  <span class="cf">return</span> {</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">    cyclesCompleted: cyclesCompleted,</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">    errorCode: errorCode</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">  };</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">}</a></code></pre></div></li>
+<li><p>You have to test this decoder function before you can save the function. Enter eg. ‘2A00’ in the payload and click <strong>Test</strong>. The hexidecimal payload entered is shown in JSON format as test result</p>
+<p><img src="img/TheThingsNetwork/ttn-portal-decoder.png" /></p></li>
+<li><p>We want to rearrange the order of the JSON elements. To rearrange the order we use the following function as the <strong>converter</strong> payload format:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb5-1" data-line-number="1">function Converter(decoded, port) {</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">  <span class="cf">return</span> {</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">    errorCode: decoded.errorCode,</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">    numberOfCycles: decoded.cyclesCompleted</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">  };</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">}</a></code></pre></div></li>
+<li><p>Again, you have to test this converter payload format before you can save the function. Again, enter eg. ‘2A00’ in the payload and click <strong>Test</strong>. The hexidecimal payload entered is shown in JSON format with rearranged elements as test result</p></li>
+<li><p>Finally, scroll to the bottom of the page and click <strong>Save</strong></p></li>
+<li><p>Go back to your data overview. Now you should see something like this:</p>
+<p><img src="img/TheThingsNetwork/ttn-device-payload-fields.png" /></p></li>
 </ol>
 <p>Now we have clean JSON data ready to be processed in Azure IoT Hub and upstream.</p>
-<h2>Configuring the Azure IoT platform to receive telemetry</h2>
+<h2 id="configuring-the-azure-iot-platform-to-receive-telemetry">Configuring the Azure IoT platform to receive telemetry</h2>
 <p>Futher processing of the telemetry on the The Things Network platform is not possible. Processing telemetry has to be done on your own IoT plaform of your choice. In this case we choose the Azure IoT platform.</p>
 <p>But first we need the secrets from the The Things Network platform to be able to create a secure connection between the two platforms. A secure connection between platforms is called a bridge. We will configure and deploy one.</p>
-<h3>Collect TTN Application secrets</h3>
+<h3 id="collect-ttn-application-secrets">Collect TTN Application secrets</h3>
 <p>We have to collect unique keys of the The Things Network application.</p>
-<ol>
+<ol type="1">
 <li>Go to your The Things Network application <strong>Overview</strong> in the navigation bar</li>
-<li><strong>Write down</strong> the 'Application ID'</li>
-<li>
-<p>Scroll down to <strong>Access Keys</strong>. <strong>Write down</strong> the 'Access Key'</p>
-<p><img alt="alt tag" src="img/TheThingsNetwork/ttn-access-key.png" /></p>
-</li>
+<li><strong>Write down</strong> the ‘Application ID’</li>
+<li><p>Scroll down to <strong>Access Keys</strong>. <strong>Write down</strong> the ‘Access Key’</p>
+<p><img src="img/TheThingsNetwork/ttn-access-key.png" /></p></li>
 </ol>
 <p>The <code>Application ID</code> and <code>Access Key</code> are required to get data from The Things Network.</p>
-<h3>Create an Azure IoT Hub</h3>
-<p><img alt="alt tag" src="img/msft/Picture07-prepare-azure-integration.png" /></p>
+<h3 id="create-an-azure-iot-hub">Create an Azure IoT Hub</h3>
+<p><img src="img/msft/Picture07-prepare-azure-integration.png" /></p>
 <p>Follow these steps to create an Azure IoT Hub.</p>
-<ol>
+<ol type="1">
 <li>Log into the <a href="https://portal.azure.com/">Azure portal</a>. You will be asked to provide Azure credentials if needed</li>
-<li>
-<p>On the left, a number of common Azure services are shown. Select <code>More Services</code> to open a list with all available services</p>
-<p><img alt="alt tag" src="img/UwpToIotHub/azure-more-services.png" /></p>
-</li>
-<li>
-<p>Filter it with <code>IoT Hub</code></p>
-<p><img alt="alt tag" src="img/UwpToIotHub/azure-search-iot-hub.png" /></p>
-</li>
-<li>
-<p>Select <code>IoT Hub</code> and a new blade will be shown. Select <code>Add</code> and you will be asked to enter the information needed to create an IoT Hub</p>
-<p><img alt="alt tag" src="img/UwpToIotHub/azure-portal-add.png" /></p>
-</li>
-<li>
-<p>Enter a unique IoT Hub name eg. <code>IoTWorkshop-ih</code>. A green sign will be shown if the name is unique</p>
-</li>
-<li>
-<p>Enter a unique Resource Group eg. <code>IoTWorkshop-rg</code>. A green sign will be shown if the name is unique</p>
-</li>
-<li>
-<p>Select <code>West Europe</code> for the location, if needed</p>
-<p><img alt="alt tag" src="img/UwpToIotHub/azure-new-iot-hub-scaled.png" /></p>
-</li>
-<li>
-<p>Press <code>Create</code> and the portal will start creating the service. Once it is created, a notification is shown. In the right upper corner, a bell represents the list of all notifications shown</p>
-<p><img alt="alt tag" src="img/UwpToIotHub/azure-notifications-iothub.png" /></p>
-</li>
+<li><p>On the left, a number of common Azure services are shown. Select <code>More Services</code> to open a list with all available services</p>
+<p><img src="img/UwpToIotHub/azure-more-services.png" /></p></li>
+<li><p>Filter it with <code>IoT Hub</code></p>
+<p><img src="img/UwpToIotHub/azure-search-iot-hub.png" /></p></li>
+<li><p>Select <code>IoT Hub</code> and a new blade will be shown. Select <code>Add</code> and you will be asked to enter the information needed to create an IoT Hub</p>
+<p><img src="img/UwpToIotHub/azure-portal-add.png" /></p></li>
+<li><p>Enter a unique IoT Hub name eg. <code>IoTWorkshop-ih</code>. A green sign will be shown if the name is unique</p></li>
+<li><p>Enter a unique Resource Group eg. <code>IoTWorkshop-rg</code>. A green sign will be shown if the name is unique</p></li>
+<li><p>Select <code>West Europe</code> for the location, if needed</p>
+<p><img src="img/UwpToIotHub/azure-new-iot-hub-scaled.png" /></p></li>
+<li><p>Press <code>Create</code> and the portal will start creating the service. Once it is created, a notification is shown. In the right upper corner, a bell represents the list of all notifications shown</p>
+<p><img src="img/UwpToIotHub/azure-notifications-iothub.png" /></p></li>
 </ol>
 <p>Creating an IoT Hub takes some time. Meanwhile, we will connect the device and create the bridge.</p>
-<h3>Collect Azure IoT Hub secrets</h3>
+<h3 id="collect-azure-iot-hub-secrets">Collect Azure IoT Hub secrets</h3>
 <p>The integration requires an Azure IoT Hub Shared access policy key name with <code>Registry read, write and Device connect</code> permissions. In this example, we use the <strong>iothubowner</strong> policy which has these permissions enabled by default.</p>
-<ol>
-<li>
-<p>Check the Azure portal. The resource group and the IoT Hub should be created by now (otherwise, we were unable to send duty cycles information to it)</p>
-<p><img alt="alt tag" src="img/UwpToIotHub/azure-notifications-iothub.png" /></p>
-</li>
-<li>
-<p>On the left, select <code>Resource groups</code>. A list of resource groups is shown</p>
-<p><img alt="alt tag" src="img/UwpToIotHub/azure-resource-groups.png" /></p>
-</li>
-<li>
-<p>Select the resource group <code>IoTWorkshop-rg</code>. It will open a new blade with all resources in this group</p>
-</li>
-<li>
-<p>Select the IoT Hub <code>IoTWorkshop-ih</code>. It will open a new blade with the IoT Hub</p>
-<p><img alt="alt tag" src="img/UwpToIotHub/azure-iot-hub-initial.png" /></p>
-</li>
-<li>
-<p>The IoTHub has not received any messages yet. Check the general settings for <code>Shared access policies</code></p>
-<p><img alt="alt tag" src="img/UwpToIotHub/azure-iot-hub-share-access-policy.png" /></p>
-</li>
-<li>
-<p><strong>Write down</strong> the <code>name</code> of the IoT Hub eg. <code>IoTWorkshop-ih</code></p>
-</li>
-<li>
-<p>Navigate to the 'iothubowner' policy and <strong>write down</strong> this <code>Connection String-Primary Key</code></p>
-<p><img alt="alt tag" src="img/UwpToIotHub/azure-iothubowner-policy.png" /></p>
-</li>
+<ol type="1">
+<li><p>Check the Azure portal. The resource group and the IoT Hub should be created by now (otherwise, we were unable to send duty cycles information to it)</p>
+<p><img src="img/UwpToIotHub/azure-notifications-iothub.png" /></p></li>
+<li><p>On the left, select <code>Resource groups</code>. A list of resource groups is shown</p>
+<p><img src="img/UwpToIotHub/azure-resource-groups.png" /></p></li>
+<li><p>Select the resource group <code>IoTWorkshop-rg</code>. It will open a new blade with all resources in this group</p></li>
+<li><p>Select the IoT Hub <code>IoTWorkshop-ih</code>. It will open a new blade with the IoT Hub</p>
+<p><img src="img/UwpToIotHub/azure-iot-hub-initial.png" /></p></li>
+<li><p>The IoTHub has not received any messages yet. Check the general settings for <code>Shared access policies</code></p>
+<p><img src="img/UwpToIotHub/azure-iot-hub-share-access-policy.png" /></p></li>
+<li><p><strong>Write down</strong> the <code>name</code> of the IoT Hub eg. <code>IoTWorkshop-ih</code></p></li>
+<li><p>Navigate to the ‘iothubowner’ policy and <strong>write down</strong> this <code>Connection String-Primary Key</code></p>
+<p><img src="img/UwpToIotHub/azure-iothubowner-policy.png" /></p></li>
 </ol>
 <p>This is the secret needed from the Azure IoT Hub.</p>
-<h2>Create a bridge</h2>
-<p><img alt="alt tag" src="img/msft/Picture08-build-a-bridge-frm-ttn-to-azure.png" /></p>
-<p>Telemetry is arriving at the TTN portal. But we want to pass it on to the Azure IoT Platform. We need to build a 'bridge'.</p>
+<h2 id="create-a-bridge">Create a bridge</h2>
+<p><img src="img/msft/Picture08-build-a-bridge-frm-ttn-to-azure.png" /></p>
+<p>Telemetry is arriving at the TTN portal. But we want to pass it on to the Azure IoT Platform. We need to build a ‘bridge’.</p>
 <p>Follow these steps to create the integration bridge between The Things Network and Azure IoT Hub.</p>
 <p><em>Note: The bridge below is build using C# and will not run on non-windows devices. Use instead a bridge in the cloud as described in <a href="Webjob.html">Deploying The Things Network Bridge to Azure as a WebJob</a></em></p>
 <p><em>Note: The bridge is actually an open source project on <a href="https://github.com/sandervandevelde/TtnAzureBridge">github</a>. We accept pull requests :-)</em></p>
-<ol>
-<li>
-<p><strong>Create</strong> a new folder eg. <code>c:\IoTWorkshop</code></p>
-</li>
-<li>
-<p><strong>Copy</strong> the zip file 'TTNAzureBridge.zip' from <a href="https://aka.ms/workshopiot">this OneDrive location</a> to this folder and <strong>unzip</strong> it <em>(Note: on some corporate networks, access to onedrive is limited. Ask the organization for a copy of the zip)</em></p>
-<p><img alt="alt tag" src="img/TheThingsNetwork/bridge-download.png" /></p>
-</li>
-<li>
-<p><strong>Navigate</strong> to the folder with the executable and identify the config file name 'TtnAzureBridge.exe.config'</p>
-</li>
-<li>
-<p><strong>Open</strong> this config file in notepad or another text file editor</p>
-</li>
-<li>
-<p><strong>Replace</strong> [TTN App Id] with the <code>TTN Application ID</code></p>
-</li>
-<li>
-<p><strong>Replace</strong> [TTN App Access Key] with the <code>TTN Access Key</code></p>
-</li>
-<li>
-<p><strong>Replace</strong> [iothub name] with the <code>name</code> of the IoT Hub in the app settings</p>
-</li>
-<li>
-<p>In the connectionstring of 'IoTHub', <strong>replace</strong> [Connection String-Primary] with the remembered <code>Connection String-Primary Key</code></p>
-</li>
-</ol>
-<p><img alt="alt tag" src="img/TheThingsNetwork/bridge-config.png" /></p>
-<ol>
-<li><strong>Save</strong> the config file and close the editor</li>
+<ol type="1">
+<li><p><strong>Create</strong> a new folder eg. <code>c:\IoTWorkshop</code></p></li>
+<li><p><strong>Copy</strong> the zip file ‘TTNAzureBridge.zip’ from <a href="https://aka.ms/workshopiot">this OneDrive location</a> to this folder and <strong>unzip</strong> it <em>(Note: on some corporate networks, access to onedrive is limited. Ask the organization for a copy of the zip)</em></p>
+<p><img src="img/TheThingsNetwork/bridge-download.png" /></p></li>
+<li><strong>Navigate</strong> to the folder with the executable and identify the config file name ‘TtnAzureBridge.exe.config’</li>
+<li><p><strong>Open</strong> this config file in notepad or another text file editor</p></li>
+<li><p><strong>Replace</strong> [TTN App Id] with the <code>TTN Application ID</code></p></li>
+<li><p><strong>Replace</strong> [TTN App Access Key] with the <code>TTN Access Key</code></p></li>
+<li><p><strong>Replace</strong> [iothub name] with the <code>name</code> of the IoT Hub in the app settings</p></li>
+<li><p>In the connectionstring of ‘IoTHub’, <strong>replace</strong> [Connection String-Primary] with the remembered <code>Connection String-Primary Key</code></p>
+<p><img src="img/TheThingsNetwork/bridge-config.png" /></p></li>
+<li><p><strong>Save</strong> the config file and close the editor</p></li>
 </ol>
 <p>The bridge is now ready for execution.</p>
-<h3>Start the bridge</h3>
+<h3 id="start-the-bridge">Start the bridge</h3>
 <p>You are about to retrieve the telemetry from the The Things Network platform.</p>
-<ol>
-<li>
-<p>At the command prompt (press Windows button-R, type .html and enter), navigate to the new folder <code>c:\iotworkshop</code></p>
-</li>
-<li>
-<p>In the same folder, <strong>run</strong> <code>TtnAzureBridge.exe</code> to verify the bridge is working</p>
-</li>
-</ol>
-<p><img alt="alt tag" src="img/TheThingsNetwork/bridge-running.png" /></p>
-<ol>
-<li>
-<p>This is example output:</p>
-<p><code>.html/sh
-time 1/11/2017 8:16:29 PM -&gt; IoT Hub IoTWorkshop-ih connected
+<ol type="1">
+<li><p>At the command prompt (press Windows button-R, type .html and enter), navigate to the new folder <code>c:\iotworkshop</code></p></li>
+<li><p>In the same folder, <strong>run</strong> <code>TtnAzureBridge.exe</code> to verify the bridge is working</p>
+<p><img src="img/TheThingsNetwork/bridge-running.png" /></p></li>
+<li><p>This is example output:</p>
+<pre class=".html/sh"><code>time 1/11/2017 8:16:29 PM -&gt; IoT Hub IoTWorkshop-ih connected
 MQTT KeepAlivePeriod is 60000
 MQTT subscribed to predictive_maintenance on eu.thethings.network
 MQTT handling uplink
-Message received (2/predictive_maintenance_machine_42/eui-b827ebffffc19ca8/51.46018/5.61902/868.1/-76): {"errorCode":0,"numberOfCycles":3}-IoT Hub message sent
+Message received (2/predictive_maintenance_machine_42/eui-b827ebffffc19ca8/51.46018/5.61902/868.1/-76): {&quot;errorCode&quot;:0,&quot;numberOfCycles&quot;:3}-IoT Hub message sent
 MQTT handling uplink
-Message received (12/predictive_maintenance_machine_42/eui-b827ebffffc19ca8/51.46018/5.61902/868.1/-77): {"errorCode":0,"numberOfCycles":13}-IoT Hub message sent
-...</code></p>
-</li>
-<li>
-<p>The telemetry is passed to the connect Azure IoTHub. We also see some basic information about the frame count, the node, the name and location of the gateway, the Lora channel used and the quality of the reception (RSSI)</p>
-</li>
+Message received (12/predictive_maintenance_machine_42/eui-b827ebffffc19ca8/51.46018/5.61902/868.1/-77): {&quot;errorCode&quot;:0,&quot;numberOfCycles&quot;:13}-IoT Hub message sent
+...</code></pre></li>
+<li><p>The telemetry is passed to the connect Azure IoTHub. We also see some basic information about the frame count, the node, the name and location of the gateway, the Lora channel used and the quality of the reception (RSSI)</p></li>
 </ol>
 <p><em>Note: the message consists of valid JSON telemetry.</em></p>
 <p><em>Note: Keep the bridge running until the end of the complete workshop.</em></p>
-<h2>Select your favorite tool for monitoring</h2>
-<p><img alt="alt tag" src="img/arch/Picture05-UWP-overview.png" /></p>
+<h2 id="select-your-favorite-tool-for-monitoring">Select your favorite tool for monitoring</h2>
+<p><img src="img/arch/Picture05-UWP-overview.png" /></p>
 <p>We can check the arrival of messages in the Azure IoT Hub. This can be done using a UI app named Device Explorer or using a Command-Line tool named IoT Hub Explorer. <code>Choose one below</code></p>
-<h3>Monitoring using UI</h3>
+<h3 id="monitoring-using-ui">Monitoring using UI</h3>
 <p>We can check the arrival of the messages in the Azure IoT Hub using the Device Explorer.</p>
 <p>The Device Explorer tool is a Windows-only graphical tool for managing your devices in IoT Hub.</p>
 <p>The easiest way to install the Device Explorer tool in your environment is to download the pre-built version by clicking <a href="https://github.com/Azure/azure-iot-sdks/releases">Azure IoT SDKs releases</a>. Scroll down to the Downloads section to locate the download link for the SetupDeviceExplorer.msi installer. Download and run the installer.</p>
-<p>To run the Device Explorer tool, double-click the DeviceExplorer.exe file in Windows Explorer. The default installation folder for this application is C:\Program Files (x86)\Microsoft\DeviceExplorer.</p>
-<ol>
-<li>
-<p>Start the <code>Device Explorer</code> from the desktop or using the start menu</p>
-</li>
-<li>
-<p>On the Configuration Tab, insert the IoT Hub <code>Connection String-primary key</code> and the <code>name</code> of the IoT Hub (as Protocol Gateway Hostname)</p>
-</li>
-<li>
-<p>Press <code>Update</code></p>
-</li>
-<li>
-<p>On the Management tab, your device should already be available. It was registered by the bridge the very first time, telemetry arrived</p>
-<p><img alt="alt tag" src="img/TheThingsNetwork/ihe-devices.png" /></p>
-</li>
-<li>
-<p>On the Data tab, Select your <code>Device ID</code> (like 'predictive_maintenance_machine_42') and press <code>Monitor</code></p>
-</li>
-<li>
-<p>Now we check the leds on the device for <code>Sending cycle updates</code> a couple of times. This will result in the following messages while Duty Cycle telemetry is sent by the device</p>
-<p><code>.html/sh
-Receiving events...predictive_maintenance_machine_42
-1/5/2017 9:46:18 PM&gt; Device: [predictive_maintenance_machine_42], Data:[{"errorCode":0,"numberOfCycles":1}]
-1/5/2017 9:46:19 PM&gt; Device: [predictive_maintenance_machine_42], Data:[{"errorCode":0,"numberOfCycles":2}]
-1/5/2017 9:46:20 PM&gt; Device: [predictive_maintenance_machine_42], Data:[{"errorCode":0,"numberOfCycles":3}]</code></p>
-</li>
+<p>To run the Device Explorer tool, double-click the DeviceExplorer.exe file in Windows Explorer. The default installation folder for this application is C:Files (x86).</p>
+<ol type="1">
+<li><p>Start the <code>Device Explorer</code> from the desktop or using the start menu</p></li>
+<li><p>On the Configuration Tab, insert the IoT Hub <code>Connection String-primary key</code> and the <code>name</code> of the IoT Hub (as Protocol Gateway Hostname)</p></li>
+<li><p>Press <code>Update</code></p></li>
+<li><p>On the Management tab, your device should already be available. It was registered by the bridge the very first time, telemetry arrived</p>
+<p><img src="img/TheThingsNetwork/ihe-devices.png" /></p></li>
+<li><p>On the Data tab, Select your <code>Device ID</code> (like ‘predictive_maintenance_machine_42’) and press <code>Monitor</code></p></li>
+<li><p>Now we check the leds on the device for <code>Sending cycle updates</code> a couple of times. This will result in the following messages while Duty Cycle telemetry is sent by the device</p>
+<pre class=".html/sh"><code>Receiving events...predictive_maintenance_machine_42
+1/5/2017 9:46:18 PM&gt; Device: [predictive_maintenance_machine_42], Data:[{&quot;errorCode&quot;:0,&quot;numberOfCycles&quot;:1}]
+1/5/2017 9:46:19 PM&gt; Device: [predictive_maintenance_machine_42], Data:[{&quot;errorCode&quot;:0,&quot;numberOfCycles&quot;:2}]
+1/5/2017 9:46:20 PM&gt; Device: [predictive_maintenance_machine_42], Data:[{&quot;errorCode&quot;:0,&quot;numberOfCycles&quot;:3}]</code></pre></li>
 </ol>
-<h3>Monitoring using Command-line</h3>
+<h3 id="monitoring-using-command-line">Monitoring using Command-line</h3>
 <p>We can check the arrival of the messages in the Azure IoT Hub using the IoT Hub Explorer. This tool is Command-Line based, please check the installation requirements.</p>
 <p><em>Note: See the <a href="https://www.npmjs.com/package/iothub-explorer">full example</a> for more options of this tool.</em></p>
-<ol>
-<li>
-<p>Create a new folder eg. <code>c:\iothubexplorer</code></p>
-</li>
-<li>
-<p>At the command prompt (press Windows button-R, type .html and enter), navigate to the new folder <code>c:\iothubexplorer</code></p>
-</li>
-<li>
-<p>In this folder, run the following command <code>npm install -g iothub-explorer@latest</code> in your command-line environment, to install the latest (pre-release) version of the iothub-explorer tool</p>
-</li>
-<li>
-<p>Login to the IoT Hub Explorer by supplying your <em>remembered</em> IoT Hub <code>Connection String-primary key</code> using the command <code>iothub-explorer login "[your connection string]"</code></p>
-</li>
-<li>
-<p>A session with the IoT Hub will start and it will last for approx. one hour:</p>
-<p><code>.html/sh
-Session started, expires on Thu Jan 05 2017 22:53:55 GMT+0100 (W. Europe Standard Time)</code></p>
-</li>
-<li>
-<p>To monitor the device-to-cloud messages from a device, use the following command <code>iothub-explorer monitor-events --login [your connection string]</code> and <code>fill in</code> your <em>remembered</em> IoT Hub 'Connection String-primary key'</p>
-</li>
-<li>
-<p>All devices are monitored now. This will result in the following messages</p>
-<p>```.html/sh
-Monitoring events from all devices...
+<ol type="1">
+<li><p>Create a new folder eg. <code>c:\iothubexplorer</code></p></li>
+<li><p>At the command prompt (press Windows button-R, type .html and enter), navigate to the new folder <code>c:\iothubexplorer</code></p></li>
+<li><p>In this folder, run the following command <code>npm install -g iothub-explorer@latest</code> in your command-line environment, to install the latest (pre-release) version of the iothub-explorer tool</p></li>
+<li><p>Login to the IoT Hub Explorer by supplying your <em>remembered</em> IoT Hub <code>Connection String-primary key</code> using the command <code>iothub-explorer login &quot;[your connection string]&quot;</code></p></li>
+<li><p>A session with the IoT Hub will start and it will last for approx. one hour:</p>
+<pre class=".html/sh"><code>Session started, expires on Thu Jan 05 2017 22:53:55 GMT+0100 (W. Europe Standard Time)</code></pre></li>
+<li><p>To monitor the device-to-cloud messages from a device, use the following command <code>iothub-explorer monitor-events --login [your connection string]</code> and <code>fill in</code> your <em>remembered</em> IoT Hub ‘Connection String-primary key’</p></li>
+<li><p>All devices are monitored now. This will result in the following messages</p>
+<pre class=".html/sh"><code>Monitoring events from all devices...
 From: predictive_maintenance_machine_42
 {
-  "errorCode": 0,
-  "numberOfCycles": 8
-}</p>
-<hr />
-<p>From: predictive_maintenance_machine_42
+  &quot;errorCode&quot;: 0,
+  &quot;numberOfCycles&quot;: 8
+}
+-------------------
+From: predictive_maintenance_machine_42
 {
-  "errorCode": 0,
-  "numberOfCycles": 9
-}</p>
-<hr />
-<p>```</p>
-</li>
+  &quot;errorCode&quot;: 0,
+  &quot;numberOfCycles&quot;: 9
+}
+-------------------</code></pre></li>
 </ol>
-<h2>Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 <p>The messages are shown here too. These messages are now available in Azure.</p>
 <p>Next Step: You are now ready to process your data in an Azure Function. Continue to <a href="AzureTTN.html">Receiving and handling The Things Network telemetry in Azure</a></p>
-<p><img alt="alt tag" src="img/logos/microsoft.jpg" /> <img alt="alt tag" src="img/logos/atos.png" /></p>
+<p><img src="img/logos/microsoft.jpg" /> <img src="img/logos/atos.png" /></p>
+</body></html>
