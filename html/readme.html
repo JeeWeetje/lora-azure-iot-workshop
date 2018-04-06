@@ -1,0 +1,138 @@
+<h1>From device to actionable insights with LoRa and the Azure IoT platform</h1>
+<h2>LoRa - Azure IoT Hands-on Lab / Workshop</h2>
+<p>In this hands-on lab you will be creating the complete chain from configuring, to bridging the cap between the connectivity providers clouds and the Microsoft Azure IoT platform, creating actionable insights on the Microsoft Azure IoT platform and sending commands all the way back to the device.
+This includes assembling hardware, configuring hardware and software and coding the missing logic to a complete IoT solution.
+The workshop will simulate a remote located machine malfunctioning and getting restarted based on the received telemetry and created insights based on the telemetry data.
+You will be creating all components to get the malfunctioning machine back up running again.
+All of that within 2-4 hours (2 hours is minimum).</p>
+<p>Technologies used during the hands-on lab;</p>
+<ul>
+<li>Arduino development boards The Things Uno (LoRa enabled Arduino Leonardo)</li>
+<li>Software emulated devices/sensors (in Java, NodeJS or C# (UWP))</li>
+<li>Sensors (button and LED light bar)</li>
+<li>LoRa &amp; Lora WAN</li>
+<li>The Things Network cloud</li>
+<li>Microsoft Azure IoT Platform (including Azure Web Jobs, Azure IoT Hub, Azure Stream analytics, Azure Event hub, Azure blob storage and Azure Functions)</li>
+</ul>
+<p>This hands-on lab will be guided by Valery Jacobs &amp; Jan Willem Groenenberg &amp; Sander van de Velde, so attendees have on site support for questions.</p>
+<p>We will also provide background information about the used components in the hands-on lab.</p>
+<p>The hands-on lab is created in conjunction with Atos and Microsoft Nederland.</p>
+<p><strong>Hardware used will <em>remain property</em> of Atos and Microsoft.</strong></p>
+<h2>Team of experts</h2>
+<p>During the workshop the following experts will be present to guide you through the workshop:</p>
+<ul>
+<li>
+<p>Jan Willem Groenenberg; Atos Senior Expert, IoT Platform Architect, Azure Advisory Board member <a href="https://twitter.com/jeeweetje"><img alt="Twitter" src="img/social/twitter.png" /></a> <a href="https://www.linkedin.com/in/jwgroenenberg/"><img alt="LinkedIn" src="img/social/linkedin.png" /></a> <a href="https://jeeweetje.net"><img alt="LinkedIn" src="img/social/wordpress.png" /></a></p>
+</li>
+<li>
+<p>Sander van de Velde; MVP, IoT Platform Architect, Azure Advisory Board member <a href="https://twitter.com/svelde"><img alt="Twitter" src="img/social/twitter.png" /></a> <a href="https://www.linkedin.com/in/sandervandevelde/"><img alt="LinkedIn" src="img/social/linkedin.png" /></a> <a href="https://blog.vandevelde-online.com"><img alt="LinkedIn" src="img/social/wordpress.png" /></a></p>
+</li>
+</ul>
+<h2>Workshop/Hands-on locations and dates</h2>
+<p>| Event | Location | Date |  # of attendees  |
+| --- | --- | --- | --- |
+| Microsoft Tech Days 2016 | Amsterdam, The Netherlands | tba | 19 |
+| Microsoft Tech Days 2016 | Amsterdam, The Netherlands | tba | 16 |
+| Microsoft Tech Days 2016 | Amsterdam, The Netherlands | tba | 12 |
+| Microsoft Tech Days 2016 | Amsterdam, The Netherlands | tba | 15 |
+| dotNed Saturday 2017 | Veenendaal, The Netherlands | tba | 15 |
+| Atos Innovatos 2017 | Amstelveen, The Netherlands | tba | 8 |
+| Atos Innovatos 2017 | Groningen, The Netherlands | tba | 9 |
+| Atos Innovatos 2017 | Eindhoven, The Netherlands | tba | 13 |
+| Global Azure Bootcamp 2017 | Amstelveen, The Netherlands | tba | 12 |
+| IoT Tech Day 2017 | Utrecht, The Netherlands | tba | 22 |
+| Microsoft Tech Days 2017 | Amsterdam, The Netherlands | tba | 14 |
+| Codecamp 2017 | Iasi, Romania | October 27, 2017 | 20 |
+| LoRa IoT network | Apeldoorn, The Netherlands | April 7, 2018 | tba |
+| Global Azure Bootcamp 2018 | Amstelveen, The Netherlands | April 21, 2018 | tba |
+| TEQnation 2018 | Utrecht, The Netherlands | April 26, 2018 | tba |</p>
+<h2>Let's dive into the workshop</h2>
+<p>The workshop consists of several chapters. The first two chapters will guide you through the essentials we want you to get your hands on. The other chapters are optional/extra if you have time left.</p>
+<p>You have four options to choose from to start with. You can either go for physical hardware based on the The Things Uno (Lora/LoraWAN enabled Arduino Leonardo) programmed in C and connected via The Things Network, Or choose one of the device simulation applications like UWP (C#), NodeJS (JavaScript) or Java application (Java is only used for the simulation client).</p>
+<pre><code>Click on one of the logos to get started with the device or simulated device and follow that path for the rest of the workshop (at the end of each chapter, a link to the following chapter is provided
+</code></pre>
+<ol>
+<li>
+<p><strong>Connecting a device to the Azure IoT Platform</strong></p>
+<p><table>
+    <thead>
+    <tr>
+        <th colspan="4">Choose the device or simulator to connect</th>
+    </tr>
+    <thead>
+    <tbody>
+    <tr>
+        <td>
+            <a href="TheThingsNetwork.html"><img src="img/Options/arduino.png" alt="Getting started with the The Things Uno device and The Things Network" /></a>
+        </td>
+        <td>
+            <a href="UwpToIotHub.html"><img src="img/Options/windows.png" alt="Connecting to an IoT Hub using a UWP app device simulation" /></a>
+        </td>
+        <td>
+            <a href="NodeJsToIotHub.html"><img src="img/Options/nodejs.png" alt="Connecting to an IoT Hub using a NodeJs (JavaScript) app device simulation" /></a>
+        </td>
+        <td>
+            <a href="JavaToIotHub.html"><img src="img/Options/java.png" alt="Connecting to an IoT Hub using a Java app device simulation" /></a>
+        </td>
+    </tr>
+    </tbody>
+</table></p>
+</li>
+<li>
+<p><strong>Receiving and handling telemetry in Azure</strong></p>
+<p><table>
+    <thead>
+    <tr>
+        <th colspan="4">Choose the device or simulator to receive telemetry from</th>
+    </tr>
+    <thead>
+    <tbody>
+    <tr>
+        <td>
+            <a href="AzureTTN.html"><img src="img/Options/arduino.png" alt="Receiving and handling telemetry in Azure, sent by a TheThingsUno" /></a>
+        </td>
+        <td>
+            <a href="AzureUWP.html"><img src="img/Options/windows.png" alt="Receiving and handling telemetry in Azure, sent by a UWP app device simulation" /></a>
+        </td>
+        <td>
+            <a href="AzureNodeJs.html"><img src="img/Options/nodejs.png" alt="Receiving and handling telemetry in Azure, sent by a NodeJs (JavaScript) app device simulation" /></a>
+        </td>
+        <td>
+            <a href="#"><img src="img/Options/java-optout.png" alt="Not available yet" /></a>
+        </td>
+    </tr>
+    </tbody>
+</table></p>
+</li>
+<li>
+<p><strong>Passing commands back to actual devices or simulated devices</strong></p>
+<p><table>
+    <thead>
+    <tr>
+        <th colspan="4">Choose the device or simulator to pass commands back to</th>
+    </tr>
+    <thead>
+    <tbody>
+    <tr>
+        <td>
+            <a href="CommandsTTN.html"><img src="img/Options/arduino.png" alt="Passing commands back to a The Things Uno device" /></a>
+        </td>
+        <td>
+            <a href="CommandsUwp.html"><img src="img/Options/windows.png" alt="Passing commands back to a UWP app device simulation" /></a>
+        </td>
+        <td>
+            <a href="CommandsNodeJs.html"><img src="img/Options/nodejs.png" alt="Passing commands back to a NodeJs (JavaScript) app device simulation" /></a>
+        </td>
+        <td>
+            <a href="#"><img src="img/Options/java-optout.png" alt="Not available yet" /></a>
+        </td>
+    </tr>
+    </tbody>
+</table></p>
+</li>
+<li>
+<p><strong>Bonus chapter</strong></p>
+</li>
+<li><a href="Webjob.html">Deploying The Things Network Bridge to Azure as a WebJob</a></li>
+</ol>
+<p><img alt="alt tag" src="img/logos/microsoft.jpg" /> <img alt="alt tag" src="img/logos/atos.png" /></p>

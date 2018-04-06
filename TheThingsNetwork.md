@@ -63,10 +63,6 @@ Your device and sensors should be connected as follows:
 
    ![alt tag](img/TheThingsNetwork/node-led.jpg)
 
-- Details LED pin layout node
-
-   ![alt tag](img/TheThingsNetwork/led_layout.png)
-
 ## Read sensors
 
 ![alt tag](img/msft/Picture03-read-sensor-data.png)
