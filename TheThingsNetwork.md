@@ -604,7 +604,7 @@ Follow these steps to create the integration bridge between The Things Network a
 
 1. **Create** a new folder eg. `c:\IoTWorkshop`
 
-2. **Copy** the zip file 'TTNAzureBridge.zip' from [this OneDrive location](https://aka.ms/workshopiot) to this folder and **unzip** it _(Note: on some corporate networks, access to onedrive is limited. Ask the organization for a copy of the zip)_
+2. **Copy** the zip file 'TTNAzureBridge.zip' from [this OneDrive location](https://aka.ms/workshopiot) to this folder and **unzip/extract** it _(Note: on some corporate networks, access to onedrive is limited. Ask the organization for a copy of the zip)_
 
     ![](img/TheThingsNetwork/bridge-download.png)
 
@@ -617,7 +617,7 @@ Follow these steps to create the integration bridge between The Things Network a
 
 7. **Replace** [iothub name] with the `name` of the IoT Hub in the app settings
 
-8. In the connectionstring of 'IoTHub', **replace** [Connection String-Primary] with the remembered `Connection String-Primary Key`
+8. In the connectionstring of 'IoTHub', **replace** [Connection String-Primary] with the remembered `Connection String-Primary Key` *Note*: this connectionstring should actually resemble the IoTHub connectionstring
 
    ![](img/TheThingsNetwork/bridge-config.png)
 
@@ -648,7 +648,7 @@ You are about to retrieve the telemetry from the The Things Network platform.
     ...
     ```
 
-4. The telemetry is passed to the connect Azure IoTHub. We also see some basic information about the frame count, the node, the name and location of the gateway, the Lora channel used and the quality of the reception (RSSI)
+4. The telemetry is passed to the connect Azure IoTHub. We also see some basic information about the frame count, the node, the name and registered GPS location of the gateway, the Lora channel used and the quality of the reception (RSSI)
 
 *Note: the message consists of valid JSON telemetry.*
 
@@ -668,21 +668,19 @@ The Device Explorer tool is a Windows-only graphical tool for managing your devi
 
 The easiest way to install the Device Explorer tool in your environment is to download the pre-built version by clicking [Azure IoT SDKs releases](https://github.com/Azure/azure-iot-sdks/releases). _(Locate the download link for the SetupDeviceExplorer.msi installer. Download and run the installer)_
 
-To run the Device Explorer tool, double-click the DeviceExplorer.exe file in Windows Explorer. The default installation folder for this application is C:\Program Files (x86)\Microsoft\DeviceExplorer.
+1. Start the **Device Explorer** from the desktop or using the start menu
 
-1. Start the `Device Explorer` from the desktop or using the start menu
+2. On the Configuration Tab, insert the IoT Hub **Connection String**. Leave the **Protocol Gateway Hostname** empty
 
-2. On the Configuration Tab, insert the IoT Hub `Connection String-primary key` and the `name` of the IoT Hub (as Protocol Gateway Hostname)
+3. Press **Update**
 
-3. Press `Update`
-
-4. On the Management tab, your device should already be available. It was registered by the bridge the very first time, telemetry arrived
+4. On the Management tab, your **device** should already be available. It was **registered** by the bridge the very first time, telemetry arrived
 
     ![](img/TheThingsNetwork/ihe-devices.png)
 
-5. On the Data tab, Select your `Device ID` (like 'predictive_maintenance_machine_42') and press `Monitor`
+5. On the Data tab, Select your **Device ID** (like 'predictive_maintenance_machine_42') and press **Monitor**
 
-6. Now we check the leds on the device for `Sending cycle updates` a couple of times. This will result in the following messages while Duty Cycle telemetry is sent by the device
+6. Now we **check the leds** on the device for Sending cycle updates a couple of times. This will result in the following messages while Duty Cycle telemetry is sent by the device
 
     ```cmd/sh
     Receiving events...predictive_maintenance_machine_42
@@ -717,23 +715,27 @@ We can check the arrival of the messages in the Azure IoT Hub using the IoT Hub 
 
     ```cmd/sh
     Monitoring events from all devices...
-    From: predictive_maintenance_machine_42
+    ==== From: 'predictive_maintenance_machine_42' at '2018-04-06T21:07:00.539Z' ====
     {
       "errorCode": 0,
       "numberOfCycles": 8
     }
+    ---- application properties ----
+    {}
     -------------------
-    From: predictive_maintenance_machine_42
+    ==== From: 'predictive_maintenance_machine_42' at '2018-04-06T21:07:10.539Z' ====
     {
       "errorCode": 0,
       "numberOfCycles": 9
     }
+    ---- application properties ----
+    {}
     -------------------
     ```
 
 ## Conclusion
 
-The messages are shown here too. These messages are now available in Azure.
+The messages are shown in the TTN portal, in the Bridge and in the IoTHub monitoring tooling. So we have proof of the arrival of these messages in the Azure IoT portal.
 
 Next Step: You are now ready to process your data in an Azure Function. Continue to [Receiving and handling The Things Network telemetry in Azure](AzureTTN.md)
 

@@ -459,14 +459,14 @@ Repair of machine needed...</code></pre></li>
 <p><em>Note: The bridge is actually an open source project on <a href="https://github.com/sandervandevelde/TtnAzureBridge">github</a>. We accept pull requests :-)</em></p>
 <ol type="1">
 <li><p><strong>Create</strong> a new folder eg. <code>c:\IoTWorkshop</code></p></li>
-<li><p><strong>Copy</strong> the zip file ‘TTNAzureBridge.zip’ from <a href="https://aka.ms/workshopiot">this OneDrive location</a> to this folder and <strong>unzip</strong> it <em>(Note: on some corporate networks, access to onedrive is limited. Ask the organization for a copy of the zip)</em></p>
+<li><p><strong>Copy</strong> the zip file ‘TTNAzureBridge.zip’ from <a href="https://aka.ms/workshopiot">this OneDrive location</a> to this folder and <strong>unzip/extract</strong> it <em>(Note: on some corporate networks, access to onedrive is limited. Ask the organization for a copy of the zip)</em></p>
 <p><img src="img/TheThingsNetwork/bridge-download.png" /></p></li>
 <li><strong>Navigate</strong> to the folder with the executable and identify the config file name ‘TtnAzureBridge.exe.config’</li>
 <li><p><strong>Open</strong> this config file in notepad or another text file editor</p></li>
 <li><p><strong>Replace</strong> [TTN App Id] with the <code>TTN Application ID</code></p></li>
 <li><p><strong>Replace</strong> [TTN App Access Key] with the <code>TTN Access Key</code></p></li>
 <li><p><strong>Replace</strong> [iothub name] with the <code>name</code> of the IoT Hub in the app settings</p></li>
-<li><p>In the connectionstring of ‘IoTHub’, <strong>replace</strong> [Connection String-Primary] with the remembered <code>Connection String-Primary Key</code></p>
+<li><p>In the connectionstring of ‘IoTHub’, <strong>replace</strong> [Connection String-Primary] with the remembered <code>Connection String-Primary Key</code> <em>Note</em>: this connectionstring should actually resemble the IoTHub connectionstring</p>
 <p><img src="img/TheThingsNetwork/bridge-config.png" /></p></li>
 <li><p><strong>Save</strong> the config file and close the editor</p></li>
 </ol>
@@ -486,7 +486,7 @@ Message received (2/predictive_maintenance_machine_42/eui-b827ebffffc19ca8/51.46
 MQTT handling uplink
 Message received (12/predictive_maintenance_machine_42/eui-b827ebffffc19ca8/51.46018/5.61902/868.1/-77): {&quot;errorCode&quot;:0,&quot;numberOfCycles&quot;:13}-IoT Hub message sent
 ...</code></pre></li>
-<li><p>The telemetry is passed to the connect Azure IoTHub. We also see some basic information about the frame count, the node, the name and location of the gateway, the Lora channel used and the quality of the reception (RSSI)</p></li>
+<li><p>The telemetry is passed to the connect Azure IoTHub. We also see some basic information about the frame count, the node, the name and registered GPS location of the gateway, the Lora channel used and the quality of the reception (RSSI)</p></li>
 </ol>
 <p><em>Note: the message consists of valid JSON telemetry.</em></p>
 <p><em>Note: Keep the bridge running until the end of the complete workshop.</em></p>
@@ -497,15 +497,14 @@ Message received (12/predictive_maintenance_machine_42/eui-b827ebffffc19ca8/51.4
 <p>We can check the arrival of the messages in the Azure IoT Hub using the Device Explorer.</p>
 <p>The Device Explorer tool is a Windows-only graphical tool for managing your devices in IoT Hub.</p>
 <p>The easiest way to install the Device Explorer tool in your environment is to download the pre-built version by clicking <a href="https://github.com/Azure/azure-iot-sdks/releases">Azure IoT SDKs releases</a>. <em>(Locate the download link for the SetupDeviceExplorer.msi installer. Download and run the installer)</em></p>
-<p>To run the Device Explorer tool, double-click the DeviceExplorer.exe file in Windows Explorer. The default installation folder for this application is C:Files (x86).</p>
 <ol type="1">
-<li><p>Start the <code>Device Explorer</code> from the desktop or using the start menu</p></li>
-<li><p>On the Configuration Tab, insert the IoT Hub <code>Connection String-primary key</code> and the <code>name</code> of the IoT Hub (as Protocol Gateway Hostname)</p></li>
-<li><p>Press <code>Update</code></p></li>
-<li><p>On the Management tab, your device should already be available. It was registered by the bridge the very first time, telemetry arrived</p>
+<li><p>Start the <strong>Device Explorer</strong> from the desktop or using the start menu</p></li>
+<li><p>On the Configuration Tab, insert the IoT Hub <strong>Connection String</strong>. Leave the <strong>Protocol Gateway Hostname</strong> empty</p></li>
+<li><p>Press <strong>Update</strong></p></li>
+<li><p>On the Management tab, your <strong>device</strong> should already be available. It was <strong>registered</strong> by the bridge the very first time, telemetry arrived</p>
 <p><img src="img/TheThingsNetwork/ihe-devices.png" /></p></li>
-<li><p>On the Data tab, Select your <code>Device ID</code> (like ‘predictive_maintenance_machine_42’) and press <code>Monitor</code></p></li>
-<li><p>Now we check the leds on the device for <code>Sending cycle updates</code> a couple of times. This will result in the following messages while Duty Cycle telemetry is sent by the device</p>
+<li><p>On the Data tab, Select your <strong>Device ID</strong> (like ‘predictive_maintenance_machine_42’) and press <strong>Monitor</strong></p></li>
+<li><p>Now we <strong>check the leds</strong> on the device for Sending cycle updates a couple of times. This will result in the following messages while Duty Cycle telemetry is sent by the device</p>
 <pre class=".html/sh"><code>Receiving events...predictive_maintenance_machine_42
 1/5/2017 9:46:18 PM&gt; Device: [predictive_maintenance_machine_42], Data:[{&quot;errorCode&quot;:0,&quot;numberOfCycles&quot;:1}]
 1/5/2017 9:46:19 PM&gt; Device: [predictive_maintenance_machine_42], Data:[{&quot;errorCode&quot;:0,&quot;numberOfCycles&quot;:2}]
@@ -524,21 +523,25 @@ Message received (12/predictive_maintenance_machine_42/eui-b827ebffffc19ca8/51.4
 <li><p>To monitor the device-to-cloud messages from a device, use the following command <code>iothub-explorer monitor-events --login [your connection string]</code> and <code>fill in</code> your <em>remembered</em> IoT Hub ‘Connection String-primary key’</p></li>
 <li><p>All devices are monitored now. This will result in the following messages</p>
 <pre class=".html/sh"><code>Monitoring events from all devices...
-From: predictive_maintenance_machine_42
+==== From: &#39;predictive_maintenance_machine_42&#39; at &#39;2018-04-06T21:07:00.539Z&#39; ====
 {
   &quot;errorCode&quot;: 0,
   &quot;numberOfCycles&quot;: 8
 }
+---- application properties ----
+{}
 -------------------
-From: predictive_maintenance_machine_42
+==== From: &#39;predictive_maintenance_machine_42&#39; at &#39;2018-04-06T21:07:10.539Z&#39; ====
 {
   &quot;errorCode&quot;: 0,
   &quot;numberOfCycles&quot;: 9
 }
+---- application properties ----
+{}
 -------------------</code></pre></li>
 </ol>
 <h2 id="conclusion">Conclusion</h2>
-<p>The messages are shown here too. These messages are now available in Azure.</p>
+<p>The messages are shown in the TTN portal, in the Bridge and in the IoTHub monitoring tooling. So we have proof of the arrival of these messages in the Azure IoT portal.</p>
 <p>Next Step: You are now ready to process your data in an Azure Function. Continue to <a href="AzureTTN.html">Receiving and handling The Things Network telemetry in Azure</a></p>
 <p><img src="img/logos/microsoft.jpg" /> <img src="img/logos/atos.png" /></p>
 </body></html>
