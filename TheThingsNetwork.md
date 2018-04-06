@@ -214,7 +214,7 @@ We start with running a simple sketch on the Arduino. This is a program which si
 
 13. Once the sketch has been uploaded, You should see output like this.
 
-14. Just wait a few seconds before pushing the button:
+14. Just wait a few seconds before pushing the button (please push and hold until the error message occurs):
 
     ```cmd/sh
     Initializing
@@ -226,6 +226,8 @@ We start with running a simple sketch on the Arduino. This is a program which si
     Error occured: 99
     Repair of machine needed...
     ```
+
+*Note*: The red LED on the LED bar should be lit too.
 
 Now we have a running Arduino with some basic logic. Let's send some messages using The Things Network.
 
@@ -263,7 +265,7 @@ Follow the steps to create an application and register your device.
 
     ![](img/TheThingsNetwork/ttn-applications-devices-before-register.png)
 
-11. The text in the EUI textbox is changed
+11. The text in the 'Device EUI' textbox is changed
 
 12. The register button is now enabled. Click **Register**
 
@@ -289,7 +291,7 @@ Follow the steps to create an application and register your device.
 
 20. Keep this page open, you need the device address, network session key and application session key in a minute
 
-The TTN application is created. Your device has been registered and provisioned.
+The TTN application is now created. And your device has been registered and provisioned. Let's use the keys to connect.
 
 ## Send telemetry from your device to the The Things Network platform
 
@@ -446,7 +448,7 @@ The sensor data is read, now it is time to send the sensor data to the The Thing
     }
     ```
 
-7. Insert your device address in `devAddr`, network session key in `nwkSkey` and application session key in `appSKey`. You can use the handy `clipboard` button in the dashboard to copy it quickly as a HEX value
+7. Insert your device address in `devAddr`, network session key in `nwkSkey` and application session key in `appSKey`. You can use the handy `clipboard` button in the dashboard to copy it quickly as a HEX/C-Style value
 
     ![](img/TheThingsNetwork/ttn-applications-devices-credentials.png)
 
@@ -455,7 +457,7 @@ The sensor data is read, now it is time to send the sensor data to the The Thing
 
     ![](img/TheThingsNetwork/ttn-arduino-debug.png)
 
-10. In The Things Network dashboard, go to **Data**. You see uplink packets arriving:
+10. In The Things Network dashboard, go to **Data**. You see uplink packets arriving (the 63 occurs when you push and hold the button):
 
     ![](img/TheThingsNetwork/ttn-portal-raw-messages.png)
 
@@ -486,7 +488,7 @@ Now, the hexidecimal payload is an efficient format for LoRa communication but i
 
     ![](img/TheThingsNetwork/ttn-portal-decoder.png)
 
-4. We want to rearrange the order of the JSON elements. To rearrange the order we use the following function as the **converter** payload format:
+4. We also want to rearrange (convert) the order of the JSON elements. To rearrange the order we use the following function as the **converter** payload format:
 
     ```c
     function Converter(decoded, port) {
@@ -497,7 +499,7 @@ Now, the hexidecimal payload is an efficient format for LoRa communication but i
     }
     ```
 
-5. Again, you have to test this converter payload format before you can save the function. Again, enter eg. '2A00' in the payload and click **Test**. The hexidecimal payload entered is shown in JSON format with rearranged elements as test result
+5. Again, you have to test this converter payload format before you can save the function. Enter eg. '2A00' in the payload and click **Test**. The hexidecimal payload entered is shown in JSON format with rearranged elements as test result
 
 6. Finally, scroll to the bottom of the page and click **Save**
 
@@ -505,13 +507,13 @@ Now, the hexidecimal payload is an efficient format for LoRa communication but i
 
     ![](img/TheThingsNetwork/ttn-device-payload-fields.png)
 
-Now we have clean JSON data ready to be processed in Azure IoT Hub and upstream.
+Now we have clean JSON data ready to be processed. But it's still at the TTN portal. Let's connect the Azure IoT Portal to read this upstream data.
 
 ## Configuring the Azure IoT platform to receive telemetry
 
 Futher processing of the telemetry on the The Things Network platform is not possible. Processing telemetry has to be done on your own IoT plaform of your choice. In this case we choose the Azure IoT platform.
 
-But first we need the secrets from the The Things Network platform to be able to create a secure connection between the two platforms. A secure connection between platforms is called a bridge. We will configure and deploy one.
+But first we need the secrets from the The Things Network platform to be able to create a secure connection between the TTN and your own platform. A secure connection between platforms is called a bridge. We will configure and deploy a bridge with the Azure IoT Hub.
 
 ### Collect TTN Application secrets
 
@@ -519,7 +521,7 @@ We have to collect unique keys of the The Things Network application.
 
 1. Go to your The Things Network application **Overview** in the navigation bar
 2. **Write down** the 'Application ID'
-3. Scroll down to **Access Keys**. **Write down** the 'Access Key'
+3. Scroll down to **Access Keys**. **Write down** the default 'Access Key'
 
     ![](img/TheThingsNetwork/ttn-access-key.png)
 
