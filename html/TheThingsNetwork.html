@@ -2,20 +2,21 @@
 <h1 id="from-device-to-actionable-insights-with-lora-and-the-azure-iot-platform">From device to actionable insights with LoRa and the Azure IoT platform</h1>
 <h2 id="getting-started-with-the-the-things-uno-and-the-things-network">Getting started with the The Things Uno and The Things Network</h2>
 <p><img src="img/msft/Picture01-overview.png" /></p>
-<p>In this chapter you will configure the The Things Uno with two sensors, connect it to The Things Network platform. On the The Things platform you will provision the The Things Uno, receive its messages and decode the telemetry. As final step in this chapter you will deploy a bridge between the The Things Network platform and Microsoft Azure IoT platform.</p>
+<p>In this chapter you will configure the The Things Uno with two sensors, connect it to The Things Network platform. On the The Things platform you will provision (generate keys for) the The Things Uno, receive its messages and decode the telemetry. As final step in this chapter you will deploy a bridge between the The Things Network platform and Microsoft Azure IoT platform.</p>
 <p><em>Note: In this workshop, we will create uniquely named Azure resources. The suggested names could be reserved already. Just try another unique name.</em></p>
 <h3 id="prerequisites">Prerequisites</h3>
+<p>During this chapter most of these will be explained in dept.</p>
 <ol type="1">
 <li><p>A computer with internet access</p></li>
-<li><p>A The Things Uno, a Grove - Water Sensor, a Grove - PIR Motion Sensor, wiring &amp; a micro USB cable</p></li>
+<li><p>A The Things Uno, a LED Bar Sensor, a Button Sensor, wiring &amp; a micro USB cable</p></li>
 <li><p><a href="https://www.arduino.cc/en/Main/Software">Arduino IDE</a></p></li>
-<li><p><a href="https://nodejs.org/en/">Node.js</a>. <em>(We prefer Version 6)</em></p></li>
+<li><p><a href="https://nodejs.org/en/">Node.js</a>. <em>(We prefer Version 8)</em></p></li>
 <li><p>Azure account <a href="https://azure.microsoft.com/en-us/free/">create here</a> <em>(<a href="https://www.microsoftazurepass.com/howto">Azure passes</a> will be present for those who have no Azure account (please check your email for final confirmation))</em></p></li>
 <li><p><a href="https://account.thethingsnetwork.org/">TTN account</a></p></li>
 <li><p>Bridge software between TTN and Azure <a href="https://github.com/sandervandevelde/TtnAzureBridge">TtnAzureBridge</a> (or <a href="https://aka.ms/workshopiot">as zip</a>)</p></li>
-<li><p><a href="https://www.npmjs.com/package/iothub-explorer">IoT Hub Explorer</a> <em>(for Command-Line interface based usage; see below for installation steps)</em> or <a href="https://github.com/Azure/azure-iot-sdks/releases">Device Explorer</a>. <em>(Scroll down to the Downloads section to locate the download link for the SetupDeviceExplorer.msi installer)</em></p></li>
+<li><p><a href="https://www.npmjs.com/package/iothub-explorer">IoT Hub Explorer</a> <em>(for Command-Line interface based usage; see below for installation steps)</em> or <a href="https://github.com/Azure/azure-iot-sdks/releases">Device Explorer</a>. <em>(Locate the download link for the SetupDeviceExplorer.msi installer. Download and run the installer)</em></p></li>
 <li><p>Seeed Grove Led Bar <a href="https://github.com/Seeed-Studio/Grove_LED_Bar">software library</a> (or <a href="https://aka.ms/workshopiot">as zip</a>)</p></li>
-<li><p>Modern browsers like Edge, Chrome and Firefox are preferred</p></li>
+<li><p>Modern, up-to-date browser like Edge, Chrome and Firefox</p></li>
 </ol>
 <h2 id="connect-your-device">Connect your device</h2>
 <p><img src="img/msft/Picture02-build-the-hardware.png" /></p>
@@ -494,7 +495,7 @@ Message received (12/predictive_maintenance_machine_42/eui-b827ebffffc19ca8/51.4
 <h3 id="monitoring-using-ui">Monitoring using UI</h3>
 <p>We can check the arrival of the messages in the Azure IoT Hub using the Device Explorer.</p>
 <p>The Device Explorer tool is a Windows-only graphical tool for managing your devices in IoT Hub.</p>
-<p>The easiest way to install the Device Explorer tool in your environment is to download the pre-built version by clicking <a href="https://github.com/Azure/azure-iot-sdks/releases">Azure IoT SDKs releases</a>. Scroll down to the Downloads section to locate the download link for the SetupDeviceExplorer.msi installer. Download and run the installer.</p>
+<p>The easiest way to install the Device Explorer tool in your environment is to download the pre-built version by clicking <a href="https://github.com/Azure/azure-iot-sdks/releases">Azure IoT SDKs releases</a>. <em>(Locate the download link for the SetupDeviceExplorer.msi installer. Download and run the installer)</em></p>
 <p>To run the Device Explorer tool, double-click the DeviceExplorer.exe file in Windows Explorer. The default installation folder for this application is C:Files (x86).</p>
 <ol type="1">
 <li><p>Start the <code>Device Explorer</code> from the desktop or using the start menu</p></li>

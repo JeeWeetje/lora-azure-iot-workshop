@@ -4,19 +4,21 @@
 
 ![](img/msft/Picture01-overview.png)
 
-In this chapter you will configure the The Things Uno with two sensors, connect it to The Things Network platform. On the The Things platform you will provision the The Things Uno, receive its messages and decode the telemetry. As final step in this chapter you will deploy a bridge between the The Things Network platform and Microsoft Azure IoT platform.
+In this chapter you will configure the The Things Uno with two sensors, connect it to The Things Network platform. On the The Things platform you will provision (generate keys for) the The Things Uno, receive its messages and decode the telemetry. As final step in this chapter you will deploy a bridge between the The Things Network platform and Microsoft Azure IoT platform.
 
 *Note: In this workshop, we will create uniquely named Azure resources. The suggested names could be reserved already. Just try another unique name.*
 
 ### Prerequisites
 
+During this chapter most of these will be explained in dept.
+
 1. A computer with internet access
 
-2. A The Things Uno, a Grove - Water Sensor, a Grove - PIR Motion Sensor, wiring & a micro USB cable
+2. A The Things Uno, a LED Bar Sensor, a Button Sensor, wiring & a micro USB cable
 
 3. [Arduino IDE](https://www.arduino.cc/en/Main/Software)
 
-4. [Node.js](https://nodejs.org/en/). _(We prefer Version 6)_
+4. [Node.js](https://nodejs.org/en/). _(We prefer Version 8)_
 
 5. Azure account [create here](https://azure.microsoft.com/en-us/free/) _([Azure passes](https://www.microsoftazurepass.com/howto) will be present for those who have no Azure account (please check your email for final confirmation))_
 
@@ -24,11 +26,11 @@ In this chapter you will configure the The Things Uno with two sensors, connect 
 
 7. Bridge software between TTN and Azure [TtnAzureBridge](https://github.com/sandervandevelde/TtnAzureBridge) (or [as zip](https://aka.ms/workshopiot))
 
-8. [IoT Hub Explorer](https://www.npmjs.com/package/iothub-explorer) _(for Command-Line interface based usage; see below for installation steps)_ or [Device Explorer](https://github.com/Azure/azure-iot-sdks/releases). _(Scroll down to the Downloads section to locate the download link for the SetupDeviceExplorer.msi installer)_
+8. [IoT Hub Explorer](https://www.npmjs.com/package/iothub-explorer) _(for Command-Line interface based usage; see below for installation steps)_ or [Device Explorer](https://github.com/Azure/azure-iot-sdks/releases). _(Locate the download link for the SetupDeviceExplorer.msi installer. Download and run the installer)_
 
 9. Seeed Grove Led Bar [software library](https://github.com/Seeed-Studio/Grove_LED_Bar) (or [as zip](https://aka.ms/workshopiot))
 
-10. Modern browsers like Edge, Chrome and Firefox are preferred
+10. Modern, up-to-date browser like Edge, Chrome and Firefox
 
 ## Connect your device
 
@@ -59,7 +61,7 @@ Your device and sensors should be connected as follows:
 
    ![](img/TheThingsNetwork/node-button.jpg)
 
-- LED pin layout
+- LED Bar pin layout
 
    ![](img/TheThingsNetwork/node-led.jpg)
 
@@ -662,7 +664,7 @@ We can check the arrival of the messages in the Azure IoT Hub using the Device E
 
 The Device Explorer tool is a Windows-only graphical tool for managing your devices in IoT Hub.
 
-The easiest way to install the Device Explorer tool in your environment is to download the pre-built version by clicking [Azure IoT SDKs releases](https://github.com/Azure/azure-iot-sdks/releases). Scroll down to the Downloads section to locate the download link for the SetupDeviceExplorer.msi installer. Download and run the installer.
+The easiest way to install the Device Explorer tool in your environment is to download the pre-built version by clicking [Azure IoT SDKs releases](https://github.com/Azure/azure-iot-sdks/releases). _(Locate the download link for the SetupDeviceExplorer.msi installer. Download and run the installer)_
 
 To run the Device Explorer tool, double-click the DeviceExplorer.exe file in Windows Explorer. The default installation folder for this application is C:\Program Files (x86)\Microsoft\DeviceExplorer.
 
