@@ -31,7 +31,7 @@
 <p>Follow these steps to create an Azure Stream Analytics job which takes messages from your IoT Hub. These jobs can handle great amounts of messages, executing an SQL-like query. Stream Analytics Jobs are great for time window related queries.</p>
 <p><em>Note: in this workshop, we will not dive too deep into Stream Analytics. See for <a href="https://azure.microsoft.com/en-us/documentation/articles/stream-analytics-real-time-event-processing-reference-architecture/">more information</a>.</em></p>
 <ol type="1">
-<li><p><strong>Log into</strong>` the <a href="https://portal.azure.com/">Azure portal</a>. You will be asked to provide Azure credentials if needed</p></li>
+<li><p><strong>Log into</strong> the <a href="https://portal.azure.com/">Azure portal</a>. You will be asked to provide Azure credentials if needed</p></li>
 <li><p>On the left, select <strong>Resource groups</strong>. A list of resource groups is shown</p>
 <p><img src="img/azure-resource-groups.png" /></p></li>
 <li><p>Select the ResourceGroup <strong>IoTWorkshop-rg</strong>. It will open a new blade with all resources in this group</p></li>
@@ -86,19 +86,6 @@
 <p><img src="img/azure-eventhub-created.png" /></p></li>
 </ol>
 <p>The Event Hub is now created. But before we pass on, we need some Namespace secrets for later usage.</p>
-<h3 id="azure-event-hub-namespace-secrets">Azure Event Hub namespace secrets</h3>
-<p>A few steps below we will create an Azure Functions triggered by an Event Hub. At this moment, in the editor of the Azure portal, the Azure functions can not automatically recognize available Event Hubs. We need some secrets to do it by hand.</p>
-<p>Previously, in the (preview) Azure Functions part of the Azure portal, the Azure functions could not automatically recognize available Event Hubs. We needed to remember some secrets.</p>
-<p>Just to be known with the security features on an EventHub, let’s look at the Shared access policies of the namespace</p>
-<ol type="1">
-<li><p>Within the namespace blade, select the general setting <strong>Shared access policies</strong></p></li>
-<li><p>select the already available <strong>RootManageSharedAccessKey</strong> policy</p>
-<p><img src="img/azure-eventhub-policy.png" /></p></li>
-<li><p>Look at the Connection string <strong>Connection String-Primary Key</strong></p></li>
-<li><p>Look at the <strong>name</strong> of the Event Hub eg. <strong>iotworkshop-eh</strong> <em>Note: in lower case</em></p></li>
-<li><p>You can see that if you want to read and/or listen too and/or manage EventHubs, you need access to the policy</p></li>
-</ol>
-<p><em>Note: The Event Hub itself has Shared access policies too. You have looked at the policy of the namespace, applicable for all EventHubs!.</em></p>
 <h2 id="connecting-the-hubs-to-azure-stream-analytics-job-input-and-output">Connecting the hubs to Azure Stream Analytics job input and output</h2>
 <p>Let’s and an input source and output sink to the Stream Analytics job.</p>
 <h3 id="connecting-the-hubs-to-azure-stream-analytics-job-input">Connecting the hubs to Azure Stream Analytics job input</h3>
@@ -110,10 +97,11 @@
 <li><p>Select the Azure Stream Analytics job <strong>IoTWorkshop-sa</strong>. At this moment there are no Inputs or Outputs.</p>
 <p><img src="img/azure-stream-analytics-empty.png" /></p></li>
 <li><p>Select <strong>Inputs</strong></p></li>
-<li><p>Select <strong>Add</strong>. A dialog to add a new input is shown</p>
+<li><p>Select <strong>Add Stream Input</strong>.</p></li>
+<li><p>Select <strong>IoT Hub</strong> as stream input</p></li>
+<li><p>A dialog to add a new input is shown. Name the input <strong>hubinput</strong></p>
 <p><img src="img/azure-portal-add.png" /></p></li>
-<li><p>Enter <strong>hubinput</strong> as Input alias</p></li>
-<li><p>Select <strong>IoT Hub</strong> as Source. Because we have only one IoT Hub in our account, all other fields are automatically filled in with the right IoT Hub, <strong>IoTWorkshop-rg</strong></p>
+<li><p>If we have only one IoT Hub in our account, all other fields are automatically filled in with the right IoT Hub, <strong>IoTWorkshop-rg</strong> Otherwise, select your own IoT Hub</p>
 <p><img src="img/azure-stream-analytics-add-input.png" /></p></li>
 <li><p>Select <strong>Create</strong></p></li>
 </ol>
@@ -122,7 +110,9 @@
 <p>As shown above, the Azure Stream Analytics job will connect to the Event Hub. Follow these steps to define the output of Azure Stream Analytics.</p>
 <ol type="1">
 <li><p><strong>Go back</strong> to the StreamAnalytics job opening page and now Select <strong>Outputs</strong></p></li>
-<li><p>Select <strong>Add</strong>. A dialog to add a new output is shown</p>
+<li><p>Select <strong>Add</strong>.</p></li>
+<li><p>A dropdown in shown. Select <strong>Event Hub</strong> as sink.</p></li>
+<li><p>A dialog to add a new output is shown</p>
 <p><img src="img/azure-portal-add.png" /></p></li>
 <li><p>Enter <strong>huboutputsink</strong> as Output alias</p></li>
 <li><p>The <strong>Event Hub</strong> is already selected as Sink (if multiple EventHubs are available, check if the right one is selected) and all other fields are automatically filled in with the right Event Hub, <strong>iotworkshop-eh</strong> <em>Note: in lower case</em> <em>(<strong>Warning</strong> What if the EventHub does not show up? Add it by hand)</em></p>
@@ -135,7 +125,7 @@
 <h2 id="write-the-azure-stream-analytics-job-query">Write the Azure Stream Analytics job query</h2>
 <p>Follow these steps to write the query of Azure Stream Analytics job.</p>
 <ol type="1">
-<li><p>Select <strong>Query</strong></p></li>
+<li><p>Select <strong>Edit Query</strong> in the Azure Stream Analytics Overview</p></li>
 <li><p>A new blade is shown. Here you can write your SQL-like Azure Stream Analytics job query</p>
 <p><img src="img/azure-stream-analytics-query-initial.png" /></p></li>
 <li><p>Write the following, very simple, query</p>

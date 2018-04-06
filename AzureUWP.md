@@ -154,28 +154,6 @@ Follow these steps to create an Azure Event Hub which passes large amounts of ev
 
 The Event Hub is now created. But before we pass on, we need some Namespace secrets for later usage.
 
-### Azure Event Hub namespace secrets
-
-A few steps below we will create an Azure Functions triggered by an Event Hub. At this moment, in the editor of the Azure portal, the Azure functions can not automatically recognize available Event Hubs. We need some secrets to do it by hand.
-
-Previously, in the (preview) Azure Functions part of the Azure portal, the Azure functions could not automatically recognize available Event Hubs. We needed to remember some secrets.
-
-Just to be known with the security features on an EventHub, let's look at the Shared access policies of the namespace
-
-1. Within the namespace blade, select the general setting **Shared access policies**
-
-2. select the already available **RootManageSharedAccessKey** policy
-
-    ![](img/azure-eventhub-policy.png)
-
-3. Look at the Connection string **Connection String-Primary Key**
-
-4. Look at the **name** of the Event Hub eg. **iotworkshop-eh** *Note: in lower case*
-
-5. You can see that if you want to read and/or listen too and/or manage EventHubs, you need access to the policy
-
-*Note: The Event Hub itself has Shared access policies too. You have looked at the policy of the namespace, applicable for all EventHubs!.*
-
 ## Connecting the hubs to Azure Stream Analytics job input and output
 
 Let's and an input source and output sink to the Stream Analytics job.
@@ -196,17 +174,19 @@ As shown above, the Azure Stream Analytics job will connect to the IoT Hub. Foll
 
 4. Select **Inputs**
 
-5. Select **Add**. A dialog to add a new input is shown
+5. Select **Add Stream Input**. 
+
+6. Select **IoT Hub** as stream input
+
+7. A dialog to add a new input is shown. Name the input **hubinput**
 
     ![](img/azure-portal-add.png)
 
-6. Enter **hubinput** as Input alias
-
-7. Select **IoT Hub** as Source. Because we have only one IoT Hub in our account, all other fields are automatically filled in with the right IoT Hub, **IoTWorkshop-rg**
+8. If we have only one IoT Hub in our account, all other fields are automatically filled in with the right IoT Hub, **IoTWorkshop-rg** Otherwise, select your own IoT Hub
 
     ![](img/azure-stream-analytics-add-input.png)
 
-8. Select **Create**
+9. Select **Create**
 
 The input will be created and the connection to the hub is tested automatically.
 
@@ -216,21 +196,25 @@ As shown above, the Azure Stream Analytics job will connect to the Event Hub. Fo
 
 1. **Go back** to the StreamAnalytics job opening page and now Select **Outputs**
 
-2. Select **Add**. A dialog to add a new output is shown
+2. Select **Add**. 
+
+3. A dropdown in shown. Select **Event Hub** as sink.
+
+4. A dialog to add a new output is shown
 
     ![](img/azure-portal-add.png)
 
-3. Enter **huboutputsink** as Output alias
+5. Enter **huboutputsink** as Output alias
 
-4. The **Event Hub** is already selected as Sink (if multiple EventHubs are available, check if the right one is selected) and all other fields are automatically filled in with the right Event Hub, **iotworkshop-eh** *Note: in lower case* _(**Warning** What if the EventHub does not show up? Add it by hand)_
+6. The **Event Hub** is already selected as Sink (if multiple EventHubs are available, check if the right one is selected) and all other fields are automatically filled in with the right Event Hub, **iotworkshop-eh** *Note: in lower case* _(**Warning** What if the EventHub does not show up? Add it by hand)_
 
     ![](img/azure-stream-analytics-add-output.png)
 
-5. Do not forget to **change** the Format into **Array**. *Note: Our output will generate JSON. And multiple lines of JSON are NOW formatted as Array, NOT as separated lines. Please double check this again*
+7. Do not forget to **change** the Format into **Array**. *Note: Our output will generate JSON. And multiple lines of JSON are NOW formatted as Array, NOT as separated lines. Please double check this again*
 
-6. Select **Create**
+8. Select **Create**
 
-7. The Output will be created and the connection to the hub is tested automatically.
+9. The Output will be created and the connection to the hub is tested automatically.
 
 The output is now defined. Let's add the Azure Stream Analytics job query to connect input and output.
 
@@ -238,7 +222,7 @@ The output is now defined. Let's add the Azure Stream Analytics job query to con
 
 Follow these steps to write the query of Azure Stream Analytics job.
 
-1. Select **Query**
+1. Select **Edit Query** in the Azure Stream Analytics Overview
 
 2. A new blade is shown. Here you can write your SQL-like Azure Stream Analytics job query
 
