@@ -35,23 +35,30 @@ During the workshop the following experts will be present to guide you through t
 
 ## Workshop/Hands-on locations and dates
 
-| Event | Location | Date |  # of attendees  |
-| --- | --- | --- | --- |
-| Microsoft Tech Days 2016 | Amsterdam, The Netherlands | tba | 19 |
-| Microsoft Tech Days 2016 | Amsterdam, The Netherlands | tba | 16 |
-| Microsoft Tech Days 2016 | Amsterdam, The Netherlands | tba | 12 |
-| Microsoft Tech Days 2016 | Amsterdam, The Netherlands | tba | 15 |
-| dotNed Saturday 2017 | Veenendaal, The Netherlands | tba | 15 |
-| Atos Innovatos 2017 | Amstelveen, The Netherlands | tba | 8 |
-| Atos Innovatos 2017 | Groningen, The Netherlands | tba | 9 |
-| Atos Innovatos 2017 | Eindhoven, The Netherlands | tba | 13 |
-| Global Azure Bootcamp 2017 | Amstelveen, The Netherlands | tba | 12 |
-| IoT Tech Day 2017 | Utrecht, The Netherlands | tba | 22 |
-| Microsoft Tech Days 2017 | Amsterdam, The Netherlands | tba | 14 |
-| Codecamp 2017 | Iasi, Romania | October 27, 2017 | 20 |
-| LoRa IoT network | Apeldoorn, The Netherlands | April 7, 2018 | tba |
-| Global Azure Bootcamp 2018 | Amstelveen, The Netherlands | April 21, 2018 | tba |
-| TEQnation 2018 | Utrecht, The Netherlands | April 26, 2018 | tba |
+These are the places where this workshop is given 
+
+<table border="1">
+<thead>
+<tr><th>Name</th><th>location</th><th>Date</th><th># of attendees</th></tr>
+<thead>
+<tbody>
+<tr><td>Microsoft Tech Days 2016</td><td>Amsterdam, The Netherlands</td><td>tba</td><td>19</td></tr>
+<tr><td>Microsoft Tech Days 2016</td><td>Amsterdam, The Netherlands</td><td>tba</td><td>16</td></tr>
+<tr><td>Microsoft Tech Days 2016</td><td>Amsterdam, The Netherlands</td><td>tba</td><td>12</td></tr>
+<tr><td>Microsoft Tech Days 2016</td><td>Amsterdam, The Netherlands</td><td>tba</td><td>15</td></tr>
+<tr><td>dotNed Saturday 2017</td><td>Veenendaal, The Netherlands</td><td>tba</td><td>15</td></tr>
+<tr><td>Atos Innovatos 2017</td><td>Amstelveen, The Netherlands</td><td>tba</td><td>8</td></tr>
+<tr><td>Atos Innovatos 2017</td><td>Groningen, The Netherlands</td><td>tba</td><td>9</td></tr>
+<tr><td>Atos Innovatos 2017</td><td>Eindhoven, The Netherlands</td><td>tba</td><td>13</td></tr>
+<tr><td>Global Azure Bootcamp 2017</td><td>Amstelveen, The Netherlands</td><td>tba</td><td>12</td></tr>
+<tr><td>IoT Tech Day 2017</td><td>Utrecht, The Netherlands</td><td>tba</td><td>22</td></tr>
+<tr><td>Microsoft Tech Days 2017</td><td>Amsterdam, The Netherlands</td><td>tba</td><td>14</td></tr>
+<tr><td>Codecamp 2017</td><td>Iasi, Romania</td><td>tba</td><td>20</td></tr>
+<tr><td>LoRa IoT network</td><td>Apeldoorn, The Netherlands</td><td>April 7, 2018</td><td>20</td></tr>
+<tr><td>Global Azure Bootcamp 2018</td><td>Amstelveen, The Netherlands</td><td>April 21, 2018</td><td>tba</td></tr>
+<tr><td>TEQnation 2018</td><td>Utrecht, The Netherlands</td><td>April 26, 2018</td><td>tba</td></tr>
+</tbody>
+</table>
 
 ## Let's dive into the workshop
 
@@ -63,10 +70,10 @@ You have four options to choose from to start with. You can either go for physic
 
 1. **Connecting a device to the Azure IoT Platform**
 
-    <table>
+    <table border="1">
         <thead>
         <tr>
-            <th colspan="4">Choose the device or simulator to connect</th>
+            <th colspan="4">Choose the device or simulator to connect to Azure IoT</th>
         </tr>
         <thead>
         <tbody>
@@ -89,7 +96,7 @@ You have four options to choose from to start with. You can either go for physic
 
 2. **Receiving and handling telemetry in Azure**
 
-    <table>
+    <table border="1">
         <thead>
         <tr>
             <th colspan="4">Choose the device or simulator to receive telemetry from</th>
@@ -115,7 +122,7 @@ You have four options to choose from to start with. You can either go for physic
 
 3. **Passing commands back to actual devices or simulated devices**
 
-    <table>
+    <table border="1">
         <thead>
         <tr>
             <th colspan="4">Choose the device or simulator to pass commands back to</th>
