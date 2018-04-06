@@ -447,7 +447,7 @@ Repair of machine needed...</code></pre></li>
 <li><p>The IoTHub has not received any messages yet. Check the general settings for <code>Shared access policies</code></p>
 <p><img src="img/UwpToIotHub/azure-iot-hub-share-access-policy.png" /></p></li>
 <li><p><strong>Write down</strong> the <code>name</code> of the IoT Hub eg. <code>IoTWorkshop-ih</code></p></li>
-<li><p>Navigate to the ‘iothubowner’ policy and <strong>write down</strong> this <code>Connection String-Primary Key</code></p>
+<li><p>Navigate to the ‘iothubowner’ policy and <strong>write down</strong> both the <code>Primary Key</code> and the <code>Connection String-Primary Key</code>, the <strong>first full Connection String</strong></p>
 <p><img src="img/UwpToIotHub/azure-iothubowner-policy.png" /></p></li>
 </ol>
 <p>These are all the secrets needed from the Azure IoT Hub.</p>
@@ -466,7 +466,7 @@ Repair of machine needed...</code></pre></li>
 <li><p><strong>Replace</strong> [TTN App Id] with the <code>TTN Application ID</code></p></li>
 <li><p><strong>Replace</strong> [TTN App Access Key] with the <code>TTN Access Key</code></p></li>
 <li><p><strong>Replace</strong> [iothub name] with the <code>name</code> of the IoT Hub in the app settings</p></li>
-<li><p>In the connectionstring of ‘IoTHub’, <strong>replace</strong> [Connection String-Primary] with the remembered <code>Connection String-Primary Key</code> <em>Note</em>: this connectionstring should actually resemble the IoTHub connectionstring</p>
+<li><p>In the connectionstring of ‘IoTHub’, <strong>replace</strong> [Connection String-Primary] with the remembered <code>Primary Key</code> <em>Note</em>: actually, this connectionstring should resemble the full IoTHub connectionstring</p>
 <p><img src="img/TheThingsNetwork/bridge-config.png" /></p></li>
 <li><p><strong>Save</strong> the config file and close the editor</p></li>
 </ol>
@@ -514,14 +514,14 @@ Message received (12/predictive_maintenance_machine_42/eui-b827ebffffc19ca8/51.4
 <p>We can check the arrival of the messages in the Azure IoT Hub using the IoT Hub Explorer. This tool is Command-Line based, please check the installation requirements.</p>
 <p><em>Note: See the <a href="https://www.npmjs.com/package/iothub-explorer">full example</a> for more options of this tool.</em></p>
 <ol type="1">
-<li><p>Create a new folder eg. <code>c:\iothubexplorer</code></p></li>
-<li><p>At the command prompt (press Windows button-R, type .html and enter), navigate to the new folder <code>c:\iothubexplorer</code></p></li>
-<li><p>In this folder, run the following command <code>npm install -g iothub-explorer@latest</code> in your command-line environment, to install the latest (pre-release) version of the iothub-explorer tool</p></li>
-<li><p>Login to the IoT Hub Explorer by supplying your <em>remembered</em> IoT Hub <code>Connection String-primary key</code> using the command <code>iothub-explorer login &quot;[your connection string]&quot;</code></p></li>
-<li><p>A session with the IoT Hub will start and it will last for approx. one hour:</p>
+<li><p><strong>Create</strong> a new folder eg. <code>c:\iothubexplorer</code></p></li>
+<li><p>At the command prompt (press Windows button-R, type .html and enter), <strong>navigate</strong> to the new folder <code>c:\iothubexplorer</code></p></li>
+<li><p>In this folder, <strong>run</strong> the following command <code>npm install -g iothub-explorer@latest</code> in your command-line environment, to <strong>install</strong> the latest version of the iothub-explorer tool</p></li>
+<li><p><strong>Login</strong> to the IoT Hub Explorer by supplying your <em>remembered</em> IoT Hub <strong>Connection String</strong> using the command <code>iothub-explorer login &quot;[your connection string]&quot;</code></p></li>
+<li><p>A <strong>session</strong> with the IoT Hub will start and it will last for approx. one hour:</p>
 <pre class=".html/sh"><code>Session started, expires on Thu Jan 05 2017 22:53:55 GMT+0100 (W. Europe Standard Time)</code></pre></li>
-<li><p>To monitor the device-to-cloud messages from a device, use the following command <code>iothub-explorer monitor-events --login [your connection string]</code> and <code>fill in</code> your <em>remembered</em> IoT Hub ‘Connection String-primary key’</p></li>
-<li><p>All devices are monitored now. This will result in the following messages</p>
+<li><p>To <strong>monitor</strong> the device-to-cloud messages from a device, use the following command <code>iothub-explorer monitor-events --login [your connection string]</code> and <strong>fill in</strong> your <em>remembered</em> IoT Hub ‘Connection String’</p></li>
+<li><p>All devices are monitored now. This will <strong>result</strong> in the following messages</p>
 <pre class=".html/sh"><code>Monitoring events from all devices...
 ==== From: &#39;predictive_maintenance_machine_42&#39; at &#39;2018-04-06T21:07:00.539Z&#39; ====
 {

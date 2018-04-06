@@ -584,7 +584,7 @@ The bridge requires an Azure IoT Hub Shared access policy key name with `Registr
 
 6. **Write down** the `name` of the IoT Hub eg. `IoTWorkshop-ih`
 
-7. Navigate to the 'iothubowner' policy and **write down** this `Connection String-Primary Key`
+7. Navigate to the 'iothubowner' policy and **write down** both the `Primary Key` and the `Connection String-Primary Key`, the **first full Connection String**
 
     ![](img/UwpToIotHub/azure-iothubowner-policy.png)
 
@@ -617,7 +617,7 @@ Follow these steps to create the integration bridge between The Things Network a
 
 7. **Replace** [iothub name] with the `name` of the IoT Hub in the app settings
 
-8. In the connectionstring of 'IoTHub', **replace** [Connection String-Primary] with the remembered `Connection String-Primary Key` *Note*: this connectionstring should actually resemble the IoTHub connectionstring
+8. In the connectionstring of 'IoTHub', **replace** [Connection String-Primary] with the remembered `Primary Key` *Note*: actually, this connectionstring should resemble the full IoTHub connectionstring
 
    ![](img/TheThingsNetwork/bridge-config.png)
 
@@ -695,23 +695,23 @@ We can check the arrival of the messages in the Azure IoT Hub using the IoT Hub 
 
 *Note: See the [full example](https://www.npmjs.com/package/iothub-explorer) for more options of this tool.*
 
-1. Create a new folder eg. `c:\iothubexplorer`
+1. **Create** a new folder eg. `c:\iothubexplorer`
 
-2. At the command prompt (press Windows button-R, type CMD and enter), navigate to the new folder `c:\iothubexplorer`
+2. At the command prompt (press Windows button-R, type CMD and enter), **navigate** to the new folder `c:\iothubexplorer`
 
-3. In this folder, run the following command `npm install -g iothub-explorer@latest` in your command-line environment, to install the latest (pre-release) version of the iothub-explorer tool
+3. In this folder, **run** the following command `npm install -g iothub-explorer@latest` in your command-line environment, to **install** the latest version of the iothub-explorer tool
 
-4. Login to the IoT Hub Explorer by supplying your *remembered* IoT Hub `Connection String-primary key` using the command `iothub-explorer login "[your connection string]"`
+4. **Login** to the IoT Hub Explorer by supplying your *remembered* IoT Hub **Connection String** using the command `iothub-explorer login "[your connection string]"`
 
-5. A session with the IoT Hub will start and it will last for approx. one hour:
+5. A **session** with the IoT Hub will start and it will last for approx. one hour:
 
     ```cmd/sh
     Session started, expires on Thu Jan 05 2017 22:53:55 GMT+0100 (W. Europe Standard Time)
     ```
 
-6. To monitor the device-to-cloud messages from a device, use the following command `iothub-explorer monitor-events --login [your connection string]` and `fill in` your *remembered* IoT Hub 'Connection String-primary key'
+6. To **monitor** the device-to-cloud messages from a device, use the following command `iothub-explorer monitor-events --login [your connection string]` and **fill in** your *remembered* IoT Hub 'Connection String'
 
-7. All devices are monitored now. This will result in the following messages
+7. All devices are monitored now. This will **result** in the following messages
 
     ```cmd/sh
     Monitoring events from all devices...
