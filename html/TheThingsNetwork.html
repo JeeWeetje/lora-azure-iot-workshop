@@ -433,11 +433,11 @@ Repair of machine needed...</code></pre></li>
 <li><p>Press <code>Create</code> and the portal will start creating the service. Once it is created, a notification is shown. In the right upper corner, a bell represents the list of all notifications shown</p>
 <p><img src="img/UwpToIotHub/azure-notifications-iothub.png" /></p></li>
 </ol>
-<p>Creating an IoT Hub takes some time. Meanwhile, we will connect the device and create the bridge.</p>
+<p>Creating an IoT Hub takes some time.</p>
 <h3 id="collect-azure-iot-hub-secrets">Collect Azure IoT Hub secrets</h3>
-<p>The integration requires an Azure IoT Hub Shared access policy key name with <code>Registry read, write and Device connect</code> permissions. In this example, we use the <strong>iothubowner</strong> policy which has these permissions enabled by default.</p>
+<p>The bridge requires an Azure IoT Hub Shared access policy key name with <code>Registry read, write and Device connect</code> permissions. In this example, we use the <strong>iothubowner</strong> policy which has these permissions enabled by default.</p>
 <ol type="1">
-<li><p>Check the Azure portal. The resource group and the IoT Hub should be created by now (otherwise, we were unable to send duty cycles information to it)</p>
+<li><p>Check the Azure portal. The resource group and the IoT Hub has to be created before we continue…</p>
 <p><img src="img/UwpToIotHub/azure-notifications-iothub.png" /></p></li>
 <li><p>On the left, select <code>Resource groups</code>. A list of resource groups is shown</p>
 <p><img src="img/UwpToIotHub/azure-resource-groups.png" /></p></li>
@@ -450,12 +450,12 @@ Repair of machine needed...</code></pre></li>
 <li><p>Navigate to the ‘iothubowner’ policy and <strong>write down</strong> this <code>Connection String-Primary Key</code></p>
 <p><img src="img/UwpToIotHub/azure-iothubowner-policy.png" /></p></li>
 </ol>
-<p>This is the secret needed from the Azure IoT Hub.</p>
+<p>These are all the secrets needed from the Azure IoT Hub.</p>
 <h2 id="create-a-bridge">Create a bridge</h2>
 <p><img src="img/msft/Picture08-build-a-bridge-frm-ttn-to-azure.png" /></p>
 <p>Telemetry is arriving at the TTN portal. But we want to pass it on to the Azure IoT Platform. We need to build a ‘bridge’.</p>
 <p>Follow these steps to create the integration bridge between The Things Network and Azure IoT Hub.</p>
-<p><em>Note: The bridge below is build using C# and will not run on non-windows devices. Use instead a bridge in the cloud as described in <a href="Webjob.html">Deploying The Things Network Bridge to Azure as a WebJob</a></em></p>
+<p><em>Note: The bridge below is build using C# and will not run on non-windows devices. If you are unable to run the bridge locally, deploy the bridge in the cloud as described in <a href="Webjob.html">Deploying The Things Network Bridge to Azure as a WebJob</a></em></p>
 <p><em>Note: The bridge is actually an open source project on <a href="https://github.com/sandervandevelde/TtnAzureBridge">github</a>. We accept pull requests :-)</em></p>
 <ol type="1">
 <li><p><strong>Create</strong> a new folder eg. <code>c:\IoTWorkshop</code></p></li>

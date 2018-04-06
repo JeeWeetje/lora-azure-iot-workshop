@@ -558,13 +558,13 @@ Follow these steps to create an Azure IoT Hub.
 
     ![](img/UwpToIotHub/azure-notifications-iothub.png)
 
-Creating an IoT Hub takes some time. Meanwhile, we will connect the device and create the bridge.
+Creating an IoT Hub takes some time.
 
 ### Collect Azure IoT Hub secrets
 
-The integration requires an Azure IoT Hub Shared access policy key name with `Registry read, write and Device connect` permissions. In this example, we use the **iothubowner** policy which has these permissions enabled by default.
+The bridge requires an Azure IoT Hub Shared access policy key name with `Registry read, write and Device connect` permissions. In this example, we use the **iothubowner** policy which has these permissions enabled by default.
 
-1. Check the Azure portal. The resource group and the IoT Hub should be created by now (otherwise, we were unable to send duty cycles information to it)
+1. Check the Azure portal. The resource group and the IoT Hub has to be created before we continue...
 
     ![](img/UwpToIotHub/azure-notifications-iothub.png)
 
@@ -588,7 +588,7 @@ The integration requires an Azure IoT Hub Shared access policy key name with `Re
 
     ![](img/UwpToIotHub/azure-iothubowner-policy.png)
 
-This is the secret needed from the Azure IoT Hub.
+These are all the secrets needed from the Azure IoT Hub.
 
 ## Create a bridge
 
@@ -598,7 +598,7 @@ Telemetry is arriving at the TTN portal. But we want to pass it on to the Azure 
 
 Follow these steps to create the integration bridge between The Things Network and Azure IoT Hub.
 
-*Note: The bridge below is build using C# and will not run on non-windows devices. Use instead a bridge in the cloud as described in [Deploying The Things Network Bridge to Azure as a WebJob](Webjob.md)*
+*Note: The bridge below is build using C# and will not run on non-windows devices. If you are unable to run the bridge locally, deploy the bridge in the cloud as described in [Deploying The Things Network Bridge to Azure as a WebJob](Webjob.md)*
 
 *Note: The bridge is actually an open source project on [github](https://github.com/sandervandevelde/TtnAzureBridge). We accept pull requests :-)*
 
