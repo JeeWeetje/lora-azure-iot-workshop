@@ -205,7 +205,7 @@ Repair of machine needed...</code></pre></li>
 <li>Notice that the Register button is still disabled. A device needs a unique identifier</li>
 <li><p>Click the <strong>Generate</strong> icon for ‘Device EUI’ so a unique EUI can be generated on register</p>
 <p><img src="img/TheThingsNetwork/ttn-applications-devices-before-register.png" /></p></li>
-<li><p>The text in the EUI textbox is changed</p></li>
+<li><p>The text in the ‘Device EUI’ textbox is changed</p></li>
 <li><p>The register button is now enabled. Click <strong>Register</strong></p></li>
 <li><p>The device is now created</p>
 <p><img src="img/TheThingsNetwork/ttn-applications-devices-registered-otaa.png" /></p></li>
@@ -219,7 +219,7 @@ Repair of machine needed...</code></pre></li>
 <p><img src="img/TheThingsNetwork/ttn-applications-devices-ready.png" /></p></li>
 <li><p>Keep this page open, you need the device address, network session key and application session key in a minute</p></li>
 </ol>
-<p>The TTN application is created. Your device has been registered and provisioned.</p>
+<p>The TTN application is now created. And your device has been registered and provisioned. Let’s use the keys to connect.</p>
 <h2 id="send-telemetry-from-your-device-to-the-the-things-network-platform">Send telemetry from your device to the The Things Network platform</h2>
 <p><img src="img/msft/Picture05-submit-data-to-ttn.png" /></p>
 <p>The sensor data is read, now it is time to send the sensor data to the The Things Network platform.</p>
@@ -364,12 +364,12 @@ Repair of machine needed...</code></pre></li>
 <a class="sourceLine" id="cb3-132" data-line-number="132">      bar.setLed(<span class="dv">7</span>,<span class="dv">0</span>);</a>
 <a class="sourceLine" id="cb3-133" data-line-number="133">  }</a>
 <a class="sourceLine" id="cb3-134" data-line-number="134">}</a></code></pre></div></li>
-<li><p>Insert your device address in <code>devAddr</code>, network session key in <code>nwkSkey</code> and application session key in <code>appSKey</code>. You can use the handy <code>clipboard</code> button in the dashboard to copy it quickly as a HEX value</p>
+<li><p>Insert your device address in <code>devAddr</code>, network session key in <code>nwkSkey</code> and application session key in <code>appSKey</code>. You can use the handy <code>clipboard</code> button in the dashboard to copy it quickly as a HEX/C-Style value</p>
 <p><img src="img/TheThingsNetwork/ttn-applications-devices-credentials.png" /></p></li>
 <li>In the <strong>Sketch</strong> menu, click <strong>Upload</strong></li>
 <li><p>Open the <strong>Serial Monitor</strong> again from the <strong>Tools</strong> menu once upload has completed. Your device should now be sending telemetry to The Things Network</p>
 <p><img src="img/TheThingsNetwork/ttn-arduino-debug.png" /></p></li>
-<li><p>In The Things Network dashboard, go to <strong>Data</strong>. You see uplink packets arriving:</p>
+<li><p>In The Things Network dashboard, go to <strong>Data</strong>. You see uplink packets arriving (the 63 occurs when you push and hold the button):</p>
 <p><img src="img/TheThingsNetwork/ttn-portal-raw-messages.png" /></p></li>
 </ol>
 <p>We are now receiving raw telemetry. We can decode and transform this in the TTN portal towards JSON messages.</p>
@@ -390,28 +390,28 @@ Repair of machine needed...</code></pre></li>
 <a class="sourceLine" id="cb4-9" data-line-number="9">}</a></code></pre></div></li>
 <li><p>You have to test this decoder function before you can save the function. Enter eg. ‘2A00’ in the payload and click <strong>Test</strong>. The hexidecimal payload entered is shown in JSON format as test result</p>
 <p><img src="img/TheThingsNetwork/ttn-portal-decoder.png" /></p></li>
-<li><p>We want to rearrange the order of the JSON elements. To rearrange the order we use the following function as the <strong>converter</strong> payload format:</p>
+<li><p>We also want to rearrange (convert) the order of the JSON elements. To rearrange the order we use the following function as the <strong>converter</strong> payload format:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb5-1" data-line-number="1">function Converter(decoded, port) {</a>
 <a class="sourceLine" id="cb5-2" data-line-number="2">  <span class="cf">return</span> {</a>
 <a class="sourceLine" id="cb5-3" data-line-number="3">    errorCode: decoded.errorCode,</a>
 <a class="sourceLine" id="cb5-4" data-line-number="4">    numberOfCycles: decoded.cyclesCompleted</a>
 <a class="sourceLine" id="cb5-5" data-line-number="5">  };</a>
 <a class="sourceLine" id="cb5-6" data-line-number="6">}</a></code></pre></div></li>
-<li><p>Again, you have to test this converter payload format before you can save the function. Again, enter eg. ‘2A00’ in the payload and click <strong>Test</strong>. The hexidecimal payload entered is shown in JSON format with rearranged elements as test result</p></li>
+<li><p>Again, you have to test this converter payload format before you can save the function. Enter eg. ‘2A00’ in the payload and click <strong>Test</strong>. The hexidecimal payload entered is shown in JSON format with rearranged elements as test result</p></li>
 <li><p>Finally, scroll to the bottom of the page and click <strong>Save</strong></p></li>
 <li><p>Go back to your data overview. Now you should see something like this:</p>
 <p><img src="img/TheThingsNetwork/ttn-device-payload-fields.png" /></p></li>
 </ol>
-<p>Now we have clean JSON data ready to be processed in Azure IoT Hub and upstream.</p>
+<p>Now we have clean JSON data ready to be processed. But it’s still at the TTN portal. Let’s connect the Azure IoT Portal to read this upstream data.</p>
 <h2 id="configuring-the-azure-iot-platform-to-receive-telemetry">Configuring the Azure IoT platform to receive telemetry</h2>
 <p>Futher processing of the telemetry on the The Things Network platform is not possible. Processing telemetry has to be done on your own IoT plaform of your choice. In this case we choose the Azure IoT platform.</p>
-<p>But first we need the secrets from the The Things Network platform to be able to create a secure connection between the two platforms. A secure connection between platforms is called a bridge. We will configure and deploy one.</p>
+<p>But first we need the secrets from the The Things Network platform to be able to create a secure connection between the TTN and your own platform. A secure connection between platforms is called a bridge. We will configure and deploy a bridge with the Azure IoT Hub.</p>
 <h3 id="collect-ttn-application-secrets">Collect TTN Application secrets</h3>
 <p>We have to collect unique keys of the The Things Network application.</p>
 <ol type="1">
 <li>Go to your The Things Network application <strong>Overview</strong> in the navigation bar</li>
 <li><strong>Write down</strong> the ‘Application ID’</li>
-<li><p>Scroll down to <strong>Access Keys</strong>. <strong>Write down</strong> the ‘Access Key’</p>
+<li><p>Scroll down to <strong>Access Keys</strong>. <strong>Write down</strong> the default ‘Access Key’</p>
 <p><img src="img/TheThingsNetwork/ttn-access-key.png" /></p></li>
 </ol>
 <p>The <code>Application ID</code> and <code>Access Key</code> are required to get data from The Things Network.</p>

@@ -534,9 +534,9 @@ The `Application ID` and `Access Key` are required to get data from The Things N
 Follow these steps to create an Azure IoT Hub.
 
 1. Log into the [Azure portal](https://portal.azure.com/). You will be asked to provide Azure credentials if needed
-2. On the left, a number of common Azure services are shown. Select `More Services` to open a list with all available services
+2. On the left, a number of common Azure services are shown. Select `All Services` to open a list with all available services
 
-    ![](img/UwpToIotHub/azure-more-services.png)
+    ![](img/TheThingsNetwork/all-services.png)
 
 3. Filter it with `IoT Hub`
 
