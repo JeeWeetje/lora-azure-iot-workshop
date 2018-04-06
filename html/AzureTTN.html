@@ -220,9 +220,15 @@
 <p><img src="img/azure-function-app-eventhubtrigger-logs.png" /></p></li>
 <li><p>A ‘Logs’ panel is shown. This ‘Logs’ panel works like a trace log</p></li>
 <li><p>Update all the code, <strong>replace</strong> it with eg.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="va">module</span>.<span class="at">exports</span> <span class="op">=</span> <span class="kw">function</span> (context<span class="op">,</span> myEventHubTrigger) <span class="op">{</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">    <span class="va">context</span>.<span class="at">log</span>(<span class="st">&#39;JavaScript processed message:&#39;</span><span class="op">,</span> myEventHubTrigger)<span class="op">;</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="op">};</span></a></code></pre></div></li>
+<div class="sourceCode" id="cb2"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="va">module</span>.<span class="at">exports</span> <span class="op">=</span> <span class="kw">function</span> (context<span class="op">,</span> eventHubMessages) <span class="op">{</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">    <span class="va">context</span>.<span class="at">log</span>(<span class="vs">`JavaScript eventhub trigger function called for message array with length </span><span class="sc">${</span><span class="va">eventHubMessages</span>.<span class="at">length</span><span class="sc">}</span><span class="vs">`</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">    <span class="va">eventHubMessages</span>.<span class="at">forEach</span>(message <span class="op">=&gt;</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">    <span class="va">context</span>.<span class="at">log</span>(<span class="vs">`Processed message for device </span><span class="sc">${</span><span class="va">message</span>.<span class="at">deviceid</span><span class="sc">}</span><span class="vs">`</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">    <span class="op">}</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">    <span class="va">context</span>.<span class="at">done</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="op">};</span></a></code></pre></div></li>
 <li><p>Select <strong>Save</strong>. The changed JavaScript code will be saved immediately <em>Note: you can press ‘save and run’, this will actually run the function, but an empty test message will be passed (check out the ‘Test’ option to the right for more details)</em></p></li>
 <li><p>Double check the code, Javascript is not compiled in advance. So no error message will appear here.</p></li>
 </ol>
@@ -243,10 +249,10 @@
 <p>Machine telemetry with an error state is arriving at the Azure IoTHub. The Azure Function should pick these up</p>
 <ol type="1">
 <li><p>Telemetry will not arrive until Stream Analytics ‘hops’ to the next time frame. After that, you can see <strong>telemetry arriving</strong></p>
-<pre class=".html/sh"><code>2017-10-01T16:45:31.989 Function started (Id=e346d2ec-1a50-46be-b82e-da77a917b7ce)
-2017-10-01T16:45:32.005 JavaScript processed message: [ { count: 18, deviceid: &#39;predictive_maintenance_machine_42&#39; } ]
-2017-10-01T16:45:46.586 Function started (Id=2a3ef4b7-13ca-437e-bfcf-3e01f954b7c8)
-2017-10-01T16:45:46.586 JavaScript processed message: [ { count: 16, deviceid: &#39;predictive_maintenance_machine_42&#39; } ]</code></pre></li>
+<pre class=".html/sh"><code>2018-04-06T23:34:11.657 [Info] Function started (Id=89a47537-fbc5-44e3-be8e-1c7eeb4e5641)
+2018-04-06T23:34:11.688 [Info] JavaScript eventhub trigger function called for message array with length 1
+2018-04-06T23:34:11.688 [Info] Processed message for device predictive_maintenance_machine_42
+2018-04-06T23:34:11.688 [Info] Function completed (Success, Id=89a47537-fbc5-44e3-be8e-1c7eeb4e5641, Duration=41ms)</code></pre></li>
 </ol>
 <p>Notice that we have full control over telemetry. We know which device has sent faults at what time frame. This is great for charts or commands.</p>
 <h2 id="conclusion">Conclusion</h2>

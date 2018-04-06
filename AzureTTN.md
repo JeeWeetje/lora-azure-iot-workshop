@@ -397,9 +397,16 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
 20. Update all the code, **replace** it with eg.
 
     ```javascript
-    module.exports = function (context, myEventHubTrigger) {
-        context.log('JavaScript processed message:', myEventHubTrigger);
+    module.exports = function (context, eventHubMessages) {
+        context.log(`JavaScript eventhub trigger function called for message array with length ${eventHubMessages.length}`);
+    
+        eventHubMessages.forEach(message => {
+        context.log(`Processed message for device ${message.deviceid}`);
+        });
+
+        context.done();
     };
+
     ```
 
 21. Select **Save**. The changed JavaScript code will be saved immediately *Note: you can press 'save and run', this will actually run the function, but an empty test message will be passed (check out the 'Test' option to the right for more details)*
@@ -435,10 +442,10 @@ Machine telemetry with an error state is arriving at the Azure IoTHub. The Azure
 1. Telemetry will not arrive until Stream Analytics 'hops' to the next time frame. After that, you can see **telemetry arriving**
 
     ```cmd/sh
-    2017-10-01T16:45:31.989 Function started (Id=e346d2ec-1a50-46be-b82e-da77a917b7ce)
-    2017-10-01T16:45:32.005 JavaScript processed message: [ { count: 18, deviceid: 'predictive_maintenance_machine_42' } ]
-    2017-10-01T16:45:46.586 Function started (Id=2a3ef4b7-13ca-437e-bfcf-3e01f954b7c8)
-    2017-10-01T16:45:46.586 JavaScript processed message: [ { count: 16, deviceid: 'predictive_maintenance_machine_42' } ]
+    2018-04-06T23:34:11.657 [Info] Function started (Id=89a47537-fbc5-44e3-be8e-1c7eeb4e5641)
+    2018-04-06T23:34:11.688 [Info] JavaScript eventhub trigger function called for message array with length 1
+    2018-04-06T23:34:11.688 [Info] Processed message for device predictive_maintenance_machine_42
+    2018-04-06T23:34:11.688 [Info] Function completed (Success, Id=89a47537-fbc5-44e3-be8e-1c7eeb4e5641, Duration=41ms)
     ```
 
 Notice that we have full control over telemetry. We know which device has sent faults at what time frame. This is great for charts or commands.
