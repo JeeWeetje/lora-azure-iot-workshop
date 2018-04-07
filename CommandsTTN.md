@@ -42,15 +42,15 @@ First, we update the Azure Function. For each device which is passed on, we send
 
 Sending commands back to devices is a specific feature of the IoT Hub. The IoT Hub registers devices and their security policies. And the IoT Hub has built-in logic to send commands back.
 
-1. On the left, select `Resource groups`. A list of resource groups is shown
+1. On the left, select **Resource groups**. A list of resource groups is shown
 
     ![](img/azure-resource-groups.png)
 
-2. Select the ResourceGroup `IoTWorkshop-rg`. It will open a new blade with all resources in this group
+2. Select the ResourceGroup **IoTWorkshop-rg**. It will open a new blade with all resources in this group
 
-3. Select the Azure Function App `IoTWorkshop-fa`
+3. Select the Azure Function App **IoTWorkshop-fa**
 
-4. To the left, the current functions are shown. Select `IoTWorkshopEventHubFunction`
+4. To the left, the current functions are shown. Select **IoTWorkshopEventHubFunction**
 
     ![](img/function/azure-function-select.png)
 
@@ -105,7 +105,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
     };
     ```
 
-7. Press the `Logs` button at the bottom to open the pane which shows some basic logging
+7. Press the **Logs** button at the bottom to open the pane which shows some basic logging
 
     ![](img/azure-function-app-eventhubtrigger-logs.png)
 
@@ -113,7 +113,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 
 9. Because we are writing JavaScript, there will be no warning the code above has some flaws. We need to add a connection string and extra libraries. Let's start with the extra libraries.
 
-10. Press the `View Files` button to 'unfold' the pane which shows a directory tree of all files.
+10. Press the **View Files** button to 'unfold' the pane which shows a directory tree of all files.
 
     ![](img/commands/azure-function-app-view-files.png)
 
@@ -121,15 +121,15 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 
     ![](img/commands/azure-function-app-view-files-pane-nodejs.png)
 
-12. Add a new file by pressing `Add`
+12. Add a new file by pressing **Add**
 
     ![](img/commands/azure-function-app-view-files-pane-add.png)
 
-13. Name the new file `package.json`
+13. Name the new file **package.json**
 
     ![](img/commands/azure-function-app-view-files-pane-add-file-nodejs.png)
 
-14. Press `Enter` to confirm the name of the file and an empty code editor will be shown for this file.
+14. Press **Enter** to confirm the name of the file and an empty code editor will be shown for this file.
 
 15. The 'package.json' file describes which NodeJS packages have to be referenced. Fill the editor with the following code
 
@@ -147,7 +147,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
     }
     ```
 
-16. Select `Save`.
+16. Select **Save**.
 
 Now, the Azure Function is ready to receive data about devices which simulate 'faulty machines'. And it can send commands back to 'repair' the 'machines'.
 
@@ -157,9 +157,9 @@ Now, the Azure Function is ready to receive data about devices which simulate 'f
 
 1. We have added the extra dependencies. Unfortunately the libraries involved are not loaded yet. To make sure all libraries are loaded, all we have to do is simply stop and start our Azure Function. *Note: you can press 'save and run', with a test message like "[{"count":16,"deviceid":"MachineCyclesNodeJs"}]" (check out the 'Test' option to the right for more info) but this will not be compiles correctly*
 
-2. To the left, press `Manage`
+2. To the left, press **Manage**
 
-3. `Disable` and `Enable` the Azure Function again
+3. **Disable** and **Enable** the Azure Function again
 
     ![](img/azure-function-manage-enable.png)
 
@@ -171,15 +171,15 @@ Now, the Azure Function is ready to receive data about devices which simulate 'f
 
 6. Open the console in development tools
 
-7. Navigate in the console to the folder with your function (```cd IoTWorkshopEventHubFunction```)
+7. Navigate in the console to the folder with your function **cd IoTWorkshopEventHubFunction**
 
-8. run ```npm install``` and restart your app and function
+8. run **npm install** and restart your app and function
 
-9. There is just one thing left to do: we have to fill in the `Azure IoT Hub security policy connection string`. To send commands back, we have to proof we are authorized to do this
+9. There is just one thing left to do: we have to fill in the **Azure IoT Hub security policy connection string**. To send commands back, we have to proof we are authorized to do this
 
-10. In the Azure Function, replace '[IOT HUB connection string]' with your *remembered* IoT Hub `Connection String-primary key`
+10. In the Azure Function, replace '[IOT HUB connection string]' with your *remembered* IoT Hub full **Connection String-primary key**
 
-11. Select `Save` again
+11. Select **Save** again
 
 Now, the Azure Function is ready to receive data about devices which simulate 'faulty machines'. And it can send commands back to 'repair' the 'machines'.
 
@@ -193,9 +193,9 @@ Let's bring your device in a faulty state and see how the Azure IoT Platforms se
 
 In [TTN Node](TheThingsNetwork.md), we assembled a TTN node and we put a sketch (source code) on it. Here we will add more logic to the node.
 
-1. `Go back` to the Arduino IDE and select the sketch
+1. **Go back** to the Arduino IDE and select the sketch
 
-2. `Alter` the sketch, Add the 'ttn.onMessage(handleCommand);' in the setup function:
+2. **Alter** the sketch, Add the 'ttn.onMessage(handleCommand);' in the setup function:
 
     ```c
     // Initializing TTN communication...
@@ -221,11 +221,11 @@ In [TTN Node](TheThingsNetwork.md), we assembled a TTN node and we put a sketch 
     }
     ```
 
-5. In the `Sketch` menu, click `Upload`. *Note: The sketch is uploaded and again telemetry will arrive at the TTN Portal, the TTN Azure bridge and the IoTHub*
+5. In the **Sketch** menu, click **Upload**. *Note: The sketch is uploaded and again telemetry will arrive at the TTN Portal, the TTN Azure bridge and the IoTHub*
 
-6. `Push` the button attached to the node and `hold` it until the LED is unlit. The 'machine' is now in an 'error' state
+6. **Push** the button attached to the node and **hold** it until the LED is unlit. The 'machine' is now in an 'error' state
 
-7. `Check out` the bridge. The node is not updating the cycles anymore and error 99 is passed
+7. **Check out** the bridge. The node is not updating the cycles anymore and error 99 is passed
 
     ![](img/commands/TTN-Errors-arrive.png)
 
@@ -239,15 +239,15 @@ In [TTN Node](TheThingsNetwork.md), we assembled a TTN node and we put a sketch 
     2017-01-13T14:09:17.833 Function completed (Success, Id=ed3a2175-33e6-4698-a76c-5831b2ea86a1)
     ```
 
-9. `Check out` the bridge again. It will now handle the command (Downlink message) and send it to the TTN portal
+9. **Check out** the bridge again. It will now handle the command (Downlink message) and send it to the TTN portal
 
     ![](img/commands/TTN-Errors-arrive-at-bridge.png)
 
-10. `Check out` the TTN portal, the data pane. It will now handle the command (Downlink message) and send it to the device, one the first moment a new uplink message arrives
+10. **Check out** the TTN portal, the data pane. It will now handle the command (Downlink message) and send it to the device, one the first moment a new uplink message arrives
 
     ![](img/commands/TTN-Errors-arrive-at-ttn.png)
 
-11. Finally, `check out` the logging of the node. The commands arrives and is handled by the function in the sketch
+11. Finally, **check out** the logging of the node. The commands arrives and is handled by the function in the sketch
 
     ![](img/commands/TTN-Errors-arrive-at-node.png)
 
