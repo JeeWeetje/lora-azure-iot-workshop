@@ -93,18 +93,21 @@ We will create a UWP app in Visual Studio. These apps are called Universal Windo
 
     ![](img/UwpToIotHub/vs-universal-app-template.png)
 
-4. Select `Ok`. If you are asked which minimal platform version must be loaded, just press `Ok` again
+4. Give the project an meaningful name
+
+5. Select `Ok`. If you are asked which minimal platform version must be loaded, just press `Ok` again
 
     ![](img/UwpToIotHub/vs-universal-anniversary.png)
 
     *Note: here the Windows 10 Anniversary edition is shown in the picture, please try select to select the most recent SDK*
 
-5. Press `F6` or use the menu `BUILD|Build Solution` to recompile the app and check if the build completes without errors
+6. Press `F6` or use the menu `BUILD|Build Solution` to recompile the app and check if the build completes without errors
 
     ![](img/UwpToIotHub/vs-build-succeeded.png)
 
-6. Start the app by pressing `F5` or use the menu `DEBUG|Start Debugging`
-7. The app starts and an empty form is shown
+7. Start the app by pressing `F5` or use the menu `DEBUG|Start Debugging`
+
+8. The app starts and an empty form is shown
 
 The app is created. You are now ready to add a connection to the IoT Hub.
 
