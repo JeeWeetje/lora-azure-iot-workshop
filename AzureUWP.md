@@ -152,7 +152,7 @@ Follow these steps to create an Azure Event Hub which passes large amounts of ev
 
     ![](img/azure-eventhub-created.png)
 
-The Event Hub is now created. But before we pass on, we need some Namespace secrets for later usage.
+The Event Hub is now created.
 
 ## Connecting the hubs to Azure Stream Analytics job input and output
 
@@ -194,7 +194,7 @@ The input will be created and the connection to the hub is tested automatically.
 
 As shown above, the Azure Stream Analytics job will connect to the Event Hub. Follow these steps to define the output of Azure Stream Analytics.
 
-1. **Go back** to the StreamAnalytics job opening page and now Select **Outputs**
+1. **Go back** to the StreamAnalytics job opening page (select Overview on the left side) and now Select **Outputs**
 
 2. Select **Add**. 
 
@@ -222,7 +222,7 @@ The output is now defined. Let's add the Azure Stream Analytics job query to con
 
 Follow these steps to write the query of Azure Stream Analytics job.
 
-1. Select **Edit Query** in the Azure Stream Analytics Overview
+1. Select **Query** on the left side in Azure Stream Analytics 
 
 2. A new blade is shown. Here you can write your SQL-like Azure Stream Analytics job query
 
@@ -252,9 +252,7 @@ Follow these steps to write the query of Azure Stream Analytics job.
 
     ![](img/azure-portal-save.png)
 
-6. Close the Query blade with the **close icon** or select **IoTWorkshop-sa** in the bread-crumbs in the top of the page
-
-    ![](img/azure-portal-close.png)
+6. Select **IoTWorkshop-sa** in the bread-crumbs in the top of the page to return to the Stream Analytics Overview
 
 7. Now the Azure Stream Analytics job has both an input and an output. And we just created the query
 
@@ -264,7 +262,7 @@ Follow these steps to write the query of Azure Stream Analytics job.
 
     ![](img/azure-portal-start.png)
 
-9. **Provide** 'the moment in time' the job must pick to start retrieving data. Select **Now**. *Note: An Azure Stream Analytics job can start with telemetry from the past (if you want to rerun historical telemetry still stored in the input) or you can start at the last point the query stopped (only when applicable) or you can start it fresh only with new telemetry*
+9. **Provide** 'the moment in time' the job must start retrieving data. Select **Now**. *Note: An Azure Stream Analytics job can start with telemetry from the past (if you want to rerun historical telemetry still stored in the input) or you can start at the last point the query stopped (only when applicable) or you can start it fresh only with new telemetry*
 
     ![](img/azure-stream-analytics-start.png)
 
@@ -354,25 +352,25 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
 
 7. Select **Custom function** at the bottom
 
-8. We have to choose a 'trigger' template. Azure Functions are triggered by events in Azure. A list of possible triggers will be shown. At this moment there are 65+ Bash, Batch, C#, F#, JavaScript, PHP, Powershell Python and TypeScript triggers. Select the **EventHubTrigger - C#** template
+8. We have to choose a 'trigger' template. Azure Functions are triggered by events in Azure. A list of possible triggers will be shown. At this moment there are 65+ Bash, Batch, C#, F#, JavaScript, PHP, Powershell Python and TypeScript triggers. Select the **EventHubTrigger**. *Note*: you can select directly the **C#** template within the tile
 
     ![](img/azure-function-app-eventhubtrigger.png)
 
-9. At the bottom of the selected template page (use the scrollbar of the current page), you have to fill in the field 'Name your function'. Change **EventHubTriggerCSharp1** into **IoTWorkshopEventHubFunction**
+9. The New Function dialog is shown. The C# language is already selected. You have to fill in the field 'Name your function'. Change **EventHubTriggerCSharp1** into **IoTWorkshopEventHubFunction**
 
-10. We do not have to remember EventHub credentials anymore. Next to the field 'Event Hub connection' select **new**
+10. Next to the field 'Event Hub connection' select **new**
 
     ![](img/function/azure-function-connection-new.png)
 
-11. A new dialog is shown. The needed 'Event Hub connection' is filled in already or you can **select** it using the drop downs. Do you see the policy of then namespace?
+11. A new dialog is shown. The needed 'Event Hub connection' is filled in already or you can **select** it using the drop downs. Do you see the policy of the namespace?
 
     ![](img/function/azure-function-connection-dialog.png)
 
 12. Press **Select** to continue. You are back to the input fields
 
-13. **Fill in** 'iotworkshop-eh' in the Event Hub name field
+13. The Connection string is now filled in into the corresponding field
 
-14. The Connection string is now filled in into the corresponding field
+14. **Fill in** 'iotworkshop-eh' in the Event Hub name field
 
     ![](img/azure-function-app-eventhubtrigger-new.png)
 
@@ -410,11 +408,11 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
 
 Now we are confident, the Azure function and trigger are available.
 
-## Receiving telemetry in the Azure Function
+## Receiving broken machines information in the Azure Function
 
-By now, the full chain of Azure services is set up. Telemetry from The Things Network node is passed by the bridge (or the test UWP app) to the Azure IoT Hub (as seen in one of the two explorers). Azure Stream Analytics passes a cumulation of the fault states to the Azure Function using an Azure Event Hub.
+By now, the full chain of Azure services is set up. Telemetry from The Things Network node is passed by the test UWP app to the Azure IoT Hub (as seen in your explorer). Azure Stream Analytics passes a cumulation of the fault states to the Azure Function using an Azure Event Hub.
 
-So, if your UWP is put into a faulty state, telemetry will start arriving in the 'Logs' panel.
+So, if your device is put into a faulty state (use the break down button) while messages are sent, telemetry will start arriving in the 'Logs' panel, within a few minutes.
 
 ### Sending UWP app faults
 
@@ -424,7 +422,7 @@ If you are using the UWP app as simulator for a node, you have to 'break' the ma
 
     ![](img/azure-function-test-app-broken.png)
 
-2. Press the **Send cycles updates** button to send the new telemetry. Press the button _multiple times_ within the same time frame of two minutes to match the query in Stream Analytics.
+2. Press the **Send cycles updates** button to send the new telemetry. Press the 'Update' button _multiple times_ within the same time frame of two minutes to match the query in Stream Analytics.
 
     ![](img/azure-function-test-app-broken-telemetry.png)
 

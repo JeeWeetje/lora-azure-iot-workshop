@@ -13,7 +13,7 @@
 <li><p>Visual Studio 2017 with UWP app support <em>(Note: check the About page of Visual Studio for ‘Visual Studio Tools for Universal Windows Apps 15.0.26730.08’)</em></p></li>
 <li><p>Visual Studio 2017 extension <a href="https://marketplace.visualstudio.com/items?itemName=ZimKalinowski.ConnectedServiceforAzureIoTHub">Connected Service for Azure IoT Hub</a></p></li>
 <li><p>Application for checking out the Azure IoT Platform <a href="https://github.com/fsautomata/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.html">Device Explorer</a> <em>(for GUI based usage; see below for installation steps)</em></p></li>
-<li><p>Azure account <a href="https://azure.microsoft.com/en-us/free/">create here</a> <em>(<a href="https://www.microsoftazurepass.com/howto">Azure passes</a> will be present for those who have no Azure account (please check your email for final confirmation))</em></p></li>
+<li><p>(Free) Azure account <a href="https://azure.microsoft.com/en-us/free/">create here</a> <em>(<a href="https://www.microsoftazurepass.com/howto">Azure passes</a> will be present for those who have no Azure account (please check your email for final confirmation))</em></p></li>
 </ol>
 <h3 id="steps-to-perform-in-this-part-of-the-workshop">Steps to perform in this part of the workshop</h3>
 <p>At the end of this part of the workshop, the following steps are performed</p>
@@ -34,7 +34,7 @@
 <p><img src="img/TheThingsNetwork/all-services.png" /></p></li>
 <li><p>Filter it with <code>IoT Hub</code></p>
 <p><img src="img/UwpToIotHub/azure-search-iot-hub.png" /></p></li>
-<li><p>Select <code>IoT Hub</code> and a new blade will be shown. Select <code>Add</code> and you will be asked to enter the information needed to create an IoT Hub</p>
+<li><p>Select <code>IoT Hub</code> and a new blade will be shown. Select <code>Add</code> and you will be asked to enter the information needed to create an IoT Hub. <em>Note:</em> in “Pricing and scale tier” you can select the size of your IoT Hub. If a F1 is available, select it. Otherwise select a S1. The Basic range is not suitable for this workshop due to sendinG commands.</p>
 <p><img src="img/UwpToIotHub/azure-portal-add.png" /></p></li>
 <li><p>Enter a unique IoT Hub name eg. <code>IoTWorkshop-ih</code>. A green sign will be shown if the name is unique</p></li>
 <li><p>Enter a unique Resource Group eg. <code>IoTWorkshop-rg</code>. A green sign will be shown if the name is unique</p></li>
@@ -47,19 +47,20 @@
 <h2 id="creating-a-new-uwp-app">Creating a new UWP App</h2>
 <p><img src="img/arch/Picture02-UWP-overview.png" /></p>
 <p>We will create a UWP app in Visual Studio. These apps are called Universal Windows Apps because they are supported by all sorts of devices running Windows 10. This includes laptops, PC’s, Mobile devices like phones and tablets, the Xbox One, The Surface Hub, The Hololens and even the Raspberry Pi.</p>
-<pre><code>*Note: Our app will simulate a machine which handles batches of work. It passes the increasing number of finished duty cycles every X seconds to the cloud. And we can simulate outage later on*</code></pre>
+<p><em>Note</em>: Our app will simulate a machine which handles batches of work. It passes the increasing number of finished duty cycles every X seconds to the cloud. And we can simulate outage later on.</p>
 <ol type="1">
 <li>Start Visual Studio</li>
-<li><p>On the Start Page or using the Menu, select New Project…</p>
+<li><p>On the Start Page or using the Menu, select <strong>Create new project</strong></p>
 <p><img src="img/UwpToIotHub/vs-new-project.png" /></p></li>
 <li><p>In the dialog, select the <code>Blank App (Universal Windows)</code> template</p>
 <p><img src="img/UwpToIotHub/vs-universal-app-template.png" /></p></li>
+<li><p>Give the project an meaningful name</p></li>
 <li><p>Select <code>Ok</code>. If you are asked which minimal platform version must be loaded, just press <code>Ok</code> again</p>
 <p><img src="img/UwpToIotHub/vs-universal-anniversary.png" /></p>
-<p><em>Note: here the Windows 10 Anniversary edition is shown in the picture, please try select to select the most recent SDK</em></p></li>
-<li><p>Press <code>F6</code> or use the menu <code>BUILD|Build Solution</code> to recompile the app and check if the build completes without errors</p>
+<p><em>Note: here the Windows 10 Fall Creators edition is shown in the picture, please try select to select the most recent SDK</em></p></li>
+<li><p>Press <code>CONTROL-SHIFT-B</code> or use the menu <code>BUILD|Build Solution</code> to recompile the app and check if the build completes without errors</p>
 <p><img src="img/UwpToIotHub/vs-build-succeeded.png" /></p></li>
-<li>Start the app by pressing <code>F5</code> or use the menu <code>DEBUG|Start Debugging</code></li>
+<li><p>Start the app by pressing <code>F5</code> or use the menu <code>DEBUG|Start Debugging</code></p></li>
 <li><p>The app starts and an empty form is shown</p></li>
 </ol>
 <p>The app is created. You are now ready to add a connection to the IoT Hub.</p>
@@ -76,24 +77,26 @@
 <p><img src="img/UwpToIotHub/vs-iot-extension-start.png" /></p></li>
 <li><p>You are required to connect to you Azure subscription. And the way device credentials are stored, must be chosen:</p>
 <p><img src="img/UwpToIotHub/vs-iot-extension-credentials.png" /></p></li>
-<li><p>Select <code>Hardcode shared access key</code> as Security Mode. Confirm with <code>OK</code></p></li>
+<li><p>Select <code>Hardcode shared access key</code> as Security Mode. Confirm with <code>Next</code></p></li>
 <li><p>Now you will be asked to select the IoT Hub you want to connect. At this time, the Hub should be created. <em>If you have multiple Azure accounts, please double-check that the correct one is selected</em></p>
 <p><img src="img/UwpToIotHub/vs-iot-extension-select.png" /></p></li>
-<li><p><code>Select</code> your IoT Hub and press <code>Add</code></p></li>
-<li><p>The next page of the wizard is shown. You are asked to select or add the registration of a device. Our app will represent a device and therefore access must be granted, which has to be created. Select <code>New Device</code></p>
+<li><p><code>Select</code> your IoT Hub and press <code>Next</code></p></li>
+<li><p>The next page of the wizard is shown. You are asked to select or add the registration of a device. Our app will represent a device and therefore access must be granted, which has to be created. Select the ‘New Device’ tab</p>
 <p><img src="img/UwpToIotHub/vs-device-one.png" /></p></li>
+<li><p><code>Optionally</code>, deselect device twin and direct message</p></li>
 <li><p>Enter a unique <code>device name</code> eg ‘MachineCyclesUwp’ and press <code>Create</code></p></li>
-<li><p>The device is registered, it’s not needed to create more devices. Unique credentials are created for each device in the IoTHub</p></li>
-<li><p>So afterward, in the ‘select’ tab, be sure to pick the ‘MachineCyclesUwp’; this one will be used by our app. <em>(Note: in this workshop we will look at sending and receiving messages. This wizard can generate example code for device twins and direct methods also, but this is not part of the workshop)</em></p>
+<li><p>The device is registered. Unique credentials are created for each device in the IoTHub</p></li>
+<li><p>Now, in the ‘select’ tab, be sure to actually <code>select</code> the ‘MachineCyclesUwp’; this device will be used by our app. <em>(Note: in this workshop we will look at sending and receiving messages. This wizard can generate example code for device twins and direct methods also, but this is not part of the workshop)</em></p>
 <p><img src="img/UwpToIotHub/vs-device-three.png" /></p></li>
 <li><p>Select <code>Next</code> to review the summary</p>
 <p><img src="img/UwpToIotHub/vs-device-two.png" /></p></li>
-<li><p>Press Finish to start the generation of code. The necessary NuGet libraries are added and eventually you will be directed to a <a href="https://github.com/Azure/azure-iot-hub-vs-cs-2017/wiki/C%23-Usage">Get Started page</a> for more information</p>
+<li><p>Press <code>Finish</code> to start the generation of code. The necessary NuGet libraries are added and eventually you will be directed to a <a href="https://github.com/Azure/azure-iot-hub-vs-cs-2017/wiki/C%23-Usage">Get Started page</a> for more information</p>
 <p><img src="img/UwpToIotHub/vs-device-four.png" /></p></li>
 <li><p>The wizard now completed the creation of your example code</p>
 <p><img src="img/UwpToIotHub/vs-device-five.png" /></p></li>
 <li><p>In the Solution Explorer of Visual Studio, a new file named ‘AzureIoTHub.cs’ is added. This provides all logic for the connection to the IoT Hub</p>
 <p><img src="img/UwpToIotHub/vs-iot-hub-singleton.png" /></p></li>
+<li><p>It’s recommended to <code>rebuild</code> the app again.</p></li>
 </ol>
 <p>The AzureIoTHub class can be integrated into the logic of our App. Let’s do that.</p>
 <h2 id="generate-and-send-dummy-telemetry">Generate and send dummy telemetry</h2>
@@ -103,125 +106,125 @@
 <li><p><code>Open</code> the file named ‘AzureIoTHub.cs’</p></li>
 <li><p>The file contains a class named ‘AzureIoTHub’ which has (al least) two methods: ‘SendDeviceToCloudMessageAsync’ and ‘ReceiveCloudToDeviceMessageAsync’. <em>Note: receiving Cloud to Device messages will be discussed later on. More methods could be generated depending on the selection in the wizard</em></p></li>
 <li><p>We alter the method called ‘Createclient’ which is private and provides a singleton access to the IoTHub Device client</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">private</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">CreateClient</span>()</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">{</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">    <span class="kw">if</span> (deviceClient == <span class="kw">null</span>)</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">    {</a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">        <span class="co">// create Azure IoT Hub client from embedded connection string</span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6">        deviceClient = DeviceClient.<span class="fu">CreateFromConnectionString</span>(deviceConnectionString, TransportType.<span class="fu">Amqp</span>);</a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">    }</a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">}</a></code></pre></div></li>
+<div class="sourceCode" id="cb1"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">private</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">CreateClient</span>()</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">    <span class="kw">if</span> (deviceClient == <span class="kw">null</span>)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">    {</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">        <span class="co">// create Azure IoT Hub client from embedded connection string</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">        deviceClient = DeviceClient.<span class="fu">CreateFromConnectionString</span>(deviceConnectionString, TransportType.<span class="fu">Amqp</span>);</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">    }</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">}</a></code></pre></div></li>
 <li><p>The only thing changed by this code is that we now access the IoT Hub in the cloud using the AMQP protocol instead of MQTT. MQTT is more popular than AMQP because it is lightweight but also a bit more error prone. To guarantee a more stable communication during the workshop, AMQP is preferred</p></li>
 <li><p>The method to send data is not that intelligent, it only sends a fixed message. <code>Add the following code</code> just below it</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">public</span> <span class="kw">static</span> async Task <span class="fu">SendDeviceToCloudMessageAsync</span>(Telemetry telemetry)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">{</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">    <span class="fu">CreateClient</span>();</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">    <span class="dt">var</span> message = <span class="kw">new</span> <span class="fu">Message</span>(Encoding.<span class="fu">ASCII</span>.<span class="fu">GetBytes</span>(Newtonsoft.<span class="fu">Json</span>.<span class="fu">JsonConvert</span>.<span class="fu">SerializeObject</span>(telemetry)));</a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">    <span class="kw">try</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8">    {</a>
-<a class="sourceLine" id="cb3-9" data-line-number="9">        await deviceClient.<span class="fu">SendEventAsync</span>(message);</a>
-<a class="sourceLine" id="cb3-10" data-line-number="10">    }</a>
-<a class="sourceLine" id="cb3-11" data-line-number="11">    <span class="kw">catch</span> (Exception)</a>
-<a class="sourceLine" id="cb3-12" data-line-number="12">    {</a>
-<a class="sourceLine" id="cb3-13" data-line-number="13">        deviceClient = <span class="kw">null</span>;</a>
-<a class="sourceLine" id="cb3-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb3-15" data-line-number="15">        <span class="kw">throw</span>;</a>
-<a class="sourceLine" id="cb3-16" data-line-number="16">    }</a>
-<a class="sourceLine" id="cb3-17" data-line-number="17">}</a>
-<a class="sourceLine" id="cb3-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="kw">public</span> <span class="kw">class</span> Telemetry</a>
-<a class="sourceLine" id="cb3-20" data-line-number="20">{</a>
-<a class="sourceLine" id="cb3-21" data-line-number="21">    <span class="kw">public</span> <span class="dt">int</span> errorCode { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
-<a class="sourceLine" id="cb3-22" data-line-number="22">    <span class="kw">public</span> <span class="dt">int</span> numberOfCycles { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
-<a class="sourceLine" id="cb3-23" data-line-number="23">}</a></code></pre></div></li>
+<div class="sourceCode" id="cb2"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">public</span> <span class="kw">static</span> async Task <span class="fu">SendDeviceToCloudMessageAsync</span>(Telemetry telemetry)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">    <span class="fu">CreateClient</span>();</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">    <span class="dt">var</span> message = <span class="kw">new</span> <span class="fu">Message</span>(Encoding.<span class="fu">ASCII</span>.<span class="fu">GetBytes</span>(Newtonsoft.<span class="fu">Json</span>.<span class="fu">JsonConvert</span>.<span class="fu">SerializeObject</span>(telemetry)));</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">    <span class="kw">try</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">    {</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">        await deviceClient.<span class="fu">SendEventAsync</span>(message);</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10">    }</a>
+<a class="sourceLine" id="cb2-11" data-line-number="11">    <span class="kw">catch</span> (Exception)</a>
+<a class="sourceLine" id="cb2-12" data-line-number="12">    {</a>
+<a class="sourceLine" id="cb2-13" data-line-number="13">        deviceClient = <span class="kw">null</span>;</a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15">        <span class="kw">throw</span>;</a>
+<a class="sourceLine" id="cb2-16" data-line-number="16">    }</a>
+<a class="sourceLine" id="cb2-17" data-line-number="17">}</a>
+<a class="sourceLine" id="cb2-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="kw">public</span> <span class="kw">class</span> Telemetry</a>
+<a class="sourceLine" id="cb2-20" data-line-number="20">{</a>
+<a class="sourceLine" id="cb2-21" data-line-number="21">    <span class="kw">public</span> <span class="dt">int</span> errorCode { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb2-22" data-line-number="22">    <span class="kw">public</span> <span class="dt">int</span> numberOfCycles { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb2-23" data-line-number="23">}</a></code></pre></div></li>
 <li><p><em>Note</em>: The exception handling is very simplistic but effective. If an error occurs, the client is reset.</p></li>
-<li><p>We have defined the Telemetry class which will hold the number of cycles executed. And the current error code of the device can be passed to the cloud. The telemetry is converted to JSON and passed to the Singleton instance of our device <em>(Note: the credentials of the device is hardcoded)</em></p></li>
-<li><p><code>Open</code> the ‘XAML’ file named ‘MainPage.xaml’. The empty page will be shown both in a visual editor and a textual XAML editor</p></li>
+<li><p>We have defined the Telemetry class which will hold the number of cycles executed. And the current error code of the device can be passed to the cloud. The telemetry is converted to JSON and passed to the Singleton instance of our device <em>(Note: the credentials of the device are hardcoded)</em></p></li>
+<li><p>Now <code>Open</code> the ‘XAML’ file named ‘MainPage.xaml’. The empty page will be shown both in a visual editor and a textual XAML editor</p></li>
 <li><p>The page contains one component, a grid. But that grid is merely a container for other visual components</p></li>
 <li><p>In the XAML editor, within the grid, <code>add</code></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">&lt;StackPanel&gt;</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">    <span class="kw">&lt;TextBlock</span><span class="ot"> Name=</span><span class="st">&quot;txbTitle&quot;</span><span class="ot"> Text=</span><span class="st">&quot;Machine Cycles Demo&quot;</span><span class="ot"> Margin=</span><span class="st">&quot;5&quot;</span><span class="ot">  FontSize=</span><span class="st">&quot;100&quot;</span><span class="ot"> IsColorFontEnabled=</span><span class="st">&quot;True&quot;</span><span class="ot"> Foreground=</span><span class="st">&quot;DarkOliveGreen&quot;</span> <span class="kw">/&gt;</span></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">    <span class="kw">&lt;Button</span><span class="ot"> Name=</span><span class="st">&quot;BtnSend&quot;</span><span class="ot"> Content=</span><span class="st">&quot;Send cycle updates&quot;</span><span class="ot"> Margin=</span><span class="st">&quot;5&quot;</span><span class="ot"> FontSize=</span><span class="st">&quot;60&quot;</span><span class="ot"> Click=</span><span class="st">&quot;btnSend_Click&quot;</span> <span class="kw">/&gt;</span></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">    <span class="kw">&lt;Button</span><span class="ot"> Name=</span><span class="st">&quot;BtnBreak&quot;</span><span class="ot"> Content=</span><span class="st">&quot;Break down&quot;</span><span class="ot"> Margin=</span><span class="st">&quot;5&quot;</span><span class="ot"> FontSize=</span><span class="st">&quot;60&quot;</span><span class="ot"> Click=</span><span class="st">&quot;BtnBreak_OnClick&quot;</span> <span class="kw">/&gt;</span></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">    <span class="kw">&lt;TextBlock</span><span class="ot"> Name=</span><span class="st">&quot;TbMessage&quot;</span><span class="ot"> Text=</span><span class="st">&quot;---&quot;</span><span class="ot"> FontSize=</span><span class="st">&quot;60&quot;</span> <span class="kw">/&gt;</span></a>
-<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="kw">&lt;/StackPanel&gt;</span></a></code></pre></div></li>
+<div class="sourceCode" id="cb3"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">&lt;StackPanel&gt;</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">    <span class="kw">&lt;TextBlock</span><span class="ot"> Name=</span><span class="st">&quot;txbTitle&quot;</span><span class="ot"> Text=</span><span class="st">&quot;Machine Cycles Demo&quot;</span><span class="ot"> Margin=</span><span class="st">&quot;5&quot;</span><span class="ot">  FontSize=</span><span class="st">&quot;100&quot;</span><span class="ot"> IsColorFontEnabled=</span><span class="st">&quot;True&quot;</span><span class="ot"> Foreground=</span><span class="st">&quot;DarkOliveGreen&quot;</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">    <span class="kw">&lt;Button</span><span class="ot"> Name=</span><span class="st">&quot;BtnSend&quot;</span><span class="ot"> Content=</span><span class="st">&quot;Send cycle updates&quot;</span><span class="ot"> Margin=</span><span class="st">&quot;5&quot;</span><span class="ot"> FontSize=</span><span class="st">&quot;60&quot;</span><span class="ot"> Click=</span><span class="st">&quot;btnSend_Click&quot;</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">    <span class="kw">&lt;Button</span><span class="ot"> Name=</span><span class="st">&quot;BtnBreak&quot;</span><span class="ot"> Content=</span><span class="st">&quot;Break down&quot;</span><span class="ot"> Margin=</span><span class="st">&quot;5&quot;</span><span class="ot"> FontSize=</span><span class="st">&quot;60&quot;</span><span class="ot"> Click=</span><span class="st">&quot;BtnBreak_OnClick&quot;</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">    <span class="kw">&lt;TextBlock</span><span class="ot"> Name=</span><span class="st">&quot;TbMessage&quot;</span><span class="ot"> Text=</span><span class="st">&quot;---&quot;</span><span class="ot"> FontSize=</span><span class="st">&quot;60&quot;</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="kw">&lt;/StackPanel&gt;</span></a></code></pre></div></li>
 <li><p>Three buttons and two text blocks are put on the screen. Go to the code-behind source code which will be executed when the buttons are clicked</p></li>
 <li><p>Press <code>F7</code>, the file ‘MainPage.xaml.cs’ is shown</p></li>
 <li><p>Only the constructor of this page is shown. <code>Add</code> the following members and methods</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">private</span> <span class="dt">int</span> _cycleCounter;</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">private</span> <span class="dt">int</span> _errorCode;</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="kw">private</span> async <span class="dt">void</span> <span class="fu">btnSend_Click</span>(<span class="dt">object</span> sender, RoutedEventArgs e)</a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">{</a>
-<a class="sourceLine" id="cb5-7" data-line-number="7">    <span class="kw">try</span></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8">    {</a>
-<a class="sourceLine" id="cb5-9" data-line-number="9">        await <span class="fu">ShowMessage</span>(<span class="st">&quot;Sending...&quot;</span>);</a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb5-11" data-line-number="11">        <span class="kw">if</span> (_errorCode == <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb5-12" data-line-number="12">        {</a>
-<a class="sourceLine" id="cb5-13" data-line-number="13">            _cycleCounter++;</a>
-<a class="sourceLine" id="cb5-14" data-line-number="14">        }</a>
-<a class="sourceLine" id="cb5-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb5-16" data-line-number="16">        <span class="dt">var</span> t = <span class="kw">new</span> AzureIoTHub.<span class="fu">Telemetry</span></a>
-<a class="sourceLine" id="cb5-17" data-line-number="17">        {</a>
-<a class="sourceLine" id="cb5-18" data-line-number="18">            errorCode = _errorCode,</a>
-<a class="sourceLine" id="cb5-19" data-line-number="19">            numberOfCycles = _cycleCounter,</a>
-<a class="sourceLine" id="cb5-20" data-line-number="20">        };</a>
-<a class="sourceLine" id="cb5-21" data-line-number="21"></a>
-<a class="sourceLine" id="cb5-22" data-line-number="22">        await AzureIoTHub.<span class="fu">SendDeviceToCloudMessageAsync</span>(t);</a>
-<a class="sourceLine" id="cb5-23" data-line-number="23"></a>
-<a class="sourceLine" id="cb5-24" data-line-number="24">        await <span class="fu">ShowMessage</span>($<span class="st">&quot;Telemetry sent (Cycle: {_cycleCounter}, State: {_errorCode})&quot;</span>);</a>
-<a class="sourceLine" id="cb5-25" data-line-number="25">    }</a>
-<a class="sourceLine" id="cb5-26" data-line-number="26">    <span class="kw">catch</span> (Exception ex)</a>
-<a class="sourceLine" id="cb5-27" data-line-number="27">    {</a>
-<a class="sourceLine" id="cb5-28" data-line-number="28">        await <span class="fu">ShowMessage</span>(ex.<span class="fu">Message</span>);</a>
-<a class="sourceLine" id="cb5-29" data-line-number="29">    }</a>
-<a class="sourceLine" id="cb5-30" data-line-number="30">}</a>
-<a class="sourceLine" id="cb5-31" data-line-number="31"></a>
-<a class="sourceLine" id="cb5-32" data-line-number="32"><span class="kw">private</span> async Task <span class="fu">ShowMessage</span>(<span class="dt">string</span> text)</a>
-<a class="sourceLine" id="cb5-33" data-line-number="33">{</a>
-<a class="sourceLine" id="cb5-34" data-line-number="34">    await Dispatcher.<span class="fu">RunAsync</span>(</a>
-<a class="sourceLine" id="cb5-35" data-line-number="35">            CoreDispatcherPriority.<span class="fu">Normal</span>, () =&gt;</a>
-<a class="sourceLine" id="cb5-36" data-line-number="36">            {</a>
-<a class="sourceLine" id="cb5-37" data-line-number="37">                TbMessage.<span class="fu">Text</span> = text;</a>
-<a class="sourceLine" id="cb5-38" data-line-number="38">            });</a>
-<a class="sourceLine" id="cb5-39" data-line-number="39">}</a>
-<a class="sourceLine" id="cb5-40" data-line-number="40"></a>
-<a class="sourceLine" id="cb5-41" data-line-number="41"><span class="kw">private</span> async <span class="dt">void</span> <span class="fu">BtnBreak_OnClick</span>(<span class="dt">object</span> sender, RoutedEventArgs e)</a>
-<a class="sourceLine" id="cb5-42" data-line-number="42">{</a>
-<a class="sourceLine" id="cb5-43" data-line-number="43">    <span class="kw">try</span></a>
-<a class="sourceLine" id="cb5-44" data-line-number="44">    {</a>
-<a class="sourceLine" id="cb5-45" data-line-number="45">        BtnBreak.<span class="fu">IsEnabled</span> = <span class="kw">false</span>;</a>
-<a class="sourceLine" id="cb5-46" data-line-number="46"></a>
-<a class="sourceLine" id="cb5-47" data-line-number="47">        _errorCode = <span class="dv">99</span>;</a>
-<a class="sourceLine" id="cb5-48" data-line-number="48"></a>
-<a class="sourceLine" id="cb5-49" data-line-number="49">        txbTitle.<span class="fu">Foreground</span> = <span class="kw">new</span> <span class="fu">SolidColorBrush</span>(Colors.<span class="fu">Red</span>);</a>
-<a class="sourceLine" id="cb5-50" data-line-number="50"></a>
-<a class="sourceLine" id="cb5-51" data-line-number="51">        await <span class="fu">ShowMessage</span>(<span class="st">&quot;Machine is now broken, cycles have stopped; have to Notify!&quot;</span>);</a>
-<a class="sourceLine" id="cb5-52" data-line-number="52">    }</a>
-<a class="sourceLine" id="cb5-53" data-line-number="53">    <span class="kw">catch</span> (Exception ex)</a>
-<a class="sourceLine" id="cb5-54" data-line-number="54">    {</a>
-<a class="sourceLine" id="cb5-55" data-line-number="55">        await <span class="fu">ShowMessage</span>(ex.<span class="fu">Message</span>);</a>
-<a class="sourceLine" id="cb5-56" data-line-number="56">    }</a>
-<a class="sourceLine" id="cb5-57" data-line-number="57">}</a></code></pre></div></li>
+<div class="sourceCode" id="cb4"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">private</span> <span class="dt">int</span> _cycleCounter;</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw">private</span> <span class="dt">int</span> _errorCode;</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="kw">private</span> async <span class="dt">void</span> <span class="fu">btnSend_Click</span>(<span class="dt">object</span> sender, RoutedEventArgs e)</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">{</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">    <span class="kw">try</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">    {</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">        await <span class="fu">ShowMessage</span>(<span class="st">&quot;Sending...&quot;</span>);</a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">        <span class="kw">if</span> (_errorCode == <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb4-12" data-line-number="12">        {</a>
+<a class="sourceLine" id="cb4-13" data-line-number="13">            _cycleCounter++;</a>
+<a class="sourceLine" id="cb4-14" data-line-number="14">        }</a>
+<a class="sourceLine" id="cb4-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb4-16" data-line-number="16">        <span class="dt">var</span> t = <span class="kw">new</span> AzureIoTHub.<span class="fu">Telemetry</span></a>
+<a class="sourceLine" id="cb4-17" data-line-number="17">        {</a>
+<a class="sourceLine" id="cb4-18" data-line-number="18">            errorCode = _errorCode,</a>
+<a class="sourceLine" id="cb4-19" data-line-number="19">            numberOfCycles = _cycleCounter,</a>
+<a class="sourceLine" id="cb4-20" data-line-number="20">        };</a>
+<a class="sourceLine" id="cb4-21" data-line-number="21"></a>
+<a class="sourceLine" id="cb4-22" data-line-number="22">        await AzureIoTHub.<span class="fu">SendDeviceToCloudMessageAsync</span>(t);</a>
+<a class="sourceLine" id="cb4-23" data-line-number="23"></a>
+<a class="sourceLine" id="cb4-24" data-line-number="24">        await <span class="fu">ShowMessage</span>($<span class="st">&quot;Telemetry sent (Cycle: {_cycleCounter}, State: {_errorCode})&quot;</span>);</a>
+<a class="sourceLine" id="cb4-25" data-line-number="25">    }</a>
+<a class="sourceLine" id="cb4-26" data-line-number="26">    <span class="kw">catch</span> (Exception ex)</a>
+<a class="sourceLine" id="cb4-27" data-line-number="27">    {</a>
+<a class="sourceLine" id="cb4-28" data-line-number="28">        await <span class="fu">ShowMessage</span>(ex.<span class="fu">Message</span>);</a>
+<a class="sourceLine" id="cb4-29" data-line-number="29">    }</a>
+<a class="sourceLine" id="cb4-30" data-line-number="30">}</a>
+<a class="sourceLine" id="cb4-31" data-line-number="31"></a>
+<a class="sourceLine" id="cb4-32" data-line-number="32"><span class="kw">private</span> async Task <span class="fu">ShowMessage</span>(<span class="dt">string</span> text)</a>
+<a class="sourceLine" id="cb4-33" data-line-number="33">{</a>
+<a class="sourceLine" id="cb4-34" data-line-number="34">    await Dispatcher.<span class="fu">RunAsync</span>(</a>
+<a class="sourceLine" id="cb4-35" data-line-number="35">            CoreDispatcherPriority.<span class="fu">Normal</span>, () =&gt;</a>
+<a class="sourceLine" id="cb4-36" data-line-number="36">            {</a>
+<a class="sourceLine" id="cb4-37" data-line-number="37">                TbMessage.<span class="fu">Text</span> = text;</a>
+<a class="sourceLine" id="cb4-38" data-line-number="38">            });</a>
+<a class="sourceLine" id="cb4-39" data-line-number="39">}</a>
+<a class="sourceLine" id="cb4-40" data-line-number="40"></a>
+<a class="sourceLine" id="cb4-41" data-line-number="41"><span class="kw">private</span> async <span class="dt">void</span> <span class="fu">BtnBreak_OnClick</span>(<span class="dt">object</span> sender, RoutedEventArgs e)</a>
+<a class="sourceLine" id="cb4-42" data-line-number="42">{</a>
+<a class="sourceLine" id="cb4-43" data-line-number="43">    <span class="kw">try</span></a>
+<a class="sourceLine" id="cb4-44" data-line-number="44">    {</a>
+<a class="sourceLine" id="cb4-45" data-line-number="45">        BtnBreak.<span class="fu">IsEnabled</span> = <span class="kw">false</span>;</a>
+<a class="sourceLine" id="cb4-46" data-line-number="46"></a>
+<a class="sourceLine" id="cb4-47" data-line-number="47">        _errorCode = <span class="dv">99</span>;</a>
+<a class="sourceLine" id="cb4-48" data-line-number="48"></a>
+<a class="sourceLine" id="cb4-49" data-line-number="49">        txbTitle.<span class="fu">Foreground</span> = <span class="kw">new</span> <span class="fu">SolidColorBrush</span>(Colors.<span class="fu">Red</span>);</a>
+<a class="sourceLine" id="cb4-50" data-line-number="50"></a>
+<a class="sourceLine" id="cb4-51" data-line-number="51">        await <span class="fu">ShowMessage</span>(<span class="st">&quot;Machine is now broken, cycles have stopped; have to Notify!&quot;</span>);</a>
+<a class="sourceLine" id="cb4-52" data-line-number="52">    }</a>
+<a class="sourceLine" id="cb4-53" data-line-number="53">    <span class="kw">catch</span> (Exception ex)</a>
+<a class="sourceLine" id="cb4-54" data-line-number="54">    {</a>
+<a class="sourceLine" id="cb4-55" data-line-number="55">        await <span class="fu">ShowMessage</span>(ex.<span class="fu">Message</span>);</a>
+<a class="sourceLine" id="cb4-56" data-line-number="56">    }</a>
+<a class="sourceLine" id="cb4-57" data-line-number="57">}</a></code></pre></div></li>
 <li><p>The method ‘btnSend_Click’ now increases the number of duty cycles and sends it to the IoT Hub using the unique access token of the device ‘MachineCyclesUwp’</p></li>
 <li><p>New libraries references are introduced in this code. <code>Add</code> two times a ‘using’ at the top of the editor</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">using</span> System.<span class="fu">Threading</span>.<span class="fu">Tasks</span>;</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">using</span> Windows.<span class="fu">UI</span>;</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw">using</span> Windows.<span class="fu">UI</span>.<span class="fu">Core</span>;</a></code></pre></div></li>
+<div class="sourceCode" id="cb5"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">using</span> System.<span class="fu">Threading</span>.<span class="fu">Tasks</span>;</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">using</span> Windows.<span class="fu">UI</span>;</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">using</span> Windows.<span class="fu">UI</span>.<span class="fu">Core</span>;</a></code></pre></div></li>
 <li><p>Please <code>build</code> the app to check for errors</p></li>
-<li><p>The app is now ready. <code>Run</code> the app and first send some cycle updates. It the message ‘Telemetry sent’ is shown, our telemetry is accepted by the IoT Hub</p>
+<li><p>The app is now ready. <code>Run</code> the app and send some cycle updates by pressing the top button. If the message ‘Telemetry sent’ is shown, our telemetry is accepted by the IoT Hub</p>
 <p><img src="img/UwpToIotHub/uwp-send-telemetry.png" /></p></li>
 </ol>
-<p>Now we have sent telemetry to the IoT Hub. Let’s check if it’s arrived.</p>
+<p>We have sent telemetry to the Azure IoT Hub. Let’s check if it’s arrived.</p>
 <h2 id="monitoring-the-arrival-of-the-telemetry-in-azure">Monitoring the arrival of the telemetry in Azure</h2>
 <p><img src="img/arch/Picture05-UWP-overview.png" /></p>
 <p>We can monitor the arrival of telemetry with extra tooling only if we have enough rights to look into the IoT Hub. So first we collect secrets so we have enough privileges.</p>
 <h3 id="collect-azure-iot-hub-secrets">Collect Azure IoT Hub secrets</h3>
-<p>To check telemetry, we need to get an Azure IoT Hub Shared access policy key with <code>Registry read, write and Device connect</code> permissions. In this example, we use the standard available <strong>iothubowner</strong> policy which has these permissions enabled by default <em>(Note: in production, always only use specific unique policies for a simple purpose with just the right amount of rights)</em></p>
+<p>To check telemetry, we need to get an Azure IoT Hub Shared access policy key with <code>Registry read, write and Device connect</code> permissions. In this example, we use the standard available <strong>iothubowner</strong> policy which has these permissions enabled by default <em>(Note: in production, always only use specific unique policies for a single purpose with just the right amount of rights)</em></p>
 <ol type="1">
 <li><p>Check the Azure portal. The resource group and the IoT Hub should be created by now (otherwise, we were unable to send duty cycles information to it)</p>
 <p><img src="img/UwpToIotHub/azure-notifications-iothub.png" /></p></li>
@@ -230,9 +233,8 @@
 <li><p>Select the resource group <code>IoTWorkshop-rg</code>. It will open a new blade with all resources in this group</p></li>
 <li><p>Select the IoT Hub <code>IoTWorkshop-ih</code>. It will open a new blade with the IoT Hub</p>
 <p><img src="img/UwpToIotHub/azure-iot-hub-initial.png" /></p></li>
-<li><p>The IoTHub has not received any messages yet. Check the general settings for <code>Shared access policies</code></p>
+<li><p>Check the general settings for <code>Shared access policies</code></p>
 <p><img src="img/UwpToIotHub/azure-iot-hub-share-access-policy.png" /></p></li>
-<li><p><strong>Write down</strong> the <code>name</code> of the IoT Hub eg. <code>IoTWorkshop-ih</code></p></li>
 <li><p>Navigate to the ‘iothubowner’ policy and <strong>write down</strong> this <code>Connection String-Primary Key</code></p>
 <p><img src="img/UwpToIotHub/azure-iothubowner-policy.png" /></p></li>
 </ol>
@@ -244,9 +246,9 @@
 <p>To run the Device Explorer tool, double-click the DeviceExplorer.exe file in Windows Explorer. The default installation folder for this application is C:Files (x86).</p>
 <ol type="1">
 <li><p>Start the <code>Device Explorer</code> from the desktop or using the start menu</p></li>
-<li><p>On the Configuration Tab, insert the IoT Hub <code>Connection String-primary key</code> and the <code>name</code> of the IoT Hub (as Protocol Gateway Hostname)</p></li>
-<li><p>Press <code>Update</code></p></li>
-<li><p>On the Management tab, your device should already be available. It was registered by the bridge the very first time, telemetry arrived</p>
+<li><p>On the Configuration Tab, insert the IoT Hub <code>Connection String-primary key</code></p></li>
+<li><p>Press <code>Update</code>. You see a message ‘Settings updated succesfully’</p></li>
+<li><p>On the Management tab, your device should already be available.</p>
 <p><img src="img/UwpToIotHub/ihe-devices.png" /></p></li>
 <li><p>On the Data tab, Select your <code>Device ID</code> (like ‘MachineCyclesUwp’) and press <code>Monitor</code></p></li>
 <li><p>in the UWP app, press <code>Send cycle updates</code> a couple of times</p></li>

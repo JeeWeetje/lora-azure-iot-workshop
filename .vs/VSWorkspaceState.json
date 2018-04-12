@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\img",
+    "\\img\\UwpToIotHub"
   ],
+  "SelectedNode": "\\UwpToIotHub.md",
   "PreviewInSolutionExplorer": false
 }

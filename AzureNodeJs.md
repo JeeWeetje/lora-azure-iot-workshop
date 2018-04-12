@@ -152,7 +152,7 @@ Follow these steps to create an Azure Event Hub which passes large amounts of ev
 
     ![](img/azure-eventhub-created.png)
 
-The Event Hub is now created. But before we pass on, we need some Namespace secrets for later usage.
+The Event Hub is now created.
 
 ### Azure Event Hub namespace secrets
 
@@ -214,7 +214,7 @@ The input will be created and the connection to the hub is tested automatically.
 
 As shown above, the Azure Stream Analytics job will connect to the Event Hub. Follow these steps to define the output of Azure Stream Analytics.
 
-1. `Go back` to the StreamAnalytics job opening page and now Select `Outputs`
+1. **Go back** to the StreamAnalytics job opening page (select Overview on the left side) and now Select **Outputs**
 
 2. Select `Add`. A dialog to add a new output is shown
 
@@ -238,7 +238,7 @@ The output is now defined. Let's add the Azure Stream Analytics job query to con
 
 Follow these steps to write the query of Azure Stream Analytics job.
 
-1. Select `Query`
+1. Select **Query** on the left side in Azure Stream Analytics
 
 2. A new blade is shown. Here you can write your SQL-like Azure Stream Analytics job query
 
@@ -268,9 +268,7 @@ Follow these steps to write the query of Azure Stream Analytics job.
 
     ![](img/azure-portal-save.png)
 
-6. Close the Query blade with the `close icon` or select `IoTWorkshop-sa` in the bread-crumbs in the top of the page
-
-    ![](img/azure-portal-close.png)
+6. Select **IoTWorkshop-sa** in the bread-crumbs in the top of the page to return to the Stream Analytics Overview
 
 7. Now the Azure Stream Analytics job has both an input and an output. And we just created the query
 
@@ -380,7 +378,7 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
 
     ![](img/function/azure-function-connection-new.png)
 
-11. A new dialog is shown. The needed 'Event Hub connection' is filled in already or you can `select` it using the drop downs. Do you see the policy of then namespace?
+11. A new dialog is shown. The needed 'Event Hub connection' is filled in already or you can `select` it using the drop downs. Do you see the policy of the namespace?
 
     ![](img/function/azure-function-connection-dialog.png)
 
