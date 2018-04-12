@@ -172,7 +172,7 @@ Let's add a connection to IoT hub and register the app like a real device.
 
     ![](img/UwpToIotHub/vs-iot-hub-singleton.png)
 
-18. It's recommended to rebuild the app again.
+18. It's recommended to `rebuild` the app again.
 
 The AzureIoTHub class can be integrated into the logic of our App. Let's do that.
 
@@ -231,9 +231,9 @@ We will use the logic of the class later on when we integrate with our 'factory 
 
 6. *Note*: The exception handling is very simplistic but effective. If an error occurs, the client is reset.
 
-7. We have defined the Telemetry class which will hold the number of cycles executed. And the current error code of the device can be passed to the cloud. The telemetry is converted to JSON and passed to the Singleton instance of our device _(Note: the credentials of the device is hardcoded)_
+7. We have defined the Telemetry class which will hold the number of cycles executed. And the current error code of the device can be passed to the cloud. The telemetry is converted to JSON and passed to the Singleton instance of our device _(Note: the credentials of the device are hardcoded)_
 
-8. `Open` the 'XAML' file named 'MainPage.xaml'. The empty page will be shown both in a visual editor and a textual XAML editor
+8. Now `Open` the 'XAML' file named 'MainPage.xaml'. The empty page will be shown both in a visual editor and a textual XAML editor
 
 9. The page contains one component, a grid. But that grid is merely a container for other visual components
 
@@ -326,11 +326,11 @@ We will use the logic of the class later on when we integrate with our 'factory 
 
 16. Please `build` the app to check for errors
 
-17. The app is now ready. `Run` the app and first send some cycle updates. It the message 'Telemetry sent' is shown, our telemetry is accepted by the IoT Hub
+17. The app is now ready. `Run` the app and send some cycle updates by pressing the top button. If the message 'Telemetry sent' is shown, our telemetry is accepted by the IoT Hub
 
     ![](img/UwpToIotHub/uwp-send-telemetry.png)
 
-Now we have sent telemetry to the IoT Hub. Let's check if it's arrived.
+We have sent telemetry to the Azure IoT Hub. Let's check if it's arrived.
 
 ## Monitoring the arrival of the telemetry in Azure
 
@@ -340,7 +340,7 @@ We can monitor the arrival of telemetry with extra tooling only if we have enoug
 
 ### Collect Azure IoT Hub secrets
 
-To check telemetry, we need to get an Azure IoT Hub Shared access policy key with `Registry read, write and Device connect` permissions. In this example, we use the standard available **iothubowner** policy which has these permissions enabled by default _(Note: in production, always only use specific unique policies for a simple purpose with just the right amount of rights)_
+To check telemetry, we need to get an Azure IoT Hub Shared access policy key with `Registry read, write and Device connect` permissions. In this example, we use the standard available **iothubowner** policy which has these permissions enabled by default _(Note: in production, always only use specific unique policies for a single purpose with just the right amount of rights)_
 
 1. Check the Azure portal. The resource group and the IoT Hub should be created by now (otherwise, we were unable to send duty cycles information to it)
 
@@ -356,11 +356,9 @@ To check telemetry, we need to get an Azure IoT Hub Shared access policy key wit
 
     ![](img/UwpToIotHub/azure-iot-hub-initial.png)
 
-5. The IoTHub has not received any messages yet. Check the general settings for `Shared access policies`
+6. Check the general settings for `Shared access policies`
 
     ![](img/UwpToIotHub/azure-iot-hub-share-access-policy.png)
-
-6. **Write down** the `name` of the IoT Hub eg. `IoTWorkshop-ih`
 
 7. Navigate to the 'iothubowner' policy and **write down** this `Connection String-Primary Key`
 
@@ -380,11 +378,11 @@ To run the Device Explorer tool, double-click the DeviceExplorer.exe file in Win
 
 1. Start the `Device Explorer` from the desktop or using the start menu
 
-2. On the Configuration Tab, insert the IoT Hub `Connection String-primary key` and the `name` of the IoT Hub (as Protocol Gateway Hostname)
+2. On the Configuration Tab, insert the IoT Hub `Connection String-primary key`
 
-3. Press `Update`
+3. Press `Update`. You see a message 'Settings updated succesfully'
 
-4. On the Management tab, your device should already be available. It was registered by the bridge the very first time, telemetry arrived
+4. On the Management tab, your device should already be available.
 
     ![](img/UwpToIotHub/ihe-devices.png)
 
