@@ -99,7 +99,7 @@ We will create a UWP app in Visual Studio. These apps are called Universal Windo
 
     ![](img/UwpToIotHub/vs-universal-anniversary.png)
 
-    *Note: here the Windows 10 Anniversary edition is shown in the picture, please try select to select the most recent SDK*
+    *Note: here the Windows 10 Fall Creators edition is shown in the picture, please try select to select the most recent SDK*
 
 6. Press `F6` or use the menu `BUILD|Build Solution` to recompile the app and check if the build completes without errors
 
