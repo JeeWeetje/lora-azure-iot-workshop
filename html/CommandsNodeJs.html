@@ -3,36 +3,37 @@
 <h2 id="passing-commands-back-to-a-device">Passing commands back to a device</h2>
 <p>This is an example of how downlink commands are sent back to a device. In this workshop, we will send commands back to faulty devices, using an Azure Function, to start them up again.</p>
 <p><img src="img/arch/azure-telemetry-pipeline-commands.png" /></p>
-<p>This part of the workshop supports both to the <a href="TheThingsNetwork.html">TTN Node</a> and to the <a href="NodeJsToIotHub.html">NodeJs app</a> and to the <a href="JavaToIotHub.html">Java app</a>.</p>
+<p>This part of the workshop supports both the <a href="NodeJsToIotHub.html">NodeJs app</a> and the <a href="JavaToIotHub.html">Java app</a>.</p>
 <p><em>Note: In this workshop, we will create uniquely named Azure resources. The suggested names could be reserved already.</em></p>
 <h3 id="prerequisites">Prerequisites</h3>
 <ol type="1">
-<li>A running NodeJs or Java app which simulates a machine running duty cycles</li>
-<li>A combination of Azure IoT Hub, Stream Analytics job, Event Hub and Azure Function which are waiting for analyzed telemetry coming from the devices</li>
-<li>Azure account <a href="https://azure.microsoft.com/en-us/free/">create here</a> <em>(Azure passes will be present for those who have no Azure account (please check your email for final confirmation))</em></li>
+<li><p>A running NodeJs or Java app which simulates a machine running duty cycles</p></li>
+<li><p>A combination of Azure IoT Hub, Stream Analytics job, Event Hub and Azure Function which are waiting for analyzed telemetry coming from the devices</p></li>
+<li><p>Azure account <a href="https://azure.microsoft.com/en-us/free/">create here</a> <em>(Azure passes will be present for those who have no Azure account (please check your email for final confirmation))</em></p></li>
 </ol>
 <h3 id="steps-to-perform-in-this-part-of-the-workshop">Steps to perform in this part of the workshop</h3>
 <p>At the end of this part of the workshop, the following steps are performed</p>
 <ol type="1">
-<li>Sending back commands for devices which are in a faulty state</li>
-<li>Handle commands in the devices</li>
-<li>Conclusion</li>
+<li><p>Sending back commands for devices which are in a faulty state</p></li>
+<li><p>Handle commands in the devices</p></li>
 </ol>
 <h2 id="sending-back-commands-for-devices-which-are-in-a-faulty-state">Sending back commands for devices which are in a faulty state</h2>
 <p><img src="img/msft/Picture12-connect-anything-using-flow.png" /></p>
-<p>In the <a href="AzureNodeJs.html">previous NodeJs chapter</a>, we passed the telemetry from the device to a Stream Analytics job. This job collected devices which are sending error states. Every two minutes, information about devices that are in a faulty state are passed to an Azure Function.</p>
+<p>In the <a href="AzureNodeJs.html">previous chapter</a>, we passed the telemetry from the device to a Stream Analytics job.</p>
+<p>This job collected devices which are sending error states.</p>
+<p>Every two minutes, information about devices that are in a faulty state are passed to an Azure Function.</p>
 <p>In this workshop, we will react on these devices by sending them a command to ‘repair themselves’.</p>
 <h3 id="updating-the-nodejs-azure-function-with-sending-command-logic">Updating the NodeJs Azure Function with sending command logic</h3>
 <p>First, we update the Azure Function. For each device which is passed on, we send a command back.</p>
 <p>Sending commands back to devices is a specific feature of the IoT Hub. The IoT Hub registers devices and their security policies. And the IoT Hub has built-in logic to send commands back.</p>
 <ol type="1">
-<li><p>On the left, select <code>Resource groups</code>. A list of resource groups is shown</p>
+<li><p>On the left, select <strong>Resource groups</strong>. A list of resource groups is shown</p>
 <p><img src="img/azure-resource-groups.png" /></p></li>
-<li>Select the ResourceGroup <code>IoTWorkshop-rg</code>. It will open a new blade with all resources in this group</li>
-<li>Select the Azure Function App <code>IoTWorkshop-fa</code></li>
-<li><p>To the left, the current functions are shown. Select <code>IoTWorkshopEventHubFunction</code></p>
+<li><p>Select the ResourceGroup <strong>IoTWorkshop-rg</strong>. It will open a new blade with all resources in this group</p></li>
+<li><p>Select the Azure Function App <strong>IoTWorkshop-fa</strong></p></li>
+<li><p>To the left, the current functions are shown. Select <strong>IoTWorkshopEventHubFunction</strong></p>
 <p><img src="img/function/azure-function-select.png" /></p></li>
-<li>The Code panel is shown. The code of the function is shown. <em>Note: actually, this code is saved in a JavaScript file named index.js in the Azure storage of the Function app</em></li>
+<li><p>The Code panel is shown. The code of the function is shown. <em>Note: actually, this code is saved in a JavaScript file named index.js in the Azure storage of the Function app</em></p></li>
 <li><p>Change the current code into</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="va">module</span>.<span class="at">exports</span> <span class="op">=</span> <span class="kw">function</span> (context<span class="op">,</span> myEventHubTrigger) <span class="op">{</span></a>
 <a class="sourceLine" id="cb1-2" data-line-number="2">    <span class="va">context</span>.<span class="at">log</span>(<span class="st">&#39;Stream Analytics produced: &#39;</span><span class="op">,</span> myEventHubTrigger)<span class="op">;</span></a>
@@ -78,19 +79,19 @@
 <a class="sourceLine" id="cb1-42" data-line-number="42"></a>
 <a class="sourceLine" id="cb1-43" data-line-number="43">    <span class="va">context</span>.<span class="at">done</span>()<span class="op">;</span></a>
 <a class="sourceLine" id="cb1-44" data-line-number="44"><span class="op">};</span></a></code></pre></div></li>
-<li><p>Press the <code>Logs</code> button at the bottom to open the pane which shows some basic logging</p>
+<li><p>Press the <strong>Logs</strong> button at the bottom to open the pane which shows some basic logging</p>
 <p><img src="img/azure-function-app-eventhubtrigger-logs.png" /></p></li>
-<li>A ‘Logs’ panel is shown. This ‘Logs’ panel works like a trace log.</li>
-<li>Because we are writing JavaScript, there will be no warning the code above has some flaws. We need to add a connection string and extra libraries. Let’s start with the extra libraries.</li>
-<li><p>Press the <code>View Files</code> button to ‘unfold’ the pane which shows a directory tree of all files.</p>
+<li><p>A ‘Logs’ panel is shown. This ‘Logs’ panel works like a trace log.</p></li>
+<li><p>Because we are writing JavaScript, there will be no warning the code above has some flaws. We need to add a connection string and extra libraries. Let’s start with the extra libraries.</p></li>
+<li><p>Press the <strong>View Files</strong> button to ‘unfold’ the pane which shows a directory tree of all files.</p>
 <p><img src="img/commands/azure-function-app-view-files.png" /></p></li>
 <li><p>In the pane you can see that the file currently selected is: index.js</p>
 <p><img src="img/commands/azure-function-app-view-files-pane-nodejs.png" /></p></li>
-<li><p>Add a new file by pressing <code>Add</code></p>
+<li><p>Add a new file by pressing <strong>Add</strong></p>
 <p><img src="img/commands/azure-function-app-view-files-pane-add.png" /></p></li>
-<li><p>Name the new file <code>package.json</code></p>
+<li><p>Name the new file <strong>package.json</strong></p>
 <p><img src="img/commands/azure-function-app-view-files-pane-add-file-nodejs.png" /></p></li>
-<li><p>Press <code>Enter</code> to confirm the name of the file and an empty code editor will be shown for this file.</p></li>
+<li><p>Press <strong>Enter</strong> to confirm the name of the file and an empty code editor will be shown for this file.</p></li>
 <li><p>The ‘package.json’ file describes which NodeJS packages have to be referenced. Fill the editor with the following code</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode json"><code class="sourceCode json"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="fu">{</span></a>
 <a class="sourceLine" id="cb2-2" data-line-number="2">  <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;azure-javascript-function&quot;</span><span class="fu">,</span></a>
@@ -100,25 +101,10 @@
 <a class="sourceLine" id="cb2-6" data-line-number="6">  <span class="dt">&quot;author&quot;</span><span class="fu">:</span> <span class="st">&quot;&quot;</span><span class="fu">,</span></a>
 <a class="sourceLine" id="cb2-7" data-line-number="7">  <span class="dt">&quot;license&quot;</span><span class="fu">:</span> <span class="st">&quot;&quot;</span><span class="fu">,</span></a>
 <a class="sourceLine" id="cb2-8" data-line-number="8">  <span class="dt">&quot;dependencies&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
-<a class="sourceLine" id="cb2-9" data-line-number="9">    <span class="dt">&quot;azure-iot-device&quot;</span><span class="fu">:</span> <span class="st">&quot;^1.1.7&quot;</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10">    <span class="dt">&quot;azure-iot-device-amqp&quot;</span><span class="fu">:</span> <span class="st">&quot;^1.1.7&quot;</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb2-11" data-line-number="11">    <span class="dt">&quot;azure-iothub&quot;</span><span class="fu">:</span> <span class="st">&quot;^1.1.7&quot;</span></a>
-<a class="sourceLine" id="cb2-12" data-line-number="12">  <span class="fu">}</span></a>
-<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="fu">}</span></a></code></pre></div></li>
-<li><p>Select <code>Save</code>.</p></li>
-<li><p><code>Open</code> the azure console:</p>
-<p><img src="img/NodeJsToIotHub/console2.png" /></p></li>
-<li><p>Enter the following command <code>cd iotworkshop-eh</code> at the console window to navigate to the iot workshop direction.</p></li>
-<li><p>Enter <code>npm install azure-javascript-function</code> at the console window to install package.json</p>
-<p><img src="img/NodeJsToIotHub/console.png" /></p></li>
-<li><p>We have added the extra dependencies. Unfortunately the libraries involved are not loaded yet. To make sure all libraries are loaded, all we have to do is simply stop and start our Azure Function. <em>Note: you can press ‘save and run’, with a test message like “[{“count”:16,“deviceid”:“MachineCyclesNodeJs”}]” (check out the ‘Test’ option to the right for more info) but this will not be compiles correctly</em></p></li>
-<li><p>To the left, press <code>Manage</code></p></li>
-<li><p><code>Disable</code> and <code>Enable</code> the Azure Function again</p>
-<p><img src="img/azure-function-manage-enable.png" /></p></li>
-<li><p>The combination of libraries and code is now ready</p></li>
-<li><p>There is just one thing left to do: we have to fill in the <code>Azure IoT Hub security policy connection string</code>. To send commands back, we have to proof we are authorized to do this</p></li>
-<li><p>In the Azure Function, replace ‘[IOT HUB connection string]’ with your <em>remembered</em> IoT Hub <code>Connection String-primary key</code></p></li>
-<li><p>Select <code>Save</code> again</p></li>
+<a class="sourceLine" id="cb2-9" data-line-number="9">    <span class="dt">&quot;azure-iothub&quot;</span><span class="fu">:</span> <span class="st">&quot;^1.3.0&quot;</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10">  <span class="fu">}</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="fu">}</span></a></code></pre></div></li>
+<li><p>Select <strong>Save</strong>.</p></li>
 </ol>
 <p>Now, the Azure Function is ready to receive data about devices which simulate ‘faulty machines’. And it can send commands back to ‘repair’ the ‘machines’.</p>
 <h2 id="handle-commands-in-the-devices">Handle commands in the devices</h2>
@@ -128,14 +114,14 @@
 <p>The javascript client is instrumented to fall into an error state already, every fifth “completed cycle” message results in an error state. This will put the device in an error state.</p>
 <p>Just wait for approx. two minutes and see how the error state arrives at the IoT Hub and within two minutes the command is generated to ‘fix’ the machine.</p>
 <p>Again, after five successfull cycles, the app will generate another error state, which will eventually be fixed automatically.</p>
+<h3 id="handle-commands-in-the-javascript-node.js-app-1">Handle commands in the javascript Node.js app</h3>
+<p>The Java client is instrumented to fall into an error state already, every fifth “completed cycle” message results in an error state. This will put the device in an error state.</p>
+<p>Just wait for approx. two minutes and see how the error state arrives at the IoT Hub and within two minutes the command is generated to ‘fix’ the machine.</p>
+<p>Again, after five successfull cycles, the app will generate another error state, which will eventually be fixed automatically.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>Receiving commands from Azure completes the main part of the workshop.</p>
 <p>We hope you did enjoy working with the Azure IoT Platform, as much as we did. Thanks for getting this far!</p>
 <p><img src="img/msft/Picture13-make-the-world-a-better-place.png" /></p>
-<p>But wait, there is still more. We added a bonus chapter to the workshop</p>
-<ul>
-<li><a href="Webjob.html">Deploying the TTN C# bridge as Azure Web Job</a></li>
-</ul>
 <p>And for more creative ideas, we can recommand to look at <a href="https://www.hackster.io/">hackster.io</a>. Every day, new IoT projects are added!</p>
 <p><img src="img/logos/microsoft.jpg" /> <img src="img/logos/atos.png" /></p>
 </body></html>

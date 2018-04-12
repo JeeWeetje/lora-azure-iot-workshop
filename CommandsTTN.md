@@ -26,13 +26,15 @@ At the end of this part of the workshop, the following steps are performed
 
 2. Handle commands in the devices
 
-3. Conclusion
-
 ## Sending back commands for devices which are in a faulty state
 
 ![](img/msft/Picture12-connect-anything-using-flow.png)
 
-In the [previous chapter](AzureTTN.md), we passed the telemetry from the device to a Stream Analytics job. This job collected devices which are sending error states. Every two minutes, information about devices that are in a faulty state are passed to an Azure Function.
+In the [previous chapter](AzureTTN.md), we passed the telemetry from the device to a Stream Analytics job. 
+
+This job collected devices which are sending error states. 
+
+Every two minutes, information about devices that are in a faulty state are passed to an Azure Function.
 
 In this workshop, we will react on these devices by sending them a command to 'repair themselves'.
 
@@ -148,38 +150,6 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
     ```
 
 16. Select **Save**.
-
-Now, the Azure Function is ready to receive data about devices which simulate 'faulty machines'. And it can send commands back to 'repair' the 'machines'.
-
-## Optional, Fixing loading of modules
-
-*Note*: Only use these steps if the Azure Function gives exceptions while executing a message.
-
-1. We have added the extra dependencies. Unfortunately the libraries involved are not loaded yet. To make sure all libraries are loaded, all we have to do is simply stop and start our Azure Function. *Note: you can press 'save and run', with a test message like "[{"count":16,"deviceid":"MachineCyclesNodeJs"}]" (check out the 'Test' option to the right for more info) but this will not be compiles correctly*
-
-2. To the left, press **Manage**
-
-3. **Disable** and **Enable** the Azure Function again
-
-    ![](img/azure-function-manage-enable.png)
-
-4. The combination of libraries and code is now ready
-
-    **If there is a module missing, then follow the following steps**
-
-5. Go to the overview of your app (not only the function), then go to platform
-
-6. Open the console in development tools
-
-7. Navigate in the console to the folder with your function **cd IoTWorkshopEventHubFunction**
-
-8. run **npm install** and restart your app and function
-
-9. There is just one thing left to do: we have to fill in the **Azure IoT Hub security policy connection string**. To send commands back, we have to proof we are authorized to do this
-
-10. In the Azure Function, replace '[IOT HUB connection string]' with your *remembered* IoT Hub full **Connection String-primary key**
-
-11. Select **Save** again
 
 Now, the Azure Function is ready to receive data about devices which simulate 'faulty machines'. And it can send commands back to 'repair' the 'machines'.
 
