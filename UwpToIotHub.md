@@ -8,7 +8,7 @@ This is an example integration between a UWP app and Azure IoT Hub. This integra
 
 *Note: In this workshop, we will create uniquely named Azure resources. The suggested names could be reserved already. Just try another unique name.*
 
-*Note: The IoT Hub also offers the ability to send commands back to devices. This is not part of this workshop.*
+*Note: The IoT Hub also offers the ability to send commands back to devices. This will be demonstrated after this labs.*
 
 ### Prerequisites
 

@@ -8,7 +8,7 @@ This is an example integration between a Java app and Azure IoT Hub. This integr
 
 *Note: In this workshop, we will create uniquely named Azure resources. The suggested names could be reserved already. Just try another unique name.*
 
-*Note: The IoT Hub also offers the ability to send commands back to devices. This is not part of this workshop.*
+*Note: The IoT Hub also offers the ability to send commands back to devices. This will be demonstrated after this labs.*
 
 ### Prerequisites
 
@@ -78,7 +78,7 @@ Creating an IoT Hub takes some time. Meanwhile, we will start with the app which
 
 Unlike event hubs, all devices that use an IoT hub must be individually registered, and use their own endpoint and shared access key to access the hub. In this exercise, you will register a client device.
 
-### Get the Hostname and Connection String for the Hub
+### Get the Connection String for the IoT Hub
 
 To register a client device, you must run a script that uses a connection with sufficient permissions to access the hub registry. In this case, you will use the built-in iothubowner shared access policy to accomplish this.
 
