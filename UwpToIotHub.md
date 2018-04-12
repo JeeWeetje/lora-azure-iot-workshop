@@ -85,7 +85,7 @@ We will create a UWP app in Visual Studio. These apps are called Universal Windo
 *Note*: Our app will simulate a machine which handles batches of work. It passes the increasing number of finished duty cycles every X seconds to the cloud. And we can simulate outage later on.
 
 1. Start Visual Studio
-2. On the Start Page or using the Menu, select New Project...
+2. On the Start Page or using the Menu, select **Create new project**
 
     ![](img/UwpToIotHub/vs-new-project.png)
 
