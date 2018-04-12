@@ -58,7 +58,7 @@ Follow these steps to create an Azure IoT Hub.
 
     ![](img/UwpToIotHub/azure-search-iot-hub.png)
 
-4. Select `IoT Hub` and a new blade will be shown. Select `Add` and you will be asked to enter the information needed to create an IoT Hub
+4. Select `IoT Hub` and a new blade will be shown. Select `Add` and you will be asked to enter the information needed to create an IoT Hub *Note:* in "Pricing and scale tier" you can select the size of your IoT Hub. If a F1 is available, select it. Otherwise select a S1. The Basic range is not suitable for this workshop due to sendinG commands. 
 
     ![](img/UwpToIotHub/azure-portal-add.png)
 
