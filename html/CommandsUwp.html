@@ -3,7 +3,7 @@
 <h2 id="passing-commands-back-to-a-device">Passing commands back to a device</h2>
 <p>This is an example of how downlink commands are sent back to a device. In this workshop, we will send commands back to faulty devices, using an Azure Function, to start them up again.</p>
 <p><img src="img/arch/azure-telemetry-pipeline-commands.png" /></p>
-<p>This part of the workshop supports both the <a href="UwpToIotHub.html">UWP app</a>.</p>
+<p>This part of the workshop supports the <a href="UwpToIotHub.html">UWP app</a>.</p>
 <p><em>Note: In this workshop, we will create uniquely named Azure resources. The suggested names could be reserved already.</em></p>
 <h3 id="prerequisites">Prerequisites</h3>
 <ol type="1">
@@ -73,7 +73,7 @@
 <li><p>Press the <strong>Logs</strong> button at the bottom to open the pane which shows some basic logging</p>
 <p><img src="img/azure-function-app-eventhubtrigger-logs.png" /></p></li>
 <li><p>A ‘Logs’ panel is shown. This ‘Logs’ panel works like a trace log.</p></li>
-<li><p>If you try to run this code, you will notice that compilation fails. This is not that surprising: we are using certain libraries that Azure Functions has no knowledge of. Yet!</p></li>
+<li><p>If you try to <em>save</em> this code, you will notice that compilation fails. This is not that surprising: we are using certain libraries that Azure Functions has no knowledge of. Yet!</p></li>
 <li><p>Press the <strong>View Files</strong> button to open the pane which shows a directory tree of all files.</p>
 <p><img src="img/commands/azure-function-app-view-files.png" /></p></li>
 <li><p>In the pane you can see that the file currently selected is: run.csx</p>
@@ -88,21 +88,18 @@
 <a class="sourceLine" id="cb2-2" data-line-number="2">  <span class="dt">&quot;frameworks&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
 <a class="sourceLine" id="cb2-3" data-line-number="3">    <span class="dt">&quot;net46&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
 <a class="sourceLine" id="cb2-4" data-line-number="4">      <span class="dt">&quot;dependencies&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">        <span class="dt">&quot;Microsoft.AspNet.WebApi.Client&quot;</span><span class="fu">:</span> <span class="st">&quot;5.2.3&quot;</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6">        <span class="dt">&quot;Microsoft.AspNet.WebApi.Core&quot;</span><span class="fu">:</span> <span class="st">&quot;5.2.3&quot;</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">        <span class="dt">&quot;Microsoft.Azure.Amqp&quot;</span><span class="fu">:</span> <span class="st">&quot;1.1.5&quot;</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">        <span class="dt">&quot;Microsoft.Azure.Devices&quot;</span><span class="fu">:</span> <span class="st">&quot;1.1.0&quot;</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb2-9" data-line-number="9">        <span class="dt">&quot;Newtonsoft.Json&quot;</span><span class="fu">:</span> <span class="st">&quot;9.0.1&quot;</span></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10">      <span class="fu">}</span></a>
-<a class="sourceLine" id="cb2-11" data-line-number="11">    <span class="fu">}</span></a>
-<a class="sourceLine" id="cb2-12" data-line-number="12">  <span class="fu">}</span></a>
-<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="fu">}</span></a></code></pre></div></li>
+<a class="sourceLine" id="cb2-5" data-line-number="5">        <span class="dt">&quot;Microsoft.Azure.Devices&quot;</span><span class="fu">:</span> <span class="st">&quot;1.6.0&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">        <span class="dt">&quot;Newtonsoft.Json&quot;</span><span class="fu">:</span> <span class="st">&quot;11.0.2&quot;</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">      <span class="fu">}</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">    <span class="fu">}</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">  <span class="fu">}</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="fu">}</span></a></code></pre></div></li>
 <li><p>Select <strong>Save</strong>. The changed C# code will be recompiled immediately <em>Note: you can press ‘save and run’, this will actually run the function, but an empty test will be passed (check out the ‘Test’ option to the right for more info)</em></p></li>
 <li><p>In the ‘Logs’ panel, just below ‘Code’, <strong>verify the outcome</strong> of the compilation</p>
 <pre class=".html/sh"><code>2017-01-08T14:49:46.794 Packages restored.
 2017-01-08T14:49:47.113 Script for function &#39;IoTWorkshopEventHubFunction&#39; changed. Reloading.
 2017-01-08T14:49:47.504 Compilation succeeded.</code></pre></li>
-<li><p>There is just one thing left to do: we have to fill in the Azure IoT Hub security policy connection string. To send commands back, we have to proof we are authorized to do this</p></li>
+<li><p>There is just one thing left to do: we have to <strong>fill in</strong> the Azure IoT Hub security policy <strong>connection string</strong>. To send commands back, we have to proof we are authorized to do this</p></li>
 <li><p>In the Azure Function, replace ‘[IOT HUB connection string]’ with your <em>remembered</em> IoT Hub <strong>Connection String-primary key</strong></p></li>
 <li><p>Select <strong>Save</strong> and recompile again succesfully</p></li>
 <li><p>In order to test your function without stream analytics you can write your own test for Azure Functions. Let’s write a test so we can check the code for sending a command.</p></li>
@@ -121,7 +118,7 @@
 <ol type="1">
 <li><p>Go to the UWP project</p></li>
 <li><p><strong>Open</strong> the file named ‘AzureIoTHub.cs’</p></li>
-<li><p>The class in this file also contains a method ‘ReceiveCloudToDeviceMessageAsync’ which is not that smart. It can only receive text. Here, we want to receive a number (bytes) from the Azure IoT Platform <em>(Note: passing bytes seems old fashioned but it’s still a clever way to send data in an efficient way. And a lot of devices only accept this format (Eg. the <a href="https://en.wikipedia.org/wiki/LPWAN#LoRa">Lora</a> platform only passes byte arrays) )</em></p></li>
+<li><p>The class in this file also contains a method ‘ReceiveCloudToDeviceMessageAsync’ which is not that smart. It can only receive text. Here, we want to receive a number (bytes) from the Azure IoT Platform <em>(Note: passing bytes seems old fashioned but it’s still the most clever way to send data in an efficient way. And a lot of devices only accept this format (Eg. the <a href="https://en.wikipedia.org/wiki/LPWAN#LoRa">Lora</a> platform only passes byte arrays) )</em></p></li>
 <li><p><strong>Add</strong> a byte array Receive method with the following code</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">public</span> <span class="kw">static</span> async Task&lt;<span class="dt">byte</span>[]&gt; <span class="fu">ReceiveCloudToDeviceBytesAsync</span>()</a>
 <a class="sourceLine" id="cb5-2" data-line-number="2">{</a>

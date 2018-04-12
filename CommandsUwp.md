@@ -6,7 +6,7 @@ This is an example of how downlink commands are sent back to a device. In this w
 
 ![](img/arch/azure-telemetry-pipeline-commands.png)
 
-This part of the workshop supports both the [UWP app](UwpToIotHub.md).
+This part of the workshop supports the [UWP app](UwpToIotHub.md).
 
 *Note: In this workshop, we will create uniquely named Azure resources. The suggested names could be reserved already.*
 
@@ -101,7 +101,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 
 8. A 'Logs' panel is shown. This 'Logs' panel works like a trace log.
 
-9. If you try to run this code, you will notice that compilation fails. This is not that surprising: we are using certain libraries that Azure Functions has no knowledge of. Yet!
+9. If you try to *save* this code, you will notice that compilation fails. This is not that surprising: we are using certain libraries that Azure Functions has no knowledge of. Yet!
 
 10. Press the **View Files** button to open the pane which shows a directory tree of all files.
 
@@ -128,11 +128,8 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
       "frameworks": {
         "net46": {
           "dependencies": {
-            "Microsoft.AspNet.WebApi.Client": "5.2.3",
-            "Microsoft.AspNet.WebApi.Core": "5.2.3",
-            "Microsoft.Azure.Amqp": "1.1.5",
-            "Microsoft.Azure.Devices": "1.1.0",
-            "Newtonsoft.Json": "9.0.1"
+            "Microsoft.Azure.Devices": "1.6.0",
+            "Newtonsoft.Json": "11.0.2"
           }
         }
       }
@@ -149,7 +146,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
     2017-01-08T14:49:47.504 Compilation succeeded.
     ```
 
-18. There is just one thing left to do: we have to fill in the Azure IoT Hub security policy connection string. To send commands back, we have to proof we are authorized to do this
+18. There is just one thing left to do: we have to **fill in** the Azure IoT Hub security policy **connection string**. To send commands back, we have to proof we are authorized to do this
 
 19. In the Azure Function, replace '[IOT HUB connection string]' with your *remembered* IoT Hub **Connection String-primary key**
 
@@ -185,7 +182,7 @@ In [UWP app](UwpToIotHub.md) we wrote and executed a UWP which send some telemet
 
 2. **Open** the file named 'AzureIoTHub.cs'
 
-3. The class in this file also contains a method 'ReceiveCloudToDeviceMessageAsync' which is not that smart. It can only receive text. Here, we want to receive a number (bytes) from the Azure IoT Platform _(Note: passing bytes seems old fashioned but it's still a clever way to send data in an efficient way. And a lot of devices only accept this format (Eg. the [Lora](https://en.wikipedia.org/wiki/LPWAN#LoRa) platform only passes byte arrays) )_
+3. The class in this file also contains a method 'ReceiveCloudToDeviceMessageAsync' which is not that smart. It can only receive text. Here, we want to receive a number (bytes) from the Azure IoT Platform _(Note: passing bytes seems old fashioned but it's still the most clever way to send data in an efficient way. And a lot of devices only accept this format (Eg. the [Lora](https://en.wikipedia.org/wiki/LPWAN#LoRa) platform only passes byte arrays) )_
 
 4. **Add** a byte array Receive method with the following code
 
