@@ -101,7 +101,7 @@ We will create a UWP app in Visual Studio. These apps are called Universal Windo
 
     *Note: here the Windows 10 Fall Creators edition is shown in the picture, please try select to select the most recent SDK*
 
-6. Press `F6` or use the menu `BUILD|Build Solution` to recompile the app and check if the build completes without errors
+6. Press `CONTROL-SHIFT-B` or use the menu `BUILD|Build Solution` to recompile the app and check if the build completes without errors
 
     ![](img/UwpToIotHub/vs-build-succeeded.png)
 
@@ -134,41 +134,45 @@ Let's add a connection to IoT hub and register the app like a real device.
 
     ![](img/UwpToIotHub/vs-iot-extension-credentials.png)
 
-6. Select `Hardcode shared access key` as Security Mode. Confirm with `OK`
+6. Select `Hardcode shared access key` as Security Mode. Confirm with `Next`
 
 7. Now you will be asked to select the IoT Hub you want to connect. At this time, the Hub should be created. *If you have multiple Azure accounts, please double-check that the correct one is selected*
 
     ![](img/UwpToIotHub/vs-iot-extension-select.png)
 
-8. `Select` your IoT Hub and press `Add`
+8. `Select` your IoT Hub and press `Next`
 
-9. The next page of the wizard is shown. You are asked to select or add the registration of a device. Our app will represent a device and therefore access must be granted, which has to be created. Select `New Device`
+9. The next page of the wizard is shown. You are asked to select or add the registration of a device. Our app will represent a device and therefore access must be granted, which has to be created. Select the 'New Device' tab
 
     ![](img/UwpToIotHub/vs-device-one.png)
 
-10. Enter a unique `device name` eg 'MachineCyclesUwp' and press `Create`
+10. `Optionally`, deselect device twin and direct message
 
-11. The device is registered, it's not needed to create more devices. Unique credentials are created for each device in the IoTHub
+11. Enter a unique `device name` eg 'MachineCyclesUwp' and press `Create`
 
-12. So afterward, in the 'select' tab, be sure to pick the 'MachineCyclesUwp'; this one will be used by our app. _(Note: in this workshop we will look at sending and receiving messages. This wizard can generate example code for device twins and direct methods also, but this is not part of the workshop)_
+12. The device is registered. Unique credentials are created for each device in the IoTHub
+
+13. Now, in the 'select' tab, be sure to actually `select` the 'MachineCyclesUwp'; this device will be used by our app. _(Note: in this workshop we will look at sending and receiving messages. This wizard can generate example code for device twins and direct methods also, but this is not part of the workshop)_
 
     ![](img/UwpToIotHub/vs-device-three.png)
 
-13. Select `Next` to review the summary
+14. Select `Next` to review the summary
 
     ![](img/UwpToIotHub/vs-device-two.png)
 
-14. Press Finish to start the generation of code. The necessary NuGet libraries are added and eventually you will be directed to a [Get Started page](https://github.com/Azure/azure-iot-hub-vs-cs-2017/wiki/C%23-Usage) for more information
+15. Press `Finish` to start the generation of code. The necessary NuGet libraries are added and eventually you will be directed to a [Get Started page](https://github.com/Azure/azure-iot-hub-vs-cs-2017/wiki/C%23-Usage) for more information
 
     ![](img/UwpToIotHub/vs-device-four.png)
 
-15. The wizard now completed the creation of your example code
+16. The wizard now completed the creation of your example code
 
     ![](img/UwpToIotHub/vs-device-five.png)
 
-16. In the Solution Explorer of Visual Studio, a new file named 'AzureIoTHub.cs' is added. This provides all logic for the connection to the IoT Hub
+17. In the Solution Explorer of Visual Studio, a new file named 'AzureIoTHub.cs' is added. This provides all logic for the connection to the IoT Hub
 
     ![](img/UwpToIotHub/vs-iot-hub-singleton.png)
+
+18. It's recommended to rebuild the app again.
 
 The AzureIoTHub class can be integrated into the logic of our App. Let's do that.
 
