@@ -82,7 +82,7 @@ Creating an IoT Hub takes some time. Meanwhile, we will start with the app which
 
 We will create a UWP app in Visual Studio. These apps are called Universal Windows Apps because they are supported by all sorts of devices running Windows 10. This includes laptops, PC's, Mobile devices like phones and tablets, the Xbox One, The Surface Hub, The Hololens and even the Raspberry Pi.
 
-    *Note: Our app will simulate a machine which handles batches of work. It passes the increasing number of finished duty cycles every X seconds to the cloud. And we can simulate outage later on*
+*Note*: Our app will simulate a machine which handles batches of work. It passes the increasing number of finished duty cycles every X seconds to the cloud. And we can simulate outage later on.
 
 1. Start Visual Studio
 2. On the Start Page or using the Menu, select New Project...
