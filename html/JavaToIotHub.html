@@ -4,7 +4,7 @@
 <p><img src="img/JavaToIotHub/Picture00-Java-overview.png" /></p>
 <p>This is an example integration between a Java app and Azure IoT Hub. This integration shows features like creating devices in the Azure IoT Hub device registry as well as sending telemetry to the IoT Hub.</p>
 <p><em>Note: In this workshop, we will create uniquely named Azure resources. The suggested names could be reserved already. Just try another unique name.</em></p>
-<p><em>Note: The IoT Hub also offers the ability to send commands back to devices. This is not part of this workshop.</em></p>
+<p><em>Note: The IoT Hub also offers the ability to send commands back to devices. This will be demonstrated after this labs.</em></p>
 <h3 id="prerequisites">Prerequisites</h3>
 <ol type="1">
 <li><p>A Windows 7+ or Linux or Mac computer with internet access</p></li>
@@ -45,7 +45,7 @@
 <h2 id="connect-to-the-iot-hub-and-register-the-app-like-a-device">Connect to the IoT Hub and register the app like a device</h2>
 <p><img src="img/JavaToIotHub/Picture02-Java-overview.png" /></p>
 <p>Unlike event hubs, all devices that use an IoT hub must be individually registered, and use their own endpoint and shared access key to access the hub. In this exercise, you will register a client device.</p>
-<h3 id="get-the-hostname-and-connection-string-for-the-hub">Get the Hostname and Connection String for the Hub</h3>
+<h3 id="get-the-connection-string-for-the-iot-hub">Get the Connection String for the IoT Hub</h3>
 <p>To register a client device, you must run a script that uses a connection with sufficient permissions to access the hub registry. In this case, you will use the built-in iothubowner shared access policy to accomplish this.</p>
 <ol type="1">
 <li><p>Check the Azure portal. The resource group and the IoT Hub should be created by now (otherwise, we were unable to send duty cycles information to it)</p>
