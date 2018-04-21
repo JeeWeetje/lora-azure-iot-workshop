@@ -709,7 +709,8 @@ We can check the arrival of the messages in the Azure IoT Hub using the IoT Hub 
     Session started, expires on Thu Jan 05 2017 22:53:55 GMT+0100 (W. Europe Standard Time)
     ```
 
-6. To **monitor** the device-to-cloud messages from a device, use the following command `iothub-explorer monitor-events --login [your connection string]` and **fill in** your *remembered* IoT Hub 'Connection String'
+6. To **monitor** the device-to-cloud messages from a device, use the following command 
+`iothub-explorer monitor-events --login "[your connection string]"` and **fill in** your *remembered* IoT Hub 'Connection String'
 
 7. All devices are monitored now. This will **result** in the following messages
 
