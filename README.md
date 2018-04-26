@@ -44,8 +44,8 @@ These are the places where this workshop is given
 <tbody>
 <tr><td>Microsoft Tech Days 2016</td><td>Amsterdam, The Netherlands</td><td>October 4, 2016</td><td>19</td></tr>
 <tr><td>Microsoft Tech Days 2016</td><td>Amsterdam, The Netherlands</td><td>October 4, 2016</td><td>16</td></tr>
-<tr><td>Microsoft Tech Days 2016</td><td>Amsterdam, The Netherlands</td><td>tba</td><td>12</td></tr>
-<tr><td>Microsoft Tech Days 2016</td><td>Amsterdam, The Netherlands</td><td>tba</td><td>15</td></tr>
+<tr><td>Microsoft Tech Days 2016</td><td>Amsterdam, The Netherlands</td><td>October 5, 2016</td><td>12</td></tr>
+<tr><td>Microsoft Tech Days 2016</td><td>Amsterdam, The Netherlands</td><td>October 5, 2016</td><td>15</td></tr>
 <tr><td>dotNed Saturday 2017</td><td>Veenendaal, The Netherlands</td><td>Januari 28, 2017</td><td>15</td></tr>
 <tr><td>Atos Innovatos 2017</td><td>Amstelveen, The Netherlands</td><td>March 14, 2017</td><td>8</td></tr>
 <tr><td>Atos Innovatos 2017</td><td>Groningen, The Netherlands</td><td>March 21, 2017</td><td>9</td></tr>
@@ -55,8 +55,8 @@ These are the places where this workshop is given
 <tr><td>Microsoft Tech Days 2017</td><td>Amsterdam, The Netherlands</td><td>October 12, 2017</td><td>14</td></tr>
 <tr><td>Codecamp 2017</td><td>Iasi, Romania</td><td>October 27, 2017</td><td>20</td></tr>
 <tr><td>LoRa IoT network</td><td>Apeldoorn, The Netherlands</td><td>April 7, 2018</td><td>20</td></tr>
-<tr><td>Global Azure Bootcamp 2018</td><td>Amstelveen, The Netherlands</td><td>April 21, 2018</td><td>tba</td></tr>
-<tr><td>TEQnation 2018</td><td>Utrecht, The Netherlands</td><td>April 26, 2018</td><td>tba</td></tr>
+<tr><td>Global Azure Bootcamp 2018</td><td>Amstelveen, The Netherlands</td><td>April 21, 2018</td><td>10</td></tr>
+<tr><td>TEQnation 2018</td><td>Utrecht, The Netherlands</td><td>April 26, 2018</td><td>20</td></tr>
 </tbody>
 </table>
 
