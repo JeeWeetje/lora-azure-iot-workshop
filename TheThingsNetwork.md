@@ -238,7 +238,7 @@ Now we have a running Arduino with some basic logic. Let's send some messages us
 Follow the steps to create an application and register your device.
 
 1. Log into the [The Things Network dashboard](https://console.thethingsnetwork.org) using a modern browser like Chrome. You will be asked to provide TTN credentials if needed
-2. A selection between Applications maintenance and Gateways maintenance must be made. Choose **Applications**
+2. A selection between Applications maintenance and Gateways maintenance must be made. In Console, choose **Applications**
 
     ![](img/TheThingsNetwork/TTN-app-gtwy.png)
 
