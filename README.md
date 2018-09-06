@@ -57,6 +57,7 @@ These are the places where this workshop is given
 <tr><td>LoRa IoT network</td><td>Apeldoorn, The Netherlands</td><td>April 7, 2018</td><td>20</td></tr>
 <tr><td>Global Azure Bootcamp 2018</td><td>Amstelveen, The Netherlands</td><td>April 21, 2018</td><td>10</td></tr>
 <tr><td>TEQnation 2018</td><td>Utrecht, The Netherlands</td><td>April 26, 2018</td><td>20</td></tr>
+<tr><td>Hogeschool Rotterdam</td><td>Rotterdam, The Netherlands</td><td>September 5, 2018</td><td>20</td></tr>
 </tbody>
 </table>
 
