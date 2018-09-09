@@ -2,7 +2,7 @@
 
 ## LoRa - Azure IoT Hands-on Lab / Workshop
 
-In this hands-on lab you will be creating the complete chain from configuring, to bridging the cap between the connectivity providers clouds and the Microsoft Azure IoT platform, creating actionable insights on the Microsoft Azure IoT platform and sending commands all the way back to the device.
+In this hands-on lab you will be creating the complete chain from configuring, to bridging the gap between the connectivity providers clouds and the Microsoft Azure IoT platform, creating actionable insights on the Microsoft Azure IoT platform and sending commands all the way back to the device.
 This includes assembling hardware, configuring hardware and software and coding the missing logic to a complete IoT solution.
 The workshop will simulate a remote located machine malfunctioning and getting restarted based on the received telemetry and created insights based on the telemetry data.
 You will be creating all components to get the malfunctioning machine back up running again.
@@ -19,7 +19,7 @@ Technologies used during the hands-on lab;
 
 This hands-on lab will be guided by Valery Jacobs & Jan Willem Groenenberg & Sander van de Velde, so attendees have on site support for questions.
 
-We will also provide background information about the used components in the hands-on lab.
+We will also provide background information about the components used in the hands-on lab.
 
 The hands-on lab is created in conjunction with Atos and Microsoft Nederland.
 
@@ -64,7 +64,7 @@ These are the places where this workshop is given
 
 The workshop consists of several chapters. The first two chapters will guide you through the essentials we want you to get your hands on. The other chapters are optional/extra if you have time left.
 
-You have four options to choose from to start with. You can either go for physical hardware based on the The Things Uno (Lora/LoraWAN enabled Arduino Leonardo) programmed in C and connected via The Things Network, Or choose one of the device simulation applications like UWP (C#), NodeJS (JavaScript) or Java application (Java is only used for the simulation client).
+There are four options to choose from as a base. You can either go for physical hardware based on the The Things Uno (Lora/LoraWAN enabled Arduino Leonardo) programmed in C and connected via The Things Network, Or choose one of the device simulation applications like UWP (C#), NodeJS (JavaScript) or a Java application (Java is only used for the simulation client).
 
 *Click on one of the logos to get started with the device or simulated device and follow that path for the rest of the workshop (at the end of each chapter, a link to the following chapter is provided*
 
