@@ -26,7 +26,7 @@ During this chapter most of these will be explained in dept.
 
 7. Bridge software between TTN and Azure [TtnAzureBridge](https://github.com/sandervandevelde/TtnAzureBridge) (or [as zip](https://aka.ms/workshopiot))
 
-8. [IoT Hub Explorer](https://www.npmjs.com/package/iothub-explorer) _(for Command-Line interface based usage; see below for installation steps)_ or [Device Explorer](https://github.com/Azure/azure-iot-sdks/releases). _(Locate the download link for the SetupDeviceExplorer.msi installer. Download and run the installer)_
+8. [Device Explorer](https://github.com/Azure/azure-iot-sdks/releases). _(Locate the download link for the SetupDeviceExplorer.msi installer. Download and run the installer)_
 
 9. Seeed Grove Led Bar [software library](https://github.com/Seeed-Studio/Grove_LED_Bar) (or [as zip](https://aka.ms/workshopiot))
 
@@ -552,9 +552,13 @@ Follow these steps to create an Azure IoT Hub.
 
 7. Select `West Europe` for the location, if needed
 
-    ![](img/UwpToIotHub/azure-new-iot-hub-scaled.png)
+    ![](img/UwpToIotHub/NewIoTHub1.jpg)
+    
+8. Press `Next: Size and scale`
+    
+    ![](img/UwpToIotHub/NewIoTHub2.jpg)
 
-8. Press `Create` and the portal will start creating the service. Once it is created, a notification is shown. In the right upper corner, a bell represents the list of all notifications shown
+9. Press `Review + create` and check your input. Press `Create` the portal will start creating the service. Once it is created, a notification is shown. In the right upper corner, a bell represents the list of all notifications shown
 
     ![](img/UwpToIotHub/azure-notifications-iothub.png)
 
@@ -654,11 +658,11 @@ You are about to retrieve the telemetry from the The Things Network platform.
 
 *Note: Keep the bridge running until the end of the complete workshop.*
 
-## Select your favorite tool for monitoring
+## Monitoring
 
 ![](img/arch/Picture05-UWP-overview.png)
 
-We can check the arrival of messages in the Azure IoT Hub. This can be done using a UI app named Device Explorer or using a Command-Line tool named IoT Hub Explorer. `Choose one below`
+We can check the arrival of messages in the Azure IoT Hub. This can be done using a UI app named Device Explorer.
 
 ### Monitoring using UI
 
@@ -687,51 +691,6 @@ The easiest way to install the Device Explorer tool in your environment is to do
     1/5/2017 9:46:18 PM> Device: [predictive_maintenance_machine_42], Data:[{"errorCode":0,"numberOfCycles":1}]
     1/5/2017 9:46:19 PM> Device: [predictive_maintenance_machine_42], Data:[{"errorCode":0,"numberOfCycles":2}]
     1/5/2017 9:46:20 PM> Device: [predictive_maintenance_machine_42], Data:[{"errorCode":0,"numberOfCycles":3}]
-    ```
-
-### Monitoring using Command-line
-
-We can check the arrival of the messages in the Azure IoT Hub using the IoT Hub Explorer. This tool is Command-Line based, please check the installation requirements.
-
-*Note: See the [full example](https://www.npmjs.com/package/iothub-explorer) for more options of this tool.*
-
-1. **Create** a new folder eg. `c:\iothubexplorer`
-
-2. At the command prompt (press Windows button-R, type CMD and enter), **navigate** to the new folder `c:\iothubexplorer`
-
-3. In this folder, **run** the following command `npm install -g iothub-explorer@latest` in your command-line environment, to **install** the latest version of the iothub-explorer tool
-
-4. **Login** to the IoT Hub Explorer by supplying your *remembered* IoT Hub **Connection String** using the command `iothub-explorer login "[your connection string]"`
-
-5. A **session** with the IoT Hub will start and it will last for approx. one hour:
-
-    ```cmd/sh
-    Session started, expires on Thu Jan 05 2017 22:53:55 GMT+0100 (W. Europe Standard Time)
-    ```
-
-6. To **monitor** the device-to-cloud messages from a device, use the following command 
-`iothub-explorer monitor-events --login "[your connection string]"` and **fill in** your *remembered* IoT Hub 'Connection String'
-
-7. All devices are monitored now. This will **result** in the following messages
-
-    ```cmd/sh
-    Monitoring events from all devices...
-    ==== From: 'predictive_maintenance_machine_42' at '2018-04-06T21:07:00.539Z' ====
-    {
-      "errorCode": 0,
-      "numberOfCycles": 8
-    }
-    ---- application properties ----
-    {}
-    -------------------
-    ==== From: 'predictive_maintenance_machine_42' at '2018-04-06T21:07:10.539Z' ====
-    {
-      "errorCode": 0,
-      "numberOfCycles": 9
-    }
-    ---- application properties ----
-    {}
-    -------------------
     ```
 
 ## Conclusion
