@@ -552,11 +552,11 @@ Follow these steps to create an Azure IoT Hub.
 
 7. Select `West Europe` for the location, if needed
 
-    ![](img/UwpToIotHub/NewIoTHub1.jpg)
+    ![](img/UwpToIotHub/NewIoTHub1.png)
     
 8. Press `Next: Size and scale`
     
-    ![](img/UwpToIotHub/NewIoTHub2.jpg)
+    ![](img/UwpToIotHub/NewIoTHub2.png)
 
 9. Press `Review + create` and check your input. Press `Create` the portal will start creating the service. Once it is created, a notification is shown. In the right upper corner, a bell represents the list of all notifications shown
 
