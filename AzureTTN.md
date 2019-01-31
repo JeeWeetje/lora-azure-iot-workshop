@@ -307,7 +307,7 @@ Follow these steps to create an Azure Function App. An Azure function is actuall
 
 7. You will be asked to enter the information needed to create an Azure Function
 
-    ![](img/function/FunctionApp1.png)
+    ![](img/function/azure-functionapp-1.png)
 
 8. Enter a unique App name eg. **IoTWorkshop-fa**. A green sign will be shown if the name is unique
 
@@ -323,7 +323,7 @@ Follow these steps to create an Azure Function App. An Azure function is actuall
 
 14. Our new Storage Account is now added to the Azure Function App
 
-    ![](img/function/FunctionApp2.png)
+    ![](img/function/azure-functionapp-2.png)
 
 15. Select **Create**
 
@@ -347,19 +347,19 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
 
 5. The latest interface of Azure Functions is shown.
 
-    ![](img/function/FunctionApp3.png)
+    ![](img/function/azure-functionapp-3.png)
 
 6. Select the **Overview** tab.
 
-    ![](img/function/FunctionApp4.png)
+    ![](img/function/azure-functionapp-4.png)
 
 7. Select **Function app settings**.
 
-    ![](img/function/FunctionApp5.png)
+    ![](img/function/azure-functionapp-5.png)
 
 8. Change the Runtime version setting to ~1.
    
-    ![](img/function/FunctionApp6.png)
+    ![](img/function/azure-functionapp-6.png)
 
 
 9. On the left side, Select the **plus** to add a new function
