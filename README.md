@@ -2,7 +2,7 @@
 
 ## LoRa - Azure IoT Hands-on Lab / Workshop
 
-In this hands-on lab you will be creating the complete chain from configuring, to bridging the cap between the connectivity providers clouds and the Microsoft Azure IoT platform, creating actionable insights on the Microsoft Azure IoT platform and sending commands all the way back to the device.
+In this hands-on lab you will be creating the complete chain from configuring, to bridging the gap between the connectivity providers clouds and the Microsoft Azure IoT platform, creating actionable insights on the Microsoft Azure IoT platform and sending commands all the way back to the device.
 This includes assembling hardware, configuring hardware and software and coding the missing logic to a complete IoT solution.
 The workshop will simulate a remote located machine malfunctioning and getting restarted based on the received telemetry and created insights based on the telemetry data.
 You will be creating all components to get the malfunctioning machine back up running again.

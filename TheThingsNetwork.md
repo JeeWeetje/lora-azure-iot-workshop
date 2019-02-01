@@ -621,7 +621,7 @@ Follow these steps to create the integration bridge between The Things Network a
 
 7. **Replace** [iothub name] with the `name` of the IoT Hub in the app settings
 
-8. In the connectionstring of 'IoTHub', **replace** [Connection String-Primary] with the remembered `Primary Key` *Note*: actually, this connectionstring should resemble the full IoTHub connectionstring
+8. In the connectionstring of 'IoTHub', [shared access key] with the remembered `Primary Key` *Note*: actually, this connectionString should resemble the full IoTHub connectionstring
 
    ![](img/TheThingsNetwork/bridge-config.png)
 
