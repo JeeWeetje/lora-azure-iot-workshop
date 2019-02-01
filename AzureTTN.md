@@ -361,7 +361,6 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
    
     ![](img/function/azure-functionapp-6.png)
 
-
 9. On the left side, Select the **plus** to add a new function
 
     ![](img/function/azure-function-add.png)
