@@ -56,15 +56,19 @@ Follow these steps to create an Azure IoT Hub.
 
     ![](img/NodeJsToIotHub/azure-portal-add.png)
 
-5. Enter a unique IoT Hub name eg. **IoTWorkshop-ih**. A green sign will be shown if the name is unique
+5. Enter a unique Resource Group eg. **IoTWorkshop-rg**. A green sign will be shown if the name is unique
 
-6. Enter a unique Resource Group eg. **IoTWorkshop-rg**. A green sign will be shown if the name is unique
+6. Select **West Europe** for the location, if needed
 
-7. Select **West Europe** for the location, if needed
+7. Enter a unique IoT Hub name eg. **IoTWorkshop-ih**. A green sign will be shown if the name is unique
 
-    ![](img/NodeJsToIotHub/azure-new-iot-hub-scaled.png)
+    ![](img/NodeJsToIotHub/NewIoTHub1.png)
+    
+8. Press `Next: Size and scale`
+    
+    ![](img/NodeJsToIotHub/NewIoTHub2.png)
 
-8. Press **Create** and the portal will start creating the service. Once it is created, a notification is shown. In the right upper corner, a bell represents the list of all notifications shown
+9. Press `Review + create` and check your input. Press **Create** and the portal will start creating the service. Once it is created, a notification is shown. In the right upper corner, a bell represents the list of all notifications shown
 
     ![](img/NodeJsToIotHub/azure-notifications-iothub.png)
 
@@ -305,45 +309,32 @@ We can check the arrival of messages in the Azure IoT Hub. This can be done usin
 
 ### Install & run
 
-We can check the arrival of the messages in the Azure IoT Hub using the IoT Hub Explorer. This tool is Command-Line based, please check the installation requirements.
+We can check the arrival of the messages in the Azure IoT Hub using the the Device Explorer.
 
-*Note : See the [full example](https://www.npmjs.com/package/iothub-explorer) for more options of this tool.*
+The Device Explorer tool is a Windows-only graphical tool for managing your devices in IoT Hub.
 
-1. Create a new folder eg. **c:\iothubexplorer**
+The easiest way to install the Device Explorer tool in your environment is to download the pre-built version by clicking [Azure IoT SDKs releases](https://github.com/Azure/azure-iot-sdks/releases). _(Locate the download link for the SetupDeviceExplorer.msi installer. Download and run the installer)_
 
-2. In a dos-box (press Windows button-R, type CMD and enter), navigate to the new folder **c:\iothubexplorer**
+1. Start the **Device Explorer** from the desktop or using the start menu
 
-3. In this folder, run the following command **npm install -g iothub-explorer@latest** in your command-line environment, to install the latest (pre-release) version of the iothub-explorer tool. (If you use Mac OSX, you can skip this step)
+2. On the Configuration Tab, insert the IoT Hub **Connection String**. Leave the **Protocol Gateway Hostname** empty
 
-4. Login to the IoT Hub Explorer by supplying your *remembered* IoT Hub **Connection String-primary key** using the command **iothub-explorer login [your IoT Hub connection string]**
+3. Press **Update**
 
-5. A session with the IoT Hub will start and it will last for approx. one hour:
+4. On the Management tab, your **device** should already be available. It was **registered** by the bridge the very first time, telemetry arrived
 
-    ```cmd/sh
-    Session started, expires on Thu Apr 12 2018 22:53:55 GMT+0100 (W. Europe Standard Time)
-    ```
+    ![](img/NodeJsToIotHub/deviceexplorerJS.png)
 
-6. To monitor the device-to-cloud messages from a device, use the following command **iothub-explorer monitor-events --login [your IoT Hub connection string]** and **fill in** your *remembered* IoT Hub 'Connection String-primary key'
+5. On the Data tab, Select your **Device ID** (like 'MachineCyclesNodeJs') and press **Monitor**
 
-7. All devices are monitored now. This will result in the following messages
+6. Now we **check the leds** on the device for Sending cycle updates a couple of times. This will result in the following messages while Duty Cycle telemetry is sent by the device
 
     ```cmd/sh
-    Monitoring events from all devices...
-    ==== From: 'MachineCyclesNodeJs' at '2018-04-12T20:23:11.684Z' ====
-    {
-      "errorCode": 0,
-      "numberOfCycles": 2
-    }
-    ====================
-    ==== From: 'MachineCyclesNodeJs' at '2018-04-12T20:23:21.703Z' ====
-    {
-      "errorCode": 0,
-      "numberOfCycles": 3
-    }
-    ====================
+    Receiving events...MachineCyclesNodeJs
+    1/5/2017 9:46:18 PM> Device: [MachineCyclesNodeJs], Data:[{"errorCode":0,"numberOfCycles":1}]
+    1/5/2017 9:46:19 PM> Device: [MachineCyclesNodeJs], Data:[{"errorCode":0,"numberOfCycles":2}]
+    1/5/2017 9:46:20 PM> Device: [MachineCyclesNodeJs], Data:[{"errorCode":0,"numberOfCycles":3}]
     ```
-
-If you tried these steps and saw error, follow step 1 & 2 and don't terminate the monitor window.
 
 The cycle information is arriving.
 
