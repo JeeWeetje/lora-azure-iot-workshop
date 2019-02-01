@@ -155,7 +155,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 
 18. Go to **IoTWorkshop-fa**, **Platform Features**, **Development tools**, **Advanced tools (Kudu)**
 
-19. Select **Debug console** and **PowerShell**
+19. Select **Debug console** and **CMD**
 
 20. Navigate to **D:\\home\\site\\wwwroot\\IoTWorkshopEventHubFuction** or **D:\\home\\site\\wwwroot\\\<your function>**
 
