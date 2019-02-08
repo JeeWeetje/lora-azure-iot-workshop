@@ -159,7 +159,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 
 20. Navigate to **D:\\home\\site\\wwwroot\\IoTWorkshopEventHubFuction** or **D:\\home\\site\\wwwroot\\\<your function>**
 
-21. In the console window type 'npm install', this can take some time to complete.
+21. In the console window type 'npm install', this can take some time to complete. This is needed to install the required packages on Azure.
 
 
 Now, the Azure Function is ready to receive data about devices which simulate 'faulty machines'. And it can send commands back to 'repair' the 'machines'.

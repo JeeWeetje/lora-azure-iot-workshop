@@ -304,7 +304,7 @@ Follow these steps to create an Azure Function App. An Azure function is actuall
 
 7. You will be asked to enter the information needed to create an Azure Function
 
-    ![](img/azure-function-app-initial.png)
+    ![](img/azure-functionapp-1.png)
 
 8. Enter a unique App name eg. **IoTWorkshop-fa**. A green sign will be shown if the name is unique
 
@@ -320,7 +320,7 @@ Follow these steps to create an Azure Function App. An Azure function is actuall
 
 14. Our new Storage Account is now added to the Azure Function App
 
-    ![](img/azure-function-app-create.png)
+    ![](img/azure-functionapp-2.png)
 
 15. Select **Create**
 
@@ -342,51 +342,67 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
 
     ![](img/azure-portal-refresh.png)
 
-5. The latest interface of Azure Functions is shown. On the left side, Select the **plus** to add a new function
+5. The latest interface of Azure Functions is shown. 
 
-    ![](img/function/azure-function-add.png)
+    ![](img/azure-functionapp-3.png)
 
-6. The 'Quickstart' page is shown Here you are invited to get started quickly with a premade function. Ignore this, we will create our own custom function by hand
+6. Select the **Overview** tab.
+
+    ![](img/azure-functionapp-4.png)
+
+7. Select **Function app settings**.
+
+    ![](img/azure-functionapp-5.png)
+
+8. Change the **Runtime version** setting to ~1.
+   
+    ![](img/azure-functionapp-6.png)
+    
+9. On the left side, Select the **plus** to add a new function
+
+    ![](img/azure-function-add.png)
+
+10. The 'Quickstart' page is shown Here you are invited to get started quickly with a premade function. Ignore this, we will create our own custom function by hand
 
     ![](img/function/azure-function-quickstart.png)
 
-7. Select **Custom function** at the bottom
+11. Select **Custom function** at the bottom
 
-8. We have to choose a 'trigger' template. Azure Functions are triggered by events in Azure. A list of possible triggers will be shown. At this moment there are 65+ Bash, Batch, C#, F#, JavaScript, PHP, Powershell Python and TypeScript triggers. Select the **EventHubTrigger**. *Note*: you can select directly the **C#** template within the tile
+12. We have to choose a 'trigger' template. Azure Functions are triggered by events in Azure. A list of possible triggers will be shown. At this moment there are 65+ Bash, Batch, C#, F#, JavaScript, PHP, Powershell Python and TypeScript triggers. Select the **EventHubTrigger**. *Note*: you can select directly the **C#** template within the tile
 
     ![](img/azure-function-app-eventhubtrigger.png)
 
-9. The New Function dialog is shown. The C# language is already selected. You have to fill in the field 'Name your function'. Change **EventHubTriggerCSharp1** into **IoTWorkshopEventHubFunction**
+13. The New Function dialog is shown. The C# language is already selected. You have to fill in the field 'Name your function'. Change **EventHubTriggerCSharp1** into **IoTWorkshopEventHubFunction**
 
-10. Next to the field 'Event Hub connection' select **new**
+14. Next to the field 'Event Hub connection' select **new**
 
     ![](img/function/azure-function-connection-new.png)
 
-11. A new dialog is shown. The needed 'Event Hub connection' is filled in already or you can **select** it using the drop downs. Do you see the policy of the namespace?
+15. A new dialog is shown. The needed 'Event Hub connection' is filled in already or you can **select** it using the drop downs. Do you see the policy of the namespace?
 
     ![](img/function/azure-function-connection-dialog.png)
 
-12. Press **Select** to continue. You are back to the input fields
+16. Press **Select** to continue. You are back to the input fields
 
-13. The Connection string is now filled in into the corresponding field
+17. The Connection string is now filled in into the corresponding field
 
-14. **Fill in** 'iotworkshop-eh' in the Event Hub name field
+18. **Fill in** 'iotworkshop-eh' in the Event Hub name field
 
     ![](img/azure-function-app-eventhubtrigger-new.png)
 
-15. Select **Create**
+19. Select **Create**
 
     ![](img/azure-portal-create.png)
 
-16. The function and trigger are saved. The develop page is shown. In the middle, you will see the function in the 'Code' panel
+20. The function and trigger are saved. The develop page is shown. In the middle, you will see the function in the 'Code' panel
 
-17. In the Logs pane, press the **arrow** (looking like a chevron) button to open that pane which shows some basic logging
+21. In the Logs pane, press the **arrow** (looking like a chevron) button to open that pane which shows some basic logging
 
     ![](img/azure-function-app-eventhubtrigger-logs.png)
 
-18. A 'Logs' panel is shown. This 'Logs' panel works like a trace log.
+22. A 'Logs' panel is shown. This 'Logs' panel works like a trace log.
 
-19. Update the code a bit, change the string in the log.Info() trace call eg.
+23. Update the code a bit, change the string in the log.Info() trace call eg.
 
     ```csharp
     using System;
@@ -397,9 +413,9 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
     }
     ```
 
-20. Select **Save**. The changed C# code will be recompiled immediately *Note: you can press 'save and run', this will actually run the function, but an empty test message will be passed (check out the 'Test' option to the right for more details)*
+24. Select **Save**. The changed C# code will be recompiled immediately *Note: you can press 'save and run', this will actually run the function, but an empty test message will be passed (check out the 'Test' option to the right for more details)*
 
-21. In the 'Logs' panel, just below 'Code', **verify the outcome** of the compilation
+25. In the 'Logs' panel, just below 'Code', **verify the outcome** of the compilation
 
     ```cmd/sh
     2017-01-08T00:14:24.981 Script for function 'IoTWorkshopEventHubFunction' changed. Reloading.

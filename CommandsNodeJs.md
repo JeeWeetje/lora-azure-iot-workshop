@@ -151,6 +151,23 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 
 16. Select **Save**.
 
+17. Return to the file **index.js**. Paste the connection string of your IoT Hub in the variable **connectionString** on line 7.
+
+18. Go to **IoTWorkshop-fa**, **Platform Features**, **Development tools**, **Advanced tools (Kudu)**
+
+    ![](img/commands/azure-kudu.png)
+
+19. Select **Debug console** and **CMD**
+
+    ![](img/commands/azure-terminal.png)
+
+20. Navigate to **D:\\home\\site\\wwwroot\\IoTWorkshopEventHubFuction** or **D:\\home\\site\\wwwroot\\\<your function>**
+
+    ![](img/commands/azure-npm.png)
+
+21. In the console window type 'npm install', this can take some time to complete. This is needed to install the required Node.js packages on Azure.
+
+
 Now, the Azure Function is ready to receive data about devices which simulate 'faulty machines'. And it can send commands back to 'repair' the 'machines'.
 
 ## Handle commands in the devices

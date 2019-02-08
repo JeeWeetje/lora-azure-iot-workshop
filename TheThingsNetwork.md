@@ -26,7 +26,7 @@ During this chapter most of these will be explained in dept.
 
 7. Bridge software between TTN and Azure [TtnAzureBridge](https://github.com/sandervandevelde/TtnAzureBridge) (or [as zip](https://aka.ms/workshopiot))
 
-8. [Device Explorer](https://github.com/Azure/azure-iot-sdks/releases). _(Locate the download link for the SetupDeviceExplorer.msi installer. Download and run the installer)_
+8. [Device Explorer](https://github.com/Azure/azure-iot-sdks/releases) _(Locate the download link for the SetupDeviceExplorer.msi installer. Download and run the installer)_
 
 9. Seeed Grove Led Bar [software library](https://github.com/Seeed-Studio/Grove_LED_Bar) (or [as zip](https://aka.ms/workshopiot))
 
@@ -546,11 +546,11 @@ Follow these steps to create an Azure IoT Hub.
 
     ![](img/UwpToIotHub/azure-portal-add.png)
 
-5. Enter a unique IoT Hub name eg. `IoTWorkshop-ih`. A green sign will be shown if the name is unique
+5. Enter a unique Resource Group eg. `IoTWorkshop-rg`. A green sign will be shown if the name is unique
 
-6. Enter a unique Resource Group eg. `IoTWorkshop-rg`. A green sign will be shown if the name is unique
+6. Select `West Europe` for the location, if needed
 
-7. Select `West Europe` for the location, if needed
+7. Enter a unique IoT Hub name eg. `IoTWorkshop-ih`. A green sign will be shown if the name is unique
 
     ![](img/UwpToIotHub/NewIoTHub1.png)
     

@@ -357,10 +357,9 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
 
     ![](img/function/azure-functionapp-5.png)
 
-8. Change the Runtime version setting to ~1.
+8. Change the **Runtime version** setting to ~1.
    
     ![](img/function/azure-functionapp-6.png)
-
 
 9. On the left side, Select the **plus** to add a new function
 
