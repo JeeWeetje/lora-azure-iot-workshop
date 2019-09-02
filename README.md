@@ -69,9 +69,9 @@ You have three options to choose from to start with. You can either go for physi
 
 * Click on one of the logos to get started with the device or simulated device and follow that path for the rest of the workshop (at the end of each chapter, a link to the following chapter is provided *
 
-1. **Connecting a device to the Azure IoT Platform**
+1. **[Connecting a device to the Azure IoT Platform](TheThingsNetwork.md)**
 
-    <table border="1">
+    <!--<table border="1">
         <thead>
         <tr>
             <th colspan="3">Choose the device or simulator to connect to Azure IoT  </th>
@@ -90,11 +90,11 @@ You have three options to choose from to start with. You can either go for physi
             </td>
         </tr>
         </tbody>
-    </table>
+    </table> -->
 
-2. **Receiving and handling telemetry in Azure**
+2. **[Receiving and handling telemetry in Azure](AzureTTN.md)**
 
-    <table border="1">
+    <!--<table border="1">
         <thead>
         <tr>
             <th colspan="3">Choose the device or simulator to receive telemetry from</th>
@@ -113,11 +113,11 @@ You have three options to choose from to start with. You can either go for physi
             </td>            
         </tr>
         </tbody>
-    </table>
+    </table> -->
 
-3. **Passing commands back to actual devices or simulated devices**
+3. **[Passing commands back to actual devices or simulated devices](CommandsTTN.md)**
 
-    <table border="1">
+    <!--<table border="1">
         <thead>
         <tr>
             <th colspan="3">Choose the device or simulator to pass commands back to </th>
@@ -136,10 +136,9 @@ You have three options to choose from to start with. You can either go for physi
             </td>            
         </tr>
         </tbody>
-    </table>
+    </table> -->
 
     
-4. **Bonus chapter**
-   * [Deploying The Things Network Bridge to Azure as a WebJob](Webjob.md)
+4. **[Bonus chapter: Deploying The Things Network Bridge to Azure as a WebJob](Webjob.md)**
 
 ![](img/logos/microsoft.jpg) ![](img/logos/atos.png)
