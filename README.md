@@ -115,7 +115,7 @@ The workshop consists of several chapters. The first two chapters will guide you
         </tbody>
     </table> -->
 
-3. **[Passing commands back to actual devices or simulated devices](CommandsTTN.md)**
+3. **[Passing commands back to actual devices or simulated devices](CommandsTTNcsharp.md)**
 
     <!--<table border="1">
         <thead>
