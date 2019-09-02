@@ -17,7 +17,7 @@ Technologies used during the hands-on lab;
 * The Things Network cloud
 * Microsoft Azure IoT Platform (including Azure Web Jobs, Azure IoT Hub, Azure Stream analytics, Azure Event hub, Azure blob storage and Azure Functions)
 
-The hands-on lab is created in conjunction with Atos and Microsoft Nederland.
+The hands-on lab is created in conjunction with [Atos](https://atos.net) and [Microsoft Nederland](https://www.microsoft.com/nl-nl/).
 
 **Hardware used will *remain property* of Atos and Microsoft.**
 
@@ -25,16 +25,13 @@ The hands-on lab is created in conjunction with Atos and Microsoft Nederland.
 
 During the workshop the following experts will be present to guide you through the workshop:
 
-* Jan Willem Groenenberg; Atos Senior Expert, IoT Platform Architect, Azure Advisory Board member [![Twitter](img/social/twitter.png)](https://twitter.com/jeeweetje) [![LinkedIn](img/social/linkedin.png)](https://www.linkedin.com/in/jwgroenenberg/) [![LinkedIn](img/social/wordpress.png)](https://jeeweetje.net)
+* Jan Willem Groenenberg; Atos Senior Expert, IoT Integration Architect, Azure Advisory Board member [![Twitter](img/social/twitter.png)](https://twitter.com/jeeweetje) [![LinkedIn](img/social/linkedin.png)](https://www.linkedin.com/in/jwgroenenberg/) [![LinkedIn](img/social/wordpress.png)](https://jeeweetje.net)
 
 * Sander van de Velde; MVP, IoT Platform Architect, Azure Advisory Board member [![Twitter](img/social/twitter.png)](https://twitter.com/svelde) [![LinkedIn](img/social/linkedin.png)](https://www.linkedin.com/in/sandervandevelde/) [![LinkedIn](img/social/wordpress.png)](https://blog.vandevelde-online.com)
 
-* Tom Teunissen; Atos IoT developer  [![LinkedIn](img/social/linkedin.png)](https://www.linkedin.com/in/toteunissen) 
-
-
 ## Workshop/Hands-on locations and dates
 
-These are the places where this workshop is given 
+These are the places where this workshop is given
 
 <table border="1">
 <thead>
@@ -58,6 +55,7 @@ These are the places where this workshop is given
 <tr><td>TEQnation 2018</td><td>Utrecht, The Netherlands</td><td>April 26, 2018</td><td>20</td></tr>
 <tr><td>Hogeschool Rotterdam</td><td>Rotterdam, The Netherlands</td><td>September 5, 2018</td><td>20</td></tr>
 <tr><td>IoT Masterclass</td><td>Amersfoort, The Netherlands</td><td>February 14, 2019</td><td>12</td></tr>
+<tr><td>Hogeschool Rotterdam</td><td>Rotterdam, The Netherlands</td><td>September 3, 2019</td><td>??</td></tr>
 </tbody>
 </table>
 
@@ -67,7 +65,7 @@ The workshop consists of several chapters. The first two chapters will guide you
 
 You have three options to choose from to start with. You can either go for physical hardware based on the The Things Uno (Lora/LoraWAN enabled Arduino Leonardo) programmed in C and connected via The Things Network. Or choose one of the device simulation applications like UWP (C#) or NodeJS (JavaScript).
 
-*Click on one of the logos to get started with the device or simulated device and follow that path for the rest of the workshop (at the end of each chapter, a link to the following chapter is provided*
+* Click on one of the logos to get started with the device or simulated device and follow that path for the rest of the workshop (at the end of each chapter, a link to the following chapter is provided *
 
 1. **Connecting a device to the Azure IoT Platform**
 
