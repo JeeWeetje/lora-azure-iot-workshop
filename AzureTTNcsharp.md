@@ -466,6 +466,6 @@ Notice that we have full control over telemetry. We know which device has sent f
 
 Receiving basic telemetry in Azure completes this part of the workshop. You are now ready to do something exciting with this telemetry.
 
-Let's start [passing commands back to actual devices or simulated devices](CommandsTTN.md)
+Let's start [passing commands back to actual devices or simulated devices](CommandsTTNcsharp.md)
 
 ![](img/logos/microsoft.jpg) ![](img/logos/atos.png)
