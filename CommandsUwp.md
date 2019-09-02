@@ -84,7 +84,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
         serviceClient.SendAsync(message.deviceid, commandMessage);
 
         // Log
-        log.Info($"Machine restart command processed after {message.count} errors for {message.deviceid}");
+        log.Info($"Machine restart command processed after {message.count} errors for device '{message.deviceid}'");
       }
     }
 
