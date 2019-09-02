@@ -78,8 +78,8 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 
       foreach(var message in messages)
       {
-        var bytes= new byte[1];
-        bytes[0] = 42; // restart the machine!
+        var bytes = new byte[1];
+        bytes[0] = 0x42; // restart the machine!
         var commandMessage = new Message(bytes);
         serviceClient.SendAsync(message.deviceid, commandMessage);
 
