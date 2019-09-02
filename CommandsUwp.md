@@ -128,8 +128,8 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
       "frameworks": {
         "net46": {
           "dependencies": {
-            "Microsoft.Azure.Devices": "1.6.0",
-            "Newtonsoft.Json": "11.0.2"
+            "Microsoft.Azure.Devices": "1.18.1",
+            "Newtonsoft.Json": "12.0.2"
           }
         }
       }
