@@ -23,11 +23,13 @@ The hands-on lab is created in conjunction with [Atos](https://atos.net) and [Mi
 
 ## Team of experts
 
-During the workshop the following experts will be present to guide you through the workshop:
+During the workshop the following experts can guide you through the workshop:
 
 * Jan Willem Groenenberg; Atos Senior Expert, IoT Integration Architect, Azure Advisory Board member [![Twitter](img/social/twitter.png)](https://twitter.com/jeeweetje) [![LinkedIn](img/social/linkedin.png)](https://www.linkedin.com/in/jwgroenenberg/) [![LinkedIn](img/social/wordpress.png)](https://jeeweetje.net)
 
 * Sander van de Velde; MVP, IoT Platform Architect, Azure Advisory Board member [![Twitter](img/social/twitter.png)](https://twitter.com/svelde) [![LinkedIn](img/social/linkedin.png)](https://www.linkedin.com/in/sandervandevelde/) [![LinkedIn](img/social/wordpress.png)](https://blog.vandevelde-online.com)
+
+* Hans Boksem, IoT Integration Architect, Atos Senior Expert [![Twitter](img/social/twitter.png)](https://twitter.com/bokse001) [![LinkedIn](img/social/linkedin.png)](https://www.linkedin.com/in/hansboksem/) [![LinkedIn](img/social/wordpress.png)](https://hansboksem.wordpress.com/)
 
 ## Workshop/Hands-on locations and dates
 
