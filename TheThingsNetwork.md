@@ -18,7 +18,7 @@ During this chapter most of these will be explained in dept.
 
 3. [Arduino IDE](https://www.arduino.cc/en/Main/Software)
 
-4. [Node.js](https://nodejs.org/en/). _(We prefer Version 8)_
+4. [Node.js](https://nodejs.org/en/). _(We prefer Version 10)_
 
 5. Azure account [create here](https://azure.microsoft.com/en-us/free/) _([Azure passes](https://www.microsoftazurepass.com/howto) will be present for those who have no Azure account (please check your email for final confirmation))_
 
