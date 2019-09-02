@@ -92,7 +92,7 @@ The workshop consists of several chapters. The first two chapters will guide you
         </tbody>
     </table> -->
 
-2. **[Receiving and handling telemetry in Azure](AzureTTN.md)**
+2. **[Receiving and handling telemetry in Azure](AzureTTNcsharp.md)**
 
     <!--<table border="1">
         <thead>

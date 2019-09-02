@@ -697,6 +697,6 @@ The easiest way to install the Device Explorer tool in your environment is to do
 
 The messages are shown in the TTN portal, in the Bridge and in the IoTHub monitoring tooling. So we have proof of the arrival of these messages in the Azure IoT portal.
 
-Next Step: You are now ready to process your data in an Azure Function. Continue to [Receiving and handling The Things Network telemetry in Azure](AzureTTN.md)
+Next Step: You are now ready to process your data in an Azure Function. Continue to [Receiving and handling The Things Network telemetry in Azure](AzureTTNcsharp.md)
 
 ![](img/logos/microsoft.jpg) ![](img/logos/atos.png)
