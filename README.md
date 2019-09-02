@@ -65,9 +65,9 @@ These are the places where this workshop is given
 
 The workshop consists of several chapters. The first two chapters will guide you through the essentials we want you to get your hands on. The other chapters are optional/extra if you have time left.
 
-You have three options to choose from to start with. You can either go for physical hardware based on the The Things Uno (Lora/LoraWAN enabled Arduino Leonardo) programmed in C and connected via The Things Network. Or choose one of the device simulation applications like UWP (C#) or NodeJS (JavaScript).
+<!--You have three options to choose from to start with. You can either go for physical hardware based on the The Things Uno (Lora/LoraWAN enabled Arduino Leonardo) programmed in C and connected via The Things Network. Or choose one of the device simulation applications like UWP (C#) or NodeJS (JavaScript).
 
-* Click on one of the logos to get started with the device or simulated device and follow that path for the rest of the workshop (at the end of each chapter, a link to the following chapter is provided *
+* Click on one of the logos to get started with the device or simulated device and follow that path for the rest of the workshop (at the end of each chapter, a link to the following chapter is provided * -->
 
 1. **[Connecting a device to the Azure IoT Platform](TheThingsNetwork.md)**
 
