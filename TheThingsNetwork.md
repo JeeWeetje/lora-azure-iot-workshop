@@ -18,19 +18,17 @@ During this chapter most of these will be explained in dept.
 
 3. [Arduino IDE](https://www.arduino.cc/en/Main/Software)
 
-4. [Node.js](https://nodejs.org/en/). _(We prefer Version 10)_
+4. Azure account [create here](https://azure.microsoft.com/en-us/free/) _([Azure passes](https://www.microsoftazurepass.com/howto) will be present for those who have no Azure account (please check your email for final confirmation))_
 
-5. Azure account [create here](https://azure.microsoft.com/en-us/free/) _([Azure passes](https://www.microsoftazurepass.com/howto) will be present for those who have no Azure account (please check your email for final confirmation))_
+5. [TTN account](https://account.thethingsnetwork.org/)
 
-6. [TTN account](https://account.thethingsnetwork.org/)
+6. Bridge software between TTN and Azure [TtnAzureBridge](https://github.com/sandervandevelde/TtnAzureBridge) (or [as zip](https://aka.ms/workshopiot))
 
-7. Bridge software between TTN and Azure [TtnAzureBridge](https://github.com/sandervandevelde/TtnAzureBridge) (or [as zip](https://aka.ms/workshopiot))
+7. [Device Explorer](https://github.com/Azure/azure-iot-sdks/releases) _(Locate the download link for the SetupDeviceExplorer.msi installer. Download and run the installer)_
 
-8. [Device Explorer](https://github.com/Azure/azure-iot-sdks/releases) _(Locate the download link for the SetupDeviceExplorer.msi installer. Download and run the installer)_
+8. Seeed Grove Led Bar [software library](https://github.com/Seeed-Studio/Grove_LED_Bar) (or [as zip](https://aka.ms/workshopiot))
 
-9. Seeed Grove Led Bar [software library](https://github.com/Seeed-Studio/Grove_LED_Bar) (or [as zip](https://aka.ms/workshopiot))
-
-10. Modern, up-to-date browser like Edge, Chrome and Firefox
+9. Modern, up-to-date browser like Edge, Chrome and Firefox
 
 ## Connect your device
 
