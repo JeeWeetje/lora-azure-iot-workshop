@@ -615,9 +615,9 @@ Follow these steps to create the integration bridge between The Things Network a
 
 5. **Replace** [TTN App Id] with the `TTN Application ID`
 
-6. **Replace** [TTN App Access Key] with the `TTN Access Key` (two locations)
+6. **Replace** [TTN App Access Key] with the `TTN Access Key` 
 
-7. **Replace** [short iothub name] with the `name` of the IoT Hub in the app settings (only the first part you thought up)
+7. **Replace** [short iothub name] with the `name` of the IoT Hub in the app settings at two locations (insert only the first part you thought up of the IoT Hub name)
 
 8. In the connectionstring of 'IoTHub', [shared access key] with the remembered `Primary Key` *Note*: actually, this connectionString should resemble the full IoTHub connectionstring
 
